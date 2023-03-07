@@ -38,14 +38,14 @@ class Game {
     var xo = 0;
     var t = 0; // tempo
     var posX = xo;
-    var vox = 90
-    var tempo = 0
+    var vox = 90;
+    var tempo = 0;
 
     const obj = this.object;
-    
+
     const interval = setInterval(() => {
-      Math.round(tempo += 0.68)
-      document.getElementById('tempo').value = tempo.toFixed(0) + ' min'
+      Math.round((tempo += 0.68));
+      document.getElementById("tempo").value = tempo.toFixed(0) + " min";
       t = t + dt / 1000;
       posX = xo + vox * t;
       obj.style.left = `${posX}px`;
@@ -60,7 +60,7 @@ class Game {
   reset() {
     const obj = this.object;
     obj.style.left = 0 + "px";
-    document.getElementById("inputVelocidade").value = "";
+    document.getElementById("tempo").value = "";
   }
 }
 
@@ -69,11 +69,9 @@ const game = new Game(gameObject);
 startButton.addEventListener("click", () => {
   game.displayGameContainer();
   setTimeout(() => {
-
-    game.start()
+    game.start();
   }, 3000);
 });
-
 
 resetBtn.addEventListener("click", () => {
   game.reset();
