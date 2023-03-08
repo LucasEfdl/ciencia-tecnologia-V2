@@ -75,5 +75,8 @@ startButton.addEventListener("click", () => {
 
 resetBtn.addEventListener("click", () => {
   game.reset();
-  //chamar a função clean interval quando clicar em resetar!!
+  setTimeout(() => {
+    game.start();
+  }, 3000);
+
 });
