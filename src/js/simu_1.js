@@ -4,6 +4,7 @@ const gameObject = document.getElementById("object");
 const startBtn = document.getElementById("startGame");
 const verifyBtn = document.getElementById("question-options");
 const resetBtn = document.getElementById("reset");
+const startLevel = document.getElementById("startLevel");
 
 // question animation script
 const text = document.getElementById("question-text");
@@ -49,6 +50,7 @@ class Game {
       t = t + dt / 1000;
       posX = xo + vox * t;
       obj.style.left = `${posX}px`;
+      /* gameObject.style.backgroundImage = "url(../images/tatu3.png)"; */
       if (posX > gameContainer.offsetWidth - 100) {
         posX = xo;
         t = 0;
@@ -61,16 +63,21 @@ class Game {
     const obj = this.object;
     obj.style.left = 0 + "px";
     document.getElementById("tempo").value = "";
+    /* gameObject.style.backgroundImage = "url(../images/tatu3.png)"; */
   }
 }
 
 const game = new Game(gameObject);
+const overlay = document.querySelector('.overlay');
 
 startButton.addEventListener("click", () => {
   game.displayGameContainer();
-  setTimeout(() => {
+  overlay.classList.add('active');
+  /* setTimeout(() => { */
+  startLevel.addEventListener("click", () => {
     game.start();
-  }, 3000);
+    overlay.style.display = "none";
+  })
 });
 
 resetBtn.addEventListener("click", () => {
@@ -80,3 +87,5 @@ resetBtn.addEventListener("click", () => {
   }, 3000);
 
 });
+
+/* teste */
