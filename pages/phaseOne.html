@@ -30,10 +30,16 @@
         <div id="game-container" class="mx-auto" style="display: none">
           <div class="overlay">
             <p>
-              Neste RPG, você acompanhará a história do Peba que está a
+              <!-- Neste RPG, você acompanhará a história do Peba que está a
               procura de sua amada. Em seu primeiro desafio, o Peba se vê
-              encurralado por uma faminta raposa. Ajude o Peba a fugir!
+              encurralado por uma faminta raposa. Ajude o Peba a fugir! -->
+                Sabendo que a raposa inicia sua corrida a 60km/h, e o Peba
+                começa a fugir ao mesmo tempo, calcule a velocidade mínima
+                que ele deve correr para que a raposa não o pegue,
+                considerando que a distância inicial entre os dois é de 500
+                pixels.
             </p>
+            <input type="text" id="velocidadeDigitada" />
             <button id="startLevel" class="btn btn-info">Começar</button>
           </div>
           <div class="form-group mx-5 justify-content-md-end" id="inputs">
@@ -52,7 +58,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">
-                      Migração do Beba
+                      Migração do Peba
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
@@ -82,7 +88,10 @@
             </div>
           </div>
           <div class="game-object" id="object">
-            <p>V = 90 KM/H</p>
+            <p>V = ? KM/H</p>
+          </div>
+          <div class="game-object2" id="object2">
+            <p>V = 60 KM/H</p>
           </div>
         </div>
       </div>

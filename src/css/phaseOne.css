@@ -4,8 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1024px;
-  height: 460px;
+  width: 1200px;
+  height: 700px;
   background-image: url(../images/fundo1.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -16,6 +16,18 @@
 .game-object {
   color: white;
   background-image: url(../images/tatu4.png);
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  bottom: 0px;
+  left: 500px;
+}
+
+.game-object2 {
+  color: white;
+  background-image: url(../images/raposa.png);
   width: 100px;
   height: 100px;
   background-repeat: no-repeat;
