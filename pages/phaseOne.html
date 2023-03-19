@@ -1,109 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fase I - Cinemática</title>
-  <!-- Link Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
-
-  <!-- Link Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="../src/css/phaseOne.css" />
 </head>
 
 <body class="bg-dark">
   <!-- Conteiner que engloba todo o projeto -->
-  <div class="p-5">
-    <div class="row">
-      <div class="col-12 pt-4">
-        <div id="game-start">
-          <!-- Botão que inicia a simulação -->
-          <button class="btn mt-3" id="start-button">
-            <i class="bi bi-play-circle-fill"></i> Começar
+  <main id="initial-screen" class="d-block w-100 vh-100">
+    <div id="start-button" class="d-flex justify-content-center align-items-center vh-100">
+      <button class="btn" type="button">começar</button>
+    </div>
+
+    <div data-js="game-screen" class="d-none justify-content-center align-items-center vh-100">
+      <div id="game-container" class="d-block">
+        <div class="d-block p-3 text-end">
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#ajuda">
+            <i class="bi bi-question-lg"></i> Ajuda
+          </button>
+          <button id="reset" class="btn btn-danger">
+            <i class="bi bi-pause"></i> Resetar
           </button>
         </div>
-        <!-- Div onde a simulação ocorre -->
-        <div id="game-container" class="mx-auto" style="display: none">
-          <div class="overlay">
-            <p>
-              <!-- Neste RPG, você acompanhará a história do Peba que está a
-              procura de sua amada. Em seu primeiro desafio, o Peba se vê
-              encurralado por uma faminta raposa. Ajude o Peba a fugir! -->
-                Sabendo que a raposa inicia sua corrida a 60km/h, e o Peba
-                começa a fugir ao mesmo tempo, calcule a velocidade mínima
-                que ele deve correr para que a raposa não o pegue,
-                considerando que a distância inicial entre os dois é de 500
-                pixels.
-            </p>
-            <input type="text" id="velocidadeDigitada" />
-            <button id="startLevel" class="btn btn-info">Começar</button>
+
+        <div data-js="overlay" class="d-block w-75 p-4 mx-auto bg-white">
+          <p class="text-center">
+            Sabendo que a raposa inicia sua corrida a 60km/h, e o Peba começa
+            a fugir ao mesmo tempo, calcule a velocidade mínima que ele deve
+            correr para que a raposa não o pegue, considerando que a distância
+            inicial entre os dois é de 500 pixels.
+          </p>
+
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <input class="form-control mb-2" type="text" id="velocidadeDigitada"/>
+            <button data-js="startLevel" class="btn btn-info">Começar</button>
           </div>
-          <div class="form-group mx-5 justify-content-md-end" id="inputs">
-            <input type="text" id="tempo" />
-          </div>
-          <div class="buttons pt-3">
-            <button id="reset" class="btn btn-danger">
-              <i class="bi bi-pause"></i> Resetar
-            </button>
-            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#ajuda">
-              <i class="bi bi-question-lg"></i> Ajuda
-            </button>
-            <!-- Codigo HTML do modal -->
-            <div class="modal fade" id="ajuda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                      Migração do Peba
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body text-center">
-                    <h4>Movimento retilineo unforme</h4>
-                    <br />
-                    <p>
-                      Para resolver esta quetão, o aluno prescisa se lembrar
-                      do conceito universal da cinematica:
-                    </p>
-                    <img class="equacaoMRU" src="../src/images/equacao.jpg" alt="" />
-                    <p>
-                      Como a quetão nos forne a velocidade e tempo, só
-                      precisamos substituir na formula para encontrarmos a
-                      distancia total.
-                    </p>
-                    <br />
-                    <p>Tente você mesmo agora!<br /></p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                      Close
-                    </button>
-                  </div>
-                </div>
+        </div>
+
+        <!-- Codigo HTML do modal -->
+        <div class="modal fade" id="ajuda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Migração do Peba
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center">
+                <h4>Movimento retilineo unforme</h4>
+                <br />
+                <p>
+                  Para resolver esta quetão, o aluno prescisa se lembrar do
+                  conceito universal da cinematica:
+                </p>
+                <img class="equacaoMRU" src="../src/images/equacao.jpg" alt="" />
+                <p>
+                  Como a quetão nos forne a velocidade e tempo, só precisamos
+                  substituir na formula para encontrarmos a distancia total.
+                </p>
+                <br />
+                <p>Tente você mesmo agora!<br /></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Close
+                </button>
               </div>
             </div>
           </div>
-          <div class="game-object" id="object">
-            <p>V = ? KM/H</p>
-          </div>
-          <div class="game-object2" id="object2">
-            <p>V = 60 KM/H</p>
-          </div>
+        </div>
+
+        <div class="game-object" id="object">
+          <p>V = ? KM/H</p>
+        </div>
+
+        <div class="game-object2" id="object2">
+          <p>V = 60 KM/H</p>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
-  <!-- Script Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"
-    defer></script>
   <!-- Script javascript -->
   <script src="../src/js/phaseOne.js"></script>
+  <script type="module" src="../node_modules/bootstrap/js/src/modal.js"></script>
 </body>
 
 </html>
