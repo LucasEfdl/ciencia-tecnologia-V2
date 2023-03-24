@@ -19,12 +19,9 @@
     />
     <link rel="stylesheet" href="../src/css/phaseThree.css" />
   </head>
-
   <body class="bg-dark">
     <!-- Conteiner que engloba todo o projeto -->
-    <div class="p-5">
-      <div class="row">
-        <div class="col-12 pt-4">
+      <div class="container-fluid">
           <div id="game-start">
             <!-- Botão que inicia a simulação -->
             <button class="btn mt-3" id="start-button">
@@ -36,33 +33,21 @@
             <div class="overlay">
               <button id="startLevel" class="btn btn-info">Começar</button>
             </div>
-
-            <div class="overlay2" style="display: none">
-              <p id="perguntaFase3">
-                O que o tatu deve fazer tendo as informações da tela como base?
-              </p>
-              <div id="opcoesFase3">
-                <button id="op1" class="btn btn-success">Opcao 1</button>
-                <button id="op2" class="btn btn-success">Opcao 2</button>
-                <button id="op3" class="btn btn-success">Opcao 3</button>
-                <button id="op4" class="btn btn-success">Opcao 4</button>
-              </div>
-            </div>
-            <div class="form-group mx-5 justify-content-md-end" id="inputs">
-              <input type="text" id="tempo" />
-            </div>
             <div class="buttons pt-3">
-              <button id="reset" class="btn btn-danger">
-                <i class="bi bi-pause"></i> Resetar
-              </button>
-              <button
-                type="button"
-                class="btn btn-light"
-                data-bs-toggle="modal"
-                data-bs-target="#ajuda"
-              >
-                <i class="bi bi-question-lg"></i> Ajuda
-              </button>
+              <input type="text" id="tempo" />
+              <div>
+                <button id="reset" class="btn btn-danger">
+                  <i class="bi bi-pause"></i> Resetar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  data-bs-toggle="modal"
+                  data-bs-target="#ajuda"
+                >
+                  <i class="bi bi-question-lg"></i> Ajuda
+                </button>
+              </div>
               <!-- Codigo HTML do modal -->
               <div
                 class="modal fade"
@@ -117,16 +102,17 @@
                 </div>
               </div>
             </div>
-            <div class="game-object" id="object">
-              <p>V = 90 KM/H</p>
+            <!-- Botão que ativa o segundo intervalo -->
+            <button class="btn mt-3" id="start_button_2" style="display: none;">E agora jose?</button>
+            <div class="tatu" id="object">
+              <p>V = 3 M/S</p>
             </div>
-            <div class="game-object2" id="object2" style="display: none"></div>
-            <div class="game-object3" id="object3" style="display: none"></div>
+            <div class="raposa" id="object2" style="display: none"><p>
+              V = 5 M/S
+            </p></div>
+            <div class="carro" id="object3" style="display: none"><p>V = 20 M/S</p></div>
           </div>
-        </div>
       </div>
-    </div>
-
     <!-- Script Bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
