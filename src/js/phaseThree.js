@@ -1,4 +1,4 @@
-// object animation script
+// Object animation script
 const gameContainer = document.getElementById("game-container");
 const tatu = document.getElementById("object");
 const raposa = document.getElementById("object2");
@@ -120,6 +120,7 @@ class Game {
     positionCarro = positionInitialCarro;
     VelocityCarro = 80;
     resposta;
+
     //resetando as posições
     tatu.style.left = 0 + "px";
     raposa.style.left = 0 + "px";
@@ -157,6 +158,7 @@ resetBtn.addEventListener("click", () => {
     overlay.style.display = "none";
     game.start_1();
   });
+
   startButton2.addEventListener("click", () => {
     startButton2.style.display = "none";
     game.start_2();
