@@ -23,7 +23,7 @@
 
   position: absolute;
   bottom: 0px;
-  left: 500px;
+  left: 0px;
 }
 
 .game-object2 {
@@ -37,7 +37,7 @@
 
   position: absolute;
   bottom: 0px;
-  left: 0px;
+  left: -500px;
 }
 
 .overlay {

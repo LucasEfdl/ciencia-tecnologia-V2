@@ -17,9 +17,9 @@
     </div>
 
     <div data-js="game-screen" class="d-none justify-content-center align-items-center vh-100">
-      <div id="game-container" class="d-block">
+      <div id="game-container" class="d-block overflow-hidden">
         <div class="d-block p-3 text-end">
-          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#ajuda">
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#help">
             <i class="bi bi-question-lg"></i> Ajuda
           </button>
           <button id="reset" class="btn btn-danger">
@@ -27,7 +27,7 @@
           </button>
         </div>
 
-        <div data-js="overlay" class="d-block w-75 p-4 mx-auto bg-white">
+        <div data-js="overlay" class="d-none w-75 p-4 mx-auto bg-white">
           <p class="text-center">
             Sabendo que a raposa inicia sua corrida a 60km/h, e o Peba começa
             a fugir ao mesmo tempo, calcule a velocidade mínima que ele deve
@@ -37,12 +37,12 @@
 
           <div class="d-flex flex-column justify-content-center align-items-center">
             <input class="form-control mb-2" type="text" id="velocidadeDigitada"/>
-            <button data-js="startLevel" class="btn btn-info">Começar</button>
+            <button data-js="confirmAnswert" class="btn btn-info">Confirmar</button>
           </div>
         </div>
 
         <!-- Codigo HTML do modal -->
-        <div class="modal fade" id="ajuda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="help" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
@@ -79,7 +79,7 @@
           <p>V = ? KM/H</p>
         </div>
 
-        <div class="game-object2" id="object2">
+        <div class="game-object2 d-none" id="object2">
           <p>V = 60 KM/H</p>
         </div>
       </div>
