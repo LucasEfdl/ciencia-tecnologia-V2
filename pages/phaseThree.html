@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fase I - Cinemática</title>
-  <link rel="stylesheet" href="../src/css/phaseOne.css" />
+  <link rel="stylesheet" href="../src/css/phaseThree.css" />
 </head>
 
 <body class="bg-dark">
@@ -27,16 +27,8 @@
           </button>
         </div>
 
-        <div data-js="overlay" class="d-none w-75 p-4 mx-auto bg-white">
-          <p class="text-center">
-            Sabendo que a raposa inicia sua corrida a 60km/h, e o Peba começa
-            a fugir ao mesmo tempo, calcule a velocidade mínima que ele deve
-            correr para que a raposa não o pegue, considerando que a distância
-            inicial entre os dois é de 500 pixels.
-          </p>
-
+        <div data-js="overlay" class="d-none w-75 p-4 mx-auto bg-none">
           <div class="d-flex flex-column justify-content-center align-items-center">
-            <input class="form-control mb-2" type="text" id="velocidadeDigitada"/>
             <button data-js="confirmAnswert" class="btn btn-info">Confirmar</button>
           </div>
         </div>
@@ -75,18 +67,23 @@
           </div>
         </div>
 
-        <div class="game-object" id="object">
-          <p>V = ? KM/H</p>
+
+        <div class="tatu" id="object">
+          <p>V = 3 KM/H</p>
         </div>
 
-        <div class="game-object2 d-none" id="object2">
-          <p>V = 60 KM/H</p>
+        <div class="raposa" style="display: none;" id="object2">
+          <p>V = 5 KM/H</p>
+        </div>
+
+        <div class="carro" id="object3" style="display: none">
+          <p>V = 20 M/S</p>
         </div>
       </div>
     </div>
   </main>
 
   <!-- Script javascript -->
-  <script src="../src/js/phaseOne.js"></script>
+  <script src="../src/js/phaseThree.js"></script>
   <script type="module" src="../node_modules/bootstrap/js/src/modal.js"></script>
 </body>
