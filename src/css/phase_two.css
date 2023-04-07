@@ -1,5 +1,45 @@
 @import url(global.css);
 
+#game-start {
+  text-align: center;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  height: 100vh;
+  background-image: url(../images/background_start.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  animation: fadeIn 2s;
+}
+
+#start-button {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  background-color: #2b3425;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+#start-button:hover {
+  background-color: #5d5340;
+  color: #fff;
+}
+
+.buttons {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+#inputs {
+  width: 200px;
+}
+
 #game-container {
   display: flex;
   justify-content: center;

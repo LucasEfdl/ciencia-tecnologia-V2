@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fase I - Cinemática</title>
+    <link rel="stylesheet" href="../src/css/phase_one.css" />
+  </head>
+
+  <body class="bg-dark">
+    <!-- Conteiner que engloba todo o projeto -->
+    <main id="initial-screen" class="d-block w-100 vh-100">
+      <div
+        id="start-button"
+        class="d-flex justify-content-center align-items-center vh-100"
+      >
+        <button class="btn" type="button">começar</button>
+      </div>
+
+      <div
+        data-js="game-screen"
+        class="d-none justify-content-center align-items-center vh-100"
+      >
+        <div id="game-container" class="d-block overflow-hidden">
+          <div class="d-block p-3 text-end">
+            <button
+              type="button"
+              class="btn btn-light"
+              data-bs-toggle="modal"
+              data-bs-target="#help"
+            >
+              <i class="bi bi-question-lg"></i> Ajuda
+            </button>
+            <button id="reset" class="btn btn-danger">
+              <i class="bi bi-pause"></i> Resetar
+            </button>
+          </div>
+
+          <div data-js="overlay" class="d-none w-75 p-4 mx-auto bg-white">
+            <p class="text-center">
+              Sabendo que a raposa inicia sua corrida a 60km/h, e o Peba começa
+              a fugir ao mesmo tempo, calcule a velocidade mínima que ele deve
+              correr para que a raposa não o pegue, considerando que a distância
+              inicial entre os dois é de 500 pixels.
+            </p>
+
+            <div
+              class="d-flex flex-column justify-content-center align-items-center"
+            >
+              <input
+                class="form-control mb-2"
+                type="text"
+                id="velocidadeDigitada"
+              />
+              <button data-js="confirmAnswert" class="btn btn-info">
+                Confirmar
+              </button>
+            </div>
+          </div>
+
+          <!-- Codigo HTML do modal -->
+          <div
+            class="modal fade"
+            id="help"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Migração do Peba
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body text-center">
+                  <h4>Movimento retilineo unforme</h4>
+                  <br />
+                  <p>
+                    Para resolver esta quetão, o aluno prescisa se lembrar do
+                    conceito universal da cinematica:
+                  </p>
+                  <img
+                    class="equacaoMRU"
+                    src="../src/images/equacao.jpg"
+                    alt=""
+                  />
+                  <p>
+                    Como a quetão nos forne a velocidade e tempo, só precisamos
+                    substituir na formula para encontrarmos a distancia total.
+                  </p>
+                  <br />
+                  <p>Tente você mesmo agora!<br /></p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="game-object" id="object">
+            <p>V = ? KM/H</p>
+          </div>
+
+          <div class="game-object2 d-none" id="object2">
+            <p>V = 60 KM/H</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Script javascript -->
+    <script src="../src/js/phase_one.js"></script>
+    <script
+      type="module"
+      src="../node_modules/bootstrap/js/src/modal.js"
+    ></script>
+  </body>
+</html>

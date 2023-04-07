@@ -27,7 +27,7 @@ var xo = 0;
 var xo2 = -500;
 var time = 0;
 
-// **********************  THE GAME  ********************** //
+// **********************  GAME  ********************** //
 class Game {
   constructor(mObject, sObject) {
     this.object = mObject;

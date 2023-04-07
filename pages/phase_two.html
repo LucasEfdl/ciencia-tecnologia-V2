@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fase II - Cinemática</title>
+    <link rel="stylesheet" href="../src/css/phase_two.css" />
+  </head>
+
+  <body class="bg-dark">
+    <!-- Conteiner que engloba todo o projeto -->
+    <div class="container-fluid">
+      <div id="game-start">
+        <!-- Botão que inicia a simulação -->
+        <button class="btn mt-3" id="start-button">
+          <i class="bi bi-play-circle-fill"></i> Começar
+        </button>
+      </div>
+      <!-- Div onde a simulação ocorre -->
+      <div id="game-container" class="mx-auto" style="display: none">
+        <div class="overlay">
+          <button id="startLevel" class="btn btn-info">Começar</button>
+        </div>
+        <div class="buttons pt-3">
+          <div>
+            <button id="reset" class="btn btn-danger">
+              <i class="bi bi-pause"></i> Resetar
+            </button>
+            <button
+              type="button"
+              class="btn btn-light"
+              data-bs-toggle="modal"
+              data-bs-target="#ajuda"
+            >
+              <i class="bi bi-question-lg"></i> Ajuda
+            </button>
+          </div>
+          <!-- Codigo HTML do modal -->
+          <div
+            class="modal fade"
+            id="ajuda"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Migração do Beba
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body text-center">
+                  <h4>Movimento retilineo unforme</h4>
+                  <br />
+                  <p>
+                    Para resolver esta quetão, o aluno prescisa se lembrar do
+                    conceito universal da cinematica:
+                  </p>
+                  <img
+                    class="equacaoMRU"
+                    src="../src/images/equacao.jpg"
+                    alt=""
+                  />
+                  <p>
+                    Como a quetão nos forne a velocidade e tempo, só precisamos
+                    substituir na formula para encontrarmos a distancia total.
+                  </p>
+                  <br />
+                  <p>Tente você mesmo agora!<br /></p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Botão que ativa o segundo intervalo -->
+        <button class="btn mt-3" id="start_button_2" style="display: none">
+          E agora jose?
+        </button>
+        <div class="tatu" id="object">
+          <p>V = 3 M/S</p>
+        </div>
+        <div class="raposa" id="object2" style="display: none">
+          <p>V = 5 M/S</p>
+        </div>
+        <div class="carro" id="object3" style="display: none">
+          <p>V = 20 M/S</p>
+        </div>
+      </div>
+    </div>
+    <!-- Script javascript -->
+    <script src="../src/js/phase_two.js"></script>
+    <script
+      type="module"
+      src="../node_modules/bootstrap/js/src/modal.js"
+    ></script>
+  </body>
+</html>

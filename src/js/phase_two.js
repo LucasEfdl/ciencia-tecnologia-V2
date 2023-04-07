@@ -1,31 +1,24 @@
+// Object animation script
 const gameContainer = document.getElementById("game-container");
-const text = document.getElementById("question-text");
-const overlay = document.querySelector("[data-js=overlay]");
-const inputValocity = document.getElementById("velocidadeDigitada");
-
-var answer;
-
-// **********************  OBJECTS  ********************** //
-const mainObject = document.getElementById("object");
-const secondObject = document.getElementById("object2");
+const tatu = document.getElementById("object");
+const raposa = document.getElementById("object2");
 const carro = document.getElementById("object3");
 
-// **********************  BUTTONS  ********************** //
-const intoGame = document.getElementById("start-button");
-const confirmAnswert = document.querySelector("[data-js=confirmAnswert]");
+//Botao começar
+const overlay = document.querySelector(".overlay");
+
+//Butons
+const startLevel = document.getElementById("startLevel");
+const startBtn = document.getElementById("startGame");
+const verifyBtn = document.getElementById("question-options");
 const resetBtn = document.getElementById("reset");
+const startButton = document.getElementById("start-button");
+const startButton2 = document.getElementById("start_button_2");
 
-// **********************  EQUATIONS  ********************** //
+//Controlam o tempo
 var FPS = 60;
-var mainPosition = 0;
-var secondPosition = 0;
-var mainVelocity = 90; // main object
-var secondVelocity = 60; // second object
-var distance = 100; // ms
-
-var xo = 0;
-var xo2 = -500;
-var time = 0;
+var dt = 100; // ms
+var t = 0;
 
 //Variaveis do tatu
 var positionInitialTatu = 0;
@@ -52,30 +45,20 @@ class Game {
   }
 
   displayGameContainer() {
-    document.getElementById("initial-screen").style.backgroundImage = "none";
-    document
-      .querySelector("[data-js=game-screen]")
-      .classList.replace("d-none", "d-flex");
-    document
-      .getElementById("start-button")
-      .classList.replace("d-flex", "d-none");
+    document.getElementById("game-start").style.display = "none";
+    document.getElementById("game-container").style.display = "block";
   }
 
   start_1() {
     const momento_1 = setInterval(() => {
-      time = time + distance / 1000;
-      positionTatu = positionInitialTatu + VelocityTatu * time;
+      t = t + dt / 1000;
+      positionTatu = positionInitialTatu + VelocityTatu * t;
       this.tatu.style.left = `${positionTatu}px`;
-
       if (positionTatu >= gameContainer.offsetWidth / 2 - 125) {
         clearInterval(momento_1);
-        this.raposa.style.display = "block";
-        this.carro.style.display = "block";
-        confirmAnswert.style.display = "block";
-
-        setTimeout(() => {
-          this.start_2();
-        }, 1000);
+        raposa.style.display = "block";
+        carro.style.display = "block";
+        startButton2.style.display = "block";
       }
     }, 1000 / FPS);
   }
@@ -84,16 +67,16 @@ class Game {
     resposta = parseFloat(
       prompt("Qual a velocidade do bega para escapa dessa situação?")
     );
-    time = 0;
+    t = 0;
     positionInitialTatu = gameContainer.offsetWidth / 2 - 100;
     positionInitialRaposa = 0;
     positionInitialCarro = 0;
     VelocityTatu2 = resposta;
     const momento_2 = setInterval(() => {
-      time = time + distance / 1000;
-      positionTatu = positionInitialTatu + VelocityTatu2 * time;
-      positionRaposa = positionInitialRaposa + VelocityRaposa * time;
-      positionCarro = positionInitialCarro + VelocityCarro * time;
+      t = t + dt / 1000;
+      positionTatu = positionInitialTatu + VelocityTatu2 * t;
+      positionRaposa = positionInitialRaposa + VelocityRaposa * t;
+      positionCarro = positionInitialCarro + VelocityCarro * t;
 
       this.tatu.style.left = `${positionTatu}px`;
       this.raposa.style.left = `${positionRaposa}px`;
@@ -107,15 +90,15 @@ class Game {
       } else if (positionCarro >= gameContainer.offsetHeight - 155) {
         carro.style.display = "none";
       } else if (
-        this.tatu.offsetLeft >= 900 &&
-        this.tatu.offsetLeft <= 980 &&
-        this.carro.offsetTop >= 277 &&
-        this.carro.offsetTop <= 429
+        tatu.offsetLeft >= 900 &&
+        tatu.offsetLeft <= 980 &&
+        carro.offsetTop >= 277 &&
+        carro.offsetTop <= 429
       ) {
         alert("O tatu foi atropelado!");
         clearInterval(momento_2);
       } else if (positionRaposa >= gameContainer.offsetWidth) {
-        this.raposa.style.display = "none";
+        raposa.style.display = "none";
       }
     }, 1000 / FPS);
   }
@@ -139,33 +122,45 @@ class Game {
     resposta;
 
     //resetando as posições
-    this.tatu.style.left = 0 + "px";
-    this.raposa.style.left = 0 + "px";
-    this.carro.style.top = 0 + "px";
+    tatu.style.left = 0 + "px";
+    raposa.style.left = 0 + "px";
+    carro.style.top = 0 + "px";
 
     //display none
-    this.raposa.style.display = "none";
-    this.carro.style.display = "none";
+    raposa.style.display = "none";
+    carro.style.display = "none";
   }
 }
 
-const game = new Game(mainObject, secondObject, carro);
+const game = new Game(tatu, raposa, carro);
 
-intoGame.addEventListener("click", () => {
+startButton.addEventListener("click", () => {
   game.displayGameContainer();
-
-  overlay.classList.replace("d-none", "d-block");
-
-  confirmAnswert.addEventListener("click", () => {
-    overlay.classList.replace("d-block", "d-none");
+  overlay.classList.add("active"); // ajeitar essa merda
+  startLevel.addEventListener("click", () => {
     game.start_1();
+    overlay.style.display = "none";
   });
 });
 
-resetBtn.addEventListener("click", () => {
-  game.reset();
+startButton2.addEventListener("click", () => {
+  startButton2.style.display = "none";
+  game.start_2();
+});
 
-  setTimeout(() => {
+//Defeituoso
+resetBtn.addEventListener("click", () => {
+  console.log(positionTatu);
+  game.reset();
+  console.log(positionTatu);
+  overlay.style.display = "block";
+  startLevel.addEventListener("click", () => {
+    overlay.style.display = "none";
     game.start_1();
-  }, 3000);
+  });
+
+  startButton2.addEventListener("click", () => {
+    startButton2.style.display = "none";
+    game.start_2();
+  });
 });
