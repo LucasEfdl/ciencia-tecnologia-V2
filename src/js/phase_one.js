@@ -8,9 +8,15 @@ const mainObject = document.getElementById("object");
 const secondObject = document.getElementById("object2");
 
 // **********************  BUTTONS  ********************** //
-const intoGame = document.getElementById("start-button");
-const confirmAnswert = document.querySelector("[data-js=confirmAnswert]");
+const intoGameBtn = document.getElementById("start-button");
+const confirmAnswertBtn = document.querySelector("[data-js=confirmAnswert]");
 const resetBtn = document.getElementById("reset");
+
+// **********************  POSITION TIME FUNCTION VAR  ********************** //
+var position = 0;
+var initialPosition = 0;
+var velocity = 30;
+var time = 0;
 
 // **********************  GAME  ********************** //
 class Game {
@@ -29,19 +35,22 @@ class Game {
   }
 
   startGame() {
-    var position = 0;
-    var initialPosition = 0;
-    var velocity = 30;
-    var time = 0;
-
     const mru = setInterval(() => {
-      position = initialPosition + velocity * time; // formula da função horária da posição
+      position = initialPosition + velocity * time; // fórmula da função horária da posição
 
       this.object.style.left = `${position}px`;
 
-      if (time == 10) {
+      if (position == 600) {
+        clearInterval(mru); // o objeto tem de parar na metade da width
+
+        setTimeout(() => {
+          overlay.classList.replace("d-none", "d-block");
+        }, 800);
+      }
+
+      if (time == 40) {
         clearInterval(mru);
-        alert("A posição deste objeto é de 300m (ou px)");
+        this.object.style.left = `${position - 100}px`;
       }
 
       time++;
@@ -51,7 +60,15 @@ class Game {
 
 const game = new Game(mainObject);
 
-intoGame.addEventListener("click", () => {
+intoGameBtn.addEventListener("click", () => {
   game.displayGameContainer();
+
+  setTimeout(() => {
+    game.startGame();
+  }, 1000);
+});
+
+confirmAnswertBtn.addEventListener("click", () => {
+  overlay.classList.replace("d-block", "d-none");
   game.startGame();
 });
