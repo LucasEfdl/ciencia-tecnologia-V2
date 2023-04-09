@@ -24,6 +24,8 @@
   position: absolute;
   bottom: 0px;
   left: 0px;
+
+  transition: left 1s linear;
 }
 
 .game-object2 {

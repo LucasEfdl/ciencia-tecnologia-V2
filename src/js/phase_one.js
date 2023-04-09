@@ -1,37 +1,27 @@
 // **********************  GENERAL  ********************** //
 const gameContainer = document.getElementById("game-container");
-const text = document.getElementById("question-text");
 const overlay = document.querySelector("[data-js=overlay]");
 const inputValocity = document.getElementById("velocidadeDigitada");
-
-var answer;
 
 // **********************  OBJECTS  ********************** //
 const mainObject = document.getElementById("object");
 const secondObject = document.getElementById("object2");
 
 // **********************  BUTTONS  ********************** //
-const intoGame = document.getElementById("start-button");
-const confirmAnswert = document.querySelector("[data-js=confirmAnswert]");
+const intoGameBtn = document.getElementById("start-button");
+const confirmAnswertBtn = document.querySelector("[data-js=confirmAnswert]");
 const resetBtn = document.getElementById("reset");
 
-// **********************  EQUATIONS  ********************** //
-var FPS = 60;
-var mainPosition = 0;
-var secondPosition = 0;
-var mainVelocity = 90; // main object
-var secondVelocity = 60; // second object
-var distance = 100; // ms
-
-var xo = 0;
-var xo2 = -500;
+// **********************  POSITION TIME FUNCTION VAR  ********************** //
+var position = 0;
+var initialPosition = 0;
+var velocity = 30;
 var time = 0;
 
 // **********************  GAME  ********************** //
 class Game {
-  constructor(mObject, sObject) {
+  constructor(mObject) {
     this.object = mObject;
-    this.object2 = sObject;
   }
 
   displayGameContainer() {
@@ -44,72 +34,41 @@ class Game {
       .classList.replace("d-flex", "d-none");
   }
 
-  start() {
-    const interval = setInterval(() => {
-      this.object2.classList.replace("d-none", "d-block");
+  startGame() {
+    const mru = setInterval(() => {
+      position = initialPosition + velocity * time; // fórmula da função horária da posição
 
-      time += distance / 1000;
-      mainPosition = xo + mainVelocity * time;
+      this.object.style.left = `${position}px`;
 
-      secondPosition = xo2 + secondVelocity * time;
+      if (position == 600) {
+        clearInterval(mru); // o objeto tem de parar na metade da width
 
-      this.object.style.left = `${mainPosition}px`;
-      this.object2.style.left = `${secondPosition}px`;
-      xo += 5;
-      xo2 += 10;
-
-      if (Math.floor(mainPosition) == 499) {
-        clearInterval(interval);
-        overlay.classList.replace("d-none", "d-block");
-        confirmAnswert.addEventListener("click", () => {
-          answer = Number(inputValocity.value);
-          mainVelocity = answer;
-          overlay.classList.replace("d-block", "d-none");
-          this.continue();
-        });
+        setTimeout(() => {
+          overlay.classList.replace("d-none", "d-block");
+        }, 800);
       }
 
-      if (this.object2.offsetLeft > this.object.offsetLeft - 100) {
-        alert("você perdeu o jogo!");
-        clearInterval(interval);
-      } else if (mainPosition > gameContainer.offsetWidth - 100) {
-        alert("você ganhou o jogo!");
-        clearInterval(interval);
+      if (time == 40) {
+        clearInterval(mru);
+        this.object.style.left = `${position - 100}px`;
       }
-    }, 1000 / FPS);
-  }
 
-  continue() {
-    this.start();
-  }
-
-  reset() {
-    time = 0;
-    xo = 0;
-    xo2 = -500;
-    mainPosition = 0;
-    mainVelocity = 90;
-    secondPosition = 0;
-
-    this.object.style.left = 0 + "px";
-    this.object2.style.left = -500 + "px";
+      time++;
+    }, 1000 / 60);
   }
 }
 
-const game = new Game(mainObject, secondObject);
+const game = new Game(mainObject);
 
-intoGame.addEventListener("click", () => {
+intoGameBtn.addEventListener("click", () => {
   game.displayGameContainer();
 
   setTimeout(() => {
-    game.start();
-  }, 3000);
+    game.startGame();
+  }, 1000);
 });
 
-resetBtn.addEventListener("click", () => {
-  game.reset();
-
-  setTimeout(() => {
-    game.start();
-  }, 3000);
+confirmAnswertBtn.addEventListener("click", () => {
+  overlay.classList.replace("d-block", "d-none");
+  game.startGame();
 });
