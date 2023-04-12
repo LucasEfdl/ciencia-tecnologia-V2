@@ -39,7 +39,9 @@
 
   position: absolute;
   bottom: 0px;
-  left: -500px;
+  left: -450px;
+
+  transition: left 1s linear;
 }
 
 .overlay {

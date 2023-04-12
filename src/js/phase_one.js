@@ -13,15 +13,16 @@ const confirmAnswertBtn = document.querySelector("[data-js=confirmAnswert]");
 const resetBtn = document.getElementById("reset");
 
 // **********************  POSITION TIME FUNCTION VAR  ********************** //
-var position = 0;
-var initialPosition = 0;
-var velocity = 30;
+var position = [0, 0];
+var initialPosition = [0, -450];
+var velocity = [30, 40];
 var time = 0;
 
 // **********************  GAME  ********************** //
 class Game {
-  constructor(mObject) {
+  constructor(mObject, sObject) {
     this.object = mObject;
+    this.objectTwo = sObject;
   }
 
   displayGameContainer() {
@@ -36,11 +37,13 @@ class Game {
 
   startGame() {
     const mru = setInterval(() => {
-      position = initialPosition + velocity * time; // fórmula da função horária da posição
+      position[0] = initialPosition[0] + velocity[0] * time; // fórmula da função horária da posição
+      position[1] = initialPosition[1] + velocity[1] * time;
 
-      this.object.style.left = `${position}px`;
+      this.object.style.left = `${position[0]}px`;
+      this.objectTwo.style.left = `${position[1]}px`;
 
-      if (position == 600) {
+      if (time == 20) {
         clearInterval(mru); // o objeto tem de parar na metade da width
 
         setTimeout(() => {
@@ -50,7 +53,9 @@ class Game {
 
       if (time == 40) {
         clearInterval(mru);
-        this.object.style.left = `${position - 100}px`;
+
+        this.object.style.left = `${position[0] - 100}px`;
+        this.objectTwo.style.left = `${position[1] - 150}px`;
       }
 
       time++;
@@ -58,7 +63,7 @@ class Game {
   }
 }
 
-const game = new Game(mainObject);
+const game = new Game(mainObject, secondObject);
 
 intoGameBtn.addEventListener("click", () => {
   game.displayGameContainer();
