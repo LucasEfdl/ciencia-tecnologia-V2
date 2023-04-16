@@ -34,6 +34,15 @@ class Game {
       .getElementById("start-button")
       .classList.replace("d-flex", "d-none");
   }
+  displayGameContainerStart() {
+    document.getElementById("initial-screen").style.backgroundImage = "";
+    document
+      .querySelector("[data-js=game-screen]")
+      .classList.replace("d-flex", "d-none");
+    document
+      .getElementById("start-button")
+      .classList.replace("d-none", "d-flex");
+  }
 
   startGame() {
     const mru = setInterval(() => {
@@ -70,10 +79,51 @@ intoGameBtn.addEventListener("click", () => {
 
   setTimeout(() => {
     game.startGame();
-  }, 1000);
+  }, 100);
 });
 
 confirmAnswertBtn.addEventListener("click", () => {
   overlay.classList.replace("d-block", "d-none");
+  const reset = () => {
+    time = 0;
+    xo = 0;
+    xo2 = -500;
+    mainPosition = 0;
+    mainVelocity = 90;
+    secondPosition = 0;
+    this.object.style.left = 0 + "px";
+    this.object2.style.left = -500 + "px";
+  };
+
+  const radioButtons = document.querySelectorAll(
+    'input[type="radio"][name="velocity"]'
+  );
+  let num = 0;
+  radioButtons.forEach((radioButton) => {
+    if (radioButton.checked) {
+      // Seleciona o elemento label associado ao botão selecionado
+      const label = document.querySelector(`label[for="${radioButton.id}"]`);
+      // Recupera o valor do texto do label selecionado
+      const selectedValue = label.textContent;
+      const str = selectedValue;
+      num = parseInt(str);
+    }
+  });
+  if (num != 30) {
+    velocity[0] = num;
+    setTimeout(() => {
+      alert(" A rapose te pegou, resposta incorreta");
+      reset();
+      game.displayGameContainerStart();
+    }, 600);
+  } else {
+    velocity[0] = num;
+    setTimeout(() => {
+      alert("Voce ganhou, respota correta!");
+      reset();
+      game.displayGameContainerStart();
+    }, 1500);
+  }
+
   game.startGame();
 });
