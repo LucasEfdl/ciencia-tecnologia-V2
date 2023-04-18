@@ -1,22 +1,21 @@
 // **********************  GENERAL  ********************** //
 const gameContainer = document.getElementById("game-container");
 const overlay = document.querySelector("[data-js=overlay]");
-const inputValocity = document.getElementById("velocidadeDigitada");
 
 // **********************  OBJECTS  ********************** //
 const mainObject = document.getElementById("object");
 const secondObject = document.getElementById("object2");
 
 // **********************  BUTTONS  ********************** //
-const intoGameBtn = document.getElementById("start-button");
-const confirmAnswertBtn = document.querySelector("[data-js=confirmAnswert]");
-const resetBtn = document.getElementById("reset");
+const intoGameButton = document.getElementById("start-button");
+const confirmAnswertButton = document.querySelector("[data-js=confirmAnswert]");
+const resetButton = document.getElementById("reset");
 
 // **********************  POSITION TIME FUNCTION VAR  ********************** //
-var position = [0, 0];
-var initialPosition = [0, -450];
-var velocity = [30, 40];
-var time = 0;
+let positions = [0, 0];
+const initialPositions = [0, -450];
+const velocities = [30, 40];
+let time = 0;
 
 // **********************  GAME  ********************** //
 class Game {
@@ -34,6 +33,7 @@ class Game {
       .getElementById("start-button")
       .classList.replace("d-flex", "d-none");
   }
+
   displayGameContainerStart() {
     document.getElementById("initial-screen").style.backgroundImage = "";
     document
@@ -44,57 +44,53 @@ class Game {
       .classList.replace("d-none", "d-flex");
   }
 
-  startGame() {
+  startGame(over) {
     const mru = setInterval(() => {
-      position[0] = initialPosition[0] + velocity[0] * time; // fórmula da função horária da posição
-      position[1] = initialPosition[1] + velocity[1] * time;
-
-      this.object.style.left = `${position[0]}px`;
-      this.objectTwo.style.left = `${position[1]}px`;
-
+      if (over != 30) {
+        positions[0] = "600px"; // O obejto fica em 600px quando o usuário erra a resposta
+      } else {
+        positions[0] = initialPositions[0] + velocities[0] * time; // Fórmula da função horária da posição
+      }
+      positions[1] = initialPositions[1] + velocities[1] * time;
+      this.object.style.left = `${positions[0]}px`; // Movimentação do tatu
+      this.objectTwo.style.left = `${positions[1]}px`; // Movimentação da raposa
       if (time == 20) {
-        clearInterval(mru); // o objeto tem de parar na metade da width
-
+        clearInterval(mru); // O objeto tem de parar na metade da width
         setTimeout(() => {
           overlay.classList.replace("d-none", "d-block");
         }, 800);
       }
-
       if (time == 40) {
         clearInterval(mru);
-
-        this.object.style.left = `${position[0] - 100}px`;
-        this.objectTwo.style.left = `${position[1] - 150}px`;
+        this.object.style.left = `${positions[0] - 100}px`;
+        this.objectTwo.style.left = `${positions[1] - 150}px`;
       }
-
       time++;
     }, 1000 / 60);
+  }
+
+  reset() {
+    positions[0] = 0;
+    positions[1] = 0;
+    velocities[0] = 30;
+    velocities[1] = 40;
+    time = 0;
+    this.object.style.left = `${initialPositions[0]}px`;
+    this.objectTwo.style.left = `${initialPositions[1]}px`;
   }
 }
 
 const game = new Game(mainObject, secondObject);
 
-intoGameBtn.addEventListener("click", () => {
+intoGameButton.addEventListener("click", () => {
   game.displayGameContainer();
-
   setTimeout(() => {
-    game.startGame();
+    game.startGame(30);
   }, 100);
 });
 
-confirmAnswertBtn.addEventListener("click", () => {
+confirmAnswertButton.addEventListener("click", () => {
   overlay.classList.replace("d-block", "d-none");
-  const reset = () => {
-    time = 0;
-    xo = 0;
-    xo2 = -500;
-    mainPosition = 0;
-    mainVelocity = 90;
-    secondPosition = 0;
-    this.object.style.left = 0 + "px";
-    this.object2.style.left = -500 + "px";
-  };
-
   const radioButtons = document.querySelectorAll(
     'input[type="radio"][name="velocity"]'
   );
@@ -110,20 +106,24 @@ confirmAnswertBtn.addEventListener("click", () => {
     }
   });
   if (num != 30) {
-    velocity[0] = num;
+    velocities[0] = num;
     setTimeout(() => {
-      alert(" A rapose te pegou, resposta incorreta");
-      reset();
+      alert("A raposa te pegou, resposta incorreta!");
+      game.reset();
       game.displayGameContainerStart();
     }, 600);
   } else {
-    velocity[0] = num;
+    velocities[0] = num;
     setTimeout(() => {
-      alert("Voce ganhou, respota correta!");
-      reset();
+      alert("Você ganhou, respota correta!");
+      game.reset();
       game.displayGameContainerStart();
     }, 1500);
   }
 
-  game.startGame();
+  game.startGame(num);
+});
+
+resetButton.addEventListener("click", () => {
+  game.reset();
 });
