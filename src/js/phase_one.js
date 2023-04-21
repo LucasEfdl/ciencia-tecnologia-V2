@@ -1,6 +1,7 @@
 // **********************  GENERAL  ********************** //
 const gameContainer = document.getElementById("game-container");
 const overlay = document.querySelector("[data-js=overlay]");
+const userName = document.querySelector("input[for=nameUser]");
 
 // **********************  OBJECTS  ********************** //
 const mainObject = document.getElementById("object");
@@ -25,25 +26,26 @@ class Game {
   }
 
   displayGameContainer() {
-    document.getElementById("initial-screen").style.backgroundImage = "none";
+    document
+      .getElementById("initial-screen")
+      .classList.replace("d-flex", "d-none");
     document
       .querySelector("[data-js=game-screen]")
       .classList.replace("d-none", "d-flex");
-    document
-      .getElementById("start-button")
-      .classList.replace("d-flex", "d-none");
   }
 
   displayGameContainerStart() {
-    document.getElementById("initial-screen").style.backgroundImage = "";
     document
-      .querySelector("[data-js=game-screen]")
-      .classList.replace("d-flex", "d-none");
+      .getElementById("initial-screen")
+      .classList.replace("d-none", "d-flex");
     document
       .getElementById("start-button")
       .classList.replace("d-none", "d-flex");
+    document
+      .querySelector("[data-js=game-screen]")
+      .classList.replace("d-flex", "d-none");
   }
-
+  
   startGame(over) {
     const mru = setInterval(() => {
       if (over != 30) {
@@ -107,23 +109,29 @@ confirmAnswertButton.addEventListener("click", () => {
   });
   if (num != 30) {
     velocities[0] = num;
+    game.startGame(num);
     setTimeout(() => {
       alert("A raposa te pegou, resposta incorreta!");
-      game.reset();
       game.displayGameContainerStart();
+      game.reset();
     }, 600);
   } else {
     velocities[0] = num;
+    game.startGame(num);
     setTimeout(() => {
       alert("Você ganhou, respota correta!");
-      game.reset();
-      game.displayGameContainerStart();
     }, 1500);
   }
-
-  game.startGame(num);
 });
 
 resetButton.addEventListener("click", () => {
   game.reset();
+});
+
+userName.addEventListener("beforeinput", (e) => {
+  if (e.target.value != "") {
+    intoGameButton.disabled = false;
+  } else {
+    intoGameButton.disabled = true;
+  }
 });

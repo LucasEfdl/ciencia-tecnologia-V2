@@ -1,17 +1,1 @@
 @import "../../node_modules/bootstrap/dist/css/bootstrap.css";
-
-#initial-screen {
-  background-image: url("../images/background_start.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#start-button > button {
-  background-color: #2b3425;
-  color: #fff;
-}
-
-#start-button > button:hover {
-  background-color: #5d5340;
-  color: #fff;
-}

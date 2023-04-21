@@ -1,184 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fase I - Cinemática</title>
-    <link rel="stylesheet" href="../src/css/phase_one.css" />
-  </head>
 
-  <body class="bg-dark">
-    <!-- Conteiner que engloba todo o projeto -->
-    <main id="initial-screen" class="d-block w-100 vh-100">
-      <div
-        id="start-button"
-        class="d-flex justify-content-center align-items-center vh-100"
-      >
-        <button class="btn" type="button">começar</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fase I - Cinemática</title>
+  <link rel="stylesheet" href="../src/css/phase_one.css" />
+</head>
+
+<body class="bg-dark text-white">
+  <!-- Conteiner que engloba todo o projeto -->
+  <main class="d-block w-100 vh-100">
+    <div id="initial-screen" class="d-flex flex-column justify-content-center align-items-center vh-100 p-4">
+      <p class="text-center fs-4">
+        <strong>Boas-vindas caro estudante!</strong>
+      </p>
+      <p class="text-center fs-5">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores modi
+        magni consectetur. Voluptas, architecto in expedita harum ad soluta
+        dignissimos nam commodi perferendis pariatur quam vel aspernatur ut
+        cum omnis. <br />
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores modi
+        magni consectetur. Voluptas, architecto in expedita harum ad soluta
+        dignissimos nam commodi perferendis pariatur quam vel aspernatur ut
+        cum omnis. <br /><br />
+        Antes de comerçar o jogo, que tal nos informar seu nome?
+      </p>
+
+      <div class="d-flex mx-3">
+        <input for="nameUser" type="text" class="form-control" placeholder="Nome">
+        <button id="start-button" class="btn btn-primary btn-sm ms-1" type="button" disabled>Prosseguir</button>
       </div>
+    </div>
 
-      <div
-        data-js="game-screen"
-        class="d-none justify-content-center align-items-center vh-100"
-      >
-        <div id="game-container" class="d-block overflow-hidden">
-          <div class="d-block p-3 text-end">
-            <button
-              type="button"
-              class="btn btn-light"
-              data-bs-toggle="modal"
-              data-bs-target="#help"
-            >
-              <i class="bi bi-question-lg"></i> Ajuda
-            </button>
-            <button id="reset" class="btn btn-danger">
-              <i class="bi bi-pause"></i> Resetar
-            </button>
-          </div>
+    <div data-js="game-screen" class="d-none justify-content-center align-items-center vh-100">
+      <div id="game-container" class="d-block overflow-hidden">
+        <div class="d-block p-3 text-end">
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#help">
+            <i class="bi bi-question-lg"></i> Ajuda
+          </button>
 
-          <div data-js="overlay" class="d-none w-75 p-4 mx-auto bg-white">
-            <p class="text-center fs-5">
-              Um tatu está fugindo de uma raposa e, para se salvar, ele precisa
-              chegar até o caminho final. Sua tarefa é descobrir a velocidade
-              <strong>mínima</strong> do tatu para que ele fuja do predador!
-              <br />
-              <strong>Dados</strong>: leve em consideração que, no instante de
-              sua observação, a raposa tenha uma posição inicial de 0m, seu
-              destino de chegada está à 1.200m, a velocidade é constante e o
-              tempo que ele levou para chegar na metade da trajetória foi de
-              20s. A raposa, no entanto, tem uma velocidade constante de 40m/s.
-              Qual a velocidade mínima do tatu para escapar dessa situação?
-            </p>
+          <button id="reset" class="btn btn-danger">
+            <i class="bi bi-pause"></i> Resetar
+          </button>
+        </div>
 
-            <div
-              class="d-flex flex-row justify-content-center align-items-center gap-3"
-            >
-              <div class="form-check">
-                <input
-                  type="radio"
-                  name="velocity"
-                  class="form-check-input"
-                  id="radio1"
-                />
-                <label for="radio1">30m/s</label>
-              </div>
+        <!-- Código do overlay -->
+        <div data-js="overlay" class="d-none bg-dark w-75 p-4 mx-auto">
+          <p class="text-center fs-5">
+            Um tatu está fugindo de uma raposa e, para se salvar, ele precisa
+            chegar à sua toca. Sua tarefa é descobrir a velocidade
+            <strong>mínima</strong> do tatu para que ele fuja do predador!
+            <br />
+          </p>
+          
+          <p class="texte-center">
+            <strong>Dados</strong>: leve em consideração que, no instante de
+            sua observação, o tatu encontra-se em repouso e à 1.200m do seu destino. Considere o movimento descrito por ele como sendo Retilíneo Uniforme e o
+            tempo que ele leva para chegar na metade do trajeto, como sendo
+            20s. A raposa encontra-se com velocidade constante igual a 40m/s.
+          </p>
 
-              <div class="form-check">
-                <input
-                  type="radio"
-                  name="velocity"
-                  class="form-check-input"
-                  id="radio2"
-                />
-                <label for="radio2">25m/s</label>
-              </div>
-
-              <div class="form-check">
-                <input
-                  type="radio"
-                  name="velocity"
-                  class="form-check-input"
-                  id="radio3"
-                />
-                <label for="radio3">20m/s</label>
-              </div>
-
-              <div class="form-check">
-                <input
-                  type="radio"
-                  name="velocity"
-                  class="form-check-input"
-                  id="radio4"
-                />
-                <label for="radio4">18m/s</label>
-              </div>
-
-              <div class="form-check">
-                <input
-                  type="radio"
-                  name="velocity"
-                  class="form-check-input"
-                  id="radio5"
-                />
-                <label for="radio5">15m/s</label>
-              </div>
+          <div class="d-flex flex-row justify-content-center align-items-center gap-3">
+            <div class="form-check">
+              <input type="radio" name="velocity" class="form-check-input" id="radio1" />
+              <label for="radio1">30m/s</label>
             </div>
 
-            <button data-js="confirmAnswert" class="btn btn-info">
-              Confirmar
-            </button>
-          </div>
+            <div class="form-check">
+              <input type="radio" name="velocity" class="form-check-input" id="radio2" />
+              <label for="radio2">25m/s</label>
+            </div>
 
-          <!-- Codigo HTML do modal -->
-          <div
-            class="modal fade"
-            id="help"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Migração do Peba
-                  </h1>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body text-center">
-                  <h4>Movimento retilineo unforme</h4>
-                  <br />
-                  <p>
-                    Para resolver esta quetão, o aluno prescisa se lembrar do
-                    conceito universal da cinematica:
-                  </p>
-                  <img
-                    class="equacaoMRU"
-                    src="../src/images/equacao.jpg"
-                    alt=""
-                  />
-                  <p>
-                    Como a quetão nos forne a velocidade e tempo, só precisamos
-                    substituir na formula para encontrarmos a distancia total.
-                  </p>
-                  <br />
-                  <p>Tente você mesmo agora!<br /></p>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
+            <div class="form-check">
+              <input type="radio" name="velocity" class="form-check-input" id="radio3" />
+              <label for="radio3">20m/s</label>
+            </div>
+
+            <div class="form-check">
+              <input type="radio" name="velocity" class="form-check-input" id="radio4" />
+              <label for="radio4">18m/s</label>
+            </div>
+
+            <div class="form-check">
+              <input type="radio" name="velocity" class="form-check-input" id="radio5" />
+              <label for="radio5">15m/s</label>
             </div>
           </div>
 
-          <div class="game-object" id="object">
-            <p>V = ? m/s</p>
-          </div>
+          <button data-js="confirmAnswert" class="btn btn-info">
+            Confirmar
+          </button>
+        </div>
 
-          <div class="game-object2 d-block" id="object2">
-            <p>V = 40 m/s</p>
+        <!-- Código HTML do modal -->
+        <div class="modal fade text-black" id="help" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Migração do Peba
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body text-center">
+                <h4>Movimento retilineo unforme</h4>
+                <br />
+                <p>
+                  Para resolver esta quetão, o aluno prescisa se lembrar do
+                  conceito universal da cinematica:
+                </p>
+                <img class="equacaoMRU" src="../src/images/equacao.jpg" alt="" />
+                <p>
+                  Como a quetão nos forne a velocidade e tempo, só precisamos
+                  substituir na formula para encontrarmos a distancia total.
+                </p>
+                <br />
+                <p>Tente você mesmo agora!<br /></p>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Fechar
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
 
-    <!-- Script javascript -->
-    <script src="../src/js/phase_one.js"></script>
-    <script
-      type="module"
-      src="../node_modules/bootstrap/js/src/modal.js"
-    ></script>
-  </body>
+        <!-- Objetos -->
+        <div class="game-object" id="object">
+          <p>V = ? m/s</p>
+        </div>
+
+        <div class="game-object2 d-block" id="object2">
+          <p>V = 40 m/s</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Script javascript -->
+  <script src="../src/js/phase_one.js"></script>
+  <script type="module" src="../node_modules/bootstrap/js/src/modal.js"></script>
+</body>
+
 </html>
