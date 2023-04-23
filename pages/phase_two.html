@@ -1,114 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fase II - Cinemática</title>
-    <link rel="stylesheet" href="../src/css/phase_two.css" />
-  </head>
+<html lang="pt-br">
 
-  <body class="bg-dark">
-    <!-- Conteiner que engloba todo o projeto -->
-    <div class="container-fluid">
-      <div id="game-start">
-        <!-- Botão que inicia a simulação -->
-        <button class="btn mt-3" id="start-button">
-          <i class="bi bi-play-circle-fill"></i> Começar
-        </button>
-      </div>
-      <!-- Div onde a simulação ocorre -->
-      <div id="game-container" class="mx-auto" style="display: none">
-        <div class="overlay">
-          <button id="startLevel" class="btn btn-info">Começar</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fase II - Cinemática</title>
+  <link rel="stylesheet" href="../src/css/phase_two.css" />
+</head>
+
+<body class="bg-dark text-white">
+  <!-- Conteiner que engloba todo o projeto -->
+  <main class="d-block w-100 vh-100">
+    <div id="initial-screen" class="d-flex flex-column justify-content-center align-items-center vh-100 p-4">
+      <p class="text-center fs-4">
+        <strong> Parabéns por chegar até aqui, caro estudante! </strong>
+      </p>
+      <p class="text-center fs-5">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint
+        praesentium blanditiis laborum quidem aliquam eligendi dolor ad
+        quaerat culpa! In eius iure nostrum assumenda alias molestiae incidunt
+        placeat doloremque eligendi. <br />
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus
+        iusto, ipsum, accusantium voluptates non fugiat ipsam impedit,
+        cupiditate libero at vitae odio nobis aliquam quam repudiandae facilis
+        explicabo cumque earum.<br /><br />
+        Pronto para um novo desafio?
+      </p>
+      <button id="start-button" class="btn btn-primary btn-sm ms-1" type="button">
+        Começar
+      </button>
+    </div>
+
+    <div id="game-screen" class="d-none justify-content-center align-items-center vh-100">
+      <div id="game-container" class="d-block overflow-hidden">
+        <div class="d-block p-3 text-end">
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#ajuda">
+            <i class="bi bi-question-lg"></i> Ajuda
+          </button>
+          <button id="reset" class="btn btn-danger">
+            <i class="bi bi-pause"></i> Resetar
+          </button>
         </div>
-        <div class="buttons pt-3">
-          <div>
-            <button id="reset" class="btn btn-danger">
-              <i class="bi bi-pause"></i> Resetar
-            </button>
-            <button
-              type="button"
-              class="btn btn-light"
-              data-bs-toggle="modal"
-              data-bs-target="#ajuda"
-            >
-              <i class="bi bi-question-lg"></i> Ajuda
-            </button>
+
+        <!-- Código do overlay -->
+        <div data-js="overlay" class="overlay d-none bg-dark w-75 p-4 mx-auto">
+          <p class="text-center fs-5">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+            sunt in laudantium. Repellat cum nobis voluptas eaque excepturi
+            adipisci quas nam voluptates! Expedita doloribus unde fugiat autem
+            ipsum ad voluptatibus!
+            <br />
+          </p>
+
+          <p class="texte-center">
+            <strong>Dados</strong>: Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Dolore laboriosam dolores ad itaque in, id ullam
+            quisquam, saepe voluptas deserunt illo dignissimos deleniti
+            officiis molestiae facere incidunt consectetur ea corporis.
+          </p>
+
+          <div class="d-flex flex-row justify-content-center align-items-center gap-3">
+            <div class="form-check">
+              <input type="radio" name="velocity" class="form-check-input" id="radio1" />
+              <label for="radio1">Number m/s</label>
+            </div>
+
+            <div class="form-check">
+              <input type="radio" name="velocity" class="form-check-input" id="radio2" />
+              <label for="radio2">Number m/s</label>
+            </div>
+
+            <div class="form-check">
+              <input type="radio" name="velocity" class="form-check-input" id="radio3" />
+              <label for="radio3">Number m/s</label>
+            </div>
+
+            <div class="form-check">
+              <input type="radio" name="velocity" class="form-check-input" id="radio4" />
+              <label for="radio4">Number m/s</label>
+            </div>
+
+            <div class="form-check">
+              <input type="radio" name="velocity" class="form-check-input" id="radio5" />
+              <label for="radio5">Number m/s</label>
+            </div>
           </div>
-          <!-- Codigo HTML do modal -->
-          <div
-            class="modal fade"
-            id="ajuda"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Migração do Beba
-                  </h1>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body text-center">
-                  <h4>Movimento retilineo unforme</h4>
-                  <br />
-                  <p>
-                    Para resolver esta quetão, o aluno prescisa se lembrar do
-                    conceito universal da cinematica:
-                  </p>
-                  <img
-                    class="equacaoMRU"
-                    src="../src/images/equacao.jpg"
-                    alt=""
-                  />
-                  <p>
-                    Como a quetão nos forne a velocidade e tempo, só precisamos
-                    substituir na formula para encontrarmos a distancia total.
-                  </p>
-                  <br />
-                  <p>Tente você mesmo agora!<br /></p>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                </div>
+
+          <button data-js="confirmAnswert" class="btn btn-info">
+            Confirmar
+          </button>
+        </div>
+
+        <!-- Codigo HTML do modal -->
+        <div class="modal fade text-black" id="ajuda" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Migração do Peba
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+              </div>
+
+              <div class="modal-body text-center">
+                <h4>Movimento retilineo unforme</h4>
+                <br />
+                <p>
+                  Para resolver esta quetão, o aluno prescisa se lembrar do
+                  conceito universal da cinematica:
+                </p>
+                <img class="equacaoMRU" src="../src/images/equacao.jpg" alt="" />
+                <p>
+                  Como a quetão nos forne a velocidade e tempo, só precisamos
+                  substituir na formula para encontrarmos a distancia total.
+                </p>
+                <br />
+                <p>Tente você mesmo agora!<br /></p>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Fechar
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <!-- Botão que ativa o segundo intervalo -->
-        <button class="btn mt-3" id="start_button_2" style="display: none">
-          E agora jose?
-        </button>
-        <div class="tatu" id="object">
-          <p>V = 3 M/S</p>
+
+        <!-- Objetos -->
+        <div id="object" class="tatu">
+          <p>V = 3 m/s</p>
         </div>
-        <div class="raposa" id="object2" style="display: none">
-          <p>V = 5 M/S</p>
+        <div id="object2" class="raposa d-block">
+          <p>V = 5 m/s</p>
         </div>
-        <div class="carro" id="object3" style="display: none">
-          <p>V = 20 M/S</p>
+        <div id="object3" class="carro d-none">
+          <p>V = 20 m/s</p>
         </div>
       </div>
     </div>
-    <!-- Script javascript -->
-    <script src="../src/js/phase_two.js"></script>
-    <script
-      type="module"
-      src="../node_modules/bootstrap/js/src/modal.js"
-    ></script>
-  </body>
+  </main>
+
+  <!-- Script javascript -->
+  <script src="../src/js/phase_two.js"></script>
+  <script type="module" src="../node_modules/bootstrap/js/src/modal.js"></script>
+</body>
+
 </html>
