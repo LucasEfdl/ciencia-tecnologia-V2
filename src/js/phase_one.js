@@ -18,6 +18,11 @@ const initialPositions = [0, -450];
 const velocities = [30, 40];
 let time = 0;
 
+// **********************  STOPWATCH  ********************** //
+let [milliseconds, seconds, minutes] = [0, 0, 0, 0];
+const timerRef = document.querySelector(".timerDisplay");
+let int = null;
+
 // **********************  GAME  ********************** //
 class Game {
   constructor(mObject, sObject) {
@@ -45,30 +50,39 @@ class Game {
       .querySelector("[data-js=game-screen]")
       .classList.replace("d-flex", "d-none");
   }
-  
+
   startGame(over) {
-    const mru = setInterval(() => {
+    const moveObjects = () => {
       if (over != 30) {
-        positions[0] = "600px"; // O obejto fica em 600px quando o usuário erra a resposta
+        positions[0] = "600px"; // O objeto fica em 600px quando o usuário erra a resposta
       } else {
         positions[0] = initialPositions[0] + velocities[0] * time; // Fórmula da função horária da posição
       }
       positions[1] = initialPositions[1] + velocities[1] * time;
       this.object.style.left = `${positions[0]}px`; // Movimentação do tatu
       this.objectTwo.style.left = `${positions[1]}px`; // Movimentação da raposa
+
       if (time == 20) {
         clearInterval(mru); // O objeto tem de parar na metade da width
+
+        int = setInterval(this.stopwatch.bind(this), 10);
+
         setTimeout(() => {
           overlay.classList.replace("d-none", "d-block");
         }, 800);
       }
+
       if (time == 40) {
         clearInterval(mru);
+
         this.object.style.left = `${positions[0] - 100}px`;
         this.objectTwo.style.left = `${positions[1] - 150}px`;
       }
+
       time++;
-    }, 1000 / 60);
+    };
+
+    const mru = setInterval(moveObjects, 1000 / 60);
   }
 
   reset() {
@@ -79,6 +93,24 @@ class Game {
     time = 0;
     this.object.style.left = `${initialPositions[0]}px`;
     this.objectTwo.style.left = `${initialPositions[1]}px`;
+
+    [milliseconds, seconds, minutes] = [0, 0, 0];
+  }
+
+  stopwatch() {
+    milliseconds += 10;
+    if (milliseconds == 1000) {
+      milliseconds = 0;
+      seconds++;
+      if (seconds == 60) {
+        seconds = 0;
+        minutes++;
+      }
+    }
+    let m = minutes < 10 ? "0" + minutes : minutes;
+    let s = seconds < 10 ? "0" + seconds : seconds;
+
+    timerRef.innerText = `${m}:${s}`;
   }
 }
 
@@ -93,6 +125,9 @@ intoGameButton.addEventListener("click", () => {
 
 confirmAnswertButton.addEventListener("click", () => {
   overlay.classList.replace("d-block", "d-none");
+
+  clearInterval(int);
+  
   const radioButtons = document.querySelectorAll(
     'input[type="radio"][name="velocity"]'
   );

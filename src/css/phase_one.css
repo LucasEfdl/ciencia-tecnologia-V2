@@ -1,7 +1,7 @@
 @import url(global.css);
 
 #game-container {
-  background-image: url(../images/fundo1.png);
+  background-image: url(../assets/images/fundo1.png);
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -14,7 +14,7 @@
 
 .game-object {
   color: white;
-  background-image: url(../images/tatu4.png);
+  background-image: url(../assets/images/tatu4.png);
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -30,7 +30,7 @@
 
 .game-object2 {
   color: white;
-  background-image: url(../images/raposa.png);
+  background-image: url(../assets/images/raposa.png);
   background-repeat: no-repeat;
   background-size: cover;
 

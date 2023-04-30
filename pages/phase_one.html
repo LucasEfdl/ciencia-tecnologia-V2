@@ -29,12 +29,23 @@
       </p>
 
       <div class="d-flex mx-3">
-        <input for="nameUser" type="text" class="form-control" placeholder="Nome">
-        <button id="start-button" class="btn btn-primary btn-sm ms-1" type="button" disabled>Prosseguir</button>
+        <input for="nameUser" type="text" class="form-control" placeholder="Nome" />
+        <button id="start-button" class="btn btn-primary btn-sm ms-1" type="button" disabled>
+          Prosseguir
+        </button>
       </div>
     </div>
 
-    <div data-js="game-screen" class="d-none justify-content-center align-items-center vh-100">
+    <div data-js="game-screen" class="d-none flex-column justify-content-center align-items-center vh-100">
+      <div class="d-flex flex-row align-items-center p-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch text-white me-1" viewBox="0 0 16 16">
+          <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
+          <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
+        </svg>
+        <div class="timerDisplay">
+          00:00
+        </div>
+      </div>
       <div id="game-container" class="d-block overflow-hidden">
         <div class="d-block p-3 text-end">
           <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#help">
@@ -54,12 +65,14 @@
             <strong>mínima</strong> do tatu para que ele fuja do predador!
             <br />
           </p>
-          
+
           <p class="texte-center">
             <strong>Dados</strong>: leve em consideração que, no instante de
-            sua observação, o tatu encontra-se em repouso e à 1.200m do seu destino. Considere o movimento descrito por ele como sendo Retilíneo Uniforme e o
-            tempo que ele leva para chegar na metade do trajeto, como sendo
-            20s. A raposa encontra-se com velocidade constante igual a 40m/s.
+            sua observação, o tatu encontra-se em repouso e à 1.200m do seu
+            destino. Considere o movimento descrito por ele como sendo
+            Retilíneo Uniforme e o tempo que ele leva para chegar na metade do
+            trajeto, como sendo 20s. A raposa encontra-se com velocidade
+            constante igual a 40m/s.
           </p>
 
           <div class="d-flex flex-row justify-content-center align-items-center gap-3">
@@ -95,7 +108,8 @@
         </div>
 
         <!-- Código HTML do modal -->
-        <div class="modal fade text-black" id="help" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade text-black" id="help" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
@@ -112,7 +126,7 @@
                   Para resolver esta quetão, o aluno prescisa se lembrar do
                   conceito universal da cinematica:
                 </p>
-                <img class="equacaoMRU" src="../src/images/equacao.jpg" alt="" />
+                <img class="equacaoMRU" src="../src/assets/images/equacao.jpg" alt="" />
                 <p>
                   Como a quetão nos forne a velocidade e tempo, só precisamos
                   substituir na formula para encontrarmos a distancia total.
