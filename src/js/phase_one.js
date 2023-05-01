@@ -4,8 +4,8 @@ const overlay = document.querySelector("[data-js=overlay]");
 const userName = document.querySelector("input[for=nameUser]");
 
 // **********************  OBJECTS  ********************** //
-const mainObject = document.getElementById("object");
-const secondObject = document.getElementById("object2");
+const armadillo = document.getElementById("object");
+const fox = document.getElementById("object2");
 
 // **********************  BUTTONS  ********************** //
 const intoGameButton = document.getElementById("start-button");
@@ -13,7 +13,6 @@ const confirmAnswertButton = document.querySelector("[data-js=confirmAnswert]");
 const resetButton = document.getElementById("reset");
 
 // **********************  POSITION TIME FUNCTION VAR  ********************** //
-let positions = [0, 0];
 const initialPositions = [0, -450];
 const velocities = [30, 40];
 let time = 0;
@@ -21,13 +20,13 @@ let time = 0;
 // **********************  STOPWATCH  ********************** //
 let [milliseconds, seconds, minutes] = [0, 0, 0, 0];
 const timerRef = document.querySelector(".timerDisplay");
-let int = null;
+let stopwatch = null;
 
 // **********************  GAME  ********************** //
 class Game {
-  constructor(mObject, sObject) {
-    this.object = mObject;
-    this.objectTwo = sObject;
+  constructor(armadillo, fox) {
+    this.armadillo = armadillo;
+    this.fox = fox;
   }
 
   displayGameContainer() {
@@ -51,50 +50,61 @@ class Game {
       .classList.replace("d-flex", "d-none");
   }
 
-  startGame(over) {
+  startGame() {
     const moveObjects = () => {
-      if (over != 30) {
-        positions[0] = "600px"; // O objeto fica em 600px quando o usuário erra a resposta
-      } else {
-        positions[0] = initialPositions[0] + velocities[0] * time; // Fórmula da função horária da posição
-      }
-      positions[1] = initialPositions[1] + velocities[1] * time;
-      this.object.style.left = `${positions[0]}px`; // Movimentação do tatu
-      this.objectTwo.style.left = `${positions[1]}px`; // Movimentação da raposa
-
+      this.armadillo.style.left = `${
+        initialPositions[0] + velocities[0] * time
+      }px`; // Fórmula da função horária da posição do Tatu
+      this.fox.style.left = `${
+        initialPositions[1] + velocities[1] * time
+      }px`; // Fórmula da função horária da posição da Raposa
       if (time == 20) {
         clearInterval(mru); // O objeto tem de parar na metade da width
-
-        int = setInterval(this.stopwatch.bind(this), 10);
-
+        stopwatch = setInterval(this.stopwatch.bind(this), 10);
         setTimeout(() => {
           overlay.classList.replace("d-none", "d-block");
         }, 800);
       }
-
       if (time == 40) {
         clearInterval(mru);
-
-        this.object.style.left = `${positions[0] - 100}px`;
-        this.objectTwo.style.left = `${positions[1] - 150}px`;
+        this.armadillo.style.left = `${parseInt(this.armadillo.style.left) - 100}px`;
+        this.fox.style.left = `${
+          parseInt(this.armadillo.style.left) - 150
+        }px`;
       }
-
       time++;
     };
-
     const mru = setInterval(moveObjects, 1000 / 60);
   }
 
+  gameLose() {
+    const updatePositions = () => {
+      const foxLeft = parseInt(this.fox.style.left);
+      const chickenLeft = parseInt(this.armadillo.style.left);
+      if (foxLeft == chickenLeft - 50) {
+        clearInterval(mru);
+        this.endGame();
+      }
+    };
+
+    const moveFox = () => {
+      const foxLeft = parseInt(this.fox.style.left);
+      this.fox.style.left = `${foxLeft + velocities[1]}px`;
+      updatePositions();
+    };
+
+    const mru = setInterval(moveFox, 1000 / 60);
+  }
+
   reset() {
-    positions[0] = 0;
-    positions[1] = 0;
     velocities[0] = 30;
     velocities[1] = 40;
     time = 0;
-    this.object.style.left = `${initialPositions[0]}px`;
-    this.objectTwo.style.left = `${initialPositions[1]}px`;
+    this.armadillo.style.left = `${initialPositions[0]}px`;
+    this.fox.style.left = `${initialPositions[1]}px`;
 
     [milliseconds, seconds, minutes] = [0, 0, 0];
+    timerRef.innerText = "00:00";
   }
 
   stopwatch() {
@@ -114,20 +124,18 @@ class Game {
   }
 }
 
-const game = new Game(mainObject, secondObject);
+const game = new Game(armadillo, fox);
 
 intoGameButton.addEventListener("click", () => {
   game.displayGameContainer();
   setTimeout(() => {
-    game.startGame(30);
-  }, 100);
+    game.startGame();
+  }, 1000);
 });
 
 confirmAnswertButton.addEventListener("click", () => {
+  clearInterval(stopwatch); // Para o cronômetro
   overlay.classList.replace("d-block", "d-none");
-
-  clearInterval(int);
-  
   const radioButtons = document.querySelectorAll(
     'input[type="radio"][name="velocity"]'
   );
@@ -144,23 +152,18 @@ confirmAnswertButton.addEventListener("click", () => {
   });
   if (num != 30) {
     velocities[0] = num;
-    game.startGame(num);
-    setTimeout(() => {
-      alert("A raposa te pegou, resposta incorreta!");
-      game.displayGameContainerStart();
-      game.reset();
-    }, 600);
+    game.gameLose();
   } else {
     velocities[0] = num;
-    game.startGame(num);
-    setTimeout(() => {
-      alert("Você ganhou, respota correta!");
-    }, 1500);
+    game.startGame();
   }
 });
 
 resetButton.addEventListener("click", () => {
   game.reset();
+  setTimeout(() => {
+    game.startGame();
+  }, 3000);
 });
 
 userName.addEventListener("beforeinput", (e) => {
