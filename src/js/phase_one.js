@@ -17,8 +17,11 @@ const initialPositions = [0, -450];
 const velocities = [30, 40];
 let time = 0;
 
+let difference = 0; // variável que guarda a diferença das posições
+let currentPosition = 0;
+
 // **********************  STOPWATCH  ********************** //
-let [milliseconds, seconds, minutes] = [0, 0, 0, 0];
+let [milliseconds, seconds, minutes] = [0, 0, 0];
 const timerRef = document.querySelector(".timerDisplay");
 let stopwatch = null;
 
@@ -52,48 +55,47 @@ class Game {
 
   startGame() {
     const moveObjects = () => {
-      this.armadillo.style.left = `${
-        initialPositions[0] + velocities[0] * time
-      }px`; // Fórmula da função horária da posição do Tatu
-      this.fox.style.left = `${
-        initialPositions[1] + velocities[1] * time
-      }px`; // Fórmula da função horária da posição da Raposa
+      // Calculando a posição dos objetos pela equação horária da posição
+      currentPosition = initialPositions[0] + velocities[0] * time;
+
+      // Quando a resposta estiver errada, calcula a diferença de posição
+      if (difference > currentPosition) {
+        difference -= currentPosition;
+      }
+
+      this.armadillo.style.left = `${currentPosition + difference}px`;
+      this.fox.style.left = `${initialPositions[1] + velocities[1] * time}px`;
+
       if (time == 20) {
         clearInterval(mru); // O objeto tem de parar na metade da width
+        currentPosition = parseInt(this.armadillo.style.left);
         stopwatch = setInterval(this.stopwatch.bind(this), 10);
         setTimeout(() => {
           overlay.classList.replace("d-none", "d-block");
         }, 800);
       }
+      // Fazendo a raposa parar quando sua posição for muita próxima da posição Tatu e a resposta do usuário estiver errada
+      if (
+        parseInt(this.fox.style.left) >
+        parseInt(this.armadillo.style.left) - 55
+      ) {
+        clearInterval(mru);
+        resetButton.disabled = false;
+      }
+      // Quando a resposta estiver certa, o jogo acaba no tempo de 40s
       if (time == 40) {
         clearInterval(mru);
-        this.armadillo.style.left = `${parseInt(this.armadillo.style.left) - 100}px`;
-        this.fox.style.left = `${
-          parseInt(this.armadillo.style.left) - 150
+        this.armadillo.style.left = `${
+          parseInt(this.armadillo.style.left) - 100
         }px`;
+        this.fox.style.left = `${parseInt(this.armadillo.style.left) - 140}px`;
+        resetButton.disabled = false;
       }
+
       time++;
+      console.log(time);
     };
     const mru = setInterval(moveObjects, 1000 / 60);
-  }
-
-  gameLose() {
-    const updatePositions = () => {
-      const foxLeft = parseInt(this.fox.style.left);
-      const chickenLeft = parseInt(this.armadillo.style.left);
-      if (foxLeft == chickenLeft - 50) {
-        clearInterval(mru);
-        this.endGame();
-      }
-    };
-
-    const moveFox = () => {
-      const foxLeft = parseInt(this.fox.style.left);
-      this.fox.style.left = `${foxLeft + velocities[1]}px`;
-      updatePositions();
-    };
-
-    const mru = setInterval(moveFox, 1000 / 60);
   }
 
   reset() {
@@ -102,6 +104,8 @@ class Game {
     time = 0;
     this.armadillo.style.left = `${initialPositions[0]}px`;
     this.fox.style.left = `${initialPositions[1]}px`;
+
+    resetButton.disabled = true;
 
     [milliseconds, seconds, minutes] = [0, 0, 0];
     timerRef.innerText = "00:00";
@@ -152,7 +156,8 @@ confirmAnswertButton.addEventListener("click", () => {
   });
   if (num != 30) {
     velocities[0] = num;
-    game.gameLose();
+    difference = currentPosition + velocities[0];
+    game.startGame();
   } else {
     velocities[0] = num;
     game.startGame();
