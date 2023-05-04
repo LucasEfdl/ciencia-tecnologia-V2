@@ -74,7 +74,7 @@ class Game {
           overlay.classList.replace("d-none", "d-block");
         }, 800);
       }
-      // Fazendo a raposa parar quando sua posição for muita próxima da posição Tatu e a resposta do usuário estiver errada
+      // Fazendo a raposa parar quando sua posição for muito próxima da posição do Tatu e a resposta do usuário estiver errada
       if (
         parseInt(this.fox.style.left) >
         parseInt(this.armadillo.style.left) - 55
@@ -93,7 +93,6 @@ class Game {
       }
 
       time++;
-      console.log(time);
     };
     const mru = setInterval(moveObjects, 1000 / 60);
   }
