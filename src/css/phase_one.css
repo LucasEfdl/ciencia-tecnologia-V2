@@ -27,7 +27,12 @@
 
   transition: left 1s linear;
 }
-
+.textWin {
+  color: #000;
+}
+.modal-title {
+  color: #000;
+}
 .game-object2 {
   color: white;
   background-image: url(../assets/images/raposa.png);
