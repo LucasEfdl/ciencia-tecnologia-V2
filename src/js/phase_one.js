@@ -195,7 +195,7 @@ resetButton.addEventListener("click", () => {
   }, 3000);
 });
 
-userName.addEventListener("beforeinput", (e) => {
+userName.addEventListener("input", (e) => {
   if (e.target.value != "") {
     intoGameButton.disabled = false;
   } else {
