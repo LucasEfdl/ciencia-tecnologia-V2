@@ -1,0 +1,28 @@
+[
+  {
+    "armadilloVelocity": 30,
+    "armadilloInitialPosition": 0,
+
+    "foxVelocity": 40,
+    "foxInitialPosition": -450,
+
+    "finalPosition": "1.200m",
+    "halfPosition": "600m",
+
+    "halfTime": 20,
+    "options": ["30m/s", "25m/s", "20ms", "15ms", "10ms"]
+  },
+  {
+    "armadilloVelocity": 35,
+    "armadilloInitialPosition": 0,
+
+    "foxVelocity": 45,
+    "foxInitialPosition": -450,
+
+    "finalPosition": "1.400m",
+    "halfPosition": "700m",
+
+    "halfTime": 17,
+    "options": ["30m/s", "35m/s", "20ms", "25ms", "15ms"]
+  }
+]
