@@ -10,7 +10,7 @@
     "halfPosition": "600m",
 
     "halfTime": 20,
-    "options": ["30m/s", "25m/s", "20ms", "15ms", "10ms"]
+    "options": ["15m/s", "35m/s", "30m/s", "25m/s", "20m/s"]
   },
   {
     "armadilloVelocity": 35,
@@ -23,6 +23,6 @@
     "halfPosition": "700m",
 
     "halfTime": 17,
-    "options": ["30m/s", "35m/s", "20ms", "25ms", "15ms"]
+    "options": ["24m/s", "30m/s", "25m/s", "35m/s", "20m/s"]
   }
 ]

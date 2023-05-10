@@ -20,7 +20,7 @@ const radioButtons = document.querySelectorAll(
 );
 
 // ===================================  DATA  =================================== //
-let getIndex = 0;
+let getIndex = 1;
 endPosition.innerHTML = data[getIndex].finalPosition;
 halfPosition.innerHTML = data[getIndex].halfPosition;
 
@@ -33,6 +33,9 @@ let armadilloInitialPosition = data[getIndex].armadilloInitialPosition;
 
 let foxVelocity = data[getIndex].foxVelocity;
 let foxInitialPosition = data[getIndex].foxInitialPosition;
+
+let difference = 0;
+let position = 0;
 
 let time = 0;
 // ===================================  STOPWATCH  =================================== //
@@ -69,9 +72,13 @@ class Game {
 
   startGame() {
     const moveObjects = () => {
-      this.armadillo.style.left = `${
-        armadilloInitialPosition + armadilloVelocity * time
-      }px`;
+      position = armadilloInitialPosition + armadilloVelocity * time;
+      if (position < difference) {
+        difference -= position;
+        difference += armadilloVelocity;
+      }
+
+      this.armadillo.style.left = `${position + difference}px`;
       this.fox.style.left = `${foxInitialPosition + foxVelocity * time}px`;
 
       if (time == data[getIndex].halfTime) {
@@ -109,6 +116,8 @@ class Game {
     armadilloVelocity = data[getIndex].armadilloVelocity;
 
     time = 0;
+
+    difference = 0;
 
     resetButton.disabled = true;
     radioButtons.forEach((radioButton) => {
@@ -169,6 +178,7 @@ confirmAnswertButton.addEventListener("click", () => {
   });
   if (num != data[getIndex].armadilloVelocity) {
     armadilloVelocity = num;
+    difference = position;
     game.startGame();
     setTimeout(() => {
       var modalElement = document.getElementById("meuModal2");
@@ -177,6 +187,7 @@ confirmAnswertButton.addEventListener("click", () => {
     }, 1500);
   } else {
     armadilloVelocity = num;
+    difference = 0;
     game.startGame();
     setTimeout(() => {
       var modalElement = document.getElementById("meuModal");
