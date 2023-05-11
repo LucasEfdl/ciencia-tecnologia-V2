@@ -77,7 +77,17 @@
           </svg>
           <div class="timerDisplay">00:00</div>
         </div>
+
         <div id="game-container" class="d-block overflow-hidden">
+          <div
+            class="progress"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div class="progress-bar" style="width: 0%"></div>
+          </div>
+
           <div class="d-block p-3 text-end">
             <button
               type="button"
@@ -315,9 +325,5 @@
 
     <!-- Script javascript -->
     <script type="module" src="../src/js/phase_one.js"></script>
-    <script
-      type="module"
-      src="../node_modules/bootstrap/js/src/modal.js"
-    ></script>
   </body>
 </html>

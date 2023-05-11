@@ -6,6 +6,9 @@ const timerRef = document.querySelector(".timerDisplay");
 const endPosition = document.querySelector('span[class="final-position"]');
 const halfPosition = document.querySelector('span[class="initial-position"]');
 const label = document.querySelectorAll(".form-check label");
+const progressiveBar = document.querySelector(".progress-bar");
+
+let progress = 0;
 
 // ===================================  OBJECTS  =================================== //
 const armadillo = document.getElementById("object");
@@ -20,13 +23,9 @@ const radioButtons = document.querySelectorAll(
 );
 
 // ===================================  DATA  =================================== //
-let getIndex = 1;
+let getIndex = 0;
 endPosition.innerHTML = data[getIndex].finalPosition;
 halfPosition.innerHTML = data[getIndex].halfPosition;
-
-label.forEach((label, index) => {
-  label.textContent = data[getIndex].options[index];
-});
 
 let armadilloVelocity = data[getIndex].armadilloVelocity;
 let armadilloInitialPosition = data[getIndex].armadilloInitialPosition;
@@ -71,6 +70,9 @@ class Game {
   }
 
   startGame() {
+    label.forEach((label, index) => {
+      label.textContent = data[getIndex].options[index];
+    });
     const moveObjects = () => {
       position = armadilloInitialPosition + armadilloVelocity * time;
       if (position < difference) {
@@ -162,6 +164,7 @@ radioButtons.forEach((radioButton) => {
     confirmAnswertButton.disabled = false;
   });
 });
+
 confirmAnswertButton.addEventListener("click", () => {
   clearInterval(stopwatch); // Para o cronômetro
   overlay.classList.replace("d-block", "d-none");
@@ -192,6 +195,9 @@ confirmAnswertButton.addEventListener("click", () => {
     setTimeout(() => {
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
+      progress += 50;
+
+      progressiveBar.style.width = `${progress}%`;
       modal.show();
     }, 1500);
   }
@@ -211,10 +217,6 @@ userName.addEventListener("input", (e) => {
     intoGameButton.disabled = true;
   }
 });
-document.addEventListener("DOMContentLoaded", function () {
-  var botaoReset = document.getElementById("btreset");
-  botaoReset.addEventListener("click", resetGame);
-});
 
 function resetGame() {
   game.reset();
@@ -225,9 +227,18 @@ function resetGame() {
 
 document.addEventListener("DOMContentLoaded", function () {
   var botaoReset = document.getElementById("btGo");
-  botaoReset.addEventListener("click", nextGame);
+  if (getIndex == 1) {
+    botaoReset.disabled = true;
+  } else {
+    botaoReset.addEventListener("click", nextGame);
+  }
 });
 
 function nextGame() {
-  window.location.href = "phase_two.html";
+  getIndex++;
+
+  endPosition.innerHTML = data[getIndex].finalPosition;
+  halfPosition.innerHTML = data[getIndex].halfPosition;
+
+  resetGame();
 }
