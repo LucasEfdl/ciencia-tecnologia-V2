@@ -18,6 +18,7 @@ const fox = document.getElementById("object2");
 const intoGameButton = document.getElementById("start-button");
 const confirmAnswertButton = document.querySelector("[data-js=confirmAnswert]");
 const resetButton = document.getElementById("reset");
+const restartButon = document.getElementById("restart");
 const radioButtons = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
@@ -227,12 +228,12 @@ function resetGame() {
 
 document.addEventListener("DOMContentLoaded", function () {
   var botaoReset = document.getElementById("btGo");
-  if (getIndex == 1) {
-    botaoReset.disabled = true;
-  } else {
-    botaoReset.addEventListener("click", nextGame);
-  }
+  botaoReset.addEventListener("click", nextGame);
 });
+
+restartButon.addEventListener("click", () => {
+  resetGame();
+})
 
 function nextGame() {
   getIndex++;
