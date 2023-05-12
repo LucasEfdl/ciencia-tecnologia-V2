@@ -1,7 +1,7 @@
-@import url(global.css);
+@import url(bootstrap.css);
 
 #game-container {
-  background-image: url(../assets/images/fundo1.png);
+  background-image: url(../images/bg_game_one.png);
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -14,12 +14,12 @@
 
 .game-object {
   color: white;
-  background-image: url(../assets/images/tatu4.png);
+  background-image: url(../images/armadillo.svg);
   background-repeat: no-repeat;
   background-size: cover;
 
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 80px;
 
   position: absolute;
   bottom: 0px;
@@ -27,15 +27,18 @@
 
   transition: left 1s linear;
 }
+
 .textWin {
   color: #000;
 }
+
 .modal-title {
   color: #000;
 }
+
 .game-object2 {
   color: white;
-  background-image: url(../assets/images/raposa.png);
+  background-image: url(../images/fox.png);
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -51,4 +54,8 @@
 
 .overlay {
   font-family: "Lucida Console", sans-serif;
+}
+
+.isMove {
+  background-image: url("../images/armadillog.gif");
 }

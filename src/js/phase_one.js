@@ -74,6 +74,7 @@ class Game {
     label.forEach((label, index) => {
       label.textContent = data[getIndex].options[index];
     });
+    armadillo.classList.add("isMove");
     const moveObjects = () => {
       position = armadilloInitialPosition + armadilloVelocity * time;
       if (position < difference) {
@@ -87,6 +88,7 @@ class Game {
       if (time == data[getIndex].halfTime) {
         clearInterval(mru); // O objeto tem de parar na metade da width
         stopwatch = setInterval(this.stopwatch.bind(this), 10);
+        armadillo.classList.remove("isMove");
         setTimeout(() => {
           overlay.classList.replace("d-none", "d-block");
         }, 800);
@@ -97,12 +99,14 @@ class Game {
         parseInt(this.armadillo.style.left) - 55
       ) {
         clearInterval(mru);
+        armadillo.classList.remove("isMove");
         resetButton.disabled = false;
       }
       // Quando a resposta estiver certa, o jogo acaba no tempo de 40s
       if (time == 40) {
         clearInterval(mru);
-        this.armadillo.style.left = `${1100}px`;
+        armadillo.classList.remove("isMove");
+        this.armadillo.style.left = `${1070}px`;
         this.fox.style.left = `${950}px`;
         resetButton.disabled = false;
       }
@@ -233,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 restartButon.addEventListener("click", () => {
   resetGame();
-})
+});
 
 function nextGame() {
   getIndex++;

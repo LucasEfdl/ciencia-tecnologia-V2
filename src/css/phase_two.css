@@ -1,7 +1,7 @@
-@import url(global.css);
+@import url(bootstrap.css);
 
 #game-container {
-  background-image: url(../assets/images/fundo3.png);
+  background-image: url(../images/bg_game_three.png);
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -14,7 +14,7 @@
 .tatu {
   color: white;
 
-  background-image: url(../assets/images/tatu4.png);
+  background-image: url(../images/armadillog.gif);
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -30,7 +30,7 @@
 
 .raposa {
   color: white;
-  background-image: url(../assets/images/raposa.png);
+  background-image: url(../images/fox.png);
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -46,7 +46,7 @@
 
 .carro {
   color: white;
-  background-image: url(../assets/images/carro2.png);
+  background-image: url(../images/car.png);
 
   width: 100px;
   height: 100px;
