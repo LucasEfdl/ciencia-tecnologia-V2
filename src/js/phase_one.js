@@ -5,6 +5,9 @@ const userName = document.querySelector("input[for=nameUser]");
 const timerRef = document.querySelector(".timerDisplay");
 const endPosition = document.querySelector('span[class="final-position"]');
 const halfPosition = document.querySelector('span[class="initial-position"]');
+const foxConstVelocityText = document.querySelector(
+  'span[class="fox-const-velocity-text"]'
+);
 const label = document.querySelectorAll(".form-check label");
 const progressiveBar = document.querySelector(".progress-bar");
 
@@ -27,6 +30,7 @@ const radioButtons = document.querySelectorAll(
 let getIndex = 0;
 endPosition.innerHTML = data[getIndex].finalPosition;
 halfPosition.innerHTML = data[getIndex].halfPosition;
+foxConstVelocityText.innerHTML = data[getIndex].foxVelocity;
 
 let armadilloVelocity = data[getIndex].armadilloVelocity;
 let armadilloInitialPosition = data[getIndex].armadilloInitialPosition;
@@ -74,9 +78,12 @@ class Game {
     label.forEach((label, index) => {
       label.textContent = data[getIndex].options[index];
     });
+
     armadillo.classList.add("isMove");
+
     const moveObjects = () => {
       position = armadilloInitialPosition + armadilloVelocity * time;
+      // se a posição for menor que a diferença
       if (position < difference) {
         difference -= position;
         difference += armadilloVelocity;
@@ -85,30 +92,34 @@ class Game {
       this.armadillo.style.left = `${position + difference}px`;
       this.fox.style.left = `${foxInitialPosition + foxVelocity * time}px`;
 
+      // se o tempo igual a metade do tempo final
       if (time == data[getIndex].halfTime) {
-        clearInterval(mru); // O objeto tem de parar na metade da width
+        clearInterval(mru);
         stopwatch = setInterval(this.stopwatch.bind(this), 10);
-        armadillo.classList.remove("isMove");
+        overlay.classList.replace("d-none", "d-block");
         setTimeout(() => {
-          overlay.classList.replace("d-none", "d-block");
+          armadillo.classList.remove("isMove");
         }, 800);
       }
-      // Fazendo a raposa parar quando sua posição for muito próxima da posição do Tatu e a resposta do usuário estiver errada
-      if (
-        parseInt(this.fox.style.left) >
-        parseInt(this.armadillo.style.left) - 55
-      ) {
+      // se a posição da raposa for maior que a posição do tatu
+      if (parseInt(this.fox.style.left) > parseInt(this.armadillo.style.left)) {
+        this.fox.style.left = `${parseInt(this.fox.style.left) - 50}px`;
         clearInterval(mru);
-        armadillo.classList.remove("isMove");
         resetButton.disabled = false;
+        setTimeout(() => {
+          armadillo.classList.remove("isMove");
+        }, 800);
       }
-      // Quando a resposta estiver certa, o jogo acaba no tempo de 40s
+
+      // se o tempo for igual a 40
       if (time == 40) {
         clearInterval(mru);
-        armadillo.classList.remove("isMove");
+        setInterval(() => {
+          armadillo.classList.remove("isMove");
+        }, 800);
+        resetButton.disabled = false;
         this.armadillo.style.left = `${1070}px`;
         this.fox.style.left = `${950}px`;
-        resetButton.disabled = false;
       }
 
       time++;
@@ -244,6 +255,9 @@ function nextGame() {
 
   endPosition.innerHTML = data[getIndex].finalPosition;
   halfPosition.innerHTML = data[getIndex].halfPosition;
+  foxConstVelocityText.innerHTML = data[getIndex].foxVelocity;
+  foxVelocity = data[getIndex].foxVelocity;
+  armadilloVelocity = data[getIndex].armadilloVelocity;
 
   resetGame();
 }
