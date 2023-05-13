@@ -57,10 +57,10 @@ class Game {
 
       // Quando a resposta estiver errada, calcula a diferença de posição
       if (difference > currentPosition) {
-        difference -= currentPosition;
+        currentPosition = difference + velocities[0];
       }
 
-      this.armadillo.style.left = `${currentPosition + difference}px`;
+      this.armadillo.style.left = `${currentPosition}px`;
       this.fox.style.left = `${initialPositions[1] + velocities[1] * time}px`;
 
       if (time == 20) {
@@ -73,10 +73,7 @@ class Game {
         }, 800);
       }
       // Fazendo a raposa parar quando sua posição for muito próxima da posição do Tatu e a resposta do usuário estiver errada
-      if (
-        parseInt(this.fox.style.left) >
-        parseInt(this.armadillo.style.left) - 55
-      ) {
+      if (parseInt(this.fox.style.left) > parseInt(this.armadillo.style.left) - 60) {
         clearInterval(mru);
         resetButton.disabled = false;
       }
@@ -87,8 +84,6 @@ class Game {
         this.fox.style.left = "1000px";
         resetButton.disabled = false;
       }
-
-      console.log(currentPosition);
       time++;
     };
     const mru = setInterval(moveObjects, 1000 / 60);
@@ -138,7 +133,7 @@ confirmAnswertButton.addEventListener("click", () => {
   num = parseInt(numValue);
   if (num < 30) {
     velocities[0] = num;
-    difference = currentPosition + velocities[0];
+    difference = currentPosition;
     game.startGame();
     setTimeout(() => {
       var modalElement = document.getElementById("meuModal2");
