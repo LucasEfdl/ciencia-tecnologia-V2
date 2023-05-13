@@ -1,5 +1,6 @@
 // ===================================  GENERAL  =================================== //
 import data from "./data.json" assert { type: "json" };
+
 const overlay = document.querySelector("[data-js=overlay]");
 const userName = document.querySelector("input[for=nameUser]");
 const timerRef = document.querySelector(".timerDisplay");
@@ -21,7 +22,7 @@ const fox = document.getElementById("object2");
 const intoGameButton = document.getElementById("start-button");
 const confirmAnswertButton = document.querySelector("[data-js=confirmAnswert]");
 const resetButton = document.getElementById("reset");
-const restartButon = document.getElementById("restart");
+const restartButton = document.getElementById("restart");
 const radioButtons = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
@@ -81,7 +82,7 @@ class Game {
 
     armadillo.classList.add("isMove");
 
-    const moveObjects = () => {
+    const mru = setInterval(() => {
       position = armadilloInitialPosition + armadilloVelocity * time;
       // se a posição for menor que a diferença
       if (position < difference) {
@@ -96,11 +97,12 @@ class Game {
       if (time == data[getIndex].halfTime) {
         clearInterval(mru);
         stopwatch = setInterval(this.stopwatch.bind(this), 10);
-        overlay.classList.replace("d-none", "d-block");
         setTimeout(() => {
+          overlay.classList.replace("d-none", "d-block");
           armadillo.classList.remove("isMove");
         }, 800);
       }
+
       // se a posição da raposa for maior que a posição do tatu
       if (parseInt(this.fox.style.left) > parseInt(this.armadillo.style.left)) {
         this.fox.style.left = `${parseInt(this.fox.style.left) - 50}px`;
@@ -123,20 +125,16 @@ class Game {
       }
 
       time++;
-    };
-    const mru = setInterval(moveObjects, 1000 / 60);
+    }, 1000 / 60);
   }
 
   reset() {
     this.armadillo.style.left = `${armadilloInitialPosition}px`;
     this.fox.style.left = `${foxInitialPosition}px`;
-
     armadilloVelocity = data[getIndex].armadilloVelocity;
-
-    time = 0;
-
+    position = 0;
     difference = 0;
-
+    time = 0;
     resetButton.disabled = true;
     radioButtons.forEach((radioButton) => {
       if (radioButton.checked) {
@@ -144,9 +142,11 @@ class Game {
       }
     });
     confirmAnswertButton.disabled = true;
-
     [milliseconds, seconds, minutes] = [0, 0, 0];
     timerRef.innerText = "00:00";
+    setTimeout(() => {
+      game.startGame();
+    }, 3000);
   }
 
   stopwatch() {
@@ -221,9 +221,6 @@ confirmAnswertButton.addEventListener("click", () => {
 
 resetButton.addEventListener("click", () => {
   game.reset();
-  setTimeout(() => {
-    game.startGame();
-  }, 3000);
 });
 
 userName.addEventListener("input", (e) => {
@@ -234,20 +231,13 @@ userName.addEventListener("input", (e) => {
   }
 });
 
-function resetGame() {
-  game.reset();
-  setTimeout(() => {
-    game.startGame();
-  }, 3000);
-}
-
 document.addEventListener("DOMContentLoaded", function () {
   var botaoReset = document.getElementById("btGo");
   botaoReset.addEventListener("click", nextGame);
 });
 
-restartButon.addEventListener("click", () => {
-  resetGame();
+restartButton.addEventListener("click", () => {
+  game.reset();
 });
 
 function nextGame() {
@@ -259,5 +249,5 @@ function nextGame() {
   foxVelocity = data[getIndex].foxVelocity;
   armadilloVelocity = data[getIndex].armadilloVelocity;
 
-  resetGame();
+  game.reset();
 }
