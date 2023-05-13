@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fase I - Cinemática</title>
+    <link rel="stylesheet" href="../src/css/phase_one.css" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <style>
+    main {
+      background-image: url("../src/images/background_start.png");
+      background-position: bottom;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      width: 1200px;
+      height: 520px;
+    }
+  </style>
+
+  <body class="bg-dark text-white">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Conteiner que engloba todo o projeto -->
+    <main class="d-block w-100 vh-100">
+      <div
+        id="initial-screen"
+        class="d-flex flex-column justify-content-center align-items-center vh-100 p-4"
+      >
+        <button
+          id="start-button"
+          class="btn btn-primary btn-sm ms-1"
+          type="button"
+        >
+          Continuar
+        </button>
+      </div>
+
+      <div
+        data-js="game-screen"
+        class="d-none flex-column justify-content-center align-items-center vh-100"
+      >
+        <div id="game-container" class="d-block overflow-hidden">
+          <div class="d-block p-3 text-end">
+            <button
+              type="button"
+              class="btn btn-light"
+              data-bs-toggle="modal"
+              data-bs-target="#help"
+            >
+              <i class="bi bi-question-lg"></i> Ajuda
+            </button>
+
+            <button id="reset" class="btn btn-danger" disabled>
+              <i class="bi bi-pause"></i> Resetar
+            </button>
+          </div>
+
+          <!-- Código do overlay -->
+          <div data-js="overlay" class="d-none bg-dark w-75 p-4 mx-auto">
+            <p class="text-center fs-5">
+              Um tatu está fugindo de uma raposa e, para se salvar, ele precisa
+              chegar à sua toca. Sua tarefa é descobrir a velocidade
+              <strong>mínima</strong> do tatu para que ele fuja do predador!
+              <br />
+            </p>
+
+            <p class="texte-center">
+              <strong>Dados</strong>: leve em consideração que, no instante de
+              sua observação, o tatu encontra-se em repouso e à 1.200m do seu
+              destino. Considere o movimento descrito por ele como sendo
+              Retilíneo Uniforme e o tempo que ele leva para chegar na metade do
+              trajeto, como sendo 20s. A raposa encontra-se com velocidade
+              constante igual a 40m/s.
+            </p>
+
+            <div
+              class="d-flex flex-column justify-content-center align-items-center"
+            >
+              <input
+                class="form-control mb-2"
+                type="text"
+                id="inputVelocity"
+                placeholder="Velocidade do tatu"
+              />
+              <button data-js="confirmAnswert" class="btn btn-info" disabled>
+                Confirmar
+              </button>
+            </div>
+          </div>
+
+          <!-- Código HTML do modal -->
+          <div
+            class="modal fade text-black"
+            id="help"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Migração do Peba
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+
+                <div class="modal-body text-center">
+                  <h4>Movimento retilineo unforme</h4>
+                  <br />
+                  <p>
+                    Para resolver esta quetão, o aluno prescisa se lembrar do
+                    conceito universal da cinematica:
+                  </p>
+                  <img
+                    class="equacaoMRU"
+                    src="../src/images/equacao.jpg"
+                    alt=""
+                  />
+                  <p>
+                    Como a quetão nos forne a velocidade e tempo, só precisamos
+                    substituir na formula para encontrarmos a distancia total.
+                  </p>
+                  <br />
+                  <p>Tente você mesmo agora!<br /></p>
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Fechar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Objetos -->
+          <div class="game-object" id="object"></div>
+
+          <div class="game-object2 d-block" id="object2"></div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="meuModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-black" id="modalLabel">
+                Fim da fase
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Fechar"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="textWin text-black">
+                Parabéns, Você ganhou! Siga para próximo desafio.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+                id="btGo"
+              >
+                Proxima fase
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="meuModal2"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-black" id="modalLabel">
+                Fim da fase
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Fechar"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="textWin text-black">
+                Não foi dessa vez! Tente Novamente.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button id="btreset" class="btn btn-danger" data-dismiss="modal">
+                Recomeçar
+                <i class="bi bi-pause"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Script javascript -->
+    <script src="../src/js/phase_one_v1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
