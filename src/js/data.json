@@ -10,7 +10,8 @@
     "halfPosition": "600m",
 
     "halfTime": 20,
-    "options": ["15m/s", "24m/s", "30m/s", "25m/s", "23m/s"]
+    "options": ["15m/s", "24m/s", "30m/s", "25m/s", "23m/s"],
+    "finalTime": 40
   },
   {
     "armadilloVelocity": 35,
@@ -20,9 +21,24 @@
     "foxInitialPosition": -450,
 
     "finalPosition": "1.400m",
-    "halfPosition": "700m",
+    "halfPosition": "595m",
 
     "halfTime": 17,
-    "options": ["18m/s", "21m/s", "22m/s", "35m/s", "20m/s"]
+    "options": ["18m/s", "21m/s", "22m/s", "35m/s", "20m/s"],
+    "finalTime": 40
+  },
+  {
+    "armadilloVelocity": 25,
+    "armadilloInitialPosition": 0,
+
+    "foxVelocity": 35,
+    "foxInitialPosition": -490,
+
+    "finalPosition": "1.200m",
+    "halfPosition": "500m",
+
+    "halfTime": 23,
+    "options": ["25m/s", "20m/s", "21m/s", "19m/s", "23m/s"],
+    "finalTime": 40
   }
 ]

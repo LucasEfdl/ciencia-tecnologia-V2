@@ -6,6 +6,7 @@ const userName = document.querySelector("input[for=nameUser]");
 const timerRef = document.querySelector(".timerDisplay");
 const endPosition = document.querySelector('span[class="final-position"]');
 const halfPosition = document.querySelector('span[class="initial-position"]');
+const halfTimeText = document.querySelector(".half-time-text");
 const foxConstVelocityText = document.querySelector(
   'span[class="fox-const-velocity-text"]'
 );
@@ -28,16 +29,17 @@ const radioButtons = document.querySelectorAll(
 );
 
 // ===================================  DATA  =================================== //
-let getIndex = 0;
-endPosition.innerHTML = data[getIndex].finalPosition;
-halfPosition.innerHTML = data[getIndex].halfPosition;
-foxConstVelocityText.innerHTML = data[getIndex].foxVelocity;
+let index = 0;
+endPosition.innerHTML = data[index].finalPosition;
+halfPosition.innerHTML = data[index].halfPosition;
+foxConstVelocityText.innerHTML = data[index].foxVelocity;
+halfTimeText.innerHTML = data[index].halfTime;
 
-let armadilloVelocity = data[getIndex].armadilloVelocity;
-let armadilloInitialPosition = data[getIndex].armadilloInitialPosition;
+let armadilloVelocity = data[index].armadilloVelocity;
+let armadilloInitialPosition = data[index].armadilloInitialPosition;
 
-let foxVelocity = data[getIndex].foxVelocity;
-let foxInitialPosition = data[getIndex].foxInitialPosition;
+let foxVelocity = data[index].foxVelocity;
+let foxInitialPosition = data[index].foxInitialPosition;
 
 let difference = 0;
 let position = 0;
@@ -76,8 +78,8 @@ class Game {
   }
 
   startGame() {
-    label.forEach((label, index) => {
-      label.textContent = data[getIndex].options[index];
+    label.forEach((lbl, i) => {
+      lbl.textContent = data[index].options[i];
     });
 
     armadillo.classList.add("isMove");
@@ -94,7 +96,7 @@ class Game {
       this.fox.style.left = `${foxInitialPosition + foxVelocity * time}px`;
 
       // se o tempo igual a metade do tempo final
-      if (time == data[getIndex].halfTime) {
+      if (time == data[index].halfTime) {
         clearInterval(mru);
         stopwatch = setInterval(this.stopwatch.bind(this), 10);
         setTimeout(() => {
@@ -114,14 +116,11 @@ class Game {
       }
 
       // se o tempo for igual a 40
-      if (time == 40) {
+      if (time == data[index].finalTime) {
+        this.armadillo.style.left = "1080px";
+        this.fox.style.left = "980px";
         clearInterval(mru);
-        setInterval(() => {
-          armadillo.classList.remove("isMove");
-        }, 800);
         resetButton.disabled = false;
-        this.armadillo.style.left = `${1070}px`;
-        this.fox.style.left = `${950}px`;
       }
 
       time++;
@@ -131,7 +130,7 @@ class Game {
   reset() {
     this.armadillo.style.left = `${armadilloInitialPosition}px`;
     this.fox.style.left = `${foxInitialPosition}px`;
-    armadilloVelocity = data[getIndex].armadilloVelocity;
+    armadilloVelocity = data[index].armadilloVelocity;
     position = 0;
     difference = 0;
     time = 0;
@@ -195,7 +194,7 @@ confirmAnswertButton.addEventListener("click", () => {
       num = parseInt(str);
     }
   });
-  if (num != data[getIndex].armadilloVelocity) {
+  if (num != data[index].armadilloVelocity) {
     armadilloVelocity = num;
     difference = position;
     game.startGame();
@@ -211,8 +210,10 @@ confirmAnswertButton.addEventListener("click", () => {
     setTimeout(() => {
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
-      progress += 50;
 
+      armadillo.classList.remove("isMove");
+
+      progress += 33.33;
       progressiveBar.style.width = `${progress}%`;
       modal.show();
     }, 1500);
@@ -241,13 +242,14 @@ restartButton.addEventListener("click", () => {
 });
 
 function nextGame() {
-  getIndex++;
+  index++;
 
-  endPosition.innerHTML = data[getIndex].finalPosition;
-  halfPosition.innerHTML = data[getIndex].halfPosition;
-  foxConstVelocityText.innerHTML = data[getIndex].foxVelocity;
-  foxVelocity = data[getIndex].foxVelocity;
-  armadilloVelocity = data[getIndex].armadilloVelocity;
+  endPosition.innerHTML = data[index].finalPosition;
+  halfPosition.innerHTML = data[index].halfPosition;
+  foxConstVelocityText.innerHTML = data[index].foxVelocity;
+  foxVelocity = data[index].foxVelocity;
+  armadilloVelocity = data[index].armadilloVelocity;
+  halfTimeText.innerHTML = data[index].halfTime;
 
   game.reset();
 }
