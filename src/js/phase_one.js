@@ -87,12 +87,16 @@ class Game {
     const mru = setInterval(() => {
       position = armadilloInitialPosition + armadilloVelocity * time;
       // se a posição for menor que a diferença
-      if (position < difference) {
+      /*       if (position < difference) {
         difference -= position;
         difference += armadilloVelocity;
+      } */
+
+      if (difference > position) {
+        position = difference + armadilloVelocity;
       }
 
-      this.armadillo.style.left = `${position + difference}px`;
+      this.armadillo.style.left = `${position}px`;
       this.fox.style.left = `${foxInitialPosition + foxVelocity * time}px`;
 
       // se o tempo igual a metade do tempo final
@@ -117,9 +121,10 @@ class Game {
 
       // se o tempo for igual a 40
       if (time == data[index].finalTime) {
+        clearInterval(mru);
         this.armadillo.style.left = "1080px";
         this.fox.style.left = "980px";
-        clearInterval(mru);
+
         resetButton.disabled = false;
       }
 
@@ -208,14 +213,18 @@ confirmAnswertButton.addEventListener("click", () => {
     difference = 0;
     game.startGame();
     setTimeout(() => {
+      // se o index for menor que 2, mostre esse modal
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
+
+      if (index < 2) {
+        modal.show();
+      }
 
       armadillo.classList.remove("isMove");
 
       progress += 33.33;
       progressiveBar.style.width = `${progress}%`;
-      modal.show();
     }, 1500);
   }
 });
