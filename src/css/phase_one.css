@@ -38,7 +38,7 @@
 
 .game-object2 {
   color: white;
-  background-image: url(../images/fox.png);
+  background-image: url(../images/fox_a.png);
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -58,4 +58,8 @@
 
 .isMove {
   background-image: url("../images/armadillog.gif");
+}
+
+.foxIsMove {
+  background-image: url("../images/foxg.gif");
 }

@@ -67,7 +67,7 @@ class Game {
 
   startGame() {
     armadillo.classList.add("isMove");
-    console.log(foxInitialPosition);
+    fox.classList.add("foxIsMove");
     const moveObjects = () => {
       // Calculando a posição dos objetos pela equação horária da posição
       position = armadilloInitialPosition + armadilloVelocity * time;
@@ -85,6 +85,7 @@ class Game {
         setTimeout(() => {
           overlay.classList.replace("d-none", "d-block");
           armadillo.classList.remove("isMove");
+          fox.classList.remove("foxIsMove");
         }, 800);
       }
 
@@ -95,14 +96,14 @@ class Game {
         resetButton.disabled = false;
         setTimeout(() => {
           armadillo.classList.remove("isMove");
+          fox.classList.remove("foxIsMove");
         }, 800);
       }
 
       // Quando a resposta estiver certa, o jogo acaba no tempo de 40s
       if (time == data[index].finalTime) {
         clearInterval(mru);
-        this.armadillo.style.left = "1080px";
-        this.fox.style.left = "980px";
+        this.fox.style.left = "1080px";
 
         resetButton.disabled = false;
       }
@@ -177,6 +178,7 @@ confirmAnswertButton.addEventListener("click", () => {
       }
 
       armadillo.classList.remove("isMove");
+      fox.classList.remove("foxIsMove");
     }, 1500);
   }
 });

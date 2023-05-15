@@ -85,6 +85,7 @@ class Game {
     });
 
     armadillo.classList.add("isMove");
+    fox.classList.add("foxIsMove");
 
     const mru = setInterval(() => {
       position = armadilloInitialPosition + armadilloVelocity * time;
@@ -100,6 +101,7 @@ class Game {
         setTimeout(() => {
           overlay.classList.replace("d-none", "d-block");
           armadillo.classList.remove("isMove");
+          fox.classList.remove("foxIsMove");
         }, 800);
       }
 
@@ -111,6 +113,7 @@ class Game {
         resetButton.disabled = false;
         setTimeout(() => {
           armadillo.classList.remove("isMove");
+          fox.classList.remove("foxIsMove");
         }, 800);
       }
 
@@ -251,6 +254,8 @@ confirmAnswertButton.addEventListener("click", () => {
       }
 
       armadillo.classList.remove("isMove");
+      fox.classList.remove("foxIsMove");
+
 
       progress += 33.33;
       progressiveBar.style.width = `${progress}%`;
