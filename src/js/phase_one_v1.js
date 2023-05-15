@@ -1,9 +1,13 @@
 // **********************  GENERAL  ********************** //
-const gameContainer = document.getElementById("game-container");
-const overlay = document.querySelector("[data-js=overlay]");
-const userName = document.querySelector("input[for=nameUser]");
+import data from "./data.json" assert { type: "json" };
 
+const overlay = document.querySelector("[data-js=overlay]");
 const input = document.getElementById("inputVelocity");
+
+const endPosition = document.querySelector('span[class="final-position"]');
+const halfPosition = document.querySelector('span[class="initial-position"]');
+const halfTimeText = document.querySelector(".half-time-text");
+const foxConstVelocityText = document.querySelector(".fox-const-velocity-text");
 
 // **********************  OBJECTS  ********************** //
 const armadillo = document.getElementById("object");
@@ -14,13 +18,23 @@ const intoGameButton = document.getElementById("start-button");
 const confirmAnswertButton = document.querySelector("[data-js=confirmAnswert]");
 const resetButton = document.getElementById("reset");
 
-// **********************  POSITION TIME FUNCTION VAR  ********************** //
-const initialPositions = [0, -450];
-const velocities = [30, 40];
+// **********************  DATA  ********************** //
+let index = 0;
+endPosition.innerHTML = data[index].finalPosition;
+halfPosition.innerHTML = data[index].halfPosition;
+foxConstVelocityText.innerHTML = data[index].foxVelocity;
+halfTimeText.innerHTML = data[index].halfTime;
+
+let armadilloVelocity = data[index].armadilloVelocity;
+let armadilloInitialPosition = data[index].armadilloInitialPosition;
+
+let foxVelocity = data[index].foxVelocity;
+let foxInitialPosition = data[index].foxInitialPosition;
+
 let time = 0;
 
 let difference = 0; // variável que guarda a diferença das posições
-let currentPosition = 0;
+let position = 0;
 
 // **********************  GAME  ********************** //
 class Game {
@@ -30,7 +44,7 @@ class Game {
   }
 
   displayGameContainer() {
-    document.querySelector("main").style.backgroundImage = "none"
+    document.querySelector("main").style.backgroundImage = "none";
     document
       .getElementById("initial-screen")
       .classList.replace("d-flex", "d-none");
@@ -40,7 +54,6 @@ class Game {
   }
 
   displayGameContainerStart() {
-
     document
       .getElementById("initial-screen")
       .classList.replace("d-none", "d-flex");
@@ -53,59 +66,65 @@ class Game {
   }
 
   startGame() {
+    armadillo.classList.add("isMove");
+    console.log(foxInitialPosition);
     const moveObjects = () => {
       // Calculando a posição dos objetos pela equação horária da posição
-      currentPosition = initialPositions[0] + velocities[0] * time;
+      position = armadilloInitialPosition + armadilloVelocity * time;
 
       // Quando a resposta estiver errada, calcula a diferença de posição
-      if (difference > currentPosition) {
-        currentPosition = difference + velocities[0];
+      if (difference > position) {
+        position = difference + armadilloVelocity;
       }
 
-      this.armadillo.style.left = `${currentPosition}px`;
-      this.fox.style.left = `${initialPositions[1] + velocities[1] * time}px`;
+      this.armadillo.style.left = `${position}px`;
+      this.fox.style.left = `${foxInitialPosition + foxVelocity * time}px`;
 
-      if (time == 20) {
-        clearInterval(mru); // O objeto tem de parar na metade da width
-
-        currentPosition = parseInt(this.armadillo.style.left);
-
+      if (time == data[index].halfTime) {
+        clearInterval(mru);
         setTimeout(() => {
           overlay.classList.replace("d-none", "d-block");
+          armadillo.classList.remove("isMove");
         }, 800);
       }
+
       // Fazendo a raposa parar quando sua posição for muito próxima da posição do Tatu e a resposta do usuário estiver errada
-      if (parseInt(this.fox.style.left) > parseInt(this.armadillo.style.left) - 60) {
+      if (parseInt(this.fox.style.left) > parseInt(this.armadillo.style.left)) {
         clearInterval(mru);
+        this.fox.style.left = `${parseInt(this.fox.style.left) - 50}px`;
         resetButton.disabled = false;
+        setTimeout(() => {
+          armadillo.classList.remove("isMove");
+        }, 800);
       }
+
       // Quando a resposta estiver certa, o jogo acaba no tempo de 40s
-      if (currentPosition >= gameContainer.offsetWidth) {
+      if (time == data[index].finalTime) {
         clearInterval(mru);
         this.armadillo.style.left = "1080px";
-        this.fox.style.left = "970px";
+        this.fox.style.left = "980px";
+
         resetButton.disabled = false;
       }
       time++;
     };
+
     const mru = setInterval(moveObjects, 1000 / 60);
   }
 
   reset() {
-    velocities[0] = 30;
-    velocities[1] = 40;
-    time = 0;
-
-    this.armadillo.style.left = `${initialPositions[0]}px`;
-    this.fox.style.left = `${initialPositions[1]}px`;
-
-    input.value = "";
-
+    this.armadillo.style.left = `${armadilloInitialPosition}px`;
+    this.fox.style.left = `${foxInitialPosition}px`;
+    armadilloVelocity = data[index].armadilloVelocity;
+    position = 0;
     difference = 0;
-    currentPosition = 0;
-
+    time = 0;
+    input.value = "";
     resetButton.disabled = true;
     confirmAnswertButton.disabled = true;
+    setTimeout(() => {
+      game.startGame();
+    }, 3000);
   }
 }
 
@@ -120,7 +139,11 @@ intoGameButton.addEventListener("click", () => {
 
 input.addEventListener("input", (e) => {
   let numValue = parseInt(e.target.value);
-  if (e.target.value != "" && !isNaN(numValue)) {
+  if (
+    e.target.value != "" &&
+    !isNaN(numValue) &&
+    numValue <= data[index].armadilloVelocity
+  ) {
     confirmAnswertButton.disabled = false;
   } else {
     confirmAnswertButton.disabled = true;
@@ -133,9 +156,9 @@ confirmAnswertButton.addEventListener("click", () => {
   const selectInputValue = input.value;
   const numValue = selectInputValue;
   num = parseInt(numValue);
-  if (num < 30) {
-    velocities[0] = num;
-    difference = currentPosition;
+  if (num != data[index].armadilloVelocity) {
+    armadilloVelocity = num;
+    difference = position;
     game.startGame();
     setTimeout(() => {
       var modalElement = document.getElementById("meuModal2");
@@ -143,21 +166,23 @@ confirmAnswertButton.addEventListener("click", () => {
       modal.show();
     }, 1500);
   } else {
-    velocities[0] = num;
+    armadilloVelocity = num;
     game.startGame();
     setTimeout(() => {
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
-      modal.show();
+
+      if (index < 2) {
+        modal.show();
+      }
+
+      armadillo.classList.remove("isMove");
     }, 1500);
   }
 });
 
 resetButton.addEventListener("click", () => {
   game.reset();
-  setTimeout(() => {
-    game.startGame();
-  }, 3000);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -167,9 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function resetGame() {
   game.reset();
-  setTimeout(() => {
-    game.startGame();
-  }, 3000);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -178,5 +200,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function nextGame() {
-  window.location.href = "phase_two.html";
+  index++;
+
+  endPosition.innerHTML = data[index].finalPosition;
+  halfPosition.innerHTML = data[index].halfPosition;
+  foxConstVelocityText.innerHTML = data[index].foxVelocity;
+  foxVelocity = data[index].foxVelocity;
+  foxInitialPosition = data[index].foxInitialPosition;
+  armadilloVelocity = data[index].armadilloVelocity;
+  halfTimeText.innerHTML = data[index].halfTime;
+
+  game.reset();
 }
