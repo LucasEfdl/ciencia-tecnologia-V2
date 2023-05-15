@@ -78,6 +78,8 @@ class Game {
   }
 
   startGame() {
+    console.log(foxInitialPosition);
+
     label.forEach((lbl, i) => {
       lbl.textContent = data[index].options[i];
     });
@@ -102,9 +104,10 @@ class Game {
       }
 
       // se a posição da raposa for maior que a posição do tatu
-      if (parseInt(this.fox.style.left) > parseInt(this.armadillo.style.left)) {
-        this.fox.style.left = `${parseInt(this.fox.style.left) - 50}px`;
+      if (parseInt(this.fox.style.left) >= position) {
         clearInterval(mru);
+        this.fox.style.left = `${parseInt(this.armadillo.style.left) - 20}px`;
+
         resetButton.disabled = false;
         setTimeout(() => {
           armadillo.classList.remove("isMove");
@@ -114,8 +117,7 @@ class Game {
       // se o tempo for igual a 40
       if (time == data[index].finalTime) {
         clearInterval(mru);
-        this.armadillo.style.left = "1080px";
-        this.fox.style.left = "980px";
+        this.fox.style.left = "1100px";
 
         resetButton.disabled = false;
       }
@@ -164,12 +166,30 @@ class Game {
 
 const game = new Game(armadillo, fox);
 
-intoGameButton.addEventListener("click", () => {
+function start() {
   game.displayGameContainer();
   setTimeout(() => {
     game.startGame();
   }, 1000);
+}
+
+function handleKeyDown(e) {
+  if (e.key == "Enter") {
+    start();
+  }
+}
+
+userName.addEventListener("input", (e) => {
+  if (e.target.value != "") {
+    document.addEventListener("keydown", handleKeyDown);
+    intoGameButton.disabled = false;
+  } else {
+    document.removeEventListener("keydown", handleKeyDown);
+    intoGameButton.disabled = true;
+  }
 });
+
+intoGameButton.addEventListener("click", start);
 
 radioButtons.forEach((radioButton) => {
   radioButton.addEventListener("click", () => {
@@ -225,14 +245,6 @@ resetButton.addEventListener("click", () => {
   game.reset();
 });
 
-userName.addEventListener("input", (e) => {
-  if (e.target.value != "") {
-    intoGameButton.disabled = false;
-  } else {
-    intoGameButton.disabled = true;
-  }
-});
-
 document.addEventListener("DOMContentLoaded", function () {
   var botaoReset = document.getElementById("btGo");
   botaoReset.addEventListener("click", nextGame);
@@ -251,6 +263,7 @@ function nextGame() {
   foxVelocity = data[index].foxVelocity;
   armadilloVelocity = data[index].armadilloVelocity;
   halfTimeText.innerHTML = data[index].halfTime;
+  foxInitialPosition = data[index].foxInitialPosition;
 
   game.reset();
 }
