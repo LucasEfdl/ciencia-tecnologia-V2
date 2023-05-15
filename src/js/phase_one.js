@@ -45,6 +45,8 @@ let difference = 0;
 let position = 0;
 
 let time = 0;
+
+let spentTime = [];
 // ===================================  STOPWATCH  =================================== //
 let [milliseconds, seconds, minutes] = [0, 0, 0];
 let stopwatch = null;
@@ -78,8 +80,6 @@ class Game {
   }
 
   startGame() {
-    console.log(foxInitialPosition);
-
     label.forEach((lbl, i) => {
       lbl.textContent = data[index].options[i];
     });
@@ -118,6 +118,7 @@ class Game {
       if (time == data[index].finalTime) {
         clearInterval(mru);
         this.fox.style.left = "1100px";
+        spentTime.push(timerRef.innerText);
 
         resetButton.disabled = false;
       }
@@ -229,8 +230,24 @@ confirmAnswertButton.addEventListener("click", () => {
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
 
+      var modalElement3 = document.getElementById("meuModal3");
+      var showInfoModal = new bootstrap.Modal(modalElement3);
+
+      var showUserName = document.querySelector("[data-js=showUserName]");
+      var showFirstTime = document.querySelector("[data-js=showFirstTime]");
+      var showSecondTime = document.querySelector("[data-js=showSecondTime]");
+      var showThirdTime = document.querySelector("[data-js=showThirdTime]");
+      showUserName.innerHTML = userName.value;
+      showFirstTime.innerHTML = spentTime[0];
+      showSecondTime.innerHTML = spentTime[1];
+      showThirdTime.innerHTML = spentTime[2];
+
       if (index < 2) {
         modal.show();
+      }
+
+      if (index == 2) {
+        showInfoModal.show();
       }
 
       armadillo.classList.remove("isMove");

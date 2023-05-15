@@ -245,6 +245,7 @@
           <div class="game-object2 d-block" id="object2"></div>
         </div>
       </div>
+
       <!-- Modal -->
       <div
         class="modal fade"
@@ -261,7 +262,7 @@
               <button
                 type="button"
                 class="close"
-                data-dismiss="modal"
+                data-bs-dismiss="modal"
                 aria-label="Fechar"
               >
                 <span aria-hidden="true">&times;</span>
@@ -269,7 +270,7 @@
             </div>
             <div class="modal-body">
               <p class="textWin">
-                Parabéns, Você ganhou! Siga para próximo desafio.
+                Parabéns, Você ganhou! Siga para o próximo desafio.
               </p>
             </div>
             <div class="modal-footer">
@@ -279,12 +280,13 @@
                 data-bs-dismiss="modal"
                 id="btGo"
               >
-                Proxima fase
+                Próxima fase
               </button>
             </div>
           </div>
         </div>
       </div>
+
       <!-- Modal -->
       <div
         class="modal fade"
@@ -319,6 +321,46 @@
                 Recomeçar
                 <i class="bi bi-pause"></i>
               </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="meuModal3"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Desafio completo!</h5>
+            </div>
+            <div class="modal-body">
+              <p class="text-black">
+                Parabéns por completar todos os desafios! Aqui estão seus dados:
+              </p>
+              <p class="textWin">
+                <strong>Nome: </strong><span data-js="showUserName"></span>
+              </p>
+
+              <p class="textWin">
+                <strong>Tempo gasto na 1ª pergunta: </strong
+                ><span data-js="showFirstTime"></span>
+              </p>
+
+              <p class="textWin">
+                <strong>Tempo gasto na 2ª pergunta: </strong
+                ><span data-js="showSecondTime"></span>
+              </p>
+
+              <p class="textWin">
+                <strong>Tempo gasto na 3ª pergunta: </strong
+                ><span data-js="showThirdTime"></span>
+              </p>
             </div>
           </div>
         </div>
