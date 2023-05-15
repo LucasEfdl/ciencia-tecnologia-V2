@@ -86,19 +86,11 @@ class Game {
 
     const mru = setInterval(() => {
       position = armadilloInitialPosition + armadilloVelocity * time;
-      // se a posição for menor que a diferença
-      /*       if (position < difference) {
-        difference -= position;
-        difference += armadilloVelocity;
-      } */
-
       if (difference > position) {
         position = difference + armadilloVelocity;
       }
-
       this.armadillo.style.left = `${position}px`;
       this.fox.style.left = `${foxInitialPosition + foxVelocity * time}px`;
-
       // se o tempo igual a metade do tempo final
       if (time == data[index].halfTime) {
         clearInterval(mru);
