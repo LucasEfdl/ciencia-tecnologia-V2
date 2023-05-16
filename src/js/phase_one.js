@@ -170,30 +170,32 @@ class Game {
 
 const game = new Game(armadillo, fox);
 
-function start() {
-  game.displayGameContainer();
-  setTimeout(() => {
-    game.startGame();
-  }, 1000);
-}
-
-function handleKeyDown(e) {
-  if (e.key == "Enter") {
-    start();
+window.addEventListener("load", () => {
+  function start() {
+    game.displayGameContainer();
+    setTimeout(() => {
+      game.startGame();
+    }, 1000);
   }
-}
 
-userName.addEventListener("input", (e) => {
-  if (e.target.value != "") {
-    document.addEventListener("keydown", handleKeyDown);
-    intoGameButton.disabled = false;
-  } else {
-    document.removeEventListener("keydown", handleKeyDown);
-    intoGameButton.disabled = true;
+  function handleKeyDown(e) {
+    if (e.key == "Enter") {
+      start();
+    }
   }
+
+  intoGameButton.addEventListener("click", start);
+
+  userName.addEventListener("input", (e) => {
+    if (e.target.value != "") {
+      document.addEventListener("keydown", handleKeyDown);
+      intoGameButton.disabled = false;
+    } else {
+      document.removeEventListener("keydown", handleKeyDown);
+      intoGameButton.disabled = true;
+    }
+  });
 });
-
-intoGameButton.addEventListener("click", start);
 
 radioButtons.forEach((radioButton) => {
   radioButton.addEventListener("click", () => {
@@ -255,7 +257,6 @@ confirmAnswertButton.addEventListener("click", () => {
 
       armadillo.classList.remove("isMove");
       fox.classList.remove("foxIsMove");
-
 
       progress += 33.33;
       progressiveBar.style.width = `${progress}%`;
