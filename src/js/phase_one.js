@@ -287,6 +287,7 @@ confirmAnswertButton.addEventListener("click", () => {
 
       if (index == 2) {
         showInfoModal.show();
+        resetButton.disabled = true;
       }
 
       armadillo.classList.remove("isMove");
