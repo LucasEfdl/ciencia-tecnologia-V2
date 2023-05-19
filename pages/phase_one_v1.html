@@ -133,8 +133,8 @@
                     alt=""
                   />
                   <p>
-                    Como a quetão nos forne a velocidade e tempo, só precisamos
-                    substituir na formula para encontrarmos a distancia total.
+                    Como a quetão nos forne a distância e o tempo, só precisamos
+                    substituir na formula para encontrarmos a velocidade mínima.
                   </p>
                   <br />
                   <p>Tente você mesmo agora!<br /></p>
@@ -159,6 +159,7 @@
           <div class="game-object2 d-block" id="object2"></div>
         </div>
       </div>
+
       <!-- Modal -->
       <div
         class="modal fade"
@@ -201,6 +202,7 @@
           </div>
         </div>
       </div>
+
       <!-- Modal -->
       <div
         class="modal fade"
@@ -225,11 +227,13 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body">
               <p class="textWin text-black">
                 Não foi dessa vez! Tente Novamente.
               </p>
             </div>
+
             <div class="modal-footer">
               <button
                 id="btreset"
@@ -237,6 +241,45 @@
                 data-bs-dismiss="modal"
               >
                 Recomeçar
+                <i class="bi bi-pause"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modal para o fim do desafio -->
+      <div
+        class="modal fade"
+        id="meuModal3"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-black" id="modalLabel">
+                Fim do desafio!
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-bs-dismiss="modal"
+                aria-label="Fechar"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <p class="textWin">Não há mais atividades a serem resolvidas!</p>
+            </div>
+
+            <div class="modal-footer">
+              <button class="btn btn-danger" data-bs-dismiss="modal">
+                Fechar
                 <i class="bi bi-pause"></i>
               </button>
             </div>

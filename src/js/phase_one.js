@@ -4,14 +4,15 @@ import data from "./data.json" assert { type: "json" };
 const overlay = document.querySelector("[data-js=overlay]");
 const userName = document.querySelector("input[for=nameUser]");
 const timerRef = document.querySelector(".timerDisplay");
-const endPosition = document.querySelector('span[class="final-position"]');
-const halfPosition = document.querySelector('span[class="initial-position"]');
+const endPosition = document.querySelector(".final-position");
+const halfPosition = document.querySelector(".initial-position");
 const halfTimeText = document.querySelector(".half-time-text");
-const foxConstVelocityText = document.querySelector(
-  'span[class="fox-const-velocity-text"]'
-);
+const foxConstVelocityText = document.querySelector(".fox-const-velocity-text");
 const label = document.querySelectorAll(".form-check label");
 const progressiveBar = document.querySelector(".progress-bar");
+
+var modalElement = document.getElementById("meuModal2");
+var modal = new bootstrap.Modal(modalElement);
 
 let progress = 0;
 
@@ -48,8 +49,13 @@ let time = 0;
 
 let spentTime = [];
 // ===================================  STOPWATCH  =================================== //
-let [milliseconds, seconds, minutes] = [0, 0, 0];
+let [milliseconds, seconds, minutes] = [0, 0, 4];
+let [stopwatchMilliseconds, stopwatchSeconds, stopwatchmMinutes] = [0, 0, 0];
+let timer = null;
 let stopwatch = null;
+
+let m;
+let s;
 
 // ===================================  GAME  =================================== //
 class Game {
@@ -97,8 +103,10 @@ class Game {
       // se o tempo igual a metade do tempo final
       if (time == data[index].halfTime) {
         clearInterval(mru);
-        stopwatch = setInterval(this.stopwatch.bind(this), 10);
         setTimeout(() => {
+          timer = setInterval(this.timer.bind(this), 10);
+          stopwatch = setInterval(this.stopwatch.bind(this), 10);
+  
           overlay.classList.replace("d-none", "d-block");
           armadillo.classList.remove("isMove");
           fox.classList.remove("foxIsMove");
@@ -121,8 +129,7 @@ class Game {
       if (time == data[index].finalTime) {
         clearInterval(mru);
         this.fox.style.left = "1100px";
-        spentTime.push(timerRef.innerText);
-
+        spentTime.push(`${m}:${s}`);
         resetButton.disabled = false;
       }
 
@@ -144,27 +151,51 @@ class Game {
       }
     });
     confirmAnswertButton.disabled = true;
-    [milliseconds, seconds, minutes] = [0, 0, 0];
-    timerRef.innerText = "00:00";
+    [milliseconds, seconds, minutes] = [0, 0, 4];
+    [stopwatchMilliseconds, stopwatchSeconds, stopwatchmMinutes] = [0, 0, 0];
+    timerRef.innerText = "04:00";
     setTimeout(() => {
       game.startGame();
     }, 3000);
   }
 
-  stopwatch() {
-    milliseconds += 10;
-    if (milliseconds == 1000) {
-      milliseconds = 0;
-      seconds++;
-      if (seconds == 60) {
-        seconds = 0;
-        minutes++;
+  timer() {
+    milliseconds -= 10;
+    if (milliseconds < 0) {
+      milliseconds = 990;
+      seconds--;
+      if (seconds < 0) {
+        seconds = 59;
+        minutes--;
       }
     }
-    let m = minutes < 10 ? "0" + minutes : minutes;
-    let s = seconds < 10 ? "0" + seconds : seconds;
 
-    timerRef.innerText = `${m}:${s}`;
+    let min = minutes < 10 ? "0" + minutes : minutes;
+    let sec = seconds < 10 ? "0" + seconds : seconds;
+
+    timerRef.innerText = `${min}:${sec}`;
+
+    if (minutes == 0 && seconds == 0) {
+      clearInterval(timer);
+      setTimeout(() => {
+        overlay.classList.replace("d-block", "d-none");
+        modal.show();
+      }, 800);
+    }
+  }
+
+  stopwatch() {
+    stopwatchMilliseconds += 10;
+    if (stopwatchMilliseconds == 1000) {
+      stopwatchMilliseconds = 0;
+      stopwatchSeconds++;
+      if (stopwatchSeconds == 60) {
+        stopwatchSeconds = 0;
+        stopwatchmMinutes++;
+      }
+    }
+    m = stopwatchmMinutes < 10 ? "0" + stopwatchmMinutes : stopwatchmMinutes;
+    s = stopwatchSeconds < 10 ? "0" + stopwatchSeconds : stopwatchSeconds;
   }
 }
 
@@ -204,6 +235,7 @@ radioButtons.forEach((radioButton) => {
 });
 
 confirmAnswertButton.addEventListener("click", () => {
+  clearInterval(timer); // Para o temporizador
   clearInterval(stopwatch); // Para o cronômetro
   overlay.classList.replace("d-block", "d-none");
   let num = 0;
@@ -222,8 +254,6 @@ confirmAnswertButton.addEventListener("click", () => {
     difference = position;
     game.startGame();
     setTimeout(() => {
-      var modalElement = document.getElementById("meuModal2");
-      var modal = new bootstrap.Modal(modalElement);
       modal.show();
     }, 1500);
   } else {

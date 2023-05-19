@@ -173,8 +173,15 @@ confirmAnswertButton.addEventListener("click", () => {
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
 
+      var finalModalElement = document.getElementById("meuModal3");
+      var finalModal = new bootstrap.Modal(finalModalElement);
+
       if (index < 2) {
         modal.show();
+      }
+
+      if (index == 2) {
+        finalModal.show();
       }
 
       armadillo.classList.remove("isMove");
