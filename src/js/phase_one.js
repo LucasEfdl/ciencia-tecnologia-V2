@@ -11,8 +11,11 @@ const foxConstVelocityText = document.querySelector(".fox-const-velocity-text");
 const label = document.querySelectorAll(".form-check label");
 const progressiveBar = document.querySelector(".progress-bar");
 
-var modalElement = document.getElementById("meuModal2");
-var modal = new bootstrap.Modal(modalElement);
+var modalElement2 = document.getElementById("meuModal2");
+var modal = new bootstrap.Modal(modalElement2);
+
+var modalElement5 = document.getElementById("meuModal5");
+var modal5 = new bootstrap.Modal(modalElement5);
 
 let progress = 0;
 
@@ -54,8 +57,8 @@ let [stopwatchMilliseconds, stopwatchSeconds, stopwatchmMinutes] = [0, 0, 0];
 let timer = null;
 let stopwatch = null;
 
-let m;
-let s;
+let m = 0;
+let s = 0;
 
 // ===================================  GAME  =================================== //
 class Game {
@@ -106,7 +109,7 @@ class Game {
         setTimeout(() => {
           timer = setInterval(this.timer.bind(this), 10);
           stopwatch = setInterval(this.stopwatch.bind(this), 10);
-  
+
           overlay.classList.replace("d-none", "d-block");
           armadillo.classList.remove("isMove");
           fox.classList.remove("foxIsMove");
@@ -177,9 +180,11 @@ class Game {
 
     if (minutes == 0 && seconds == 0) {
       clearInterval(timer);
+      clearInterval(stopwatch);
+      spentTime.push("Tempo esgotado");
       setTimeout(() => {
         overlay.classList.replace("d-block", "d-none");
-        modal.show();
+        modal5.show();
       }, 800);
     }
   }
@@ -261,7 +266,6 @@ confirmAnswertButton.addEventListener("click", () => {
     difference = 0;
     game.startGame();
     setTimeout(() => {
-      // se o index for menor que 2, mostre esse modal
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
 
@@ -300,7 +304,9 @@ resetButton.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", function () {
   var botaoReset = document.getElementById("btGo");
+  var botaoNext = document.getElementById("btGo2");
   botaoReset.addEventListener("click", nextGame);
+  botaoNext.addEventListener("click", nextGame);
 });
 
 restartButton.addEventListener("click", () => {
