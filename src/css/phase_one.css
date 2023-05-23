@@ -1,6 +1,6 @@
 @import url(bootstrap.css);
 
-#game-container {
+#game-screen {
   background-image: url(../images/bg_game_one.png);
   background-position: bottom;
   background-repeat: no-repeat;
@@ -12,7 +12,7 @@
   position: relative;
 }
 
-.game-object {
+.armadillo {
   color: white;
   background-image: url(../images/armadillo.svg);
   background-repeat: no-repeat;
@@ -36,7 +36,7 @@
   color: #000;
 }
 
-.game-object2 {
+.fox {
   color: white;
   background-image: url(../images/fox_a.png);
   background-repeat: no-repeat;
