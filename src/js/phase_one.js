@@ -14,7 +14,7 @@ const radioButtons = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
 const confirmAnswerButton = document.querySelector("[data-confirm-answer]");
-const resetButton = document.querySelector("[data-reset]");
+const resetButtons = document.querySelectorAll("[data-reset]");
 const label = document.querySelectorAll(".form-check label");
 const progressiveBar = document.querySelector(".progress-bar");
 const nextPhaseButton = document.querySelector("[data-next-phase]");
@@ -29,6 +29,8 @@ var gameOverModalElement = document.getElementById("gameOverModal");
 var gameOverModal = new bootstrap.Modal(gameOverModalElement);
 var timeOverModalElement = document.getElementById("timeOverModal");
 var timeOverModal = new bootstrap.Modal(timeOverModalElement);
+const inputOfLogic = document.querySelector('input[type="text"][name="logic"]');
+const submitLogicButton = document.querySelector("[data-submit-logic]");
 
 let progress = 0;
 let index = 0;
@@ -37,6 +39,8 @@ let armadilloVelocity = data[index].armadilloVelocity;
 let foxPosition = data[index].foxPosition;
 let foxVelocity = data[index].foxVelocity;
 let time = 0;
+let difference = 0;
+
 startPositionText.innerHTML = data[index].halfPosition;
 endPositionText.innerHTML = data[index].finalPosition;
 foxVelocityText.innerHTML = data[index].foxVelocity;
@@ -77,22 +81,35 @@ class Game {
     label.forEach((lbl, i) => {
       lbl.textContent = data[index].options[i];
     });
-    armadilloElement.classList.add("isMove");
-    foxElement.classList.add("foxIsMove");
+    this.armadilloElement.classList.add("isMove");
+    this.foxElement.classList.add("foxIsMove");
+
     const mru = setInterval(() => {
       this.armadillo = armadilloPosition + armadilloVelocity * time;
+      if (difference > this.armadillo) {
+        this.armadillo = difference + armadilloVelocity;
+      }
       this.fox = foxPosition + foxVelocity * time;
+      console.log(foxVelocity);
 
       if (this.fox >= this.armadillo) {
         clearInterval(mru);
-        armadilloElement.classList.remove("isMove");
-        foxElement.classList.remove("foxIsMove");
+        this.fox -= 20;
+        setTimeout(() => {
+          this.armadilloElement.classList.remove("isMove");
+          this.foxElement.classList.remove("foxIsMove");
+          resetButtons.forEach((resetButton) => {
+            resetButton.disabled = false;
+          });
+        }, 880);
+        this.updateDisplay();
       }
       if (time == data[index].halfTime) {
         clearInterval(mru);
+        difference = this.armadillo;
         setTimeout(() => {
-          armadilloElement.classList.remove("isMove");
-          foxElement.classList.remove("foxIsMove");
+          this.armadilloElement.classList.remove("isMove");
+          this.foxElement.classList.remove("foxIsMove");
           question.classList.replace("d-none", "d-block");
           timer = setInterval(this.timer.bind(this), 10);
         }, 880);
@@ -100,21 +117,44 @@ class Game {
       if (time == data[index].finalTime) {
         clearInterval(mru);
         this.fox = 1100;
+        this.updateDisplay();
         setTimeout(() => {
-          armadilloElement.classList.remove("isMove");
-          foxElement.classList.remove("foxIsMove");
+          this.armadilloElement.classList.remove("isMove");
+          this.foxElement.classList.remove("foxIsMove");
         }, 880);
       }
 
-      this.updateDisplay();
-
       time++;
+      this.updateDisplay();
     }, 1000 / 60);
   }
 
   updateDisplay() {
     this.armadilloElement.style.left = `${this.armadillo}px`;
     this.foxElement.style.left = `${this.fox}px`;
+  }
+
+  reset() {
+    this.armadillo = data[index].armadilloPosition;
+    this.fox = data[index].foxPosition;
+    armadilloVelocity = data[index].armadilloVelocity;
+    this.updateDisplay();
+    time = 0;
+    difference = 0;
+    resetButtons.forEach((resetButton) => {
+      resetButton.disabled = true;
+    });
+    radioButtons.forEach((radioButton) => {
+      if (radioButton.checked) {
+        radioButton.checked = false;
+      }
+    });
+    confirmAnswerButton.disabled = true;
+    timerRef.innerText = "04:00";
+    [milliseconds, seconds, minutes] = [0, 0, 4];
+    setTimeout(() => {
+      this.startGame();
+    }, 3000);
   }
 
   timer() {
@@ -132,25 +172,6 @@ class Game {
     let sec = seconds < 10 ? "0" + seconds : seconds;
 
     timerRef.innerText = `${min}:${sec}`;
-  }
-
-  reset() {
-    this.armadillo = data[index].armadilloPosition;
-    this.fox = data[index].foxPosition;
-    this.updateDisplay();
-    time = 0;
-    resetButton.disabled = true;
-    radioButtons.forEach((radioButton) => {
-      if (radioButton.checked) {
-        radioButton.checked = false;
-      }
-    });
-    confirmAnswerButton.disabled = true;
-    timerRef.innerText = "04:00";
-    [milliseconds, seconds, minutes] = [0, 0, 4];
-    setTimeout(() => {
-      this.startGame();
-    }, 2000);
   }
 }
 
@@ -180,29 +201,52 @@ confirmAnswerButton.addEventListener("click", () => {
     armadilloVelocity = num;
     game.startGame();
     setTimeout(() => {
-      resetButton.disabled = false;
+      resetButtons.forEach((resetButton) => {
+        resetButton.disabled = false;
+      });
 
-      var nextPhaseModalElement = document.getElementById("nextPhaseModal");
-      var nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
-      nextPhaseModal.show();
-
+      if (index != 2) {
+        var nextPhaseModalElement = document.getElementById("nextPhaseModal");
+        var nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
+        nextPhaseModal.show();
+      } else {
+        var completeChallengeModalElement =
+          document.getElementById("completeChallenge");
+        var completeChallengeModal = new bootstrap.Modal(
+          completeChallengeModalElement
+        );
+        completeChallengeModal.show();
+        resetButtons.forEach((resetButton) => {
+          resetButton.disabled = true;
+        });
+      }
       progress += 33.33;
       progressiveBar.style.width = `${progress}%`;
     }, 1500);
   }
 });
 
-resetButton.addEventListener("click", () => {
-  game.reset();
+resetButtons.forEach((resetButton) => {
+  resetButton.addEventListener("click", () => {
+    game.reset();
+  });
+});
+
+inputOfLogic.addEventListener("input", (e) => {
+  if (e.target.value == "") {
+    submitLogicButton.disabled = true;
+  } else {
+    submitLogicButton.disabled = false;
+  }
 });
 
 function nextGame() {
   index++;
-  endPositionText.innerText = data[index].finalPosition;
-  halfTimeText.innerText = data[index].halfPosition;
-  foxVelocityText.innerText = data[index].foxVelocity;
-  halfTimeText.innerText = data[index].halfTime;
-  foxVelocity = data[index].foxVelocity;
   armadilloVelocity = data[index].armadilloVelocity;
+  armadilloPosition = data[index].armadilloPosition;
+  foxVelocity = data[index].foxVelocity;
+  foxPosition = data[index].foxPosition;
+  endPositionText.innerText = data[index].finalPosition;
+  startPositionText.innerText = data[index].halfPosition;
   game.reset();
 }

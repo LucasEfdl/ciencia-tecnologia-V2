@@ -1,5 +1,5 @@
 // **********************  GENERAL  ********************** //
-import data from "./data.json" assert { type: "json" };
+import data from "../data/data.json" assert { type: "json" };
 
 const overlay = document.querySelector("[data-js=overlay]");
 const input = document.getElementById("inputVelocity");
@@ -26,10 +26,10 @@ foxConstVelocityText.innerHTML = data[index].foxVelocity;
 halfTimeText.innerHTML = data[index].halfTime;
 
 let armadilloVelocity = data[index].armadilloVelocity;
-let armadilloInitialPosition = data[index].armadilloInitialPosition;
+let armadilloPosition = data[index].armadilloPosition;
 
 let foxVelocity = data[index].foxVelocity;
-let foxInitialPosition = data[index].foxInitialPosition;
+let foxPosition = data[index].foxPosition;
 
 let time = 0;
 
@@ -70,7 +70,7 @@ class Game {
     fox.classList.add("foxIsMove");
     const moveObjects = () => {
       // Calculando a posição dos objetos pela equação horária da posição
-      position = armadilloInitialPosition + armadilloVelocity * time;
+      position = armadilloPosition + armadilloVelocity * time;
 
       // Quando a resposta estiver errada, calcula a diferença de posição
       if (difference > position) {
@@ -78,7 +78,7 @@ class Game {
       }
 
       this.armadillo.style.left = `${position}px`;
-      this.fox.style.left = `${foxInitialPosition + foxVelocity * time}px`;
+      this.fox.style.left = `${foxPosition + foxVelocity * time}px`;
 
       if (time == data[index].halfTime) {
         clearInterval(mru);
@@ -114,8 +114,8 @@ class Game {
   }
 
   reset() {
-    this.armadillo.style.left = `${armadilloInitialPosition}px`;
-    this.fox.style.left = `${foxInitialPosition}px`;
+    this.armadillo.style.left = `${armadilloPosition}px`;
+    this.fox.style.left = `${foxPosition}px`;
     armadilloVelocity = data[index].armadilloVelocity;
     position = 0;
     difference = 0;
@@ -215,7 +215,7 @@ function nextGame() {
   halfPosition.innerHTML = data[index].halfPosition;
   foxConstVelocityText.innerHTML = data[index].foxVelocity;
   foxVelocity = data[index].foxVelocity;
-  foxInitialPosition = data[index].foxInitialPosition;
+  foxPosition = data[index].foxPosition;
   armadilloVelocity = data[index].armadilloVelocity;
   halfTimeText.innerHTML = data[index].halfTime;
 

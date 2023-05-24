@@ -1,6 +1,6 @@
 @import url(bootstrap.css);
 
-#game-screen {
+.game-screen {
   background-image: url(../images/bg_game_one.png);
   background-position: bottom;
   background-repeat: no-repeat;

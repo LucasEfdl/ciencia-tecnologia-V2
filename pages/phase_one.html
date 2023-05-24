@@ -47,7 +47,7 @@
         <div data-timer-display>04:00</div>
       </div>
 
-      <div data-game-screen id="game-screen" class="d-block overflow-hidden">
+      <div data-game-screen class="d-block game-screen overflow-hidden">
         <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar" style="width: 0%"></div>
         </div>
@@ -130,12 +130,12 @@
                 <h4>Movimento retilineo unforme</h4>
                 <br />
                 <p>
-                  Para resolver esta quetão, o aluno prescisa se lembrar do
+                  Para resolver esta questão, o aluno prescisa se lembrar do
                   conceito universal da cinematica:
                 </p>
                 <img class="equacaoMRU" src="../src/images/equacao.jpg" alt="" />
                 <p>
-                  Como a quetão nos forne a distância e o tempo, só precisamos
+                  Como a questão nos forne a distância e o tempo, só precisamos
                   substituir na formula para encontrarmos a velocidade mínima.
                 </p>
                 <br />
@@ -164,8 +164,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Fechar">
-              <span aria-hidden="true">&times;</span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             </button>
           </div>
           <div class="modal-body">
@@ -196,7 +195,7 @@
             <p class="textWin">Não foi dessa vez! Tente Novamente.</p>
           </div>
           <div class="modal-footer">
-            <button id="restart" class="btn btn-danger" data-bs-dismiss="modal">
+            <button data-reset class="btn btn-danger" data-bs-dismiss="modal">
               Recomeçar
               <i class="bi bi-pause"></i>
             </button>
@@ -206,7 +205,7 @@
     </div>
 
     <!-- Modal para mostar os dados do usuário -->
-    <div id="dataModal" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div id="completeChallenge" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -214,26 +213,18 @@
           </div>
           <div class="modal-body">
             <p class="text-black">
-              Parabéns por completar todos os desafios! Aqui estão seus dados:
+              Parabéns por completar os desafios! <br>Por favor, nos diga qual foi a sua lógica para a resolução das questões:
             </p>
-            <p class="textWin">
-              <strong>Nome: </strong><span data-js-name></span>
-            </p>
-
-            <p class="textWin">
-              <strong>Tempo gasto na 1ª pergunta: </strong><span data-js-first-time></span>
-            </p>
-
-            <p class="textWin">
-              <strong>Tempo gasto na 2ª pergunta: </strong><span data-js-second-time></span>
-            </p>
-
-            <p class="textWin">
-              <strong>Tempo gasto na 3ª pergunta: </strong><span data-js-third-time></span>
-            </p>
+            <div class="d-flex flex-row">
+              <input type="text" class="form-control me-1" name="logic">
+              <button data-submit-logic type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#completeChallenge" disabled>
+                Enviar
+              </button>  
+            </div>
           </div>
         </div>
       </div>
+      
     </div>
 
     <!-- Modal para mostrar que o tempo acabou -->
