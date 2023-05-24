@@ -1,10 +1,10 @@
 [
   {
     "armadilloVelocity": 30,
-    "armadilloInitialPosition": 0,
+    "armadilloPosition": 0,
 
     "foxVelocity": 41,
-    "foxInitialPosition": -450,
+    "foxPosition": -450,
 
     "finalPosition": "1.200m",
     "halfPosition": "600m",
@@ -15,10 +15,10 @@
   },
   {
     "armadilloVelocity": 35,
-    "armadilloInitialPosition": 0,
+    "armadilloPosition": 0,
 
     "foxVelocity": 45,
-    "foxInitialPosition": -350,
+    "foxPosition": -350,
 
     "finalPosition": "1.190m",
     "halfPosition": "560m",
@@ -29,10 +29,10 @@
   },
   {
     "armadilloVelocity": 25,
-    "armadilloInitialPosition": 0,
+    "armadilloPosition": 0,
 
     "foxVelocity": 35,
-    "foxInitialPosition": -490,
+    "foxPosition": -490,
 
     "finalPosition": "1.150m",
     "halfPosition": "575m",
