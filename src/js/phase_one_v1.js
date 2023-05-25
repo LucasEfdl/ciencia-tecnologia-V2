@@ -8,6 +8,9 @@ const endPosition = document.querySelector('span[class="final-position"]');
 const halfPosition = document.querySelector('span[class="initial-position"]');
 const halfTimeText = document.querySelector(".half-time-text");
 const foxConstVelocityText = document.querySelector(".fox-const-velocity-text");
+const distBetweenFoxArmadillo = document.querySelector(
+  ".dist-between-fox-armadillo"
+);
 
 // **********************  OBJECTS  ********************** //
 const armadillo = document.getElementById("object");
@@ -24,6 +27,7 @@ endPosition.innerHTML = data[index].finalPosition;
 halfPosition.innerHTML = data[index].halfPosition;
 foxConstVelocityText.innerHTML = data[index].foxVelocity;
 halfTimeText.innerHTML = data[index].halfTime;
+distBetweenFoxArmadillo.innerText = data[index].distBetweenFoxAndArmadillo;
 
 let armadilloVelocity = data[index].armadilloVelocity;
 let armadilloPosition = data[index].armadilloPosition;
@@ -218,6 +222,7 @@ function nextGame() {
   foxPosition = data[index].foxPosition;
   armadilloVelocity = data[index].armadilloVelocity;
   halfTimeText.innerHTML = data[index].halfTime;
+  distBetweenFoxArmadillo.innerText = data[index].distBetweenFoxAndArmadillo;
 
   game.reset();
 }

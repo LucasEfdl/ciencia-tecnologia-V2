@@ -10,6 +10,9 @@ const endPositionText = document.querySelector(".end-position-text");
 const startPositionText = document.querySelector(".start-position-text");
 const halfTimeText = document.querySelector(".half-time-text");
 const foxVelocityText = document.querySelector(".fox-velocity-text");
+const distBetweenFoxArmadillo = document.querySelector(
+  ".dist-between-fox-armadillo"
+);
 const radioButtons = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
@@ -41,10 +44,11 @@ let foxVelocity = data[index].foxVelocity;
 let time = 0;
 let difference = 0;
 
-startPositionText.innerHTML = data[index].halfPosition;
-endPositionText.innerHTML = data[index].finalPosition;
-foxVelocityText.innerHTML = data[index].foxVelocity;
-halfTimeText.innerHTML = data[index].halfTime;
+startPositionText.innerText = data[index].halfPosition;
+endPositionText.innerText = data[index].finalPosition;
+foxVelocityText.innerText = data[index].foxVelocity;
+halfTimeText.innerText = data[index].halfTime;
+distBetweenFoxArmadillo.innerText = data[index].distBetweenFoxAndArmadillo;
 
 document.addEventListener("DOMContentLoaded", () => {
   name.addEventListener("input", (e) => {
@@ -248,5 +252,6 @@ function nextGame() {
   foxPosition = data[index].foxPosition;
   endPositionText.innerText = data[index].finalPosition;
   startPositionText.innerText = data[index].halfPosition;
+  distBetweenFoxArmadillo.innerText = data[index].distBetweenFoxAndArmadillo;
   game.reset();
 }
