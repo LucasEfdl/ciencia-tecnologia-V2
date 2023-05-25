@@ -3,6 +3,7 @@ import data from "../data/data.json" assert { type: "json" };
 
 const overlay = document.querySelector("[data-js=overlay]");
 const input = document.getElementById("inputVelocity");
+const inputOfLogic = document.querySelector('input[type="text"][name="logic"]');
 
 const endPosition = document.querySelector('span[class="final-position"]');
 const halfPosition = document.querySelector('span[class="initial-position"]');
@@ -20,6 +21,7 @@ const fox = document.getElementById("object2");
 const intoGameButton = document.getElementById("start-button");
 const confirmAnswertButton = document.querySelector("[data-js=confirmAnswert]");
 const resetButton = document.getElementById("reset");
+const submitLogicButton = document.querySelector("[data-submit-logic]");
 
 // **********************  DATA  ********************** //
 let index = 0;
@@ -177,15 +179,17 @@ confirmAnswertButton.addEventListener("click", () => {
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
 
-      var finalModalElement = document.getElementById("meuModal3");
-      var finalModal = new bootstrap.Modal(finalModalElement);
-
       if (index < 2) {
         modal.show();
       }
 
       if (index == 2) {
-        finalModal.show();
+        var completeChallengeModalElement =
+          document.getElementById("completeChallenge");
+        var completeChallengeModal = new bootstrap.Modal(
+          completeChallengeModalElement
+        );
+        completeChallengeModal.show();
       }
 
       armadillo.classList.remove("isMove");
@@ -210,6 +214,14 @@ function resetGame() {
 document.addEventListener("DOMContentLoaded", function () {
   var botaoReset = document.getElementById("btGo");
   botaoReset.addEventListener("click", nextGame);
+});
+
+inputOfLogic.addEventListener("input", (e) => {
+  if (e.target.value == "") {
+    submitLogicButton.disabled = true;
+  } else {
+    submitLogicButton.disabled = false;
+  }
 });
 
 function nextGame() {
