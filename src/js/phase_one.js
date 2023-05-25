@@ -4,7 +4,6 @@ const initialScreen = document.querySelector("[data-inital-screen]");
 const startGameButton = document.querySelector("[data-start-game]");
 const name = document.querySelector("input[for=name]");
 const gameContainer = document.querySelector("[data-container]");
-const gameScreen = document.querySelector("[data-game-screen]");
 const question = document.querySelector("[data-question]");
 const endPositionText = document.querySelector(".end-position-text");
 const startPositionText = document.querySelector(".start-position-text");
@@ -20,7 +19,7 @@ const confirmAnswerButton = document.querySelector("[data-confirm-answer]");
 const resetButtons = document.querySelectorAll("[data-reset]");
 const label = document.querySelectorAll(".form-check label");
 const progressiveBar = document.querySelector(".progress-bar");
-const nextPhaseButton = document.querySelector("[data-next-phase]");
+const nextPhaseButtons = document.querySelectorAll("[data-next-phase]");
 const armadilloElement = document.querySelector("[data-armadillo");
 const foxElement = document.querySelector("[data-fox");
 
@@ -50,19 +49,28 @@ foxVelocityText.innerText = data[index].foxVelocity;
 halfTimeText.innerText = data[index].halfTime;
 distBetweenFoxArmadillo.innerText = data[index].distBetweenFoxAndArmadillo;
 
+function handleKeyDown(e) {
+  if (e.key == "Enter") {
+    initialScreen.classList.replace("d-flex", "d-none");
+    gameContainer.classList.replace("d-none", "d-flex");
+    game.startGame();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   name.addEventListener("input", (e) => {
     if (e.target.value != "") {
       startGameButton.disabled = false;
+      document.addEventListener("keydown", handleKeyDown);
     } else {
       startGameButton.disabled = true;
+      document.removeEventListener("keydown", handleKeyDown);
     }
   });
 
   startGameButton.addEventListener("click", () => {
     initialScreen.classList.replace("d-flex", "d-none");
     gameContainer.classList.replace("d-none", "d-flex");
-
     game.startGame();
   });
 
@@ -72,7 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  nextPhaseButton.addEventListener("click", nextGame);
+  nextPhaseButtons.forEach((nextPhaseButton) => {
+    nextPhaseButton.addEventListener("click", nextGame);
+  });
 });
 
 class Game {
@@ -94,8 +104,6 @@ class Game {
         this.armadillo = difference + armadilloVelocity;
       }
       this.fox = foxPosition + foxVelocity * time;
-      console.log(foxVelocity);
-
       if (this.fox >= this.armadillo) {
         clearInterval(mru);
         this.fox -= 20;
@@ -174,6 +182,12 @@ class Game {
 
     let min = minutes < 10 ? "0" + minutes : minutes;
     let sec = seconds < 10 ? "0" + seconds : seconds;
+
+    if (min == 0 && sec == 0) {
+      clearInterval(timer);
+      question.classList.replace("d-block", "d-none");
+      timeOverModal.show();
+    }
 
     timerRef.innerText = `${min}:${sec}`;
   }

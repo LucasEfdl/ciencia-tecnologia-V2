@@ -159,13 +159,11 @@
     </div>
 
     <!-- Modal para próxima fase -->
-    <div id="nextPhaseModal" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div id="nextPhaseModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            </button>
           </div>
           <div class="modal-body">
             <p class="textWin">
@@ -173,7 +171,7 @@
             </p>
           </div>
           <div class="modal-footer">
-            <button data-next-phase type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            <button data-next-phase type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#nextPhaseModal">
               Próxima fase
             </button>
           </div>
@@ -228,14 +226,11 @@
     </div>
 
     <!-- Modal para mostrar que o tempo acabou -->
-    <div id="timeOverModal" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div id="timeOverModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalLabel">Tempo esgotado</h5>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Fechar">
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
           <div class="modal-body">
             <p class="textWin">
@@ -243,7 +238,7 @@
             </p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btGo2">
+            <button data-next-phase type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#timeOverModal">
               Próxima fase
             </button>
           </div>
