@@ -224,6 +224,10 @@ inputOfLogic.addEventListener("input", (e) => {
   }
 });
 
+submitLogicButton.addEventListener("click", () => {
+  console.log(inputOfLogic.value);
+})
+
 function nextGame() {
   index++;
 
