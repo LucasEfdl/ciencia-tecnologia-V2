@@ -20,17 +20,20 @@ const resetButtons = document.querySelectorAll("[data-reset]");
 const label = document.querySelectorAll(".form-check label");
 const progressiveBar = document.querySelector(".progress-bar");
 const nextPhaseButtons = document.querySelectorAll("[data-next-phase]");
+let remainingAttempts = document.querySelector("[data-attempts]");
+let maxAttempts = 3;
 const armadilloElement = document.querySelector("[data-armadillo");
 const foxElement = document.querySelector("[data-fox");
 
 const timerRef = document.querySelector("[data-timer-display]");
 let [milliseconds, seconds, minutes] = [0, 0, 4];
 let timer = null;
-
 var gameOverModalElement = document.getElementById("gameOverModal");
 var gameOverModal = new bootstrap.Modal(gameOverModalElement);
 var timeOverModalElement = document.getElementById("timeOverModal");
 var timeOverModal = new bootstrap.Modal(timeOverModalElement);
+var attemptsGoneModalElement = document.getElementById("attemptsGoneModal");
+var attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 const inputOfLogic = document.querySelector('input[type="text"][name="logic"]');
 const submitLogicButton = document.querySelector("[data-submit-logic]");
 
@@ -162,8 +165,6 @@ class Game {
       }
     });
     confirmAnswerButton.disabled = true;
-    timerRef.innerText = "04:00";
-    [milliseconds, seconds, minutes] = [0, 0, 4];
     setTimeout(() => {
       this.startGame();
     }, 3000);
@@ -213,7 +214,12 @@ confirmAnswerButton.addEventListener("click", () => {
     armadilloVelocity = num;
     game.startGame();
     setTimeout(() => {
-      gameOverModal.show();
+      remainingAttempts.innerText = `${--maxAttempts}`;
+      if (maxAttempts == 0) {
+        showAttemptsGoneModel();
+      } else {
+        gameOverModal.show();
+      }
     }, 1500);
   } else {
     armadilloVelocity = num;
@@ -258,6 +264,8 @@ inputOfLogic.addEventListener("input", (e) => {
   }
 });
 
+const showAttemptsGoneModel = () => attemptsGoneModal.show();
+
 function nextGame() {
   index++;
   armadilloVelocity = data[index].armadilloVelocity;
@@ -267,5 +275,11 @@ function nextGame() {
   endPositionText.innerText = data[index].finalPosition;
   startPositionText.innerText = data[index].halfPosition;
   distBetweenFoxArmadillo.innerText = data[index].distBetweenFoxAndArmadillo;
+
+  timerRef.innerText = "04:00";
+  [milliseconds, seconds, minutes] = [0, 0, 4];
+
+  maxAttempts = 3;
+  remainingAttempts.innerText = `${maxAttempts}`;
   game.reset();
 }
