@@ -264,6 +264,13 @@ inputOfLogic.addEventListener("input", (e) => {
   }
 });
 
+submitLogicButton.addEventListener("click", () => {
+  console.log(`
+  Nick: ${name.value}
+  Lógica usada: ${inputOfLogic.value}
+  `);
+});
+
 const showAttemptsGoneModel = () => attemptsGoneModal.show();
 
 function nextGame() {
