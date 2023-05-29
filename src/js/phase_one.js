@@ -18,10 +18,11 @@ const radioButtons = document.querySelectorAll(
 const confirmAnswerButton = document.querySelector("[data-confirm-answer]");
 const resetButtons = document.querySelectorAll("[data-reset]");
 const label = document.querySelectorAll(".form-check label");
-const progressiveBar = document.querySelector(".progress-bar");
+const progressiveBar = document.querySelectorAll(".progress");
 const nextPhaseButtons = document.querySelectorAll("[data-next-phase]");
 let remainingAttempts = document.querySelector("[data-attempts]");
 let maxAttempts = 3;
+let maxQuantityQuestions = 100 / data.length;
 const armadilloElement = document.querySelector("[data-armadillo");
 const foxElement = document.querySelector("[data-fox");
 
@@ -37,7 +38,8 @@ var attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 const inputOfLogic = document.querySelector('input[type="text"][name="logic"]');
 const submitLogicButton = document.querySelector("[data-submit-logic]");
 
-let progress = 0;
+let progressWin = 0;
+let progressLose = 0;
 let index = 0;
 let armadilloPosition = data[index].armadilloPosition;
 let armadilloVelocity = data[index].armadilloVelocity;
@@ -216,6 +218,8 @@ confirmAnswerButton.addEventListener("click", () => {
     setTimeout(() => {
       remainingAttempts.innerText = `${--maxAttempts}`;
       if (maxAttempts == 0) {
+        progressLose += maxQuantityQuestions
+        progressiveBar[1].style.width = `${progressLose}%`;
         showAttemptsGoneModel();
       } else {
         gameOverModal.show();
@@ -244,8 +248,8 @@ confirmAnswerButton.addEventListener("click", () => {
           resetButton.disabled = true;
         });
       }
-      progress += 33.33;
-      progressiveBar.style.width = `${progress}%`;
+      progressWin += maxQuantityQuestions;
+      progressiveBar[0].style.width = `${progressWin}%`;
     }, 1500);
   }
 });

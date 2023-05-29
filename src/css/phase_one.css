@@ -52,6 +52,10 @@
   transition: left 1s linear;
 }
 
+.progress {
+  transition: 1s linear;
+}
+
 .overlay {
   font-family: "Lucida Console", sans-serif;
 }
