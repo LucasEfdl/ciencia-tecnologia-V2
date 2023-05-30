@@ -35,12 +35,12 @@ var timeOverModalElement = document.getElementById("timeOverModal");
 var timeOverModal = new bootstrap.Modal(timeOverModalElement);
 var attemptsGoneModalElement = document.getElementById("attemptsGoneModal");
 var attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
-const inputOfLogic = document.querySelector('input[type="text"][name="logic"]');
+const textOfLogic = document.querySelector('textarea[name="logic"]');
 const submitLogicButton = document.querySelector("[data-submit-logic]");
 
 let progressWin = 0;
 let progressLose = 0;
-let index = 0;
+let index = 2;
 let armadilloPosition = data[index].armadilloPosition;
 let armadilloVelocity = data[index].armadilloVelocity;
 let foxPosition = data[index].foxPosition;
@@ -260,7 +260,7 @@ resetButtons.forEach((resetButton) => {
   });
 });
 
-inputOfLogic.addEventListener("input", (e) => {
+textOfLogic.addEventListener("input", (e) => {
   if (e.target.value == "") {
     submitLogicButton.disabled = true;
   } else {
@@ -271,7 +271,7 @@ inputOfLogic.addEventListener("input", (e) => {
 submitLogicButton.addEventListener("click", () => {
   console.log(`
   Nick: ${name.value}
-  Lógica usada: ${inputOfLogic.value}
+  Lógica usada: ${textOfLogic.value}
   `);
 });
 
