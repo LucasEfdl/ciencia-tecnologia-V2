@@ -40,7 +40,7 @@ const submitLogicButton = document.querySelector("[data-submit-logic]");
 
 let progressWin = 0;
 let progressLose = 0;
-let index = 2;
+let index = 0;
 let armadilloPosition = data[index].armadilloPosition;
 let armadilloVelocity = data[index].armadilloVelocity;
 let foxPosition = data[index].foxPosition;
@@ -100,6 +100,8 @@ class Game {
     label.forEach((lbl, i) => {
       lbl.textContent = data[index].options[i];
     });
+    document.removeEventListener("keydown", handleKeyDown);
+
     this.armadilloElement.classList.add("isMove");
     this.foxElement.classList.add("foxIsMove");
 
@@ -218,7 +220,7 @@ confirmAnswerButton.addEventListener("click", () => {
     setTimeout(() => {
       remainingAttempts.innerText = `${--maxAttempts}`;
       if (maxAttempts == 0) {
-        progressLose += maxQuantityQuestions
+        progressLose += maxQuantityQuestions;
         progressiveBar[1].style.width = `${progressLose}%`;
         showAttemptsGoneModel();
       } else {
