@@ -1,0 +1,69 @@
+.game-screen {
+  width: 1200px;
+  height: 520px;
+
+  background-image: url(../images/bg-main.jpg);
+  background-size: cover;
+  background-position: bottom;
+}
+
+#armadillo {
+  animation: armadillo-animation 4s linear;
+  background-image: url(../images/armadillog.gif);
+}
+
+.armadillo {
+  background-image: url(../images/armadillo.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 120px;
+  height: 80px;
+
+  bottom: 0px;
+  left: 0px;
+}
+
+@keyframes armadillo-animation {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 1100px;
+  }
+}
+
+.cactus {
+  width: 1920px;
+  height: 1080;
+
+  bottom: -120px;
+  right: -1920px;
+
+  /* animation: cactus-animation 3s infinite linear; */
+}
+
+/* .clouds {
+  width: 390px;
+  height: 180px;
+
+  animation: clouds-animation 4s infinite linear;
+}
+
+@keyframes clouds-animation {
+  from {
+    right: -1200px;
+  }
+  to {
+    right: 100%;
+  }
+}
+
+@keyframes cactus-animation {
+  from {
+    right: -1920px;
+  }
+  to {
+    right: 100%;
+  }
+} */
