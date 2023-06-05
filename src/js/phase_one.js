@@ -27,6 +27,15 @@ let indexMRUV = 2;
 let maxAttempts = 3;
 let timer = null;
 
+// VARIAVEIS USADAS NO CALCULO DO MRUV
+
+const FPS = 60;
+let position = 0;
+let time = 0;
+const dt = 100;
+const velocity = 15;
+const acceleration = 10;
+
 setTimeout(() => {
   armadilloMRU.style.left = "1080px";
   armadilloMRUV.style.left = "1080px";
@@ -61,6 +70,7 @@ setTimeout(() => {
 
 const newArmadillosMRU = setInterval(() => {
   armadillosMRU[indexMRU++].classList.replace("d-none", "d-block");
+  armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
   timeTextMRU.textContent = `t = ${indexMRU - 1}`;
 
   if (indexMRU > 4) {
@@ -69,13 +79,15 @@ const newArmadillosMRU = setInterval(() => {
 }, 1000);
 
 const newArmadillosMRUV = setInterval(() => {
-  armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
+  position = velocity * time + (acceleration * (time * time)) / 2;
+  time = time + dt / 1000;
+  armadilloMRUV.style.left = `${position}px`;
   timeTextMRUV.textContent = `t = ${indexMRUV - 1}`;
-
-  if (indexMRUV > 4) {
+  indexMRUV++;
+  if (position > 1080) {
     clearInterval(newArmadillosMRUV);
   }
-}, 1000);
+}, 1000 / FPS);
 
 options.forEach((option) => {
   option.addEventListener("click", () => {
