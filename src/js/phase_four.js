@@ -29,6 +29,10 @@ const foxElement = document.querySelector("[data-fox");
 const timerRef = document.querySelector("[data-timer-display]");
 let [milliseconds, seconds, minutes] = [0, 0, 4];
 let timer = null;
+
+var completeChallengeModalElement =
+  document.getElementById("completeChallenge");
+var completeChallengeModal = new bootstrap.Modal(completeChallengeModalElement);
 var gameOverModalElement = document.getElementById("gameOverModal");
 var gameOverModal = new bootstrap.Modal(gameOverModalElement);
 var timeOverModalElement = document.getElementById("timeOverModal");
@@ -36,23 +40,25 @@ var timeOverModal = new bootstrap.Modal(timeOverModalElement);
 var attemptsGoneModalElement = document.getElementById("attemptsGoneModal");
 var attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 const textOfLogic = document.querySelector('textarea[name="logic"]');
-const submitLogicButton = document.querySelector("[data-submit-logic]");
+const submitLogicButton = document.getElementById("data-submit-logic");
 
 let progressWin = 0;
 let progressLose = 0;
-let index = 0;
-let armadilloPosition = data[index].armadilloPosition;
-let armadilloVelocity = data[index].armadilloVelocity;
-let foxPosition = data[index].foxPosition;
-let foxVelocity = data[index].foxVelocity;
+let phase = 0;
+let armadilloPosition = data[phase].armadilloPosition;
+let armadilloVelocity = data[phase].armadilloVelocity;
+let foxPosition = data[phase].foxPosition;
+let foxVelocity = data[phase].foxVelocity;
 let time = 0;
 let difference = 0;
 
-startPositionText.innerText = data[index].halfPosition;
-endPositionText.innerText = data[index].finalPosition;
-foxVelocityText.innerText = data[index].foxVelocity;
-halfTimeText.innerText = data[index].halfTime;
-distBetweenFoxArmadillo.innerText = data[index].distBetweenFoxAndArmadillo;
+const optionChecked = [];
+
+startPositionText.innerText = data[phase].halfPosition;
+endPositionText.innerText = data[phase].finalPosition;
+foxVelocityText.innerText = data[phase].foxVelocity;
+halfTimeText.innerText = data[phase].halfTime;
+distBetweenFoxArmadillo.innerText = data[phase].distBetweenFoxAndArmadillo;
 
 function handleKeyDown(e) {
   if (e.key == "Enter") {
@@ -98,7 +104,7 @@ class Game {
 
   startGame() {
     label.forEach((lbl, i) => {
-      lbl.textContent = data[index].options[i];
+      lbl.textContent = data[phase].options[i];
     });
     document.removeEventListener("keydown", handleKeyDown);
 
@@ -123,7 +129,7 @@ class Game {
         }, 880);
         this.updateDisplay();
       }
-      if (time == data[index].halfTime) {
+      if (time == data[phase].halfTime) {
         clearInterval(mru);
         difference = this.armadillo;
         setTimeout(() => {
@@ -133,7 +139,7 @@ class Game {
           timer = setInterval(this.timer.bind(this), 10);
         }, 880);
       }
-      if (time == data[index].finalTime) {
+      if (time == data[phase].finalTime) {
         clearInterval(mru);
         this.fox = 1100;
         this.updateDisplay();
@@ -154,9 +160,9 @@ class Game {
   }
 
   reset() {
-    this.armadillo = data[index].armadilloPosition;
-    this.fox = data[index].foxPosition;
-    armadilloVelocity = data[index].armadilloVelocity;
+    this.armadillo = data[phase].armadilloPosition;
+    this.fox = data[phase].foxPosition;
+    armadilloVelocity = data[phase].armadilloVelocity;
     this.updateDisplay();
     time = 0;
     difference = 0;
@@ -214,7 +220,7 @@ confirmAnswerButton.addEventListener("click", () => {
       num = parseInt(str);
     }
   });
-  if (num != data[index].armadilloVelocity) {
+  if (num != data[phase].armadilloVelocity) {
     armadilloVelocity = num;
     game.startGame();
     setTimeout(() => {
@@ -222,6 +228,7 @@ confirmAnswerButton.addEventListener("click", () => {
       if (maxAttempts == 0) {
         progressLose += maxQuantityQuestions;
         progressiveBar[1].style.width = `${progressLose}%`;
+        optionChecked.push(num);
         showAttemptsGoneModel();
       } else {
         gameOverModal.show();
@@ -235,16 +242,13 @@ confirmAnswerButton.addEventListener("click", () => {
         resetButton.disabled = false;
       });
 
-      if (index != 2) {
+      optionChecked.push(num);
+
+      if (phase != 2) {
         var nextPhaseModalElement = document.getElementById("nextPhaseModal");
         var nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
         nextPhaseModal.show();
       } else {
-        var completeChallengeModalElement =
-          document.getElementById("completeChallenge");
-        var completeChallengeModal = new bootstrap.Modal(
-          completeChallengeModalElement
-        );
         completeChallengeModal.show();
         resetButtons.forEach((resetButton) => {
           resetButton.disabled = true;
@@ -264,30 +268,23 @@ resetButtons.forEach((resetButton) => {
 
 textOfLogic.addEventListener("input", (e) => {
   if (e.target.value == "") {
-    submitLogicButton.disabled = true;
+    submitLogicButton.classList.add("disabled");
   } else {
-    submitLogicButton.disabled = false;
+    submitLogicButton.classList.remove("disabled");
   }
-});
-
-submitLogicButton.addEventListener("click", () => {
-  console.log(`
-  Nick: ${name.value}
-  Lógica usada: ${textOfLogic.value}
-  `);
 });
 
 const showAttemptsGoneModel = () => attemptsGoneModal.show();
 
 function nextGame() {
-  index++;
-  armadilloVelocity = data[index].armadilloVelocity;
-  armadilloPosition = data[index].armadilloPosition;
-  foxVelocity = data[index].foxVelocity;
-  foxPosition = data[index].foxPosition;
-  endPositionText.innerText = data[index].finalPosition;
-  startPositionText.innerText = data[index].halfPosition;
-  distBetweenFoxArmadillo.innerText = data[index].distBetweenFoxAndArmadillo;
+  phase++;
+  armadilloVelocity = data[phase].armadilloVelocity;
+  armadilloPosition = data[phase].armadilloPosition;
+  foxVelocity = data[phase].foxVelocity;
+  foxPosition = data[phase].foxPosition;
+  endPositionText.innerText = data[phase].finalPosition;
+  startPositionText.innerText = data[phase].halfPosition;
+  distBetweenFoxArmadillo.innerText = data[phase].distBetweenFoxAndArmadillo;
 
   timerRef.innerText = "04:00";
   [milliseconds, seconds, minutes] = [0, 0, 4];
@@ -295,4 +292,30 @@ function nextGame() {
   maxAttempts = 3;
   remainingAttempts.innerText = `${maxAttempts}`;
   game.reset();
+}
+
+submitLogicButton.addEventListener("click", () => {
+  completeChallengeModal.hide();
+  makeFile();
+});
+
+function makeFile() {
+  const text = `
+  === Fase quatro ===
+
+  Nome do aluno: ${name.value}
+
+  Opção marcada na primeira questão: ${optionChecked[0]};
+
+  Opção marcada na segunda questão: ${optionChecked[1]};
+
+  Opção marcada na segunda questão: ${optionChecked[2]};
+
+  Lógida utilizada pelo aluno: ${textOfLogic.value}  
+  `;
+
+  const file = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(file);
+  submitLogicButton.href = url;
+  submitLogicButton.download = `${name.value}.txt`;
 }
