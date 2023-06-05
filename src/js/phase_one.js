@@ -27,18 +27,8 @@ let indexMRUV = 2;
 let maxAttempts = 3;
 let timer = null;
 
-// VARIAVEIS USADAS NO CALCULO DO MRUV
-
-const FPS = 60;
-let position = 0;
-let time = 0;
-const dt = 100;
-const velocity = 15;
-const acceleration = 10;
-
 setTimeout(() => {
   armadilloMRU.style.left = "1080px";
-  armadilloMRUV.style.left = "1080px";
   questionModal.show();
   showQuestionButton.disabled = false;
 
@@ -68,9 +58,12 @@ setTimeout(() => {
   }, 10);
 }, 4000);
 
+setInterval(() => {
+  armadilloMRUV.style.left = "1080px";
+}, 3000);
+
 const newArmadillosMRU = setInterval(() => {
   armadillosMRU[indexMRU++].classList.replace("d-none", "d-block");
-  armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
   timeTextMRU.textContent = `t = ${indexMRU - 1}`;
 
   if (indexMRU > 4) {
@@ -79,15 +72,13 @@ const newArmadillosMRU = setInterval(() => {
 }, 1000);
 
 const newArmadillosMRUV = setInterval(() => {
-  position = velocity * time + (acceleration * (time * time)) / 2;
-  time = time + dt / 1000;
-  armadilloMRUV.style.left = `${position}px`;
+  armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
   timeTextMRUV.textContent = `t = ${indexMRUV - 1}`;
-  indexMRUV++;
-  if (position > 1080) {
-    clearInterval(newArmadillosMRUV);
+
+  if (indexMRU > 4) {
+    clearInterval(newArmadillosMRU);
   }
-}, 1000 / FPS);
+}, 1000);
 
 options.forEach((option) => {
   option.addEventListener("click", () => {

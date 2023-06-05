@@ -14,7 +14,7 @@
 
 #armadilloMRUV {
   bottom: 25%;
-  /* animation: armadillo-animation 4s linear; */
+  animation: armadillo-animation 3s ease-in;
   background-image: url(../images/armadillog.gif);
 }
 
