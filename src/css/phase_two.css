@@ -39,31 +39,4 @@
 
   bottom: -120px;
   right: -1920px;
-
-  /* animation: cactus-animation 3s infinite linear; */
 }
-
-/* .clouds {
-  width: 390px;
-  height: 180px;
-
-  animation: clouds-animation 4s infinite linear;
-}
-
-@keyframes clouds-animation {
-  from {
-    right: -1200px;
-  }
-  to {
-    right: 100%;
-  }
-}
-
-@keyframes cactus-animation {
-  from {
-    right: -1920px;
-  }
-  to {
-    right: 100%;
-  }
-} */
