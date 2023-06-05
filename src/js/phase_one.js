@@ -1,6 +1,9 @@
-const armadillo = document.querySelector("[data-armadillo]");
-const armadillos = document.querySelectorAll(".armadillo");
-const timeText = document.querySelector("[data-time-text]");
+const armadilloMRU = document.querySelector("[data-armadilloMRU]");
+const armadilloMRUV = document.querySelector("[data-armadilloMRUV]");
+const armadillosMRU = document.querySelectorAll(".armadilloMRU");
+const armadillosMRUV = document.querySelectorAll(".armadilloMRUV");
+const timeTextMRU = document.querySelector("[data-time-textMRU]");
+const timeTextMRUV = document.querySelector("[data-time-textMRUV]");
 const timerRef = document.querySelector("[data-timer-display]");
 const attemptsText = document.querySelector("[data-attempts]");
 const timeOverModalElement = document.getElementById("timeOverModal");
@@ -19,12 +22,14 @@ const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElemenet);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
-let index = 2;
+let indexMRU = 2;
+let indexMRUV = 2;
 let maxAttempts = 3;
 let timer = null;
 
 setTimeout(() => {
-  armadillo.style.left = "1080px";
+  armadilloMRU.style.left = "1080px";
+  armadilloMRUV.style.left = "1080px";
   questionModal.show();
   showQuestionButton.disabled = false;
 
@@ -54,12 +59,21 @@ setTimeout(() => {
   }, 10);
 }, 4000);
 
-const newArmadillos = setInterval(() => {
-  armadillos[index++].classList.replace("d-none", "d-block");
-  timeText.textContent = `t = ${index - 1}`;
+const newArmadillosMRU = setInterval(() => {
+  armadillosMRU[indexMRU++].classList.replace("d-none", "d-block");
+  timeTextMRU.textContent = `t = ${indexMRU - 1}`;
 
-  if (index > 4) {
-    clearInterval(newArmadillos);
+  if (indexMRU > 4) {
+    clearInterval(newArmadillosMRU);
+  }
+}, 1000);
+
+const newArmadillosMRUV = setInterval(() => {
+  armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
+  timeTextMRUV.textContent = `t = ${indexMRUV - 1}`;
+
+  if (indexMRUV > 4) {
+    clearInterval(newArmadillosMRUV);
   }
 }, 1000);
 

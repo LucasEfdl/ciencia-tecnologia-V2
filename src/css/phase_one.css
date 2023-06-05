@@ -7,12 +7,18 @@
   background-position: bottom;
 }
 
-#armadillo {
+#armadilloMRU {
   animation: armadillo-animation 4s linear;
   background-image: url(../images/armadillog.gif);
 }
 
-.armadillo {
+#armadilloMRUV {
+  bottom: 25%;
+  animation: armadillo-animation 4s linear;
+  background-image: url(../images/armadillog.gif);
+}
+
+.armadilloMRU {
   background-image: url(../images/armadillo.svg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,6 +27,18 @@
   height: 80px;
 
   bottom: 0px;
+  left: 0px;
+}
+
+.armadilloMRUV {
+  background-image: url(../images/armadillo.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 120px;
+  height: 80px;
+
+  bottom: 25%;
   left: 0px;
 }
 

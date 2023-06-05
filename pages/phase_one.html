@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Phase</title>
+  <title>Phase One</title>
   <link rel="stylesheet" href="../src/css/phase_one.css" />
   <link rel="stylesheet" href="../src/css/bootstrap.css" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -44,30 +44,54 @@
         </button>
       </div>
 
-      <div data-armadillo id="armadillo" class="armadillo position-absolute">
-        <p data-time-text class="text-center mb-0 fw-bold">t = 0</p>
+      <div data-armadilloMRU id="armadilloMRU" class="armadilloMRU position-absolute">
+        <p data-time-textMRU class="text-center mb-0 fw-bold">t = 0</p>
         <p class="text-center fw-bold">v = 10m/s</p>
       </div>
 
-      <div style="left: 0px" class="armadillo position-absolute">
+      <div style="left: 0px" class="armadilloMRU position-absolute">
         <p class="text-center mb-0 fw-bold">t = 0</p>
         <p class="text-center fw-bold">v = 10m/s</p>
       </div>
 
-      <div style="left: 270px" class="armadillo position-absolute d-none">
+      <div style="left: 270px" class="armadilloMRU position-absolute d-none">
         <p class="text-center mb-0 fw-bold">t = 1</p>
         <p class="text-center fw-bold">v = 10m/s</p>
       </div>
 
-      <div style="left: 540px" class="armadillo position-absolute d-none">
+      <div style="left: 540px" class="armadilloMRU position-absolute d-none">
         <p class="text-center mb-0 fw-bold">t = 2</p>
         <p class="text-center fw-bold">v = 10m/s</p>
       </div>
 
-      <div style="left: 810px" class="armadillo position-absolute d-none">
+      <div style="left: 810px" class="armadilloMRU position-absolute d-none">
         <p class="text-center mb-0 fw-bold">t = 3</p>
         <p class="text-center fw-bold">v = 10m/s</p>
       </div>
+
+      <!-- MOVIMENTO RETILINEO UNIFORMEMENTE VARIADO -->
+
+      <div data-armadilloMRUV id="armadilloMRUV" class="armadilloMRUV position-absolute">
+        <p data-time-textMRUV class="text-center mb-0 fw-bold">t = 0</p>
+        <p class="text-center fw-bold">v = 10m/s</p>
+      </div>
+
+      <div style="left: 0px" data-armadilloMRUV class="armadilloMRUV position-absolute">
+        <p class="text-center mb-0 fw-bold">t = 0</p>
+        <p class="text-center fw-bold">v = 10m/s</p>
+      </div>
+
+      <div style="left: 190px" data-armadilloMRUV class="armadilloMRUV position-absolute d-none">
+        <p class="text-center mb-0 fw-bold">t = 1</p>
+        <p class="text-center fw-bold">v = 10m/s</p>
+      </div>
+
+      <div style="left: 550px" data-armadilloMRUV class="armadilloMRUV position-absolute d-none">
+        <p class="text-center mb-0 fw-bold">t = 2</p>
+        <p class="text-center fw-bold">v = 10m/s</p>
+      </div>
+
+
 
       <!-- Modal para mostrar a questão -->
       <div data-question id="question" class="modal fade">
