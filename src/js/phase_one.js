@@ -53,6 +53,7 @@ nameInput.addEventListener("input", (e) => {
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
   gameContainer.classList.replace("d-none", "d-flex");
+  localStorage.setItem("nome", nameInput.value);
   game();
 });
 
@@ -127,8 +128,9 @@ options.forEach((option) => {
 });
 
 submitAnswerButton.addEventListener("click", () => {
-  showQuestionButton.disabled = true;
   let answer = 0;
+  let value;
+  showQuestionButton.disabled = true;
   options.forEach((option) => {
     if (option.checked) {
       answer = option.id;
@@ -138,6 +140,7 @@ submitAnswerButton.addEventListener("click", () => {
     nextPhaseModal.show();
     questionModal.hide();
     progressWin.style.width = "100%";
+    value = "A trajetória de baixo representa o movimento retilíneo uniforme";
   } else {
     gameOverModal.show();
     questionModal.hide();
@@ -147,5 +150,9 @@ submitAnswerButton.addEventListener("click", () => {
   if (maxAttempts == 0) {
     attemptsGoneModal.show();
     progressLose.style.width = "100%";
+    value =
+      "A trajetória de cima representa o movimento retilíneo uniformemente variado";
   }
+
+  localStorage.setItem("answerChecked", value);
 });

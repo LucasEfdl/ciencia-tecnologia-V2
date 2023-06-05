@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startGameButton.addEventListener("click", () => {
     initialScreen.classList.replace("d-block", "d-none");
     gameScreen.style.opacity = "1";
-    game.startGame()
+    game.startGame();
   });
 
   radioButtons.forEach((radioButton) => {
@@ -280,11 +280,19 @@ submitLogicButton.addEventListener("click", () => {
 });
 
 function makeFile() {
+  let name = localStorage.getItem("nome");
+  let answer = localStorage.getItem("answerChecked")
+  let graphic = localStorage.getItem("graphicChecked");
   const text = `
+  Nome do aluno: ${name}
+
+  === Fase um ===
+  Resposta: ${answer}
+
+  === Fase dois ===
+  Gráfico marcado: ${graphic}
+
   === Fase quatro ===
-
-  Nome do aluno: ${name.value}
-
   Opção marcada na primeira questão: ${optionChecked[0]};
 
   Opção marcada na segunda questão: ${optionChecked[1]};
@@ -297,5 +305,5 @@ function makeFile() {
   const file = new Blob([text], { type: "text/plain" });
   const url = URL.createObjectURL(file);
   submitLogicButton.href = url;
-  submitLogicButton.download = `${name.value}.txt`;
+  submitLogicButton.download = `${name}.txt`;
 }

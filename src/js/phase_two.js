@@ -90,8 +90,10 @@ options.forEach((option) => {
 });
 
 submitAnswerButton.addEventListener("click", () => {
-  showQuestionButton.disabled = true;
+  let graphic;
   let answer = 0;
+
+  showQuestionButton.disabled = true;
   options.forEach((option) => {
     if (option.checked) {
       answer = option.id;
@@ -101,6 +103,7 @@ submitAnswerButton.addEventListener("click", () => {
     nextPhaseModal.show();
     questionModal.hide();
     progressWin.style.width = "100%";
+    graphic = "velocidadeXtempo (certo)";
   } else {
     gameOverModal.show();
     questionModal.hide();
@@ -110,5 +113,8 @@ submitAnswerButton.addEventListener("click", () => {
   if (maxAttempts == 0) {
     attemptsGoneModal.show();
     progressLose.style.width = "100%";
+    graphic = "posiçãoXvelocidade (errado)";
   }
+
+  localStorage.setItem("graphicChecked", graphic);
 });
