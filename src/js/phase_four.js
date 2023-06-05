@@ -1,9 +1,8 @@
 import data from "../data/data.json" assert { type: "json" };
 
-const initialScreen = document.querySelector("[data-inital-screen]");
+const initialScreen = document.getElementById("initial-screen");
 const startGameButton = document.querySelector("[data-start-game]");
-const name = document.querySelector("input[for=name]");
-const gameContainer = document.querySelector("[data-container]");
+const gameScreen = document.querySelector("[data-game-screen]");
 const question = document.querySelector("[data-question]");
 const endPositionText = document.querySelector(".end-position-text");
 const startPositionText = document.querySelector(".start-position-text");
@@ -60,29 +59,11 @@ foxVelocityText.innerText = data[phase].foxVelocity;
 halfTimeText.innerText = data[phase].halfTime;
 distBetweenFoxArmadillo.innerText = data[phase].distBetweenFoxAndArmadillo;
 
-function handleKeyDown(e) {
-  if (e.key == "Enter") {
-    initialScreen.classList.replace("d-flex", "d-none");
-    gameContainer.classList.replace("d-none", "d-flex");
-    game.startGame();
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  name.addEventListener("input", (e) => {
-    if (e.target.value != "") {
-      startGameButton.disabled = false;
-      document.addEventListener("keydown", handleKeyDown);
-    } else {
-      startGameButton.disabled = true;
-      document.removeEventListener("keydown", handleKeyDown);
-    }
-  });
-
   startGameButton.addEventListener("click", () => {
-    initialScreen.classList.replace("d-flex", "d-none");
-    gameContainer.classList.replace("d-none", "d-flex");
-    game.startGame();
+    initialScreen.classList.replace("d-block", "d-none");
+    gameScreen.style.opacity = "1";
+    game.startGame()
   });
 
   radioButtons.forEach((radioButton) => {
@@ -106,7 +87,6 @@ class Game {
     label.forEach((lbl, i) => {
       lbl.textContent = data[phase].options[i];
     });
-    document.removeEventListener("keydown", handleKeyDown);
 
     this.armadilloElement.classList.add("isMove");
     this.foxElement.classList.add("foxIsMove");

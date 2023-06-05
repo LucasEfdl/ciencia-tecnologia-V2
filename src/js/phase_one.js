@@ -1,3 +1,8 @@
+const initialScreen = document.querySelector("[data-inital-screen]");
+const nameInput = document.querySelector("input[for=name]");
+const startGameButton = document.querySelector("[data-start-game]");
+const gameContainer = document.querySelector("[data-container]");
+
 const armadilloMRU = document.querySelector("[data-armadilloMRU]");
 const armadilloMRUV = document.querySelector("[data-armadilloMRUV]");
 const armadillosMRU = document.querySelectorAll(".armadilloMRU");
@@ -25,14 +30,49 @@ let [milliseconds, seconds, minutes] = [0, 0, 3];
 let indexMRU = 2;
 let indexMRUV = 2;
 let maxAttempts = 3;
-let timer = null;
+let time = null;
 
-setTimeout(() => {
-  armadilloMRU.style.left = "1080px";
-  questionModal.show();
-  showQuestionButton.disabled = false;
+function handleKeyDown(e) {
+  if (e.key == "Enter") {
+    initialScreen.classList.replace("d-block", "d-none");
+    gameContainer.classList.replace("d-none", "d-flex");
+    game();
+  }
+}
 
-  timer = setInterval(() => {
+nameInput.addEventListener("input", (e) => {
+  if (e.target.value != "") {
+    startGameButton.disabled = false;
+    document.addEventListener("keydown", handleKeyDown);
+  } else {
+    startGameButton.disabled = true;
+    document.removeEventListener("keydown", handleKeyDown);
+  }
+});
+
+startGameButton.addEventListener("click", () => {
+  initialScreen.classList.replace("d-block", "d-none");
+  gameContainer.classList.replace("d-none", "d-flex");
+  game();
+});
+
+function game() {
+  setTimeout(() => {
+    armadilloMRU.style.left = "1080px";
+    showQuestionButton.disabled = false;
+    questionModal.show();
+    timer();
+  }, 4000);
+  setInterval(() => {
+    armadilloMRUV.style.left = "1080px";
+  }, 3000);
+
+  newArmadillosMRU();
+  newArmadillosMRUV();
+}
+
+const timer = () => {
+  time = setInterval(() => {
     milliseconds -= 10;
     if (milliseconds < 0) {
       milliseconds = 990;
@@ -47,7 +87,7 @@ setTimeout(() => {
     let sec = seconds < 10 ? "0" + seconds : seconds;
 
     if (min == 0 && sec == 0) {
-      clearInterval(timer);
+      clearInterval(time);
       question.classList.replace("d-block", "d-none");
       timeOverModal.show();
       questionModal.hide();
@@ -56,29 +96,29 @@ setTimeout(() => {
 
     timerRef.innerText = `${min}:${sec}`;
   }, 10);
-}, 4000);
+};
 
-setInterval(() => {
-  armadilloMRUV.style.left = "1080px";
-}, 3000);
+const newArmadillosMRU = () => {
+  let newElements = setInterval(() => {
+    armadillosMRU[indexMRU++].classList.replace("d-none", "d-block");
+    timeTextMRU.textContent = `t = ${indexMRU}`;
 
-const newArmadillosMRU = setInterval(() => {
-  armadillosMRU[indexMRU++].classList.replace("d-none", "d-block");
-  timeTextMRU.textContent = `t = ${indexMRU - 1}`;
+    if (indexMRU > 4) {
+      clearInterval(newElements);
+    }
+  }, 1000);
+};
 
-  if (indexMRU > 4) {
-    clearInterval(newArmadillosMRU);
-  }
-}, 1000);
+const newArmadillosMRUV = () => {
+  let newElements = setInterval(() => {
+    armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
+    timeTextMRUV.textContent = `t = ${indexMRUV - 1}`;
 
-const newArmadillosMRUV = setInterval(() => {
-  armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
-  timeTextMRUV.textContent = `t = ${indexMRUV - 1}`;
-
-  if (indexMRU > 4) {
-    clearInterval(newArmadillosMRU);
-  }
-}, 1000);
+    if (indexMRUV > 3) {
+      clearInterval(newElements);
+    }
+  }, 1000);
+};
 
 options.forEach((option) => {
   option.addEventListener("click", () => {

@@ -11,6 +11,12 @@
   </head>
 
   <body class="bg-dark">
+    <section id="initial-screen" class="d-block w-100 position-absolute">
+      <div class="d-flex justify-content-center align-items-center vh-100">
+        <button data-start-game class="btn btn-primary">Começar jogo</button>
+      </div>
+    </section>
+
     <section
       class="vh-100 d-flex flex-column justify-content-center align-items-center"
     >
@@ -25,7 +31,10 @@
         </div>
       </header>
 
-      <main class="game-screen d-block position-relative overflow-hidden">
+      <main
+        data-game-screen
+        class="game-screen d-block position-relative overflow-hidden"
+      >
         <div class="progress-stacked">
           <div
             data-progress-win
@@ -188,15 +197,13 @@
                 </p>
               </div>
               <div class="modal-footer">
-                <button
-                  data-next-phase
-                  type="button"
+                <a
+                  href="./phase_four.html"
+                  role="button"
                   class="btn btn-secondary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#nextPhaseModal"
                 >
                   Próxima fase
-                </button>
+                </a>
               </div>
             </div>
           </div>

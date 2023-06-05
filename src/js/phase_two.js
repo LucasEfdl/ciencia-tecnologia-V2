@@ -1,4 +1,8 @@
-const armadillo = document.querySelector("[data-armadillo]");
+const initialScreen = document.getElementById("initial-screen");
+const gameScreen = document.querySelector("[data-game-screen]");
+const startGameButton = document.querySelector("[data-start-game]");
+
+const armadillo = document.getElementById("armadillo");
 const armadillos = document.querySelectorAll(".armadillo");
 const timeText = document.querySelector("[data-time-text]");
 const timerRef = document.querySelector("[data-timer-display]");
@@ -23,11 +27,25 @@ let index = 2;
 let maxAttempts = 3;
 let timer = null;
 
-setTimeout(() => {
-  armadillo.style.left = "1080px";
-  questionModal.show();
-  showQuestionButton.disabled = false;
+startGameButton.addEventListener("click", () => {
+  initialScreen.classList.replace("d-block", "d-none");
+  gameScreen.style.opacity = "1";
+  game();
+});
 
+function game() {
+  armadillo.style.animation = "armadillo-animation 4s linear";
+
+  setTimeout(() => {
+    armadillo.style.left = "1080px";
+    showQuestionButton.disabled = false;
+    questionModal.show();
+    time();
+  }, 4000);
+  newArmadillos();
+}
+
+const time = () => {
   timer = setInterval(() => {
     milliseconds -= 10;
     if (milliseconds < 0) {
@@ -52,16 +70,18 @@ setTimeout(() => {
 
     timerRef.innerText = `${min}:${sec}`;
   }, 10);
-}, 4000);
+};
 
-const newArmadillos = setInterval(() => {
-  armadillos[index++].classList.replace("d-none", "d-block");
-  timeText.textContent = `t = ${index - 1}`;
+const newArmadillos = () => {
+  let elements = setInterval(() => {
+    armadillos[index++].classList.replace("d-none", "d-block");
+    timeText.textContent = `t = ${index - 1}`;
 
-  if (index > 4) {
-    clearInterval(newArmadillos);
-  }
-}, 1000);
+    if (index > 4) {
+      clearInterval(elements);
+    }
+  }, 1000);
+};
 
 options.forEach((option) => {
   option.addEventListener("click", () => {
