@@ -1,10 +1,14 @@
-const initialScreen = document.getElementById("initial-screen");
-const gameScreen = document.querySelector("[data-game-screen]");
+const initialScreen = document.querySelector("[data-inital-screen]");
+const nameInput = document.querySelector("input[for=name]");
 const startGameButton = document.querySelector("[data-start-game]");
+const gameContainer = document.querySelector("[data-container]");
 
-const armadillo = document.getElementById("armadillo");
-const armadillos = document.querySelectorAll(".armadillo");
-const timeText = document.querySelector("[data-time-text]");
+const armadilloMRU = document.querySelector("[data-armadilloMRU]");
+const armadilloMRUV = document.querySelector("[data-armadilloMRUV]");
+const armadillosMRU = document.querySelectorAll(".armadilloMRU");
+const armadillosMRUV = document.querySelectorAll(".armadilloMRUV");
+const timeTextMRU = document.querySelector("[data-time-textMRU]");
+const timeTextMRUV = document.querySelector("[data-time-textMRUV]");
 const timerRef = document.querySelector("[data-timer-display]");
 const attemptsText = document.querySelector("[data-attempts]");
 const timeOverModalElement = document.getElementById("timeOverModal");
@@ -23,30 +27,52 @@ const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElemenet);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
-let index = 2;
+let indexMRU = 2;
+let indexMRUV = 2;
 let maxAttempts = 3;
-let timer = null;
+let time = null;
+
+function handleKeyDown(e) {
+  if (e.key == "Enter") {
+    initialScreen.classList.replace("d-block", "d-none");
+    gameContainer.classList.replace("d-none", "d-flex");
+    game();
+  }
+}
+
+nameInput.addEventListener("input", (e) => {
+  if (e.target.value != "") {
+    startGameButton.disabled = false;
+    document.addEventListener("keydown", handleKeyDown);
+  } else {
+    startGameButton.disabled = true;
+    document.removeEventListener("keydown", handleKeyDown);
+  }
+});
 
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
-  gameScreen.style.opacity = "1";
+  gameContainer.classList.replace("d-none", "d-flex");
   game();
 });
 
 function game() {
-  armadillo.style.animation = "armadillo-animation 4s linear";
-
   setTimeout(() => {
-    armadillo.style.left = "1080px";
+    armadilloMRU.style.left = "1080px";
     showQuestionButton.disabled = false;
     questionModal.show();
-    time();
+    timer();
   }, 4000);
-  newArmadillos();
+  setInterval(() => {
+    armadilloMRUV.style.left = "1080px";
+  }, 3000);
+
+  newArmadillosMRU();
+  newArmadillosMRUV();
 }
 
-const time = () => {
-  timer = setInterval(() => {
+const timer = () => {
+  time = setInterval(() => {
     milliseconds -= 10;
     if (milliseconds < 0) {
       milliseconds = 990;
@@ -61,7 +87,7 @@ const time = () => {
     let sec = seconds < 10 ? "0" + seconds : seconds;
 
     if (min == 0 && sec == 0) {
-      clearInterval(timer);
+      clearInterval(time);
       question.classList.replace("d-block", "d-none");
       timeOverModal.show();
       questionModal.hide();
@@ -72,13 +98,24 @@ const time = () => {
   }, 10);
 };
 
-const newArmadillos = () => {
-  let elements = setInterval(() => {
-    armadillos[index++].classList.replace("d-none", "d-block");
-    timeText.textContent = `t = ${index - 1}`;
+const newArmadillosMRU = () => {
+  let newElements = setInterval(() => {
+    armadillosMRU[indexMRU++].classList.replace("d-none", "d-block");
+    timeTextMRU.textContent = `t = ${indexMRU}`;
 
-    if (index > 4) {
-      clearInterval(elements);
+    if (indexMRU > 4) {
+      clearInterval(newElements);
+    }
+  }, 1000);
+};
+
+const newArmadillosMRUV = () => {
+  let newElements = setInterval(() => {
+    armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
+    timeTextMRUV.textContent = `t = ${indexMRUV - 1}`;
+
+    if (indexMRUV > 3) {
+      clearInterval(newElements);
     }
   }, 1000);
 };

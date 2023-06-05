@@ -4,21 +4,56 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phase</title>
-    <link rel="stylesheet" href="../src/css/phase_two.css" />
+    <title>Phase One</title>
+    <link rel="stylesheet" href="../src/css/phase_one.css" />
     <link rel="stylesheet" href="../src/css/bootstrap.css" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
 
   <body class="bg-dark">
-    <section id="initial-screen" class="d-block w-100 position-absolute">
-      <div class="d-flex justify-content-center align-items-center vh-100">
-        <button data-start-game class="btn btn-primary">Começar jogo</button>
+    <section data-inital-screen class="d-block vh-100">
+      <div
+        id="initial-screen"
+        class="d-flex flex-column justify-content-center align-items-center vh-100 p-4"
+      >
+        <p class="text-center fs-4 text-white">
+          <strong>Boas-vindas caro estudante!</strong>
+        </p>
+        <p class="text-center fs-5 text-white">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores modi
+          magni consectetur. Voluptas, architecto in expedita harum ad soluta
+          dignissimos nam commodi perferendis pariatur quam vel aspernatur ut
+          cum omnis. <br />
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores modi
+          magni consectetur. Voluptas, architecto in expedita harum ad soluta
+          dignissimos nam commodi perferendis pariatur quam vel aspernatur ut
+          cum omnis. <br /><br />
+          Antes de comerçar o jogo, informe seu nickname
+        </p>
+
+        <div class="d-flex mx-3">
+          <input
+            for="name"
+            type="text"
+            class="form-control"
+            placeholder="Nome"
+            autocomplete="off"
+          />
+          <button
+            data-start-game
+            class="btn btn-primary btn-sm ms-1"
+            type="button"
+            disabled
+          >
+            Prosseguir
+          </button>
+        </div>
       </div>
     </section>
 
     <section
-      class="vh-100 d-flex flex-column justify-content-center align-items-center"
+      data-container
+      class="vh-100 d-none flex-column justify-content-center align-items-center"
     >
       <header class="w-75 d-flex justify-content-around align-items-center p-1">
         <p class="text-white m-0">
@@ -31,10 +66,7 @@
         </div>
       </header>
 
-      <main
-        data-game-screen
-        class="game-screen d-block position-relative overflow-hidden"
-      >
+      <main class="game-screen d-block position-relative overflow-hidden">
         <div class="progress-stacked">
           <div
             data-progress-win
@@ -74,28 +106,70 @@
           </button>
         </div>
 
-        <div data-armadillo id="armadillo" class="armadillo position-absolute">
-          <p data-time-text class="text-center mb-0 fw-bold">t = 0</p>
+        <div
+          data-armadilloMRU
+          id="armadilloMRU"
+          class="armadilloMRU position-absolute"
+        >
+          <p data-time-textMRU class="text-center mb-0 fw-bold">t = 0</p>
           <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
-        <div style="left: 0px" class="armadillo position-absolute">
+        <div style="left: 0px" class="armadilloMRU position-absolute">
           <p class="text-center mb-0 fw-bold">t = 0</p>
           <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
-        <div style="left: 270px" class="armadillo position-absolute d-none">
+        <div style="left: 270px" class="armadilloMRU position-absolute d-none">
           <p class="text-center mb-0 fw-bold">t = 1</p>
           <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
-        <div style="left: 540px" class="armadillo position-absolute d-none">
+        <div style="left: 540px" class="armadilloMRU position-absolute d-none">
           <p class="text-center mb-0 fw-bold">t = 2</p>
           <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
-        <div style="left: 810px" class="armadillo position-absolute d-none">
+        <div style="left: 810px" class="armadilloMRU position-absolute d-none">
           <p class="text-center mb-0 fw-bold">t = 3</p>
+          <p class="text-center fw-bold">v = 10m/s</p>
+        </div>
+
+        <!-- MOVIMENTO RETILINEO UNIFORMEMENTE VARIADO -->
+
+        <div
+          data-armadilloMRUV
+          id="armadilloMRUV"
+          class="armadilloMRUV position-absolute"
+        >
+          <p data-time-textMRUV class="text-center mb-0 fw-bold">t = 0</p>
+          <p class="text-center fw-bold">v = 10m/s</p>
+        </div>
+
+        <div
+          style="left: 0px"
+          data-armadilloMRUV
+          class="armadilloMRUV position-absolute"
+        >
+          <p class="text-center mb-0 fw-bold">t = 0</p>
+          <p class="text-center fw-bold">v = 10m/s</p>
+        </div>
+
+        <div
+          style="left: 190px"
+          data-armadilloMRUV
+          class="armadilloMRUV position-absolute d-none"
+        >
+          <p class="text-center mb-0 fw-bold">t = 1</p>
+          <p class="text-center fw-bold">v = 10m/s</p>
+        </div>
+
+        <div
+          style="left: 550px"
+          data-armadilloMRUV
+          class="armadilloMRUV position-absolute d-none"
+        >
+          <p class="text-center mb-0 fw-bold">t = 2</p>
           <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
@@ -106,7 +180,7 @@
           >
             <div class="modal-content">
               <div class="modal-header">
-                Qual dos gráficos abaixo melhor representa a trajetória do Tatu?
+                Como base no percurso dos dois Tatu, é possível concluir que...
                 <button
                   type="button"
                   class="btn-close"
@@ -116,39 +190,32 @@
               </div>
 
               <div class="modal-body">
-                <input
-                  type="radio"
-                  class="btn-check"
-                  id="radio-one"
-                  name="option"
-                  autocomplete="off"
-                />
-                <label class="btn" for="radio-one">
-                  <figure class="figure">
-                    <img
-                      src="../src/images/velocidade_tempo_2.png"
-                      class="figure-img img-fluid rounded img-thumbnail"
-                      alt="Gráfico velocidadeXtempo"
-                    />
-                  </figure>
-                </label>
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="radio-one"
+                    name="option"
+                  />
+                  <label class="form-check-label" for="radio-one">
+                    A trajetória de baixo representa o movimento retilíneo
+                    uniforme
+                  </label>
+                </div>
 
-                <input
-                  type="radio"
-                  class="btn-check"
-                  id="radio-two"
-                  name="option"
-                  autocomplete="off"
-                />
-                <label class="btn" for="radio-two">
-                  <figure class="figure">
-                    <img
-                      src="../src/images/velocidade_tempo.png"
-                      class="figure-img img-fluid rounded img-thumbnail"
-                      alt="Gráfico distanciaXtempo"
-                    />
-                  </figure>
-                </label>
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="radio-two"
+                    name="option"
+                    autocomplete="off"
+                  />
+                  <label class="form-check-label" for="radio-two">
+                    A trajetória de cima representa o movimento retilíneo
+                    uniformemente variado
+                  </label>
+                </div>
               </div>
 
               <div class="modal-footer">
@@ -198,7 +265,7 @@
               </div>
               <div class="modal-footer">
                 <a
-                  href="./phase_four.html"
+                  href="./phase_two.html"
                   role="button"
                   class="btn btn-secondary"
                 >
@@ -363,7 +430,7 @@
       </main>
     </section>
 
-    <script type="module" src="../src/js/phase_two.js"></script>
+    <script type="module" src="../src/js/phase_one.js"></script>
     <script src="../src/js/bootstrap.min.js"></script>
   </body>
 </html>
