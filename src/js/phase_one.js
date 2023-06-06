@@ -1,7 +1,6 @@
-const initialScreen = document.querySelector("[data-inital-screen]");
-const nameInput = document.querySelector("input[for=name]");
+const initialScreen = document.getElementById("initial-screen");
+const gameScreen = document.querySelector("[data-game-screen]");
 const startGameButton = document.querySelector("[data-start-game]");
-const gameContainer = document.querySelector("[data-container]");
 
 const armadilloMRU = document.querySelector("[data-armadilloMRU]");
 const armadilloMRUV = document.querySelector("[data-armadilloMRUV]");
@@ -32,32 +31,16 @@ let indexMRUV = 2;
 let maxAttempts = 3;
 let time = null;
 
-function handleKeyDown(e) {
-  if (e.key == "Enter") {
-    initialScreen.classList.replace("d-block", "d-none");
-    gameContainer.classList.replace("d-none", "d-flex");
-    game();
-  }
-}
-
-nameInput.addEventListener("input", (e) => {
-  if (e.target.value != "") {
-    startGameButton.disabled = false;
-    document.addEventListener("keydown", handleKeyDown);
-  } else {
-    startGameButton.disabled = true;
-    document.removeEventListener("keydown", handleKeyDown);
-  }
-});
-
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
-  gameContainer.classList.replace("d-none", "d-flex");
-  localStorage.setItem("nome", nameInput.value);
+  gameScreen.style.opacity = "1";
   game();
 });
 
 function game() {
+  armadilloMRU.style.animation = "armadillo-animation 4s linear";
+  armadilloMRUV.style.animation = "armadillo-animation 3s ease-in";
+
   setTimeout(() => {
     armadilloMRU.style.left = "1080px";
     showQuestionButton.disabled = false;
@@ -102,7 +85,7 @@ const timer = () => {
 const newArmadillosMRU = () => {
   let newElements = setInterval(() => {
     armadillosMRU[indexMRU++].classList.replace("d-none", "d-block");
-    timeTextMRU.textContent = `t = ${indexMRU}`;
+    timeTextMRU.textContent = `t = ${indexMRU - 1}`;
 
     if (indexMRU > 4) {
       clearInterval(newElements);

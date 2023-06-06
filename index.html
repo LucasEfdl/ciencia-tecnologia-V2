@@ -5,11 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ciência e tecnologia - aprenda física jogando!</title>
-    <link rel="stylesheet" href="src/css/phase_one.css" />
+    <link rel="stylesheet" href="src/css/bootstrap.css" />
   </head>
-  <body>
-    <h3>Página inicial em construção!</h3>
-    <br />
-    <a href="./pages/phase_one.html">Link para primeira fase</a>
+  <body class="bg-dark">
+    <section data-inital-screen class="d-block vh-100">
+      <div
+        id="initial-screen"
+        class="d-flex flex-column justify-content-center align-items-center vh-100 p-4"
+      >
+        <p class="text-center fs-4 text-white">
+          <strong>Boas-vindas caro estudante!</strong>
+        </p>
+        <p class="text-center fs-5 text-white">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores modi
+          magni consectetur. Voluptas, architecto in expedita harum ad soluta
+          dignissimos nam commodi perferendis pariatur quam vel aspernatur ut
+          cum omnis. <br />
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores modi
+          magni consectetur. Voluptas, architecto in expedita harum ad soluta
+          dignissimos nam commodi perferendis pariatur quam vel aspernatur ut
+          cum omnis. <br /><br />
+          Antes de comerçar o jogo, informe seu nome
+        </p>
+
+        <div class="d-flex gap-1">
+          <input
+            for="name"
+            type="text"
+            class="form-control"
+            placeholder="Nome"
+            autocomplete="off"
+          />
+          <a
+            data-start-game
+            href="./pages/phase_one.html"
+            role="button"
+            class="btn btn-primary disabled"
+          >
+            Continuar
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const nameInput = document.querySelector("input[for=name]");
+      const startGameButton = document.querySelector("[data-start-game]");
+
+      nameInput.addEventListener("input", (e) => {
+        if (e.target.value != "") {
+          startGameButton.classList.remove("disabled");
+        } else {
+          startGameButton.classList.add("disabled");
+        }
+      });
+
+      startGameButton.addEventListener("click", () => {
+        localStorage.setItem("nome", nameInput.value);
+      });
+    </script>
   </body>
 </html>

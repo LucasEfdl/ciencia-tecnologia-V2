@@ -11,49 +11,15 @@
   </head>
 
   <body class="bg-dark">
-    <section data-inital-screen class="d-block vh-100">
-      <div
-        id="initial-screen"
-        class="d-flex flex-column justify-content-center align-items-center vh-100 p-4"
-      >
-        <p class="text-center fs-4 text-white">
-          <strong>Boas-vindas caro estudante!</strong>
-        </p>
-        <p class="text-center fs-5 text-white">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores modi
-          magni consectetur. Voluptas, architecto in expedita harum ad soluta
-          dignissimos nam commodi perferendis pariatur quam vel aspernatur ut
-          cum omnis. <br />
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores modi
-          magni consectetur. Voluptas, architecto in expedita harum ad soluta
-          dignissimos nam commodi perferendis pariatur quam vel aspernatur ut
-          cum omnis. <br /><br />
-          Antes de comerçar o jogo, informe seu nickname
-        </p>
-
-        <div class="d-flex mx-3">
-          <input
-            for="name"
-            type="text"
-            class="form-control"
-            placeholder="Nome"
-            autocomplete="off"
-          />
-          <button
-            data-start-game
-            class="btn btn-primary btn-sm ms-1"
-            type="button"
-            disabled
-          >
-            Prosseguir
-          </button>
-        </div>
+    <section id="initial-screen" class="d-block w-100 position-absolute">
+      <div class="d-flex justify-content-center align-items-center vh-100">
+        <button data-start-game class="btn btn-primary">Começar jogo</button>
       </div>
     </section>
 
     <section
       data-container
-      class="vh-100 d-none flex-column justify-content-center align-items-center"
+      class="vh-100 d-flex flex-column justify-content-center align-items-center"
     >
       <header class="w-75 d-flex justify-content-around align-items-center p-1">
         <p class="text-white m-0">
@@ -66,7 +32,7 @@
         </div>
       </header>
 
-      <main class="game-screen d-block position-relative overflow-hidden">
+      <main data-game-screen class="game-screen d-block position-relative overflow-hidden">
         <div class="progress-stacked">
           <div
             data-progress-win
