@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phase One</title>
+    <title>Fase I - Cinemática</title>
     <link rel="stylesheet" href="../src/css/phase_one.css" />
     <link rel="stylesheet" href="../src/css/bootstrap.css" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -276,46 +276,6 @@
           </div>
         </div>
 
-        <!-- Modal para mostrar que o desafio foi completo -->
-        <div
-          id="completeChallenge"
-          class="modal fade"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="modalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Desafio completo!</h5>
-              </div>
-              <div class="modal-body">
-                <p class="text-black">
-                  Parabéns por completar os desafios! <br />Por favor, nos diga
-                  qual foi a sua lógica para a resolução das questões:
-                </p>
-                <div class="d-flex flex-row">
-                  <textarea class="form-control me-1" name="logic" rows="1">
-                  </textarea>
-                  <button
-                    data-submit-logic
-                    type="button"
-                    class="btn btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#completeChallenge"
-                    disabled
-                  >
-                    Enviar
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Modal para mostrar que o tempo acabou -->
         <div
           id="timeOverModal"
@@ -338,15 +298,13 @@
                 </p>
               </div>
               <div class="modal-footer">
-                <button
-                  data-next-phase
-                  type="button"
+                <a
+                  href="./phase_two.html"
+                  role="button"
                   class="btn btn-secondary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#timeOverModal"
                 >
                   Próxima fase
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -414,15 +372,13 @@
               </div>
 
               <div class="modal-footer">
-                <button
-                  data-next-phase
-                  type="button"
+                <a
+                  href="./phase_two.html"
+                  role="button"
                   class="btn btn-secondary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#attemptsGoneModal"
                 >
                   Próxima fase
-                </button>
+                </a>
               </div>
             </div>
           </div>
