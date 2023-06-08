@@ -283,6 +283,7 @@ function makeFile() {
   let name = localStorage.getItem("nome");
   let answer = localStorage.getItem("answerChecked")
   let graphic = localStorage.getItem("graphicChecked");
+  let velocity = localStorage.getItem("velocityChecked")
   const text = `
   Nome do aluno: ${name}
 
@@ -291,6 +292,9 @@ function makeFile() {
 
   === Fase dois ===
   Gráfico marcado: ${graphic}
+
+  == Fase três ==
+  Resposta marcada: ${velocity}
 
   === Fase quatro ===
   Opção marcada na primeira questão: ${optionChecked[0]};
