@@ -20,6 +20,8 @@ const showQuestionButton = document.querySelector("[data-show-question]");
 const submitAnswerButton = document.querySelector("[data-submit-answer]");
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
+const textAreaTextContent = document.querySelector("textarea");
+const submitLogicBtn = document.getElementById("question-one-logic");
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const questionModal = new bootstrap.Modal(questionModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
@@ -110,6 +112,14 @@ options.forEach((option) => {
   });
 });
 
+textAreaTextContent.addEventListener("input", (e) => {
+  if (e != "") {
+    submitLogicBtn.classList.remove("disabled");
+  } else {
+    submitLogicBtn.classList.add("disabled");
+  }
+});
+
 submitAnswerButton.addEventListener("click", () => {
   let answer = 0;
   let value;
@@ -138,4 +148,9 @@ submitAnswerButton.addEventListener("click", () => {
   }
 
   localStorage.setItem("answerChecked", value);
+});
+
+submitLogicBtn.addEventListener("click", () => {
+  const logicUsed = textAreaTextContent.value;
+  localStorage.setItem("logicUsedQ1", logicUsed);
 });

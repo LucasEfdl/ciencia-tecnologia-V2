@@ -32,7 +32,10 @@
         </div>
       </header>
 
-      <main data-game-screen class="game-screen d-block position-relative overflow-hidden">
+      <main
+        data-game-screen
+        class="game-screen d-block position-relative overflow-hidden"
+      >
         <div class="progress-stacked">
           <div
             data-progress-win
@@ -226,17 +229,25 @@
               </div>
               <div class="modal-body">
                 <p class="textWin">
-                  Parabéns, você ganhou! Siga para o próximo desafio.
+                  Parabéns por completar o desafio! <br />Por favor, nos diga
+                  qual foi a sua lógica para a resolução da questão:
                 </p>
-              </div>
-              <div class="modal-footer">
-                <a
-                  href="./phase_two.html"
-                  role="button"
-                  class="btn btn-secondary"
-                >
-                  Próxima fase
-                </a>
+
+                <div class="form-check">
+                  <textarea
+                    class="form-control mb-1"
+                    name="logic"
+                    rows="4"
+                  ></textarea>
+
+                  <a
+                    id="question-one-logic"
+                    href="./phase_two.html"
+                    class="btn btn-primary disabled"
+                  >
+                    Enviar
+                  </a>
+                </div>
               </div>
             </div>
           </div>

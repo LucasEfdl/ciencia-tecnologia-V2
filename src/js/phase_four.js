@@ -281,29 +281,32 @@ submitLogicButton.addEventListener("click", () => {
 
 function makeFile() {
   let name = localStorage.getItem("nome");
-  let answer = localStorage.getItem("answerChecked")
+  let answer = localStorage.getItem("answerChecked");
+  let questionOneLogic = localStorage.getItem("logicUsedQ1");
+  let questionTwoLogic = localStorage.getItem("logicUsedQ2");
+  let questionThreeLogic = localStorage.getItem("logicUsedQ3");
   let graphic = localStorage.getItem("graphicChecked");
-  let velocity = localStorage.getItem("velocityChecked")
+  let velocity = localStorage.getItem("velocityChecked");
   const text = `
   Nome do aluno: ${name}
 
   === Fase um ===
   Resposta: ${answer}
+  Lógica usada: ${questionOneLogic}
 
   === Fase dois ===
   Gráfico marcado: ${graphic}
+  Lógica usada: ${questionTwoLogic}
 
   == Fase três ==
   Resposta marcada: ${velocity}
+  Lógica usada: ${questionThreeLogic}
 
   === Fase quatro ===
   Opção marcada na primeira questão: ${optionChecked[0]};
-
   Opção marcada na segunda questão: ${optionChecked[1]};
-
   Opção marcada na segunda questão: ${optionChecked[2]};
-
-  Lógida utilizada pelo aluno: ${textOfLogic.value}  
+  Lógida usada: ${textOfLogic.value}  
   `;
 
   const file = new Blob([text], { type: "text/plain" });
