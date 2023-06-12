@@ -27,7 +27,7 @@ const questionModal = new bootstrap.Modal(questionModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElemenet);
-let [milliseconds, seconds, minutes] = [0, 0, 3];
+let [milliseconds, seconds, minutes] = [0, 5, 0];
 let indexMRU = 2;
 let indexMRUV = 2;
 let maxAttempts = 3;
@@ -78,6 +78,8 @@ const timer = () => {
       timeOverModal.show();
       questionModal.hide();
       progressLose.style.width = "100%";
+
+      localStorage.setItem("answerChecked", "sem resposta - tempo total gasto");
     }
 
     timerRef.innerText = `${min}:${sec}`;
@@ -121,8 +123,8 @@ textAreaTextContent.addEventListener("input", (e) => {
 });
 
 submitAnswerButton.addEventListener("click", () => {
-  let answer = 0;
   let value;
+  let answer = 0;
   showQuestionButton.disabled = true;
   options.forEach((option) => {
     if (option.checked) {

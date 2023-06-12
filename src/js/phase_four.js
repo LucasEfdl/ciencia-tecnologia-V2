@@ -26,7 +26,7 @@ const armadilloElement = document.querySelector("[data-armadillo");
 const foxElement = document.querySelector("[data-fox");
 
 const timerRef = document.querySelector("[data-timer-display]");
-let [milliseconds, seconds, minutes] = [0, 0, 4];
+let [milliseconds, seconds, minutes] = [0, 0, 3];
 let timer = null;
 
 var completeChallengeModalElement =
@@ -177,7 +177,9 @@ class Game {
     if (min == 0 && sec == 0) {
       clearInterval(timer);
       question.classList.replace("d-block", "d-none");
-      timeOverModal.show();
+      progressLose += maxQuantityQuestions;
+      progressiveBar[1].style.width = `${progressLose}%`;
+      phase < 2 ? timeOverModal.show() : completeChallengeModal.show();
     }
 
     timerRef.innerText = `${min}:${sec}`;

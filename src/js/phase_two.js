@@ -68,6 +68,11 @@ const time = () => {
       timeOverModal.show();
       questionModal.hide();
       progressLose.style.width = "100%";
+
+      localStorage.setItem(
+        "graphicChecked",
+        "Sem resposta - tempo total gasto"
+      );
     }
 
     timerRef.innerText = `${min}:${sec}`;
