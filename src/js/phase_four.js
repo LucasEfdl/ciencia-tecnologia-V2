@@ -41,7 +41,7 @@ var attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 const textOfLogic = document.querySelector('textarea[name="logic"]');
 const submitLogicButton = document.getElementById("data-submit-logic");
 
-const velocityWigth = {
+const velocityWeight = {
   fox: [2, 3, 5],
   armadillo: [3, 5, 5],
 };
@@ -50,9 +50,9 @@ let progressLose = 0;
 let phase = 0;
 let armadilloPosition = data[phase].armadilloPosition;
 let armadilloVelocity =
-  data[phase].armadilloVelocity * velocityWigth.armadillo[phase];
+  data[phase].armadilloVelocity * velocityWeight.armadillo[phase];
 let foxPosition = data[phase].foxPosition;
-let foxVelocity = data[phase].foxVelocity * velocityWigth.fox[phase];
+let foxVelocity = data[phase].foxVelocity * velocityWeight.fox[phase];
 let time = 0;
 let difference = 0;
 
@@ -148,7 +148,7 @@ class Game {
     this.armadillo = data[phase].armadilloPosition;
     this.fox = data[phase].foxPosition;
     armadilloVelocity =
-      data[phase].armadilloVelocity * velocityWigth.armadillo[phase];
+      data[phase].armadilloVelocity * velocityWeight.armadillo[phase];
     this.updateDisplay();
     time = 0;
     difference = 0;
@@ -267,13 +267,15 @@ const showAttemptsGoneModel = () => attemptsGoneModal.show();
 function nextGame() {
   phase++;
   armadilloVelocity =
-    data[phase].armadilloVelocity * velocityWigth.armadillo[phase];
+    data[phase].armadilloVelocity * velocityWeight.armadillo[phase];
   armadilloPosition = data[phase].armadilloPosition;
-  foxVelocity = data[phase].foxVelocity * velocityWigth.fox[phase];
+  foxVelocity = data[phase].foxVelocity * velocityWeight.fox[phase];
   foxPosition = data[phase].foxPosition;
   endPositionText.innerText = data[phase].finalPosition;
   startPositionText.innerText = data[phase].halfPosition;
   distBetweenFoxArmadillo.innerText = data[phase].distBetweenFoxAndArmadillo;
+
+  halfTimeText.innerText = data[phase].halfTime;
 
   timerRef.innerText = "04:00";
   [milliseconds, seconds, minutes] = [0, 0, 4];
