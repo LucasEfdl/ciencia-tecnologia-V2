@@ -1,50 +1,53 @@
 [
   {
-    "armadilloVelocity": 30,
+    "armadilloVelocity": 10,
     "armadilloPosition": 0,
 
-    "foxVelocity": 41,
+    "foxVelocity": 20,
     "foxPosition": -450,
 
-    "finalPosition": "1.200m",
-    "halfPosition": "600m",
+    "halfPosition": "250m",
+    "finalPosition": "430m",
 
-    "distBetweenFoxAndArmadillo": 270,
+    "distBetweenFoxAndArmadillo": "200",
+
+    "halfTime": 25,
+    "finalTime": 43,
+
+    "options": ["6m/s", "8m/s", "10m/s", "3m/s"]
+  },
+  {
+    "armadilloVelocity": 7,
+    "armadilloPosition": 0,
+
+    "foxVelocity": 15,
+    "foxPosition": -400,
+
+    "halfPosition": "140m",
+    "finalPosition": "252m",
+
+    "distBetweenFoxAndArmadillo": "106",
 
     "halfTime": 20,
-    "options": ["28m/s", "23m/s", "30m/s", "25m/s", "18m/s"],
-    "finalTime": 40
+    "finalTime": 36,
+
+    "options": ["7m/s", "1m/s", "2m/s", "5m/s"]
   },
   {
-    "armadilloVelocity": 35,
+    "armadilloVelocity": 5,
     "armadilloPosition": 0,
 
-    "foxVelocity": 45,
-    "foxPosition": -350,
-
-    "finalPosition": "1.190m",
-    "halfPosition": "560m",
-
-    "distBetweenFoxAndArmadillo": 290,
-
-    "halfTime": 16,
-    "options": ["20m/s", "26m/s", "30m/s", "32m/s", "35m/s"],
-    "finalTime": 35
-  },
-  {
-    "armadilloVelocity": 25,
-    "armadilloPosition": 0,
-
-    "foxVelocity": 35,
+    "foxVelocity": 7,
     "foxPosition": -490,
 
-    "finalPosition": "1.150m",
-    "halfPosition": "575m",
+    "halfPosition": "115m",
+    "finalPosition": "240m",
 
-    "distBetweenFoxAndArmadillo": 220,
+    "distBetweenFoxAndArmadillo": "241",
 
     "halfTime": 23,
-    "options": ["25m/s", "22m/s", "20m/s", "18m/s", "14m/s"],
-    "finalTime": 48
+    "finalTime": 48,
+
+    "options": ["1m/s", "2m/s", "5m/s", "3m/s"]
   }
 ]
