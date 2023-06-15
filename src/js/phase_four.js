@@ -26,7 +26,7 @@ const armadilloElement = document.querySelector("[data-armadillo");
 const foxElement = document.querySelector("[data-fox");
 
 const timerRef = document.querySelector("[data-timer-display]");
-let [milliseconds, seconds, minutes] = [0, 0, 3];
+let [milliseconds, seconds, minutes] = [0, 0, 4];
 let timer = null;
 
 var completeChallengeModalElement =
@@ -41,13 +41,18 @@ var attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 const textOfLogic = document.querySelector('textarea[name="logic"]');
 const submitLogicButton = document.getElementById("data-submit-logic");
 
+const velocityWigth = {
+  fox: [2, 3, 5],
+  armadillo: [3, 5, 5],
+};
 let progressWin = 0;
 let progressLose = 0;
 let phase = 0;
 let armadilloPosition = data[phase].armadilloPosition;
-let armadilloVelocity = data[phase].armadilloVelocity;
+let armadilloVelocity =
+  data[phase].armadilloVelocity * velocityWigth.armadillo[phase];
 let foxPosition = data[phase].foxPosition;
-let foxVelocity = data[phase].foxVelocity;
+let foxVelocity = data[phase].foxVelocity * velocityWigth.fox[phase];
 let time = 0;
 let difference = 0;
 
@@ -142,7 +147,8 @@ class Game {
   reset() {
     this.armadillo = data[phase].armadilloPosition;
     this.fox = data[phase].foxPosition;
-    armadilloVelocity = data[phase].armadilloVelocity;
+    armadilloVelocity =
+      data[phase].armadilloVelocity * velocityWigth.armadillo[phase];
     this.updateDisplay();
     time = 0;
     difference = 0;
@@ -217,7 +223,7 @@ confirmAnswerButton.addEventListener("click", () => {
       }
     }, 1500);
   } else {
-    armadilloVelocity = num;
+    //armadilloVelocity = num;
     game.startGame();
     setTimeout(() => {
       resetButtons.forEach((resetButton) => {
@@ -260,9 +266,10 @@ const showAttemptsGoneModel = () => attemptsGoneModal.show();
 
 function nextGame() {
   phase++;
-  armadilloVelocity = data[phase].armadilloVelocity;
+  armadilloVelocity =
+    data[phase].armadilloVelocity * velocityWigth.armadillo[phase];
   armadilloPosition = data[phase].armadilloPosition;
-  foxVelocity = data[phase].foxVelocity;
+  foxVelocity = data[phase].foxVelocity * velocityWigth.fox[phase];
   foxPosition = data[phase].foxPosition;
   endPositionText.innerText = data[phase].finalPosition;
   startPositionText.innerText = data[phase].halfPosition;
