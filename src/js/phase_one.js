@@ -9,28 +9,26 @@ const armadillosMRUV = document.querySelectorAll(".armadilloMRUV");
 const timeTextMRU = document.querySelector("[data-time-textMRU]");
 const timeTextMRUV = document.querySelector("[data-time-textMRUV]");
 const timerRef = document.querySelector("[data-timer-display]");
-const attemptsText = document.querySelector("[data-attempts]");
+
 const timeOverModalElement = document.getElementById("timeOverModal");
 const questionModalElement = document.querySelector("[data-question]");
 const nextPhaseModalElement = document.getElementById("nextPhaseModal");
 const gameOverModalElement = document.getElementById("gameOverModal");
-const attemptsGoneModalElemenet = document.getElementById("attemptsGoneModal");
+
 const options = document.querySelectorAll('input[type="radio"][name="option"]');
 const showQuestionButton = document.querySelector("[data-show-question]");
 const submitAnswerButton = document.querySelector("[data-submit-answer]");
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
-const textAreaTextContent = document.querySelector("textarea");
-const submitLogicBtn = document.getElementById("question-one-logic");
+
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const questionModal = new bootstrap.Modal(questionModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
-const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElemenet);
+
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let indexMRU = 2;
 let indexMRUV = 2;
-let maxAttempts = 3;
 let time = null;
 
 startGameButton.addEventListener("click", () => {
@@ -39,18 +37,24 @@ startGameButton.addEventListener("click", () => {
   game();
 });
 
+let position = gameScreen.offsetWidth - armadilloMRU.offsetWidth;
+let pos = position / 4;
+let initalPosMRU = pos;
+
 function game() {
   armadilloMRU.style.animation = "armadillo-animation 4s linear";
   armadilloMRUV.style.animation = "armadillo-animation 3s ease-in";
 
   setTimeout(() => {
-    armadilloMRU.style.left = "1080px";
+    armadilloMRU.style.left = `${position}px`;
+
     showQuestionButton.disabled = false;
     questionModal.show();
     timer();
   }, 4000);
-  setInterval(() => {
-    armadilloMRUV.style.left = "1080px";
+
+  setTimeout(() => {
+    armadilloMRUV.style.left = `${position}px`;
   }, 3000);
 
   newArmadillosMRU();
@@ -97,6 +101,13 @@ const newArmadillosMRU = () => {
   }, 1000);
 };
 
+armadillosMRU.forEach((armadillo, index) => {
+  if (index >= 2 && pos <= position) {
+    armadillo.style.left = `${pos}px`;
+    pos += initalPosMRU;
+  }
+});
+
 const newArmadillosMRUV = () => {
   let newElements = setInterval(() => {
     armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
@@ -108,18 +119,22 @@ const newArmadillosMRUV = () => {
   }, 1000);
 };
 
+let posMRUVPC = [190, 550];
+let posMRUVMOBILE = [183, 363];
+let key = 0;
+
+armadillosMRUV.forEach((armadillo, index) => {
+  if (index >= 2) {
+    position > 800
+      ? (armadillo.style.left = `${posMRUVPC[key++]}px`)
+      : (armadillo.style.left = `${posMRUVMOBILE[key++]}px`);
+  }
+});
+
 options.forEach((option) => {
   option.addEventListener("click", () => {
     submitAnswerButton.disabled = false;
   });
-});
-
-textAreaTextContent.addEventListener("input", (e) => {
-  if (e != "") {
-    submitLogicBtn.classList.remove("disabled");
-  } else {
-    submitLogicBtn.classList.add("disabled");
-  }
 });
 
 submitAnswerButton.addEventListener("click", () => {
@@ -140,19 +155,7 @@ submitAnswerButton.addEventListener("click", () => {
     gameOverModal.show();
     questionModal.hide();
     showQuestionButton.disabled = false;
-    attemptsText.innerText = `${--maxAttempts}`;
-  }
-  if (maxAttempts == 0) {
-    attemptsGoneModal.show();
-    progressLose.style.width = "100%";
-    value =
-      "A trajetória de cima representa o movimento retilíneo uniformemente variado";
   }
 
   localStorage.setItem("answerChecked", value);
-});
-
-submitLogicBtn.addEventListener("click", () => {
-  const logicUsed = textAreaTextContent.value;
-  localStorage.setItem("logicUsedQ1", logicUsed);
 });

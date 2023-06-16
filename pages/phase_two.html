@@ -21,11 +21,7 @@
       class="vh-100 d-flex flex-column justify-content-center align-items-center"
     >
       <header class="w-75 d-flex justify-content-around align-items-center p-1">
-        <p class="text-white m-0">
-          Número de tentativas: <span data-attempts>3</span>
-        </p>
-
-        <div class="d-flex align-items-center">
+        <div class="d-flex justify-content-center align-items-center">
           <i class="ph-fill ph-timer" style="color: white"></i>
           <p data-timer-display class="text-white m-0">3:00</p>
         </div>
@@ -194,25 +190,15 @@
               </div>
               <div class="modal-body">
                 <p class="textWin">
-                  Parabéns por completar o desafio! <br />Por favor, nos diga
-                  qual foi a sua lógica para a resolução da questão:
+                  Parabéns por completar o desafio! Siga para a próxima fase
                 </p>
 
-                <div class="form-check">
-                  <textarea
-                    class="form-control mb-1"
-                    name="logic"
-                    rows="4"
-                  ></textarea>
-
-                  <a
-                    id="question-two-logic"
-                    href="./phase_three.html"
-                    class="btn btn-primary disabled"
-                  >
-                    Enviar
-                  </a>
-                </div>
+                <a
+                  href="./phase_three.html"
+                  role="button"
+                  class="btn btn-primary"
+                  >Próxima fase</a
+                >
               </div>
             </div>
           </div>

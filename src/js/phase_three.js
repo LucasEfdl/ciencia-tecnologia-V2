@@ -7,28 +7,22 @@ const armadillos = document.querySelectorAll(".armadillo");
 const timeText = document.querySelector("[data-time-text]");
 const positionText = document.querySelector("[data-text-postion]");
 const timerRef = document.querySelector("[data-timer-display]");
-const attemptsText = document.querySelector("[data-attempts]");
 const timeOverModalElement = document.getElementById("timeOverModal");
 const questionModalElement = document.querySelector("[data-question]");
 const nextPhaseModalElement = document.getElementById("nextPhaseModal");
 const gameOverModalElement = document.getElementById("gameOverModal");
-const attemptsGoneModalElemenet = document.getElementById("attemptsGoneModal");
 const options = document.querySelectorAll('input[type="radio"][name="option"]');
 const showQuestionButton = document.querySelector("[data-show-question]");
 const submitAnswerButton = document.querySelector("[data-submit-answer]");
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
-const textAreaTextContent = document.querySelector("textarea");
-const submitLogicBtn = document.getElementById("question-three-logic");
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const questionModal = new bootstrap.Modal(questionModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
-const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElemenet);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let index = 2;
 let position = 5;
-let maxAttempts = 3;
 let timer = null;
 
 startGameButton.addEventListener("click", () => {
@@ -124,26 +118,7 @@ submitAnswerButton.addEventListener("click", () => {
     gameOverModal.show();
     questionModal.hide();
     showQuestionButton.disabled = false;
-    attemptsText.innerText = `${--maxAttempts}`;
-  }
-  if (maxAttempts == 0) {
-    attemptsGoneModal.show();
-    progressLose.style.width = "100%";
-    velocity = `velocidade = ${answer} (errado)`;
   }
 
   localStorage.setItem("velocityChecked", velocity);
-});
-
-textAreaTextContent.addEventListener("input", (e) => {
-  if (e != "") {
-    submitLogicBtn.classList.remove("disabled");
-  } else {
-    submitLogicBtn.classList.add("disabled");
-  }
-});
-
-submitLogicBtn.addEventListener("click", () => {
-  const logicUsed = textAreaTextContent.value;
-  localStorage.setItem("logicUsedQ3", logicUsed);
 });

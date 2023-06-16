@@ -293,9 +293,6 @@ submitLogicButton.addEventListener("click", () => {
 function makeFile() {
   let name = localStorage.getItem("nome");
   let answer = localStorage.getItem("answerChecked");
-  let questionOneLogic = localStorage.getItem("logicUsedQ1");
-  let questionTwoLogic = localStorage.getItem("logicUsedQ2");
-  let questionThreeLogic = localStorage.getItem("logicUsedQ3");
   let graphic = localStorage.getItem("graphicChecked");
   let velocity = localStorage.getItem("velocityChecked");
   const text = `
@@ -303,15 +300,12 @@ function makeFile() {
 
   === Fase um ===
   Resposta: ${answer}
-  Lógica usada: ${questionOneLogic}
 
   === Fase dois ===
   Gráfico marcado: ${graphic}
-  Lógica usada: ${questionTwoLogic}
 
   == Fase três ==
   Resposta marcada: ${velocity}
-  Lógica usada: ${questionThreeLogic}
 
   === Fase quatro ===
   Opção marcada na primeira questão: ${optionChecked[0]};

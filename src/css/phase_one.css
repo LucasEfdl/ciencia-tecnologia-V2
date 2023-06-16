@@ -55,10 +55,24 @@
   }
 }
 
-.cactus {
-  width: 1920px;
-  height: 1080;
+@media screen and (max-width: 1024px) {
+  .game-screen {
+    width: 800px;
+    height: 400px;
+  }
 
-  bottom: -120px;
-  right: -1920px;
+  .armadilloMRU,
+  .armadilloMRUV {
+    width: 90px;
+    height: 60px;
+  }
+
+  @keyframes armadillo-animation {
+    from {
+      left: 0px;
+    }
+    to {
+      left: calc(800px - 90px);
+    }
+  }
 }
