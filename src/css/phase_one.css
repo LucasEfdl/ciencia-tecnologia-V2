@@ -57,14 +57,18 @@
 
 @media screen and (max-width: 1024px) {
   .game-screen {
-    width: 800px;
-    height: 400px;
+    width: 700px;
+    height: 300px;
+  }
+
+  #question {
+    font-size: 1rem;
   }
 
   .armadilloMRU,
   .armadilloMRUV {
-    width: 90px;
-    height: 60px;
+    width: 80px;
+    height: 55px;
   }
 
   @keyframes armadillo-animation {
@@ -72,7 +76,7 @@
       left: 0px;
     }
     to {
-      left: calc(800px - 90px);
+      left: calc(700px - 80px);
     }
   }
 }
