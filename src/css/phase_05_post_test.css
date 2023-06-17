@@ -1,0 +1,82 @@
+#initial-screen {
+  z-index: 100;
+}
+
+.game-screen {
+  width: 1200px;
+  height: 520px;
+
+  background-image: url(../images/bg-main.jpg);
+  background-size: cover;
+  background-position: bottom;
+
+  opacity: 0.5;
+}
+
+#armadilloMRU {
+  bottom: 25%;
+  background-image: url(../images/armadillog.gif);
+}
+
+#armadilloMRUV {
+  background-image: url(../images/armadillog.gif);
+}
+
+.armadilloMRU {
+  background-image: url(../images/armadillo.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 120px;
+  height: 80px;
+
+  bottom: 25%;
+  left: 0px;
+}
+
+.armadilloMRUV {
+  background-image: url(../images/armadillo.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 120px;
+  height: 80px;
+
+  bottom: 0;
+  left: 0px;
+}
+
+@keyframes armadillo-animation {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 1100px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .game-screen {
+    width: 700px;
+    height: 300px;
+  }
+
+  #question {
+    font-size: 1rem;
+  }
+
+  .armadilloMRU,
+  .armadilloMRUV {
+    width: 80px;
+    height: 55px;
+  }
+
+  @keyframes armadillo-animation {
+    from {
+      left: 0px;
+    }
+    to {
+      left: calc(700px - 80px);
+    }
+  }
+}
