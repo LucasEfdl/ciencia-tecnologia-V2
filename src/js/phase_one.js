@@ -1,7 +1,11 @@
 const initialScreen = document.getElementById("initial-screen");
 const gameScreen = document.querySelector("[data-game-screen]");
-const startGameButton = document.querySelector("[data-start-game]");
 
+let breakpoint = gameScreen.offsetWidth >= 1024 ? "-desktop" : "-mobile";
+
+const startGameButton = document.querySelector(
+  `[data-start-game${breakpoint}]`
+);
 const armadilloMRU = document.querySelector("[data-armadilloMRU]");
 const armadilloMRUV = document.querySelector("[data-armadilloMRUV]");
 const armadillosMRU = document.querySelectorAll(".armadilloMRU");
@@ -10,14 +14,23 @@ const timeTextMRU = document.querySelector("[data-time-textMRU]");
 const timeTextMRUV = document.querySelector("[data-time-textMRUV]");
 const timerRef = document.querySelector("[data-timer-display]");
 
-const timeOverModalElement = document.getElementById("timeOverModal");
-const questionModalElement = document.querySelector("[data-question]");
-const nextPhaseModalElement = document.getElementById("nextPhaseModal");
-const gameOverModalElement = document.getElementById("gameOverModal");
-
+const timeOverModalElement = document.getElementById(
+  `time-over-modal${breakpoint}`
+);
+const questionModalElement = document.getElementById(`question${breakpoint}`);
+const nextPhaseModalElement = document.getElementById(
+  `next-phase-modal${breakpoint}`
+);
+const gameOverModalElement = document.getElementById(
+  `game-over-modal${breakpoint}`
+);
 const options = document.querySelectorAll('input[type="radio"][name="option"]');
-const showQuestionButton = document.querySelector("[data-show-question]");
-const submitAnswerButton = document.querySelector("[data-submit-answer]");
+const showQuestionButton = document.querySelector(
+  `[data-show-question${breakpoint}]`
+);
+const submitAnswerButton = document.querySelector(
+  `[data-submit-answer${breakpoint}]`
+);
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 
@@ -30,6 +43,10 @@ let [milliseconds, seconds, minutes] = [0, 0, 3];
 let indexMRU = 2;
 let indexMRUV = 2;
 let time = null;
+
+let posMRUVPC = [190, 550];
+let posMRUVMOBILE = [83, 269];
+let key = 0;
 
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
@@ -119,10 +136,6 @@ const newArmadillosMRUV = () => {
   }, 1000);
 };
 
-let posMRUVPC = [190, 550];
-let posMRUVMOBILE = [183, 363];
-let key = 0;
-
 armadillosMRUV.forEach((armadillo, index) => {
   if (index >= 2) {
     position > 800
@@ -146,7 +159,7 @@ submitAnswerButton.addEventListener("click", () => {
       answer = option.id;
     }
   });
-  if (answer == "radio-one") {
+  if (answer == "radio-one" || answer == "radio-three") {
     nextPhaseModal.show();
     questionModal.hide();
     progressWin.style.width = "100%";

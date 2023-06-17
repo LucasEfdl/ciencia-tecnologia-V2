@@ -7,15 +7,29 @@ const armadillos = document.querySelectorAll(".armadillo");
 const timeText = document.querySelector("[data-time-text]");
 const timerRef = document.querySelector("[data-timer-display]");
 
-const timeOverModalElement = document.getElementById("timeOverModal");
-const questionModalElement = document.querySelector("[data-question]");
-const nextPhaseModalElement = document.getElementById("nextPhaseModal");
-const gameOverModalElement = document.getElementById("gameOverModal");
+let breakpoint = gameScreen.offsetWidth >= 1024 ? "-desktop" : "-mobile";
+
+const questionModalElement = document.getElementById(`question${breakpoint}`);
+const timeOverModalElement = document.getElementById(
+  `timeOverModal${breakpoint}`
+);
+
+const nextPhaseModalElement = document.getElementById(
+  `next-phase-modal${breakpoint}`
+);
+const gameOverModalElement = document.getElementById(
+  `game-over-modal${breakpoint}`
+);
 const options = document.querySelectorAll('input[type="radio"][name="option"]');
-const showQuestionButton = document.querySelector("[data-show-question]");
-const submitAnswerButton = document.querySelector("[data-submit-answer]");
+const showQuestionButton = document.querySelector(
+  `[data-show-question${breakpoint}]`
+);
+const submitAnswerButton = document.querySelector(
+  `[data-submit-answer${breakpoint}]`
+);
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
+
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const questionModal = new bootstrap.Modal(questionModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
@@ -23,6 +37,10 @@ const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let index = 2;
 let timer = null;
+
+const positionOnMobile = [131, 260, 392];
+const positionOnDesktop = [270, 540, 810];
+let key = 0;
 
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
@@ -34,7 +52,9 @@ function game() {
   armadillo.style.animation = "armadillo-animation 4s linear";
 
   setTimeout(() => {
-    armadillo.style.left = "1080px";
+    armadillo.style.left = `${
+      gameScreen.offsetWidth - armadillo.offsetWidth
+    }px`;
     showQuestionButton.disabled = false;
     questionModal.show();
     time();
@@ -74,6 +94,14 @@ const time = () => {
   }, 10);
 };
 
+armadillos.forEach((armadillo, index) => {
+  if (index >= 2) {
+    gameScreen.offsetWidth >= 1200
+      ? (armadillo.style.left = `${positionOnDesktop[key++]}px`)
+      : (armadillo.style.left = `${positionOnMobile[key++]}px`);
+  }
+});
+
 const newArmadillos = () => {
   let elements = setInterval(() => {
     armadillos[index++].classList.replace("d-none", "d-block");
@@ -91,7 +119,6 @@ options.forEach((option) => {
   });
 });
 
-
 submitAnswerButton.addEventListener("click", () => {
   let graphic;
   let answer = 0;
@@ -102,7 +129,7 @@ submitAnswerButton.addEventListener("click", () => {
       answer = option.id;
     }
   });
-  if (answer == "radio-one") {
+  if (answer == "radio-one" || answer == "radio-three") {
     nextPhaseModal.show();
     questionModal.hide();
     progressWin.style.width = "100%";
@@ -111,9 +138,7 @@ submitAnswerButton.addEventListener("click", () => {
     gameOverModal.show();
     questionModal.hide();
     showQuestionButton.disabled = false;
-
   }
 
   localStorage.setItem("graphicChecked", graphic);
 });
-

@@ -14,7 +14,6 @@
 }
 
 #armadillo {
-  /* animation: armadillo-animation 4s linear; */
   background-image: url(../images/armadillog.gif);
 }
 
@@ -39,10 +38,23 @@
   }
 }
 
-.cactus {
-  width: 1920px;
-  height: 1080;
+@media screen and (max-width: 1024px) {
+  .game-screen {
+    width: 600px;
+    height: 200px;
+  }
 
-  bottom: -120px;
-  right: -1920px;
+  .armadillo {
+    width: 80px;
+    height: 55px;
+  }
+
+  @keyframes armadillo-animation {
+    from {
+      left: 0px;
+    }
+    to {
+      left: calc(600px - 80px);
+    }
+  }
 }

@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 1024px) {
   .game-screen {
-    width: 700px;
+    width: 600px;
     height: 300px;
   }
 
@@ -76,7 +76,7 @@
       left: 0px;
     }
     to {
-      left: calc(700px - 80px);
+      left: calc(600px - 80px);
     }
   }
 }
