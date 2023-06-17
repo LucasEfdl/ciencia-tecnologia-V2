@@ -1,19 +1,32 @@
 const initialScreen = document.getElementById("initial-screen");
 const gameScreen = document.querySelector("[data-game-screen]");
-const startGameButton = document.querySelector("[data-start-game]");
+
+let breakpoint = gameScreen.offsetWidth >= 1024 ? "-desktop" : "-mobile";
+
+const startGameButton = document.querySelector(
+  `[data-start-game${breakpoint}]`
+);
 
 const armadillo = document.getElementById("armadillo");
 const armadillos = document.querySelectorAll(".armadillo");
 const timeText = document.querySelector("[data-time-text]");
 const positionText = document.querySelector("[data-text-postion]");
 const timerRef = document.querySelector("[data-timer-display]");
-const timeOverModalElement = document.getElementById("timeOverModal");
-const questionModalElement = document.querySelector("[data-question]");
-const nextPhaseModalElement = document.getElementById("nextPhaseModal");
+
+const timeOverModalElement = document.getElementById(
+  `time-over-modal${breakpoint}`
+);
+const questionModalElement = document.getElementById(`question${breakpoint}`);
+const nextPhaseModalElement = document.getElementById(
+  `next-phase-modal${breakpoint}`
+);
 const gameOverModalElement = document.getElementById("gameOverModal");
+
 const options = document.querySelectorAll('input[type="radio"][name="option"]');
-const showQuestionButton = document.querySelector("[data-show-question]");
-const submitAnswerButton = document.querySelector("[data-submit-answer]");
+const showQuestionButton = document.querySelector(`[data-show-question${breakpoint}]`);
+const submitAnswerButton = document.querySelector(
+  `[data-submit-answer${breakpoint}]`
+);
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
@@ -25,6 +38,10 @@ let index = 2;
 let position = 5;
 let timer = null;
 
+const postionMobile = [134, 264, 394];
+const postionDesktop = [270, 540, 810];
+let key = 0;
+
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
   gameScreen.style.opacity = "1";
@@ -35,7 +52,9 @@ function game() {
   armadillo.style.animation = "armadillo-animation 4s linear";
 
   setTimeout(() => {
-    armadillo.style.left = "1080px";
+    armadillo.style.left = `${
+      gameScreen.offsetWidth - armadillo.offsetWidth
+    }px`;
     showQuestionButton.disabled = false;
     questionModal.show();
     time();
@@ -75,8 +94,17 @@ const time = () => {
   }, 10);
 };
 
+armadillos.forEach((armadillo, index) => {
+  if (index >= 2) {
+    gameScreen.offsetWidth >= 1200
+      ? (armadillo.style.left = `${postionDesktop[key++]}px`)
+      : (armadillo.style.left = `${postionMobile[key++]}px`);
+  }
+});
+
 const newArmadillos = () => {
   let elements = setInterval(() => {
+    console.log(armadillo.offsetLeft);
     armadillos[index++].classList.replace("d-none", "d-block");
     timeText.textContent = `t = ${index - 1}`;
     positionText.innerText = `${position}m`;

@@ -13,7 +13,13 @@
   <body class="bg-dark">
     <section id="initial-screen" class="d-block w-100 position-absolute">
       <div class="d-flex justify-content-center align-items-center vh-100">
-        <button data-start-game class="btn btn-primary">Começar jogo</button>
+        <button data-start-game-desktop class="btn btn-primary d-sm-none d-lg-inline">
+          Começar jogo
+        </button>
+
+        <button data-start-game-mobile class="btn btn-primary btn-sm d-lg-none">
+          Começar jogo
+        </button>
       </div>
     </section>
 
@@ -59,11 +65,22 @@
 
         <div class="d-block p-3 text-end">
           <button
-            data-show-question
+            data-show-question-desktop
             type="button"
-            class="btn btn-info btn-sm"
+            class="btn btn-info d-sm-none d-lg-inline"
             data-bs-toggle="modal"
-            data-bs-target="#question"
+            data-bs-target="#question-desktop"
+            disabled
+          >
+            Mostrar pergunta
+          </button>
+
+          <button
+            data-show-question-mobile
+            type="button"
+            class="btn btn-info btn-sm d-lg-none d-sm-inline"
+            data-bs-toggle="modal"
+            data-bs-target="#question-mobile"
             disabled
           >
             Mostrar pergunta
@@ -75,37 +92,35 @@
           <p data-text-postion class="text-center fw-bold">0m</p>
         </div>
 
-        <div style="left: 0px" class="armadillo position-absolute">
+        <div class="armadillo position-absolute">
           <p class="text-center mb-0 fw-bold">t = 0</p>
           <p class="text-center fw-bold">0m</p>
         </div>
 
-        <div style="left: 270px" class="armadillo position-absolute d-none">
+        <div class="armadillo position-absolute d-none">
           <p class="text-center mb-0 fw-bold">t = 1</p>
           <p class="text-center fw-bold">5m</p>
         </div>
 
-        <div style="left: 540px" class="armadillo position-absolute d-none">
+        <div class="armadillo position-absolute d-none">
           <p class="text-center mb-0 fw-bold">t = 2</p>
           <p class="text-center fw-bold">10m</p>
         </div>
 
-        <div style="left: 810px" class="armadillo position-absolute d-none">
+        <div class="armadillo position-absolute d-none">
           <p class="text-center mb-0 fw-bold">t = 3</p>
           <p class="text-center fw-bold">15m</p>
         </div>
 
-        <!-- Modal para mostrar a questão -->
-        <div data-question id="question" class="modal fade">
-          <div
-            class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-          >
+        <!-- Modal para mostrar a questão (mobile) -->
+        <div id="question-mobile" class="modal fade">
+          <div class="modal-dialog modal-sm modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
                 <p>Com base na trajetória do Tatu, qual é a sua velocidade?</p>
                 <button
                   type="button"
-                  class="btn-close"
+                  class="btn btn-close btn-sm"
                   data-bs-dismiss="modal"
                   aria-label="Fechar"
                 ></button>
@@ -145,7 +160,79 @@
 
               <div class="modal-footer">
                 <button
-                  data-submit-answer
+                  data-submit-answer-mobile
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  data-bs-dismiss="modal"
+                  disabled
+                >
+                  Confirmar
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  data-bs-dismiss="modal"
+                  aria-label="Fechar"
+                >
+                  Fechar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para mostrar a questão (desktop) -->
+        <div id="question-desktop" class="modal fade">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <p>Com base na trajetória do Tatu, qual é a sua velocidade?</p>
+                <button
+                  type="button"
+                  class="btn btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Fechar"
+                ></button>
+              </div>
+
+              <div class="modal-body">
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="radio-three"
+                    name="option"
+                  />
+                  <label class="form-check-label" for="radio-three"
+                    >15m/s</label
+                  >
+                </div>
+
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="radio-four"
+                    name="option"
+                  />
+                  <label class="form-check-label" for="radio-four">10m/s</label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="radio-five"
+                    name="option"
+                  />
+                  <label class="form-check-label" for="radio-five">5m/s</label>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  data-submit-answer-desktop
                   type="button"
                   class="btn btn-success"
                   data-bs-dismiss="modal"
@@ -167,9 +254,41 @@
           </div>
         </div>
 
-        <!-- Modal para próxima fase -->
+        <!-- Modal para próxima fase (mobile) -->
         <div
-          id="nextPhaseModal"
+          id="next-phase-modal-mobile"
+          class="modal fade d-lg-none"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
+              </div>
+              <div class="modal-body">
+                <p class="textWin">
+                  Parabéns por completar o desafio! Siga para a próxima fase
+                </p>
+
+                <a
+                  href="./phase_four.html"
+                  role="button"
+                  class="btn btn-primary btn-sm"
+                  >Próxima fase</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para próxima fase (desktop) -->
+        <div
+          id="next-phase-modal-desktop"
           class="modal fade"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
@@ -199,9 +318,43 @@
           </div>
         </div>
 
-        <!-- Modal para mostrar que o tempo acabou -->
+        <!-- Modal para mostrar que o tempo acabou (mobile) -->
         <div
-          id="timeOverModal"
+          id="time-over-modal-mobile"
+          class="modal fade d-lg-none"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Tempo esgotado</h5>
+              </div>
+              <div class="modal-body">
+                <p class="textWin">
+                  Infelizmente o tempo acabou! Siga para o próximo desafio.
+                </p>
+              </div>
+              <div class="modal-footer">
+                <a
+                  href="./phase_four.html"
+                  role="button"
+                  class="btn btn-secondary btn-sm"
+                >
+                  Próxima fase
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para mostrar que o tempo acabou (desktop) -->
+        <div
+          id="time-over-modal-desktop"
           class="modal fade"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
@@ -265,43 +418,6 @@
                   Fechar
                   <i class="bi bi-pause"></i>
                 </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Modal para mostrar que o número de tentaivas acabou -->
-        <div
-          id="attemptsGoneModal"
-          class="modal fade"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabindex="-1"
-          role="dialog"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <p id="modalLabel" class="h5 modal-title">
-                  Ops, o número de tentativas acabou!
-                </p>
-              </div>
-
-              <div class="modal-body">
-                <p class="textWin">
-                  Infelizmente você não poderá mais responder a essa pergunta.
-                </p>
-              </div>
-
-              <div class="modal-footer">
-                <a
-                  href="./phase_four.html"
-                  role="button"
-                  class="btn btn-secondary"
-                >
-                  Próxima fase
-                </a>
               </div>
             </div>
           </div>
