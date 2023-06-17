@@ -20,10 +20,13 @@ const questionModalElement = document.getElementById(`question${breakpoint}`);
 const nextPhaseModalElement = document.getElementById(
   `next-phase-modal${breakpoint}`
 );
-const gameOverModalElement = document.getElementById("gameOverModal");
-
+const gameOverModalElement = document.getElementById(
+  `game-over-modal${breakpoint}`
+);
 const options = document.querySelectorAll('input[type="radio"][name="option"]');
-const showQuestionButton = document.querySelector(`[data-show-question${breakpoint}]`);
+const showQuestionButton = document.querySelector(
+  `[data-show-question${breakpoint}]`
+);
 const submitAnswerButton = document.querySelector(
   `[data-submit-answer${breakpoint}]`
 );
@@ -104,7 +107,6 @@ armadillos.forEach((armadillo, index) => {
 
 const newArmadillos = () => {
   let elements = setInterval(() => {
-    console.log(armadillo.offsetLeft);
     armadillos[index++].classList.replace("d-none", "d-block");
     timeText.textContent = `t = ${index - 1}`;
     positionText.innerText = `${position}m`;

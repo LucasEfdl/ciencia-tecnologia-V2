@@ -17,8 +17,9 @@ const timeOverModalElement = document.getElementById(
 const nextPhaseModalElement = document.getElementById(
   `next-phase-modal${breakpoint}`
 );
-const gameOverModalElement = document.getElementById("gameOverModal");
-
+const gameOverModalElement = document.getElementById(
+  `game-over-modal${breakpoint}`
+);
 const options = document.querySelectorAll('input[type="radio"][name="option"]');
 const showQuestionButton = document.querySelector(
   `[data-show-question${breakpoint}]`
