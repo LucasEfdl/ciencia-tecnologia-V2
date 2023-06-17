@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fase IV - Cinemática</title>
+  <link rel="stylesheet" href="../src/css/phase_04_main.css" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body class="bg-dark text-white">
+  <section id="initial-screen" class="d-block w-100 position-absolute">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+      <button data-start-game class="btn btn-primary">Começar jogo</button>
+    </div>
+  </section>
+
+  <section class="vh-100 d-flex flex-column justify-content-center align-items-center">
+    <header class="w-75 d-flex justify-content-around align-items-center p-1">
+      <p class="text-white m-0">
+        Número de tentativas: <span data-attempts>3</span>
+      </p>
+
+      <div class="d-flex align-items-center">
+        <i class="ph-fill ph-timer" style="color: white"></i>
+        <p data-timer-display class="text-white m-0">4:00</p>
+      </div>
+    </header>
+
+    <main data-game-screen class="game-screen d-block position-relative overflow-hidden">
+      <div class="progress-stacked">
+        <div class="progress" role="progressbar" style="width: 0%" aria-label="Segment one" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar bg-success"></div>
+        </div>
+
+        <div class="progress" role="progressbar" style="width: 0%" aria-label="Segment two" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar bg-danger"></div>
+        </div>
+      </div>
+
+      <div class="d-block p-3 text-end">
+        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#help">
+          <i class="bi bi-question-lg"></i> Ajuda
+        </button>
+
+        <button data-reset type="button" class="btn btn-danger" disabled>
+          <i class="bi bi-pause"></i> Resetar
+        </button>
+      </div>
+
+      <!-- Overlay para mostrar a pergunta-->
+      <div data-question class="d-none bg-dark w-75 p-4 mx-auto">
+        <p class="text-center fs-5">
+          Um tatu está fugindo de uma raposa e, para se salvar, ele precisa
+          chegar à sua toca. Sua tarefa é descobrir a velocidade
+          <strong>mínima</strong> do tatu para que ele fuja do predador!
+          <br />
+        </p>
+
+        <p class="texte-center">
+          <strong>Dados</strong>: leve em consideração que, no instante de sua
+          observação, o tatu encontra-se em repouso e à
+          <span class="end-position-text"></span> do seu destino. Considere o
+          movimento descrito por ele como sendo Retilíneo Uniforme e o tempo
+          que ele leva para chegar <span class="start-position-text"></span>,
+          como sendo <span class="half-time-text"></span>s. A raposa
+          encontra-se com velocidade constante igual a
+          <span class="fox-velocity-text"></span>m/s e a distância atual entre
+          ela e o tatu é de <span class="dist-between-fox-armadillo"></span>m.
+        </p>
+
+        <div class="d-flex flex-row justify-content-center align-items-center gap-3">
+          <div class="form-check">
+            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio1" />
+            <label for="radio1"></label>
+          </div>
+
+          <div class="form-check">
+            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio2" />
+            <label for="radio2"></label>
+          </div>
+
+          <div class="form-check">
+            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio3" />
+            <label for="radio3"></label>
+          </div>
+
+          <div class="form-check">
+            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio4" />
+            <label for="radio4"></label>
+          </div>
+
+          <button data-confirm-answer class="btn btn-success" disabled>
+            Confirmar
+          </button>
+        </div>
+      </div>
+
+      <!-- Código HTML do modal -->
+      <div class="modal fade text-black" id="help" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Migração do Peba
+              </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body text-center">
+              <h4>Movimento Retilíneo Uniforme</h4>
+              <br />
+              <p>
+                Para resolver esta questão, o aluno prescisa se lembrar do
+                conceito universal da cinemática:
+              </p>
+              <img class="equacaoMRU" src="../src/images/equacao.jpg" alt="equacaoMRU" />
+              <p>
+                Como a questão nos forne a distância e o tempo, só precisamos
+                substituir na fórmula para encontrarmos a velocidade mínima.
+              </p>
+              <br />
+              <p>Tente você mesmo agora!<br /></p>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Fechar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para próxima fase -->
+      <div id="nextPhaseModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Fim do desafio</h5>
+            </div>
+            <div class="modal-body">
+              <p class="textWin">
+                Parabéns, você ganhou! Siga para o próximo desafio.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button data-next-phase type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                data-bs-target="#nextPhaseModal">
+                Próximo desafio
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para informar uma nova tentativa -->
+      <div id="gameOverModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Resposta errada</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+              <p class="textWin">Não foi dessa vez! Tente Novamente.</p>
+            </div>
+            <div class="modal-footer">
+              <button data-reset class="btn btn-danger" data-bs-dismiss="modal">
+                Recomeçar
+                <i class="bi bi-pause"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para mostrar que o desafio foi completo -->
+      <div id="completeChallenge" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Desafio completo!</h5>
+            </div>
+            <div class="modal-body">
+              <p class="text-black">
+                Parabéns por completar os desafios! <br />Por favor, nos diga
+                qual foi a sua lógica para a resolução das questões:
+              </p>
+
+              <div class="form-check">
+                <textarea class="form-control mb-1" name="logic" rows="4"></textarea>
+
+                <a id="data-submit-logic" href="#" class="btn btn-primary disabled" download>
+                  Enviar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para mostrar que o tempo acabou -->
+      <div id="timeOverModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Tempo esgotado</h5>
+            </div>
+            <div class="modal-body">
+              <p class="textWin">
+                Infelizmente o tempo acabou! Siga para o próximo desafio.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button data-next-phase type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                data-bs-target="#timeOverModal">
+                Próxima fase
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para mostrar que o número de tentaivas acabou -->
+      <div id="attemptsGoneModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p id="modalLabel" class="h5 modal-title">
+                Ops, o número de tentativas acabou!
+              </p>
+            </div>
+
+            <div class="modal-body">
+              <p class="textWin">
+                Infelizmente você não poderá mais responder a essa pergunta.
+              </p>
+            </div>
+
+            <div class="modal-footer">
+              <button data-next-phase type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                data-bs-target="#attemptsGoneModal">
+                Próxima fase
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Objetos -->
+      <div data-armadillo id="armadillo" class="armadillo d-block"></div>
+
+      <div data-fox id="fox" class="fox d-block"></div>
+    </main>
+  </section>
+
+  <!-- Script  -->
+  <script type="module" src="../src/js/phase_04_main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="../src/js/bootstrap.min.js"></script>
+</body>
+
+</html>

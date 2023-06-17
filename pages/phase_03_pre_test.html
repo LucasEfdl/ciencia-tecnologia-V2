@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fase III - Cinemática</title>
+  <link rel="stylesheet" href="../src/css/phase_03_pre_test.css" />
+  <link rel="stylesheet" href="../src/css/bootstrap.css" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body class="bg-dark">
+  <section id="initial-screen" class="d-block w-100 position-absolute">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+      <button data-start-game class="btn btn-primary">Começar jogo</button>
+    </div>
+  </section>
+
+  <section class="vh-100 d-flex flex-column justify-content-center align-items-center">
+    <header class="w-75 d-flex justify-content-around align-items-center p-1">
+      <div class="d-flex align-items-center">
+        <i class="ph-fill ph-timer" style="color: white"></i>
+        <p data-timer-display class="text-white m-0">3:00</p>
+      </div>
+    </header>
+
+    <main data-game-screen class="game-screen d-block position-relative overflow-hidden">
+      <div class="progress-stacked">
+        <div data-progress-win class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar bg-success"></div>
+        </div>
+
+        <div data-progress-lose class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar bg-danger"></div>
+        </div>
+      </div>
+
+      <div class="d-block p-3 text-end">
+        <button data-show-question type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
+          data-bs-target="#question" disabled>
+          Mostrar pergunta
+        </button>
+      </div>
+
+      <div data-armadillo id="armadillo" class="armadillo position-absolute">
+        <p data-time-text class="text-center mb-0 fw-bold">t = 0</p>
+        <p data-text-postion class="text-center fw-bold">0m</p>
+      </div>
+
+      <div style="left: 0px" class="armadillo position-absolute">
+        <p class="text-center mb-0 fw-bold">t = 0</p>
+        <p class="text-center fw-bold">0m</p>
+      </div>
+
+      <div style="left: 270px" class="armadillo position-absolute d-none">
+        <p class="text-center mb-0 fw-bold">t = 1</p>
+        <p class="text-center fw-bold">5m</p>
+      </div>
+
+      <div style="left: 540px" class="armadillo position-absolute d-none">
+        <p class="text-center mb-0 fw-bold">t = 2</p>
+        <p class="text-center fw-bold">10m</p>
+      </div>
+
+      <div style="left: 810px" class="armadillo position-absolute d-none">
+        <p class="text-center mb-0 fw-bold">t = 3</p>
+        <p class="text-center fw-bold">15m</p>
+      </div>
+
+      <!-- Modal para mostrar a questão -->
+      <div data-question id="question" class="modal fade">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p>Com base na trajetória do Tatu, qual é a sua velocidade?</p>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+
+            <div class="modal-body">
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="radio-one" name="option" />
+                <label class="form-check-label" for="radio-one">15m/s</label>
+              </div>
+
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="radio-two" name="option" />
+                <label class="form-check-label" for="radio-two">10m/s</label>
+              </div>
+
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="radio-three" name="option" />
+                <label class="form-check-label" for="radio-three">5m/s</label>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button data-submit-answer type="button" class="btn btn-success" data-bs-dismiss="modal" disabled>
+                Confirmar
+              </button>
+
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Fechar">
+                Fechar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para próxima fase -->
+      <div id="nextPhaseModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
+            </div>
+            <div class="modal-body">
+              <p class="textWin">
+                Parabéns por completar o desafio! Siga para a próxima fase
+              </p>
+
+              <a href="./phase_04_main.html" role="button" class="btn btn-primary">Próxima fase</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para mostrar que o tempo acabou -->
+      <div id="timeOverModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Tempo esgotado</h5>
+            </div>
+            <div class="modal-body">
+              <p class="textWin">
+                Infelizmente o tempo acabou! Siga para o próximo desafio.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <a href="./phase_04_main.html" role="button" class="btn btn-secondary">
+                Próxima fase
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para informar uma nova tentativa -->
+      <div id="gameOverModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Resposta errada</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+              <p class="textWin">Não foi dessa vez! Tente Novamente.</p>
+            </div>
+            <div class="modal-footer">
+              <button data-reset class="btn btn-danger" data-bs-dismiss="modal">
+                Fechar
+                <i class="bi bi-pause"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <script type="module" src="../src/js/phase_03_pre_test.js"></script>
+  <script src="../src/js/bootstrap.min.js"></script>
+</body>
+
+</html>
