@@ -1,0 +1,39 @@
+#initial-screen {
+  z-index: 100;
+}
+
+.game-screen {
+  width: 1200px;
+  height: 520px;
+
+  background-image: url(../images/bg-main.jpg);
+  background-size: cover;
+  background-position: bottom;
+
+  opacity: 0.5;
+}
+
+#armadillo {
+  background-image: url(../images/armadillog.gif);
+}
+
+.armadillo {
+  background-image: url(../images/armadillo.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 120px;
+  height: 80px;
+
+  bottom: 0px;
+  left: 0px;
+}
+
+@keyframes armadillo-animation {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 1100px;
+  }
+}
