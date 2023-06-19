@@ -8,8 +8,8 @@ const startGameButton = document.querySelector(
 
 const armadilloMRU = document.querySelector("[data-armadilloMRU]");
 const armadilloMRUV = document.querySelector("[data-armadilloMRUV]");
-const armadillosMRU = document.querySelectorAll(".armadilloMRU");
-const armadillosMRUV = document.querySelectorAll(".armadilloMRUV");
+const armadillosMRU = document.querySelectorAll(".object");
+const armadillosMRUV = document.querySelectorAll(".object-2");
 const timeTextMRU = document.querySelector("[data-time-textMRU]");
 const timeTextMRUV = document.querySelector("[data-time-textMRUV]");
 const timerRef = document.querySelector("[data-timer-display]");
@@ -106,7 +106,7 @@ const timer = () => {
 const newArmadillosMRU = () => {
   let newElements = setInterval(() => {
     armadillosMRU[indexMRU++].classList.replace("d-none", "d-block");
-    timeTextMRU.textContent = `t = ${indexMRU - 1}`;
+    timeTextMRU.textContent = `t = ${indexMRU - 1}s `;
 
     if (indexMRU > 4) {
       clearInterval(newElements);
@@ -124,7 +124,7 @@ armadillosMRU.forEach((armadillo, index) => {
 const newArmadillosMRUV = () => {
   let newElements = setInterval(() => {
     armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
-    timeTextMRUV.textContent = `t = ${indexMRUV - 1}`;
+    timeTextMRUV.innerHTML = `t = ${indexMRU - 1}s <br/> v = 10m/s`;
 
     if (indexMRUV > 3) {
       clearInterval(newElements);

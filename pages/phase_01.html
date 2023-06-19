@@ -15,7 +15,7 @@
       <div class="d-flex justify-content-center align-items-center vh-100">
         <button
           data-start-game-desktop
-          class="btn btn-primary d-sm-none d-lg-inline"
+          class="btn btn-primary d-none d-lg-inline"
         >
           Começar jogo
         </button>
@@ -71,7 +71,7 @@
           <button
             data-show-question-desktop
             type="button"
-            class="btn btn-info d-sm-none d-lg-inline"
+            class="btn btn-info d-none d-lg-inline"
             data-bs-toggle="modal"
             data-bs-target="#question-desktop"
             disabled
@@ -92,59 +92,65 @@
         </div>
 
         <!-- MRU -->
-
-        <div
-          data-armadilloMRU
-          id="armadilloMRU"
-          class="armadilloMRU position-absolute"
-        >
-          <p data-time-textMRU class="text-center mb-0 fw-bold">t = 0</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div data-armadilloMRU class="object position-absolute">
+          <div id="armadilloMRU" class="armadilloMRU">
+            <p class="text-center mb-0 fw-bold">
+              <span data-time-textMRU>t = 0s</span> <br />
+              v = 10m/s
+            </p>
+          </div>
         </div>
 
-        <div class="armadilloMRU position-absolute">
-          <p class="text-center mb-0 fw-bold">t = 0</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object position-absolute">
+          <div class="armadilloMRU">
+            <p class="text-center mb-0 fw-bold">t = 0s <br />v = 10m/s</p>
+          </div>
         </div>
 
-        <div class="armadilloMRU position-absolute d-none">
-          <p class="text-center mb-0 fw-bold">t = 1</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object position-absolute d-none">
+          <div class="armadilloMRU">
+            <p class="text-center mb-0 fw-bold">t = 0s <br />v = 10m/s</p>
+          </div>
         </div>
 
-        <div class="armadilloMRU position-absolute d-none">
-          <p class="text-center mb-0 fw-bold">t = 2</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object position-absolute d-none">
+          <div class="armadilloMRU">
+            <p class="text-center mb-0 fw-bold">t = 0s <br />v = 10m/s</p>
+          </div>
         </div>
 
-        <div class="armadilloMRU position-absolute d-none">
-          <p class="text-center mb-0 fw-bold">t = 3</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object position-absolute d-none">
+          <div class="armadilloMRU">
+            <p class="text-center mb-0 fw-bold">t = 0s <br />v = 10m/s</p>
+          </div>
         </div>
 
         <!-- MRUV -->
-        <div
-          data-armadilloMRUV
-          id="armadilloMRUV"
-          class="armadilloMRUV position-absolute"
-        >
-          <p data-time-textMRUV class="text-center mb-0 fw-bold">t = 0</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div data-armadilloMRUV class="object-2 position-absolute">
+          <div id="armadilloMRUV" class="armadilloMRUV">
+            <p data-time-textMRUV class="text-center mb-0 fw-bold">
+              <span data-time-textMRUV>t = 0s</span> <br />
+              v = 10m/s
+            </p>
+          </div>
         </div>
 
-        <div data-armadilloMRUV class="armadilloMRUV position-absolute">
-          <p class="text-center mb-0 fw-bold">t = 0</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object-2 position-absolute">
+          <div class="armadilloMRUV">
+            <p class="text-center mb-0 fw-bold">t = 0s <br />v = 10m/s</p>
+          </div>
         </div>
 
-        <div data-armadilloMRUV class="armadilloMRUV position-absolute d-none">
-          <p class="text-center mb-0 fw-bold">t = 1</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object-2 position-absolute d-none">
+          <div class="armadilloMRUV">
+            <p class="text-center mb-0 fw-bold">t = 1s <br />v = 10m/s</p>
+          </div>
         </div>
 
-        <div data-armadilloMRUV class="armadilloMRUV position-absolute d-none">
-          <p class="text-center mb-0 fw-bold">t = 2</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object-2 position-absolute d-none">
+          <div class="armadilloMRUV">
+            <p class="text-center mb-0 fw-bold">t = 2s <br />v = 10m/s</p>
+          </div>
         </div>
 
         <!-- Modal para mostrar a questão (mobile)-->

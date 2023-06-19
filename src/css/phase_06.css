@@ -26,8 +26,11 @@
   width: 120px;
   height: 80px;
 
-  bottom: 0px;
   left: 0px;
+}
+
+.object {
+  bottom: 0px;
 }
 
 @keyframes armadillo-animation {
@@ -49,8 +52,7 @@
     font-size: 1rem;
   }
 
-  .armadilloMRU,
-  .armadilloMRUV {
+  .armadilloMRU {
     width: 80px;
     height: 55px;
   }
@@ -74,6 +76,8 @@
   .armadillo {
     width: 80px;
     height: 55px;
+
+    font-size: 10px;
   }
 
   @keyframes armadillo-animation {

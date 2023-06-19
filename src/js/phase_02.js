@@ -1,19 +1,18 @@
 const initialScreen = document.getElementById("initial-screen");
 const gameScreen = document.querySelector("[data-game-screen]");
-const startGameButton = document.querySelector("[data-start-game]");
-
-const armadillo = document.getElementById("armadillo");
-const armadillos = document.querySelectorAll(".armadillo");
-const timeText = document.querySelector("[data-time-text]");
-const timerRef = document.querySelector("[data-timer-display]");
-
 let breakpoint = gameScreen.offsetWidth >= 1024 ? "-desktop" : "-mobile";
 
+const startGameButton = document.querySelector(
+  `[data-start-game${breakpoint}]`
+);
+const armadillo = document.querySelector("[data-armadillo]");
+const armadillos = document.querySelectorAll(".object");
+const timeText = document.querySelector("[data-time-text]");
+const timerRef = document.querySelector("[data-timer-display]");
 const questionModalElement = document.getElementById(`question${breakpoint}`);
 const timeOverModalElement = document.getElementById(
   `timeOverModal${breakpoint}`
 );
-
 const nextPhaseModalElement = document.getElementById(
   `next-phase-modal${breakpoint}`
 );
@@ -105,7 +104,7 @@ armadillos.forEach((armadillo, index) => {
 const newArmadillos = () => {
   let elements = setInterval(() => {
     armadillos[index++].classList.replace("d-none", "d-block");
-    timeText.textContent = `t = ${index - 1}`;
+    timeText.innerHTML = `t = ${index - 1}s <br/> v = 10m/s`;
 
     if (index > 4) {
       clearInterval(elements);
@@ -124,6 +123,7 @@ submitAnswerButton.addEventListener("click", () => {
   let answer = 0;
 
   showQuestionButton.disabled = true;
+
   options.forEach((option) => {
     if (option.checked) {
       answer = option.id;

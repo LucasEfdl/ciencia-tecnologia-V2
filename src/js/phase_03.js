@@ -7,10 +7,9 @@ const startGameButton = document.querySelector(
   `[data-start-game${breakpoint}]`
 );
 
-const armadillo = document.getElementById("armadillo");
-const armadillos = document.querySelectorAll(".armadillo");
+const armadillo = document.querySelector("[data-armadillo]");
+const armadillos = document.querySelectorAll(".object");
 const timeText = document.querySelector("[data-time-text]");
-const positionText = document.querySelector("[data-text-postion]");
 const timerRef = document.querySelector("[data-timer-display]");
 
 const timeOverModalElement = document.getElementById(
@@ -108,13 +107,11 @@ armadillos.forEach((armadillo, index) => {
 const newArmadillos = () => {
   let elements = setInterval(() => {
     armadillos[index++].classList.replace("d-none", "d-block");
-    timeText.textContent = `t = ${index - 1}`;
-    positionText.innerText = `${position}m`;
+    timeText.innerHTML = `t = ${index - 1}s <br/> ${position}m`;
     position += 5;
 
     if (index > 4) {
-      positionText.innerText = `${position}m`;
-
+      timeText.innerHTML = `t = ${index - 1}s <br/> ${position}m`;
       clearInterval(elements);
     }
   }, 1000);
