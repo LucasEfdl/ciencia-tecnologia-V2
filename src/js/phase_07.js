@@ -35,6 +35,8 @@ const questionModal = new bootstrap.Modal(questionModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
+let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
+let [minutesSpent, secondsSpent] = [0, 0];
 let index = 2;
 let timer = null;
 
@@ -63,7 +65,24 @@ function game() {
 }
 
 const time = () => {
+  const countElapsedTime = () => {
+    elapsedMilliseconds += 10;
+    if (elapsedMilliseconds == 1000) {
+      elapsedMilliseconds = 0;
+      elapsedSeconds++;
+      if (elapsedSeconds == 60) {
+        elapsedSeconds = 0;
+        elapsedMinutes++;
+      }
+    }
+
+    minutesSpent = elapsedMinutes < 10 ? "0" + elapsedMinutes : elapsedMinutes;
+    secondsSpent = elapsedSeconds < 10 ? "0" + elapsedSeconds : elapsedSeconds;
+  };
+
   timer = setInterval(() => {
+    countElapsedTime();
+
     milliseconds -= 10;
     if (milliseconds < 0) {
       milliseconds = 990;
@@ -79,6 +98,8 @@ const time = () => {
 
     if (min == 0 && sec == 0) {
       clearInterval(timer);
+      clearInterval(countElapsedTime);
+
       question.classList.replace("d-block", "d-none");
       timeOverModal.show();
       questionModal.hide();
@@ -143,5 +164,9 @@ submitAnswerButton.addEventListener("click", () => {
     showQuestionButton.disabled = false;
   }
 
-  localStorage.setItem("velocityChecked", velocity);
+  localStorage.setItem("question-07", velocity);
+  localStorage.setItem(
+    "question-07-time",
+    `tempo gasto: ${minutesSpent}:${secondsSpent}`
+  );
 });

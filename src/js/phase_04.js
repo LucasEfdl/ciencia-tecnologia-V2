@@ -292,26 +292,62 @@ submitLogicButton.addEventListener("click", () => {
 
 function makeFile() {
   let name = localStorage.getItem("nome");
-  let answer = localStorage.getItem("answerChecked");
-  let graphic = localStorage.getItem("graphicChecked");
-  let velocity = localStorage.getItem("velocityChecked");
+  let [questionOne, questionOneTime] = [
+    localStorage.getItem("question-01"),
+    localStorage.getItem("question-01-time"),
+  ];
+  let [questionTwo, questionTwoTime] = [
+    localStorage.getItem("question-02"),
+    localStorage.getItem("question-02-time"),
+  ];
+  let [questionThree, questionThreeTime] = [
+    localStorage.getItem("question-03"),
+    localStorage.getItem("question-03-time"),
+  ];
+  let [questionFive, questionFiveTime] = [
+    localStorage.getItem("question-05"),
+    localStorage.getItem("question-05-time"),
+  ];
+  let [questionSix, questionSixTime] = [
+    localStorage.getItem("question-06"),
+    localStorage.getItem("question-06-time"),
+  ];
+  let [questionSeven, questionSevenTime] = [
+    localStorage.getItem("question-07"),
+    localStorage.getItem("question-07-time"),
+  ];
   const text = `
   Nome do aluno: ${name}
 
   === Fase um ===
-  Resposta: ${answer}
+  Resposta marcada: ${questionOne};
+  ${questionOneTime}
 
   === Fase dois ===
-  Gráfico marcado: ${graphic}
+  Resposta marcada: ${questionTwo};
+  ${questionTwoTime};
 
-  == Fase três ==
-  Resposta marcada: ${velocity}
+  === Fase três ===
+  Resposta marcada: ${questionThree};
+  ${questionThreeTime}
 
   === Fase quatro ===
   Opção marcada na primeira questão: ${optionChecked[0]};
   Opção marcada na segunda questão: ${optionChecked[1]};
   Opção marcada na segunda questão: ${optionChecked[2]};
-  Lógida usada: ${textOfLogic.value}  
+  Lógida usada: ${textOfLogic.value};  
+
+  === Fase cinco ===
+  Resposta marcada: ${questionFive};
+  ${questionFiveTime}
+
+  === Fase seis ===
+  Resposta marcada: ${questionSix};
+  ${questionSixTime}
+
+  === Fase Sete ===
+  Resposta marcada: ${questionSeven};
+  ${questionSevenTime}
   `;
 
   const file = new Blob([text], { type: "text/plain" });
