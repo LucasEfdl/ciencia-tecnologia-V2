@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fase III - Cinemática</title>
-    <link rel="stylesheet" href="../src/css/phase_three.css" />
+    <title>Fase VI - Cinemática</title>
+    <link rel="stylesheet" href="../src/css/phase_06.css" />
     <link rel="stylesheet" href="../src/css/bootstrap.css" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
@@ -30,7 +30,7 @@
       class="vh-100 d-flex flex-column justify-content-center align-items-center"
     >
       <header class="w-75 d-flex justify-content-around align-items-center p-1">
-        <div class="d-flex align-items-center">
+        <div class="d-flex justify-content-center align-items-center">
           <i class="ph-fill ph-timer" style="color: white"></i>
           <p data-timer-display class="text-white m-0">3:00</p>
         </div>
@@ -68,22 +68,22 @@
 
         <div class="d-block p-3 text-end">
           <button
-            data-show-question-desktop
+            data-show-question-mobile
             type="button"
-            class="btn btn-info d-sm-none d-lg-inline"
+            class="btn btn-info btn-sm d-lg-none"
             data-bs-toggle="modal"
-            data-bs-target="#question-desktop"
+            data-bs-target="#question-mobile"
             disabled
           >
             Mostrar pergunta
           </button>
 
           <button
-            data-show-question-mobile
+            data-show-question-desktop
             type="button"
-            class="btn btn-info btn-sm d-lg-none d-sm-inline"
+            class="btn btn-info d-sm-none"
             data-bs-toggle="modal"
-            data-bs-target="#question-mobile"
+            data-bs-target="#question-desktop"
             disabled
           >
             Mostrar pergunta
@@ -92,73 +92,78 @@
 
         <div data-armadillo id="armadillo" class="armadillo position-absolute">
           <p data-time-text class="text-center mb-0 fw-bold">t = 0</p>
-          <p data-text-postion class="text-center fw-bold">0m</p>
+          <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
         <div class="armadillo position-absolute">
           <p class="text-center mb-0 fw-bold">t = 0</p>
-          <p class="text-center fw-bold">0m</p>
+          <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
         <div class="armadillo position-absolute d-none">
           <p class="text-center mb-0 fw-bold">t = 1</p>
-          <p class="text-center fw-bold">5m</p>
+          <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
         <div class="armadillo position-absolute d-none">
           <p class="text-center mb-0 fw-bold">t = 2</p>
-          <p class="text-center fw-bold">10m</p>
+          <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
         <div class="armadillo position-absolute d-none">
           <p class="text-center mb-0 fw-bold">t = 3</p>
-          <p class="text-center fw-bold">15m</p>
+          <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
         <!-- Modal para mostrar a questão (mobile) -->
-        <div id="question-mobile" class="modal fade">
+        <div id="question-mobile" class="modal d-lg-none fade">
           <div class="modal-dialog modal-sm modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
-                <p>Com base na trajetória do Tatu, qual é a sua velocidade?</p>
+                Qual dos gráficos abaixo melhor representa a posição/tempo do
+                Tatu?
                 <button
                   type="button"
-                  class="btn btn-close btn-sm"
+                  class="btn-close btn-sm"
                   data-bs-dismiss="modal"
                   aria-label="Fechar"
                 ></button>
               </div>
 
               <div class="modal-body">
-                <div class="form-check">
-                  <input
-                    type="radio"
-                    class="form-check-input"
-                    id="radio-one"
-                    name="option"
-                  />
-                  <label class="form-check-label" for="radio-one">15m/s</label>
-                </div>
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="radio-one"
+                  name="option"
+                  autocomplete="off"
+                />
+                <label class="btn" for="radio-one">
+                  <figure class="figure">
+                    <img
+                      src="../src/images/velocityXtime.png"
+                      class="figure-img img-fluid rounded img-thumbnail"
+                      alt="Gráfico velocidadeXtempo"
+                    />
+                  </figure>
+                </label>
 
-                <div class="form-check">
-                  <input
-                    type="radio"
-                    class="form-check-input"
-                    id="radio-two"
-                    name="option"
-                  />
-                  <label class="form-check-label" for="radio-two">10m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input
-                    type="radio"
-                    class="form-check-input"
-                    id="radio-three"
-                    name="option"
-                  />
-                  <label class="form-check-label" for="radio-three">5m/s</label>
-                </div>
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="radio-two"
+                  name="option"
+                  autocomplete="off"
+                />
+                <label class="btn" for="radio-two">
+                  <figure class="figure">
+                    <img
+                      src="../src/images/positionXtime.png"
+                      class="figure-img img-fluid rounded img-thumbnail"
+                      alt="Gráfico distanciaXtempo"
+                    />
+                  </figure>
+                </label>
               </div>
 
               <div class="modal-footer">
@@ -190,47 +195,50 @@
           <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
-                <p>Com base na trajetória do Tatu, qual é a sua velocidade?</p>
+                Qual dos gráficos abaixo melhor representa a posição/tempo do
+                Tatu?
                 <button
                   type="button"
-                  class="btn btn-close"
+                  class="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Fechar"
                 ></button>
               </div>
 
               <div class="modal-body">
-                <div class="form-check">
-                  <input
-                    type="radio"
-                    class="form-check-input"
-                    id="radio-three"
-                    name="option"
-                  />
-                  <label class="form-check-label" for="radio-three"
-                    >15m/s</label
-                  >
-                </div>
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="radio-three"
+                  name="option"
+                  autocomplete="off"
+                />
+                <label class="btn" for="radio-three">
+                  <figure class="figure">
+                    <img
+                      src="../src/images/velocityXtime.png"
+                      class="figure-img img-fluid rounded img-thumbnail"
+                      alt="Gráfico velocidadeXtempo"
+                    />
+                  </figure>
+                </label>
 
-                <div class="form-check">
-                  <input
-                    type="radio"
-                    class="form-check-input"
-                    id="radio-four"
-                    name="option"
-                  />
-                  <label class="form-check-label" for="radio-four">10m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input
-                    type="radio"
-                    class="form-check-input"
-                    id="radio-five"
-                    name="option"
-                  />
-                  <label class="form-check-label" for="radio-five">5m/s</label>
-                </div>
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="radio-four"
+                  name="option"
+                  autocomplete="off"
+                />
+                <label class="btn" for="radio-four">
+                  <figure class="figure">
+                    <img
+                      src="../src/images/positionXtime.png"
+                      class="figure-img img-fluid rounded img-thumbnail"
+                      alt="Gráfico distanciaXtempo"
+                    />
+                  </figure>
+                </label>
               </div>
 
               <div class="modal-footer">
@@ -260,7 +268,7 @@
         <!-- Modal para próxima fase (mobile) -->
         <div
           id="next-phase-modal-mobile"
-          class="modal fade d-lg-none"
+          class="modal fade"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
           tabindex="-1"
@@ -268,7 +276,7 @@
           aria-labelledby="modalLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-dialog modal-sm d-lg-none" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
@@ -279,7 +287,7 @@
                 </p>
 
                 <a
-                  href="./phase_four.html"
+                  href="./phase_07.html"
                   role="button"
                   class="btn btn-primary btn-sm"
                   >Próxima fase</a
@@ -310,10 +318,7 @@
                   Parabéns por completar o desafio! Siga para a próxima fase
                 </p>
 
-                <a
-                  href="./phase_four.html"
-                  role="button"
-                  class="btn btn-primary"
+                <a href="./phase_07.html" role="button" class="btn btn-primary"
                   >Próxima fase</a
                 >
               </div>
@@ -323,8 +328,8 @@
 
         <!-- Modal para mostrar que o tempo acabou (mobile) -->
         <div
-          id="time-over-modal-mobile"
-          class="modal fade d-lg-none"
+          id="timeOverModal-mobile"
+          class="modal fade"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
           tabindex="-1"
@@ -338,13 +343,13 @@
                 <h5 class="modal-title" id="modalLabel">Tempo esgotado</h5>
               </div>
               <div class="modal-body">
-                <p class="textWin">
+                <p class="textWin fs-6">
                   Infelizmente o tempo acabou! Siga para o próximo desafio.
                 </p>
               </div>
               <div class="modal-footer">
                 <a
-                  href="./phase_four.html"
+                  href="./phase_07.html"
                   role="button"
                   class="btn btn-secondary btn-sm"
                 >
@@ -357,7 +362,7 @@
 
         <!-- Modal para mostrar que o tempo acabou (desktop) -->
         <div
-          id="time-over-modal-desktop"
+          id="timeOverModal-desktop"
           class="modal fade"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
@@ -378,7 +383,7 @@
               </div>
               <div class="modal-footer">
                 <a
-                  href="./phase_four.html"
+                  href="./phase_07.html"
                   role="button"
                   class="btn btn-secondary"
                 >
@@ -465,7 +470,7 @@
       </main>
     </section>
 
-    <script type="module" src="../src/js/phase_three.js"></script>
+    <script type="module" src="../src/js/phase_06.js"></script>
     <script src="../src/js/bootstrap.min.js"></script>
   </body>
 </html>

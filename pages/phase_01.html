@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fase I - Cinemática</title>
-    <link rel="stylesheet" href="../src/css/phase_one.css" />
+    <link rel="stylesheet" href="../src/css/phase_01.css" />
     <link rel="stylesheet" href="../src/css/bootstrap.css" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
@@ -91,6 +91,8 @@
           </button>
         </div>
 
+        <!-- MRU -->
+
         <div
           data-armadilloMRU
           id="armadilloMRU"
@@ -120,7 +122,7 @@
           <p class="text-center fw-bold">v = 10m/s</p>
         </div>
 
-        <!-- MOVIMENTO RETILINEO UNIFORMEMENTE VARIADO -->
+        <!-- MRUV -->
         <div
           data-armadilloMRUV
           id="armadilloMRUV"
@@ -299,7 +301,7 @@
                 </p>
 
                 <a
-                  href="./phase_two.html"
+                  href="./phase_02.html"
                   role="button"
                   class="btn btn-primary btn-sm"
                 >
@@ -331,11 +333,7 @@
                   Parabéns por completar o desafio! Siga para a próxima fase
                 </p>
 
-                <a
-                  href="./phase_two.html"
-                  role="button"
-                  class="btn btn-primary"
-                >
+                <a href="./phase_02.html" role="button" class="btn btn-primary">
                   Próxima fase
                 </a>
               </div>
@@ -366,7 +364,7 @@
               </div>
               <div class="modal-footer">
                 <a
-                  href="./phase_two.html"
+                  href="./phase_02.html"
                   role="button"
                   class="btn btn-secondary btn-sm"
                 >
@@ -400,7 +398,7 @@
               </div>
               <div class="modal-footer">
                 <a
-                  href="./phase_two.html"
+                  href="./phase_02.html"
                   role="button"
                   class="btn btn-secondary"
                 >
@@ -411,7 +409,7 @@
           </div>
         </div>
 
-        <!-- Modal para informar uma nova tentativa (mobile)-->
+        <!-- Modal para informar que a resposta está errada (mobile)-->
         <div
           id="game-over-modal-mobile"
           class="modal fade"
@@ -432,23 +430,26 @@
                 ></button>
               </div>
               <div class="modal-body">
-                <p class="textWin">Não foi dessa vez! Tente Novamente.</p>
+                <p class="textWin">
+                  Não foi dessa vez! Siga para o próximo desafio.
+                </p>
               </div>
               <div class="modal-footer">
-                <button
-                  data-reset
+                <a
+                  href="./phase_02.html"
+                  role="button"
                   class="btn btn-danger btn-sm"
                   data-bs-dismiss="modal"
                 >
-                  Fechar
+                  Próximo desafio
                   <i class="bi bi-pause"></i>
-                </button>
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Modal para informar uma nova tentativa (desktop) -->
+        <!-- Modal para informar que a resposta está errada (desktop) -->
         <div
           id="game-over-modal-desktop"
           class="modal fade"
@@ -469,17 +470,20 @@
                 ></button>
               </div>
               <div class="modal-body">
-                <p class="textWin">Não foi dessa vez! Tente Novamente.</p>
+                <p class="textWin">
+                  Não foi dessa vez! Siga para o próxima desafio.
+                </p>
               </div>
               <div class="modal-footer">
-                <button
-                  data-reset
-                  class="btn btn-danger"
+                <a
+                  href="./phase_02.html"
+                  role="button"
+                  class="btn btn-danger btn-sm"
                   data-bs-dismiss="modal"
                 >
-                  Fechar
+                  Próximo desafio
                   <i class="bi bi-pause"></i>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -487,7 +491,7 @@
       </main>
     </section>
 
-    <script type="module" src="../src/js/phase_one.js"></script>
+    <script type="module" src="../src/js/phase_01.js"></script>
     <script src="../src/js/bootstrap.min.js"></script>
   </body>
 </html>
