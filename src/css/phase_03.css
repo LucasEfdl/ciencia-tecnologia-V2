@@ -29,6 +29,10 @@
   left: 0px;
 }
 
+.object {
+  bottom: 0px;
+}
+
 @keyframes armadillo-animation {
   from {
     left: 0px;
@@ -47,6 +51,8 @@
   .armadillo {
     width: 80px;
     height: 53px;
+
+    font-size: 10px;
   }
 
   @keyframes armadillo-animation {

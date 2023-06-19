@@ -1,19 +1,18 @@
 const initialScreen = document.getElementById("initial-screen");
 const gameScreen = document.querySelector("[data-game-screen]");
-const startGameButton = document.querySelector("[data-start-game]");
-
-const armadillo = document.getElementById("armadillo");
-const armadillos = document.querySelectorAll(".armadillo");
-const timeText = document.querySelector("[data-time-text]");
-const timerRef = document.querySelector("[data-timer-display]");
-
 let breakpoint = gameScreen.offsetWidth >= 1024 ? "-desktop" : "-mobile";
 
+const startGameButton = document.querySelector(
+  `[data-start-game${breakpoint}]`
+);
+const armadillo = document.querySelector("[data-armadillo]");
+const armadillos = document.querySelectorAll(".object");
+const timeText = document.querySelector("[data-time-text]");
+const timerRef = document.querySelector("[data-timer-display]");
 const questionModalElement = document.getElementById(`question${breakpoint}`);
 const timeOverModalElement = document.getElementById(
   `timeOverModal${breakpoint}`
 );
-
 const nextPhaseModalElement = document.getElementById(
   `next-phase-modal${breakpoint}`
 );
@@ -35,8 +34,10 @@ const questionModal = new bootstrap.Modal(questionModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
+let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
+let [minutesSpent, secondsSpent] = [0, 0];
 let index = 2;
-let timer = null;
+let time = null;
 
 const positionOnMobile = [131, 260, 392];
 const positionOnDesktop = [270, 540, 810];
@@ -62,8 +63,25 @@ function game() {
   newArmadillos();
 }
 
-const time = () => {
-  timer = setInterval(() => {
+const timer = () => {
+  const countElapsedTime = () => {
+    elapsedMilliseconds += 10;
+    if (elapsedMilliseconds == 1000) {
+      elapsedMilliseconds = 0;
+      elapsedSeconds++;
+      if (elapsedSeconds == 60) {
+        elapsedSeconds = 0;
+        elapsedMinutes++;
+      }
+    }
+
+    minutesSpent = elapsedMinutes < 10 ? "0" + elapsedMinutes : elapsedMinutes;
+    secondsSpent = elapsedSeconds < 10 ? "0" + elapsedSeconds : elapsedSeconds;
+  };
+
+  time = setInterval(() => {
+    countElapsedTime();
+
     milliseconds -= 10;
     if (milliseconds < 0) {
       milliseconds = 990;
@@ -78,16 +96,14 @@ const time = () => {
     let sec = seconds < 10 ? "0" + seconds : seconds;
 
     if (min == 0 && sec == 0) {
-      clearInterval(timer);
+      clearInterval(time);
+      clearInterval(countElapsedTime);
       question.classList.replace("d-block", "d-none");
       timeOverModal.show();
       questionModal.hide();
       progressLose.style.width = "100%";
 
-      localStorage.setItem(
-        "graphicChecked",
-        "Sem resposta - tempo total gasto"
-      );
+      localStorage.setItem("question-02", "Sem resposta - tempo total gasto");
     }
 
     timerRef.innerText = `${min}:${sec}`;
@@ -105,7 +121,7 @@ armadillos.forEach((armadillo, index) => {
 const newArmadillos = () => {
   let elements = setInterval(() => {
     armadillos[index++].classList.replace("d-none", "d-block");
-    timeText.textContent = `t = ${index - 1}`;
+    timeText.innerHTML = `t = ${index - 1}s <br/> v = 10m/s`;
 
     if (index > 4) {
       clearInterval(elements);
@@ -124,6 +140,7 @@ submitAnswerButton.addEventListener("click", () => {
   let answer = 0;
 
   showQuestionButton.disabled = true;
+
   options.forEach((option) => {
     if (option.checked) {
       answer = option.id;
@@ -140,5 +157,9 @@ submitAnswerButton.addEventListener("click", () => {
     showQuestionButton.disabled = false;
   }
 
-  localStorage.setItem("graphicChecked", graphic);
+  localStorage.setItem("question-02", graphic);
+  localStorage.setItem(
+    "question-02-time",
+    `tempo gasto: ${minutesSpent}:${secondsSpent}`
+  );
 });

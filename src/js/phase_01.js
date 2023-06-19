@@ -8,8 +8,8 @@ const startGameButton = document.querySelector(
 );
 const armadilloMRU = document.querySelector("[data-armadilloMRU]");
 const armadilloMRUV = document.querySelector("[data-armadilloMRUV]");
-const armadillosMRU = document.querySelectorAll(".armadilloMRU");
-const armadillosMRUV = document.querySelectorAll(".armadilloMRUV");
+const armadillosMRU = document.querySelectorAll(".object");
+const armadillosMRUV = document.querySelectorAll(".object-2");
 const timeTextMRU = document.querySelector("[data-time-textMRU]");
 const timeTextMRUV = document.querySelector("[data-time-textMRUV]");
 const timerRef = document.querySelector("[data-timer-display]");
@@ -40,6 +40,9 @@ const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 
 let [milliseconds, seconds, minutes] = [0, 0, 3];
+let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
+let [minutesSpent, secondsSpent] = [0, 0];
+
 let indexMRU = 2;
 let indexMRUV = 2;
 let time = null;
@@ -79,7 +82,24 @@ function game() {
 }
 
 const timer = () => {
+  const countElapsedTime = () => {
+    elapsedMilliseconds += 10;
+    if (elapsedMilliseconds == 1000) {
+      elapsedMilliseconds = 0;
+      elapsedSeconds++;
+      if (elapsedSeconds == 60) {
+        elapsedSeconds = 0;
+        elapsedMinutes++;
+      }
+    }
+
+    minutesSpent = elapsedMinutes < 10 ? "0" + elapsedMinutes : elapsedMinutes;
+    secondsSpent = elapsedSeconds < 10 ? "0" + elapsedSeconds : elapsedSeconds;
+  };
+
   time = setInterval(() => {
+    countElapsedTime();
+
     milliseconds -= 10;
     if (milliseconds < 0) {
       milliseconds = 990;
@@ -95,12 +115,13 @@ const timer = () => {
 
     if (min == 0 && sec == 0) {
       clearInterval(time);
+      clearInterval(countElapsedTime);
       question.classList.replace("d-block", "d-none");
       timeOverModal.show();
       questionModal.hide();
       progressLose.style.width = "100%";
 
-      localStorage.setItem("answerChecked", "sem resposta - tempo total gasto");
+      localStorage.setItem("question-01", "sem resposta - tempo total gasto");
     }
 
     timerRef.innerText = `${min}:${sec}`;
@@ -110,7 +131,7 @@ const timer = () => {
 const newArmadillosMRU = () => {
   let newElements = setInterval(() => {
     armadillosMRU[indexMRU++].classList.replace("d-none", "d-block");
-    timeTextMRU.textContent = `t = ${indexMRU - 1}`;
+    timeTextMRU.innerHTML = `t = ${indexMRU - 1}s`;
 
     if (indexMRU > 4) {
       clearInterval(newElements);
@@ -128,7 +149,7 @@ armadillosMRU.forEach((armadillo, index) => {
 const newArmadillosMRUV = () => {
   let newElements = setInterval(() => {
     armadillosMRUV[indexMRUV++].classList.replace("d-none", "d-block");
-    timeTextMRUV.textContent = `t = ${indexMRUV - 1}`;
+    timeTextMRUV.innerHTML = `t = ${indexMRU - 1}s <br/> v = 10m/s`;
 
     if (indexMRUV > 3) {
       clearInterval(newElements);
@@ -163,12 +184,16 @@ submitAnswerButton.addEventListener("click", () => {
     nextPhaseModal.show();
     questionModal.hide();
     progressWin.style.width = "100%";
-    value = "A trajetória de baixo representa o movimento retilíneo uniforme";
+    value = "A trajetória representa o movimento retilíneo uniforme";
   } else {
     gameOverModal.show();
     questionModal.hide();
     showQuestionButton.disabled = false;
   }
 
-  localStorage.setItem("answerChecked", value);
+  localStorage.setItem("question-01", value);
+  localStorage.setItem(
+    "question-01-time",
+    `tempo gasto: ${minutesSpent}:${secondsSpent}`
+  );
 });

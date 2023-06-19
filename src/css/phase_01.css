@@ -42,8 +42,15 @@
   width: 120px;
   height: 80px;
 
-  bottom: 25%;
   left: 0px;
+}
+
+.object {
+  bottom: 0px;
+}
+
+.object-2 {
+  bottom: 25%;
 }
 
 @keyframes armadillo-animation {
@@ -61,14 +68,15 @@
     height: 300px;
   }
 
-  #question {
-    font-size: 1rem;
-  }
-
   .armadilloMRU,
   .armadilloMRUV {
     width: 80px;
     height: 55px;
+  }
+
+  .object p,
+  .object-2 p {
+    font-size: 10px;
   }
 
   @keyframes armadillo-animation {

@@ -90,34 +90,43 @@
           </button>
         </div>
 
-        <div data-armadillo id="armadillo" class="armadillo position-absolute">
-          <p data-time-text class="text-center mb-0 fw-bold">t = 0</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <!-- MRU -->
+        <div data-armadillo class="object position-absolute">
+          <div id="armadillo" class="armadillo">
+            <p data-time-text class="text-center mb-0 fw-bold">
+              <span data-time-text>t = 0s</span> <br />
+              v = 10m/s
+            </p>
+          </div>
         </div>
 
-        <div class="armadillo position-absolute">
-          <p class="text-center mb-0 fw-bold">t = 0</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object position-absolute">
+          <div class="armadillo">
+            <p class="text-center mb-0 fw-bold">t = 0s <br />v = 10m/s</p>
+          </div>
         </div>
 
-        <div class="armadillo position-absolute d-none">
-          <p class="text-center mb-0 fw-bold">t = 1</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object position-absolute d-none">
+          <div class="armadillo">
+            <p class="text-center mb-0 fw-bold">t = 1s <br />v = 10m/s</p>
+          </div>
         </div>
 
-        <div class="armadillo position-absolute d-none">
-          <p class="text-center mb-0 fw-bold">t = 2</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object position-absolute d-none">
+          <div class="armadillo">
+            <p class="text-center mb-0 fw-bold">t = 2s <br />v = 10m/s</p>
+          </div>
         </div>
 
-        <div class="armadillo position-absolute d-none">
-          <p class="text-center mb-0 fw-bold">t = 3</p>
-          <p class="text-center fw-bold">v = 10m/s</p>
+        <div class="object position-absolute d-none">
+          <div class="armadillo">
+            <p class="text-center mb-0 fw-bold">t = 3s <br />v = 10m/s</p>
+          </div>
         </div>
 
         <!-- Modal para mostrar a questão (mobile) -->
         <div id="question-mobile" class="modal d-lg-none fade">
-          <div class="modal-dialog modal-sm modal-dialog-scrollable">
+          <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
                 Qual dos gráficos abaixo melhor representa a posição/tempo do
@@ -131,39 +140,47 @@
               </div>
 
               <div class="modal-body">
-                <input
-                  type="radio"
-                  class="btn-check"
-                  id="radio-one"
-                  name="option"
-                  autocomplete="off"
-                />
-                <label class="btn" for="radio-one">
-                  <figure class="figure">
-                    <img
-                      src="../src/images/velocityXtime.png"
-                      class="figure-img img-fluid rounded img-thumbnail"
-                      alt="Gráfico velocidadeXtempo"
-                    />
-                  </figure>
-                </label>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col">
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        id="radio-one"
+                        name="option"
+                        autocomplete="off"
+                      />
+                      <label class="btn" for="radio-one">
+                        <figure class="figure">
+                          <img
+                            src="../src/images/velocityXtime.png"
+                            class="figure-img img-fluid rounded img-thumbnail"
+                            alt="Gráfico velocidadeXtempo"
+                          />
+                        </figure>
+                      </label>
+                    </div>
 
-                <input
-                  type="radio"
-                  class="btn-check"
-                  id="radio-two"
-                  name="option"
-                  autocomplete="off"
-                />
-                <label class="btn" for="radio-two">
-                  <figure class="figure">
-                    <img
-                      src="../src/images/positionXtime.png"
-                      class="figure-img img-fluid rounded img-thumbnail"
-                      alt="Gráfico distanciaXtempo"
-                    />
-                  </figure>
-                </label>
+                    <div class="col">
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        id="radio-two"
+                        name="option"
+                        autocomplete="off"
+                      />
+                      <label class="btn" for="radio-two">
+                        <figure class="figure">
+                          <img
+                            src="../src/images/positionXtime.png"
+                            class="figure-img img-fluid rounded img-thumbnail"
+                            alt="Gráfico distanciaXtempo"
+                          />
+                        </figure>
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="modal-footer">
@@ -192,7 +209,7 @@
 
         <!-- Modal para mostrar a questão (desktop) -->
         <div id="question-desktop" class="modal fade">
-          <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
                 Qual dos gráficos abaixo melhor representa a posição/tempo do
@@ -206,39 +223,47 @@
               </div>
 
               <div class="modal-body">
-                <input
-                  type="radio"
-                  class="btn-check"
-                  id="radio-three"
-                  name="option"
-                  autocomplete="off"
-                />
-                <label class="btn" for="radio-three">
-                  <figure class="figure">
-                    <img
-                      src="../src/images/velocityXtime.png"
-                      class="figure-img img-fluid rounded img-thumbnail"
-                      alt="Gráfico velocidadeXtempo"
-                    />
-                  </figure>
-                </label>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col">
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        id="radio-three"
+                        name="option"
+                        autocomplete="off"
+                      />
+                      <label class="btn" for="radio-three">
+                        <figure class="figure">
+                          <img
+                            src="../src/images/velocityXtime.png"
+                            class="figure-img img-fluid rounded img-thumbnail"
+                            alt="Gráfico velocidadeXtempo"
+                          />
+                        </figure>
+                      </label>
+                    </div>
 
-                <input
-                  type="radio"
-                  class="btn-check"
-                  id="radio-four"
-                  name="option"
-                  autocomplete="off"
-                />
-                <label class="btn" for="radio-four">
-                  <figure class="figure">
-                    <img
-                      src="../src/images/positionXtime.png"
-                      class="figure-img img-fluid rounded img-thumbnail"
-                      alt="Gráfico distanciaXtempo"
-                    />
-                  </figure>
-                </label>
+                    <div class="col">
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        id="radio-four"
+                        name="option"
+                        autocomplete="off"
+                      />
+                      <label class="btn" for="radio-four">
+                        <figure class="figure">
+                          <img
+                            src="../src/images/positionXtime.png"
+                            class="figure-img img-fluid rounded img-thumbnail"
+                            alt="Gráfico distanciaXtempo"
+                          />
+                        </figure>
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="modal-footer">
