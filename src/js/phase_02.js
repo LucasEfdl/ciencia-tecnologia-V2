@@ -37,7 +37,7 @@ let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
 let index = 2;
-let time = null;
+let timer = null;
 
 const positionOnMobile = [131, 260, 392];
 const positionOnDesktop = [270, 540, 810];
@@ -50,12 +50,9 @@ startGameButton.addEventListener("click", () => {
 });
 
 function game() {
-  armadillo.style.animation = "armadillo-animation 4s linear";
+  armadillo.style.animation = "armadillo-animation 4s linear forwards";
 
   setTimeout(() => {
-    armadillo.style.left = `${
-      gameScreen.offsetWidth - armadillo.offsetWidth
-    }px`;
     showQuestionButton.disabled = false;
     questionModal.show();
     time();
@@ -63,7 +60,7 @@ function game() {
   newArmadillos();
 }
 
-const timer = () => {
+const time = () => {
   const countElapsedTime = () => {
     elapsedMilliseconds += 10;
     if (elapsedMilliseconds == 1000) {
@@ -79,7 +76,7 @@ const timer = () => {
     secondsSpent = elapsedSeconds < 10 ? "0" + elapsedSeconds : elapsedSeconds;
   };
 
-  time = setInterval(() => {
+  timer = setInterval(() => {
     countElapsedTime();
 
     milliseconds -= 10;
@@ -96,7 +93,7 @@ const timer = () => {
     let sec = seconds < 10 ? "0" + seconds : seconds;
 
     if (min == 0 && sec == 0) {
-      clearInterval(time);
+      clearInterval(timer);
       clearInterval(countElapsedTime);
       question.classList.replace("d-block", "d-none");
       timeOverModal.show();

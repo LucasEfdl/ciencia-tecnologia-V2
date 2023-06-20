@@ -57,12 +57,10 @@ let pos = position / 4;
 let initalPosMRU = pos;
 
 function game() {
-  armadilloMRU.style.animation = "armadillo-animation 4s linear";
-  armadilloMRUV.style.animation = "armadillo-animation 3s ease-in";
+  armadilloMRU.style.animation = "armadillo-animation 4s linear forwards";
+  armadilloMRUV.style.animation = "armadillo-animation 3s ease-in forwards";
 
   setTimeout(() => {
-    armadilloMRU.style.left = `${position}px`;
-
     showQuestionButton.disabled = false;
     questionModal.show();
     timer();

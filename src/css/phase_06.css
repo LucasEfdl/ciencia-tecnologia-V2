@@ -14,7 +14,6 @@
 }
 
 #armadillo {
-  /* animation: armadillo-animation 4s linear; */
   background-image: url(../images/armadillog.gif);
 }
 
@@ -38,7 +37,7 @@
     left: 0px;
   }
   to {
-    left: 1100px;
+    left: 1080px;
   }
 }
 
@@ -46,10 +45,6 @@
   .game-screen {
     width: 600px;
     height: 300px;
-  }
-
-  #question {
-    font-size: 1rem;
   }
 
   .armadilloMRU {
