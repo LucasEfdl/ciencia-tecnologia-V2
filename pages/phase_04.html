@@ -12,7 +12,18 @@
   <body class="bg-dark text-white">
     <section id="initial-screen" class="d-block w-100 position-absolute">
       <div class="d-flex justify-content-center align-items-center vh-100">
-        <button data-start-game class="btn btn-primary">Começar jogo</button>
+        <button
+          data-start-game-desktop
+          class="btn btn-primary d-sm-none d-lg-inline"
+        >
+          Começar jogo
+        </button>
+        <button
+          data-start-game-mobile
+          class="btn btn-primary btn-sm d-sm-inline d-lg-none"
+        >
+          Começar jogo
+        </button>
       </div>
     </section>
 
@@ -63,96 +74,227 @@
         <div class="d-block p-3 text-end">
           <button
             type="button"
-            class="btn btn-light"
+            class="btn btn-light d-sm-inline d-lg-none btn-sm"
             data-bs-toggle="modal"
-            data-bs-target="#help"
+            data-bs-target="#help-mobile"
           >
             <i class="bi bi-question-lg"></i> Ajuda
           </button>
 
-          <button data-reset type="button" class="btn btn-danger" disabled>
-            <i class="bi bi-pause"></i> Resetar
+          <button
+            type="button"
+            class="btn btn-light d-sm-none d-lg-inline"
+            data-bs-toggle="modal"
+            data-bs-target="#help-desktop"
+          >
+            <i class="bi bi-question-lg"></i> Ajuda
+          </button>
+
+          <button
+            data-show-question-desktop
+            type="button"
+            class="btn btn-info d-sm-none d-lg-inline"
+            data-bs-toggle="modal"
+            data-bs-target="#question-desktop"
+          >
+            Mostrar pergunta
+          </button>
+
+          <button
+            data-show-question-mobile
+            type="button"
+            class="btn btn-info btn-sm d-lg-none d-sm-inline"
+            data-bs-toggle="modal"
+            data-bs-target="#question-mobile"
+          >
+            Mostrar pergunta
           </button>
         </div>
 
-        <!-- Overlay para mostrar a pergunta-->
-        <div data-question class="d-none bg-dark w-75 p-4 mx-auto">
-          <p class="text-center fs-5">
-            Um tatu está fugindo de uma raposa e, para se salvar, ele precisa
-            chegar à sua toca. Sua tarefa é descobrir a velocidade
-            <strong>mínima</strong> do tatu para que ele fuja do predador!
-            <br />
-          </p>
+        <!-- Modal para mostrar a questão (desktop) -->
+        <div id="question-desktop" class="modal fade">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">
+                  Um tatu está fugindo de uma raposa e, para se salvar, ele
+                  precisa chegar à sua toca. Sua tarefa é descobrir a velocidade
+                  <strong>mínima</strong> do tatu para que ele fuja do predador!
+                  <br />
+                </h5>
+              </div>
 
-          <p class="texte-center">
-            <strong>Dados</strong>: leve em consideração que, no instante de sua
-            observação, o tatu encontra-se em repouso e à
-            <span class="end-position-text"></span> do seu destino. Considere o
-            movimento descrito por ele como sendo Retilíneo Uniforme e o tempo
-            que ele leva para chegar <span class="start-position-text"></span>,
-            como sendo <span class="half-time-text"></span>s. A raposa
-            encontra-se com velocidade constante igual a
-            <span class="fox-velocity-text"></span>m/s e a distância atual entre
-            ela e o tatu é de <span class="dist-between-fox-armadillo"></span>m.
-          </p>
+              <div class="modal-body">
+                <p class="texte-center text-black">
+                  <strong>Dados</strong>: leve em consideração que, no instante
+                  de sua observação, o tatu encontra-se em repouso e à
+                  <span class="end-position-text"></span> do seu destino.
+                  Considere o movimento descrito por ele como sendo Retilíneo
+                  Uniforme e o tempo que ele leva para chegar
+                  <span class="start-position-text"></span>, como sendo
+                  <span class="half-time-text"></span>s. A raposa encontra-se
+                  com velocidade constante igual a
+                  <span class="fox-velocity-text"></span>m/s e a distância atual
+                  entre ela e o tatu é de
+                  <span class="dist-between-fox-armadillo"></span>m.
+                </p>
 
-          <div
-            class="d-flex flex-row justify-content-center align-items-center gap-3"
-          >
-            <div class="form-check">
-              <input
-                role="button"
-                type="radio"
-                name="velocity"
-                class="form-check-input"
-                id="radio1"
-              />
-              <label for="radio1"></label>
+                <div
+                  class="d-flex flex-row justify-content-center align-items-center gap-3"
+                >
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio1"
+                    />
+                    <label class="text-black" for="radio1"></label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio2"
+                    />
+                    <label class="text-black" for="radio2"></label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio3"
+                    />
+                    <label class="text-black" for="radio3"></label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio4"
+                    />
+                    <label class="text-black" for="radio4"></label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  data-confirm-answer-desktop
+                  class="btn btn-success"
+                  disabled
+                >
+                  Confirmar
+                </button>
+              </div>
             </div>
-
-            <div class="form-check">
-              <input
-                role="button"
-                type="radio"
-                name="velocity"
-                class="form-check-input"
-                id="radio2"
-              />
-              <label for="radio2"></label>
-            </div>
-
-            <div class="form-check">
-              <input
-                role="button"
-                type="radio"
-                name="velocity"
-                class="form-check-input"
-                id="radio3"
-              />
-              <label for="radio3"></label>
-            </div>
-
-            <div class="form-check">
-              <input
-                role="button"
-                type="radio"
-                name="velocity"
-                class="form-check-input"
-                id="radio4"
-              />
-              <label for="radio4"></label>
-            </div>
-
-            <button data-confirm-answer class="btn btn-success" disabled>
-              Confirmar
-            </button>
           </div>
         </div>
 
-        <!-- Código HTML do modal -->
+        <!-- Modal para mostrar a questão (mobile) -->
+        <div id="question-mobile" class="modal fade">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">
+                  Um tatu está fugindo de uma raposa e, para se salvar, ele
+                  precisa chegar à sua toca. Sua tarefa é descobrir a velocidade
+                  <strong>mínima</strong> do tatu para que ele fuja do predador!
+                  <br />
+                </h5>
+              </div>
+
+              <div class="modal-body">
+                <p class="texte-center text-black fs-6">
+                  <strong>Dados</strong>: leve em consideração que, no instante
+                  de sua observação, o tatu encontra-se em repouso e à
+                  <span class="end-position-text"></span> do seu destino.
+                  Considere o movimento descrito por ele como sendo Retilíneo
+                  Uniforme e o tempo que ele leva para chegar
+                  <span class="start-position-text"></span>, como sendo
+                  <span class="half-time-text"></span>s. A raposa encontra-se
+                  com velocidade constante igual a
+                  <span class="fox-velocity-text"></span>m/s e a distância atual
+                  entre ela e o tatu é de
+                  <span class="dist-between-fox-armadillo"></span>m.
+                </p>
+
+                <div
+                  class="d-flex flex-row justify-content-center align-items-center gap-3"
+                >
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio5"
+                    />
+                    <label class="text-black fs-6" for="radio5"></label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio6"
+                    />
+                    <label class="text-black fs-6" for="radio6"></label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio7"
+                    />
+                    <label class="text-black fs-6" for="radio7"></label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio8"
+                    />
+                    <label class="text-black fs-6" for="radio4"></label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  data-confirm-answer-mobile
+                  class="btn btn-success btn-sm"
+                  disabled
+                >
+                  Confirmar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para mostrar a ajuda (desktop)-->
         <div
           class="modal fade text-black"
-          id="help"
+          id="help-desktop"
           tabindex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
@@ -204,9 +346,66 @@
           </div>
         </div>
 
-        <!-- Modal para próxima fase -->
+        <!-- Modal para mostrar a ajuda (mobile)-->
         <div
-          id="nextPhaseModal"
+          class="modal fade text-black"
+          id="help-mobile"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Migração do Peba
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+
+              <div class="modal-body text-center">
+                <h4>Movimento Retilíneo Uniforme</h4>
+                <br />
+                <p>
+                  Para resolver esta questão, o aluno prescisa se lembrar do
+                  conceito universal da cinemática:
+                </p>
+                <figure class="figure">
+                  <img
+                    class="equacaoMRU figure-img img-fluid"
+                    src="../src/images/equacao.jpg"
+                    alt="equacaoMRU"
+                  />
+                </figure>
+                <p>
+                  Como a questão nos forne a distância e o tempo, só precisamos
+                  substituir na fórmula para encontrarmos a velocidade mínima.
+                </p>
+                <br />
+                <p>Tente você mesmo agora!<br /></p>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-sm"
+                  data-bs-dismiss="modal"
+                >
+                  Fechar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para o próximo desafio (desktop) -->
+        <div
+          id="next-challenge-modal-desktop"
           class="modal fade"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
@@ -227,22 +426,138 @@
               </div>
               <div class="modal-footer">
                 <button
-                  data-next-phase
+                  data-next-challenge
                   type="button"
                   class="btn btn-secondary"
                   data-bs-toggle="modal"
-                  data-bs-target="#nextPhaseModal"
+                  data-bs-target="#next-challenge-modal-desktop"
                 >
                   Próximo desafio
                 </button>
+
+                <a
+                  data-next-phase
+                  href="./phase_05.html"
+                  class="btn btn-primary d-none"
+                  role="button"
+                >
+                  Próxima fase
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Modal para informar uma nova tentativa -->
+        <!-- Modal para o próximo desafio (mobile) -->
         <div
-          id="gameOverModal"
+          id="next-challenge-modal-mobile"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Fim do desafio</h5>
+              </div>
+              <div class="modal-body">
+                <p class="textWin">
+                  Parabéns, você ganhou! Siga para o próximo desafio.
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  data-next-challenge
+                  type="button"
+                  class="btn btn-secondary btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#next-challenge-modal-mobile"
+                >
+                  Próximo desafio
+                </button>
+
+                <a
+                  data-next-phase
+                  href="./phase_05.html"
+                  class="btn btn-primary btn-sm d-none"
+                  role="button"
+                >
+                  Próxima fase
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para próxima fase (mobile) -->
+        <div
+          id="next-phase-modal-mobile"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
+              </div>
+              <div class="modal-body">
+                <p class="textWin">
+                  Parabéns por completar o desafio! Siga para a próxima fase
+                </p>
+
+                <a
+                  href="./phase_05.html"
+                  role="button"
+                  class="btn btn-primary btn-sm"
+                >
+                  Próxima fase
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para próxima fase (desktop) -->
+        <div
+          id="next-phase-modal-desktop"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
+              </div>
+              <div class="modal-body">
+                <p class="textWin">
+                  Parabéns por completar o desafio! Siga para a próxima fase
+                </p>
+
+                <a href="./phase_05.html" role="button" class="btn btn-primary">
+                  Próxima fase
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para informar uma nova tentativa (desktop) -->
+        <div
+          id="game-over-modal-desktop"
           class="modal fade"
           tabindex="-1"
           role="dialog"
@@ -277,52 +592,46 @@
           </div>
         </div>
 
-        <!-- Modal para mostrar que o desafio foi completo -->
+        <!-- Modal para informar uma nova tentativa (mobile) -->
         <div
-          id="completeChallenge"
+          id="game-over-modal-mobile"
           class="modal fade"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
           tabindex="-1"
           role="dialog"
           aria-labelledby="modalLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Desafio completo!</h5>
+                <h5 class="modal-title" id="modalLabel">Resposta errada</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Fechar"
+                ></button>
               </div>
               <div class="modal-body">
-                <p class="text-black">
-                  Parabéns por completar os desafios! <br />Por favor, nos diga
-                  qual foi a sua lógica para a resolução das questões:
-                </p>
-
-                <div class="form-check">
-                  <textarea
-                    class="form-control mb-1"
-                    name="logic"
-                    rows="4"
-                  ></textarea>
-
-                  <a
-                    id="data-submit-logic"
-                    href="#"
-                    class="btn btn-primary disabled"
-                    download
-                  >
-                    Enviar
-                  </a>
-                </div>
+                <p class="textWin">Não foi dessa vez! Tente Novamente.</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  data-reset
+                  class="btn btn-danger btn-sm"
+                  data-bs-dismiss="modal"
+                >
+                  Recomeçar
+                  <i class="bi bi-pause"></i>
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Modal para mostrar que o tempo acabou -->
+        <!-- Modal para mostrar que o tempo acabou (desktop) -->
         <div
-          id="timeOverModal"
+          id="timeOverModal-desktop"
           class="modal fade"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
@@ -343,22 +652,124 @@
               </div>
               <div class="modal-footer">
                 <button
-                  data-next-phase
+                  data-next-challenge
                   type="button"
                   class="btn btn-secondary"
                   data-bs-toggle="modal"
                   data-bs-target="#timeOverModal"
                 >
-                  Próxima fase
+                  Próximo desafio
                 </button>
+
+                <a
+                  data-next-phase
+                  href="./phase_05.html"
+                  class="btn btn-primary d-none"
+                  role="button"
+                >
+                  Próxima fase
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Modal para mostrar que o número de tentaivas acabou -->
+        <!-- Modal para mostrar que o tempo acabou (mobile) -->
         <div
-          id="attemptsGoneModal"
+          id="timeOverModal-mobile"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Tempo esgotado</h5>
+              </div>
+              <div class="modal-body">
+                <p class="textWin">
+                  Infelizmente o tempo acabou! Siga para o próximo desafio.
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  data-next-challenge
+                  type="button"
+                  class="btn btn-secondary btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#timeOverModal"
+                >
+                  Próximo desafio
+                </button>
+
+                <a
+                  data-next-phase
+                  href="./phase_05.html"
+                  class="btn btn-primary d-none btn-sm"
+                  role="button"
+                >
+                  Próxima fase
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para mostrar que o número de tentaivas acabou (mobile) -->
+        <div
+          id="attemptsGoneModal-mobile"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <p id="modalLabel" class="h5 modal-title">
+                  Ops, o número de tentativas acabou!
+                </p>
+              </div>
+
+              <div class="modal-body">
+                <p class="textWin">
+                  Infelizmente você não poderá mais responder a essa pergunta.
+                </p>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  data-next-challenge
+                  type="button"
+                  class="btn btn-secondary btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#attemptsGoneModal-mobile"
+                >
+                  Próximo desafio
+                </button>
+
+                <a
+                  data-next-phase
+                  href="./phase_05.html"
+                  class="btn btn-primary btn-sm d-none"
+                  role="button"
+                >
+                  Próxima fase
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para mostrar que o número de tentaivas acabou (desktop) -->
+        <div
+          id="attemptsGoneModal-desktop"
           class="modal fade"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
@@ -382,14 +793,23 @@
 
               <div class="modal-footer">
                 <button
-                  data-next-phase
+                  data-next-challenge
                   type="button"
                   class="btn btn-secondary"
                   data-bs-toggle="modal"
-                  data-bs-target="#attemptsGoneModal"
+                  data-bs-target="#attemptsGoneModal-desktop"
+                >
+                  Próximo desafio
+                </button>
+
+                <a
+                  data-next-phase
+                  href="./phase_05.html"
+                  class="btn btn-primary d-none"
+                  role="button"
                 >
                   Próxima fase
-                </button>
+                </a>
               </div>
             </div>
           </div>

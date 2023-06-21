@@ -54,12 +54,9 @@ startGameButton.addEventListener("click", () => {
 });
 
 function game() {
-  armadillo.style.animation = "armadillo-animation 4s linear";
+  armadillo.style.animation = "armadillo-animation 4s linear forwards";
 
   setTimeout(() => {
-    armadillo.style.left = `${
-      gameScreen.offsetWidth - armadillo.offsetWidth
-    }px`;
     showQuestionButton.disabled = false;
     questionModal.show();
     time();

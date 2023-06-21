@@ -15,9 +15,6 @@ const timeOverModalElement = document.getElementById(
   `time-over-modal${breakpoint}`
 );
 const questionModalElement = document.getElementById(`question${breakpoint}`);
-const nextPhaseModalElement = document.getElementById(
-  `next-phase-modal${breakpoint}`
-);
 const gameOverModalElement = document.getElementById(
   `game-over-modal${breakpoint}`
 );
@@ -28,12 +25,16 @@ const showQuestionButton = document.querySelector(
 const submitAnswerButton = document.querySelector(
   `[data-submit-answer${breakpoint}]`
 );
+const textOfLogic = document.querySelector('textarea[name="logic"]');
+const submitLogicButton = document.getElementById("data-submit-logic");
+var completeChallengeModalElement =
+  document.getElementById("completeChallenge");
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const questionModal = new bootstrap.Modal(questionModalElement);
-const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
+var completeChallengeModal = new bootstrap.Modal(completeChallengeModalElement);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
@@ -51,7 +52,7 @@ startGameButton.addEventListener("click", () => {
 });
 
 function game() {
-  armadillo.style.animation = "armadillo-animation 4s linear";
+  armadillo.style.animation = "armadillo-animation 4s linear forwards";
 
   setTimeout(() => {
     armadillo.style.left = `${
@@ -154,7 +155,7 @@ submitAnswerButton.addEventListener("click", () => {
   });
 
   if (answer == "28m") {
-    nextPhaseModal.show();
+    completeChallengeModal.show();
     questionModal.hide();
     progressWin.style.width = "100%";
     velocity = `velocidade = ${answer} (certo)`;
@@ -170,3 +171,85 @@ submitAnswerButton.addEventListener("click", () => {
     `tempo gasto: ${minutesSpent}:${secondsSpent}`
   );
 });
+
+textOfLogic.addEventListener("input", (e) => {
+  if (e.target.value == "") {
+    submitLogicButton.classList.add("disabled");
+  } else {
+    submitLogicButton.classList.remove("disabled");
+  }
+});
+
+submitLogicButton.addEventListener("click", () => {
+  makeFile();
+});
+
+function makeFile() {
+  let name = localStorage.getItem("nome");
+  let [questionOne, questionOneTime] = [
+    localStorage.getItem("question-01"),
+    localStorage.getItem("question-01-time"),
+  ];
+  let [questionTwo, questionTwoTime] = [
+    localStorage.getItem("question-02"),
+    localStorage.getItem("question-02-time"),
+  ];
+  let [questionThree, questionThreeTime] = [
+    localStorage.getItem("question-03"),
+    localStorage.getItem("question-03-time"),
+  ];
+  let [questionFourA, questionFourB, questionFourC] = [
+    localStorage.getItem("question-04-a"),
+    localStorage.getItem("question-04-b"),
+    localStorage.getItem("question-04-c"),
+  ];
+  let [questionFive, questionFiveTime] = [
+    localStorage.getItem("question-05"),
+    localStorage.getItem("question-05-time"),
+  ];
+  let [questionSix, questionSixTime] = [
+    localStorage.getItem("question-06"),
+    localStorage.getItem("question-06-time"),
+  ];
+  let [questionSeven, questionSevenTime] = [
+    localStorage.getItem("question-07"),
+    localStorage.getItem("question-07-time"),
+  ];
+  const text = `
+  Nome do aluno: ${name}
+
+  === Fase um ===
+  Resposta marcada: ${questionOne};
+  ${questionOneTime}
+
+  === Fase dois ===
+  Resposta marcada: ${questionTwo};
+  ${questionTwoTime};
+
+  === Fase três ===
+  Resposta marcada: ${questionThree};
+  ${questionThreeTime}
+
+  === Fase quatro ===
+  Opção marcada na primeira questão: ${questionFourA};
+  Opção marcada na segunda questão: ${questionFourB};
+  Opção marcada na segunda questão: ${questionFourC};
+  
+  === Fase cinco ===
+  Resposta marcada: ${questionFive};
+  ${questionFiveTime}
+
+  === Fase seis ===
+  Resposta marcada: ${questionSix};
+  ${questionSixTime}
+
+  === Fase Sete ===
+  Resposta marcada: ${questionSeven};
+  ${questionSevenTime}
+  `;
+
+  const file = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(file);
+  submitLogicButton.href = url;
+  submitLogicButton.download = `${name}.txt`;
+}

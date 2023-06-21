@@ -1,9 +1,13 @@
 import data from "../data/data.json" assert { type: "json" };
 
 const initialScreen = document.getElementById("initial-screen");
-const startGameButton = document.querySelector("[data-start-game]");
 const gameScreen = document.querySelector("[data-game-screen]");
-const question = document.querySelector("[data-question]");
+
+let breakpoint = gameScreen.offsetWidth >= 1024 ? "-desktop" : "-mobile";
+const startGameButton = document.querySelector(
+  `[data-start-game${breakpoint}]`
+);
+const questionModalElement = document.getElementById(`question${breakpoint}`);
 const endPositionText = document.querySelector(".end-position-text");
 const startPositionText = document.querySelector(".start-position-text");
 const halfTimeText = document.querySelector(".half-time-text");
@@ -14,10 +18,13 @@ const distBetweenFoxArmadillo = document.querySelector(
 const radioButtons = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
-const confirmAnswerButton = document.querySelector("[data-confirm-answer]");
+const confirmAnswerButton = document.querySelector(
+  `[data-confirm-answer${breakpoint}]`
+);
 const resetButtons = document.querySelectorAll("[data-reset]");
 const label = document.querySelectorAll(".form-check label");
 const progressiveBar = document.querySelectorAll(".progress");
+const nextChallengeButtons = document.querySelectorAll("[data-next-challenge]");
 const nextPhaseButtons = document.querySelectorAll("[data-next-phase]");
 let remainingAttempts = document.querySelector("[data-attempts]");
 let maxAttempts = 3;
@@ -28,18 +35,23 @@ const foxElement = document.querySelector("[data-fox");
 const timerRef = document.querySelector("[data-timer-display]");
 let [milliseconds, seconds, minutes] = [0, 0, 4];
 let timer = null;
-
-var completeChallengeModalElement =
-  document.getElementById("completeChallenge");
-var completeChallengeModal = new bootstrap.Modal(completeChallengeModalElement);
-var gameOverModalElement = document.getElementById("gameOverModal");
+const questionModal = new bootstrap.Modal(questionModalElement);
+const nextPhaseModalElement = document.getElementById(
+  `next-phase-modal${breakpoint}`
+);
+const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
+var gameOverModalElement = document.getElementById(
+  `game-over-modal${breakpoint}`
+);
 var gameOverModal = new bootstrap.Modal(gameOverModalElement);
-var timeOverModalElement = document.getElementById("timeOverModal");
+var timeOverModalElement = document.getElementById(
+  `timeOverModal${breakpoint}`
+);
 var timeOverModal = new bootstrap.Modal(timeOverModalElement);
-var attemptsGoneModalElement = document.getElementById("attemptsGoneModal");
+var attemptsGoneModalElement = document.getElementById(
+  `attemptsGoneModal${breakpoint}`
+);
 var attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
-const textOfLogic = document.querySelector('textarea[name="logic"]');
-const submitLogicButton = document.getElementById("data-submit-logic");
 
 const velocityWeight = {
   fox: [2, 3, 5],
@@ -77,8 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  nextPhaseButtons.forEach((nextPhaseButton) => {
-    nextPhaseButton.addEventListener("click", nextGame);
+  nextChallengeButtons.forEach((nextChallengeButton) => {
+    nextChallengeButton.addEventListener("click", nextGame);
   });
 });
 
@@ -90,7 +102,8 @@ class Game {
 
   startGame() {
     label.forEach((lbl, i) => {
-      lbl.textContent = data[phase].options[i];
+      const index = i % data[phase].options.length;
+      lbl.textContent = data[phase].options[index];
     });
 
     this.armadilloElement.classList.add("isMove");
@@ -120,7 +133,7 @@ class Game {
         setTimeout(() => {
           this.armadilloElement.classList.remove("isMove");
           this.foxElement.classList.remove("foxIsMove");
-          question.classList.replace("d-none", "d-block");
+          questionModal.show();
           timer = setInterval(this.timer.bind(this), 10);
         }, 880);
       }
@@ -182,10 +195,10 @@ class Game {
 
     if (min == 0 && sec == 0) {
       clearInterval(timer);
-      question.classList.replace("d-block", "d-none");
+      questionModal.hide();
       progressLose += maxQuantityQuestions;
       progressiveBar[1].style.width = `${progressLose}%`;
-      phase < 2 ? timeOverModal.show() : completeChallengeModal.show();
+      timeOverModal.show();
     }
 
     timerRef.innerText = `${min}:${sec}`;
@@ -195,7 +208,7 @@ class Game {
 const game = new Game(armadilloElement, foxElement);
 
 confirmAnswerButton.addEventListener("click", () => {
-  question.classList.replace("d-block", "d-none");
+  questionModal.hide();
   clearInterval(timer);
   let num = 0;
   radioButtons.forEach((radioButton) => {
@@ -217,13 +230,12 @@ confirmAnswerButton.addEventListener("click", () => {
         progressLose += maxQuantityQuestions;
         progressiveBar[1].style.width = `${progressLose}%`;
         optionChecked.push(num);
-        showAttemptsGoneModel();
+        phase < 2 ? showAttemptsGoneModel() : nextPhaseModal.show();
       } else {
         gameOverModal.show();
       }
     }, 1500);
   } else {
-    //armadilloVelocity = num;
     game.startGame();
     setTimeout(() => {
       resetButtons.forEach((resetButton) => {
@@ -233,14 +245,17 @@ confirmAnswerButton.addEventListener("click", () => {
       optionChecked.push(num);
 
       if (phase != 2) {
-        var nextPhaseModalElement = document.getElementById("nextPhaseModal");
-        var nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
-        nextPhaseModal.show();
+        var nextChallengeModalElement = document.getElementById(
+          `next-challenge-modal${breakpoint}`
+        );
+        var nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
+        nextChallengeModal.show();
       } else {
-        completeChallengeModal.show();
-        resetButtons.forEach((resetButton) => {
-          resetButton.disabled = true;
-        });
+        localStorage.setItem("question-04-a", optionChecked[0]);
+        localStorage.setItem("question-04-b", optionChecked[1]);
+        localStorage.setItem("question-04-c", optionChecked[2]);
+
+        nextPhaseModal.show();
       }
       progressWin += maxQuantityQuestions;
       progressiveBar[0].style.width = `${progressWin}%`;
@@ -254,18 +269,18 @@ resetButtons.forEach((resetButton) => {
   });
 });
 
-textOfLogic.addEventListener("input", (e) => {
-  if (e.target.value == "") {
-    submitLogicButton.classList.add("disabled");
-  } else {
-    submitLogicButton.classList.remove("disabled");
-  }
-});
-
 const showAttemptsGoneModel = () => attemptsGoneModal.show();
 
 function nextGame() {
   phase++;
+  if (phase == 2) {
+    nextChallengeButtons.forEach((nextChallengeButton) =>
+      nextChallengeButton.classList.add("d-none")
+    );
+    nextPhaseButtons.forEach((nextPhaseButton) =>
+      nextPhaseButton.classList.remove("d-none")
+    );
+  }
   armadilloVelocity =
     data[phase].armadilloVelocity * velocityWeight.armadillo[phase];
   armadilloPosition = data[phase].armadilloPosition;
@@ -283,75 +298,4 @@ function nextGame() {
   maxAttempts = 3;
   remainingAttempts.innerText = `${maxAttempts}`;
   game.reset();
-}
-
-submitLogicButton.addEventListener("click", () => {
-  completeChallengeModal.hide();
-  makeFile();
-});
-
-function makeFile() {
-  let name = localStorage.getItem("nome");
-  let [questionOne, questionOneTime] = [
-    localStorage.getItem("question-01"),
-    localStorage.getItem("question-01-time"),
-  ];
-  let [questionTwo, questionTwoTime] = [
-    localStorage.getItem("question-02"),
-    localStorage.getItem("question-02-time"),
-  ];
-  let [questionThree, questionThreeTime] = [
-    localStorage.getItem("question-03"),
-    localStorage.getItem("question-03-time"),
-  ];
-  let [questionFive, questionFiveTime] = [
-    localStorage.getItem("question-05"),
-    localStorage.getItem("question-05-time"),
-  ];
-  let [questionSix, questionSixTime] = [
-    localStorage.getItem("question-06"),
-    localStorage.getItem("question-06-time"),
-  ];
-  let [questionSeven, questionSevenTime] = [
-    localStorage.getItem("question-07"),
-    localStorage.getItem("question-07-time"),
-  ];
-  const text = `
-  Nome do aluno: ${name}
-
-  === Fase um ===
-  Resposta marcada: ${questionOne};
-  ${questionOneTime}
-
-  === Fase dois ===
-  Resposta marcada: ${questionTwo};
-  ${questionTwoTime};
-
-  === Fase três ===
-  Resposta marcada: ${questionThree};
-  ${questionThreeTime}
-
-  === Fase quatro ===
-  Opção marcada na primeira questão: ${optionChecked[0]};
-  Opção marcada na segunda questão: ${optionChecked[1]};
-  Opção marcada na segunda questão: ${optionChecked[2]};
-  Lógida usada: ${textOfLogic.value};  
-
-  === Fase cinco ===
-  Resposta marcada: ${questionFive};
-  ${questionFiveTime}
-
-  === Fase seis ===
-  Resposta marcada: ${questionSix};
-  ${questionSixTime}
-
-  === Fase Sete ===
-  Resposta marcada: ${questionSeven};
-  ${questionSevenTime}
-  `;
-
-  const file = new Blob([text], { type: "text/plain" });
-  const url = URL.createObjectURL(file);
-  submitLogicButton.href = url;
-  submitLogicButton.download = `${name}.txt`;
 }

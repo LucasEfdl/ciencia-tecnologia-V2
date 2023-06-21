@@ -61,14 +61,37 @@
   transition: 1s linear;
 }
 
-.overlay {
-  font-family: "Lucida Console", sans-serif;
-}
-
 .isMove {
   background-image: url("../images/armadillog.gif");
 }
 
 .foxIsMove {
   background-image: url("../images/foxg.gif");
+}
+
+@media screen and (max-width: 1024px) {
+  .game-screen {
+    min-width: 600px;
+    height: 300px;
+  }
+
+  .armadillo {
+    width: 80px;
+    height: 55px;
+
+    font-size: 10px;
+  }
+
+  .fox {
+    height: 87px;
+  }
+
+  @keyframes armadillo-animation {
+    from {
+      left: 0px;
+    }
+    to {
+      left: calc(600px - 80px);
+    }
+  }
 }

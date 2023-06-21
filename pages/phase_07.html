@@ -266,67 +266,6 @@
           </div>
         </div>
 
-        <!-- Modal para próxima fase (mobile) -->
-        <div
-          id="next-phase-modal-mobile"
-          class="modal fade d-lg-none"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="modalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
-              </div>
-              <div class="modal-body">
-                <p class="textWin">
-                  Parabéns por completar o desafio! Siga para a próxima fase
-                </p>
-
-                <a
-                  href="./phase_04.html"
-                  role="button"
-                  class="btn btn-primary btn-sm"
-                  >Próxima fase</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Modal para próxima fase (desktop) -->
-        <div
-          id="next-phase-modal-desktop"
-          class="modal fade"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="modalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
-              </div>
-              <div class="modal-body">
-                <p class="textWin">
-                  Parabéns por completar o desafio! Siga para a próxima fase
-                </p>
-
-                <a href="./phase_04.html" role="button" class="btn btn-primary"
-                  >Próxima fase</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Modal para mostrar que o tempo acabou (mobile) -->
         <div
           id="time-over-modal-mobile"
@@ -344,18 +283,7 @@
                 <h5 class="modal-title" id="modalLabel">Tempo esgotado</h5>
               </div>
               <div class="modal-body">
-                <p class="textWin">
-                  Infelizmente o tempo acabou! Siga para o próximo desafio.
-                </p>
-              </div>
-              <div class="modal-footer">
-                <a
-                  href="./phase_04.html"
-                  role="button"
-                  class="btn btn-secondary btn-sm"
-                >
-                  Próxima fase
-                </a>
+                <p class="textWin">Infelizmente o tempo acabou!</p>
               </div>
             </div>
           </div>
@@ -378,18 +306,7 @@
                 <h5 class="modal-title" id="modalLabel">Tempo esgotado</h5>
               </div>
               <div class="modal-body">
-                <p class="textWin">
-                  Infelizmente o tempo acabou! Siga para o próximo desafio.
-                </p>
-              </div>
-              <div class="modal-footer">
-                <a
-                  href="./phase_04.html"
-                  role="button"
-                  class="btn btn-secondary"
-                >
-                  Próxima fase
-                </a>
+                <p class="textWin">Infelizmente o tempo acabou!</p>
               </div>
             </div>
           </div>
@@ -464,6 +381,49 @@
                   Fechar
                   <i class="bi bi-pause"></i>
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para mostrar que o desafio foi completo -->
+        <div
+          id="completeChallenge"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Desafio completo!</h5>
+              </div>
+              <div class="modal-body">
+                <p class="text-black">
+                  Parabéns por completar os desafios! <br />Por favor, nos diga
+                  qual foi a sua lógica para a resolução das questões:
+                </p>
+
+                <div class="form-check">
+                  <textarea
+                    class="form-control mb-1"
+                    name="logic"
+                    rows="4"
+                  ></textarea>
+
+                  <a
+                    id="data-submit-logic"
+                    href="#"
+                    class="btn btn-primary disabled"
+                    download
+                  >
+                    Enviar
+                  </a>
+                </div>
               </div>
             </div>
           </div>
