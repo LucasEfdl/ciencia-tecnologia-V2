@@ -98,13 +98,16 @@ const time = () => {
       clearInterval(timer);
       clearInterval(countElapsedTime);
 
-      question.classList.replace("d-block", "d-none");
+      questionModal.hide();
       timeOverModal.show();
       questionModal.hide();
 
       progressLose.style.width = "100%";
 
-      localStorage.setItem("question-main-01", "Sem resposta - tempo total gasto");
+      localStorage.setItem(
+        "question-main-01",
+        "Sem resposta - tempo total gasto"
+      );
     }
 
     timerRef.innerText = `${min}:${sec}`;
