@@ -54,6 +54,7 @@ startGameButton.addEventListener("click", () => {
 function game() {
   armadillo.style.animation = "armadillo-animation-before 2s linear forwards";
   fox.style.animation = "fox-animation-before 2s linear forwards";
+  fox.children[0].classList.add("foxGif")
 
   setTimeout(() => {
     showQuestionButton.disabled = false;
@@ -104,7 +105,10 @@ const time = () => {
 
       progressLose.style.width = "100%";
 
-      localStorage.setItem("question-main-02", "Sem resposta - tempo total gasto");
+      localStorage.setItem(
+        "question-main-02",
+        "Sem resposta - tempo total gasto"
+      );
     }
 
     timerRef.innerText = `${min}:${sec}`;
@@ -152,6 +156,7 @@ submitAnswerButton.addEventListener("click", () => {
     setTimeout(() => {
       nextPhaseModal.show();
       questionModal.hide();
+      fox.children[0].classList.remove("foxGif")
 
       progressWin.style.width = "100%";
     }, 2000);
@@ -162,6 +167,8 @@ submitAnswerButton.addEventListener("click", () => {
     setTimeout(() => {
       remainingAttempts.innerText = `${--maxAttempts}`;
       questionModal.hide();
+      fox.children[0].classList.remove("foxGif")
+
       maxAttempts == 0 ? attemptsGoneModal.show() : gameOverModal.show();
       showQuestionButton.disabled = false;
     }, 2000);

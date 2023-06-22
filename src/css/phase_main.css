@@ -18,7 +18,6 @@
 }
 
 .armadillo {
-  background-image: url(../images/armadillo.svg);
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -38,6 +37,10 @@
 
   left: 0px;
   bottom: 0px;
+}
+
+.foxGif {
+  background-image: url(../images/foxg.gif);
 }
 
 @keyframes armadillo-animation-before {

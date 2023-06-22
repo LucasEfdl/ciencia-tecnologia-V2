@@ -54,6 +54,7 @@ startGameButton.addEventListener("click", () => {
 function game() {
   armadillo.style.animation = "armadillo-animation-before 2s linear forwards";
   fox.style.animation = "fox-animation-before 2s linear forwards";
+  fox.children[0].classList.remove("foxGif")
 
   setTimeout(() => {
     showQuestionButton.disabled = false;
@@ -155,6 +156,7 @@ submitAnswerButton.addEventListener("click", () => {
     setTimeout(() => {
       nextPhaseModal.show();
       questionModal.hide();
+      fox.children[0].classList.remove("foxGif")
 
       progressWin.style.width = "100%";
     }, 2000);
@@ -165,6 +167,7 @@ submitAnswerButton.addEventListener("click", () => {
     setTimeout(() => {
       remainingAttempts.innerText = `${--maxAttempts}`;
       questionModal.hide();
+      fox.children[0].classList.remove("foxGif")
       maxAttempts == 0 ? attemptsGoneModal.show() : gameOverModal.show();
       showQuestionButton.disabled = false;
     }, 2000);
