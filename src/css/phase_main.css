@@ -1,0 +1,175 @@
+#initial-screen {
+  z-index: 100;
+}
+
+.game-screen {
+  width: 1200px;
+  height: 520px;
+
+  background-image: url(../images/bg-main.jpg);
+  background-size: cover;
+  background-position: bottom;
+
+  opacity: 0.5;
+}
+
+#armadillo {
+  background-image: url(../images/armadillog.gif);
+}
+
+.armadillo {
+  background-image: url(../images/armadillo.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 120px;
+  height: 80px;
+
+  left: 0px;
+}
+
+.fox {
+  background-image: url(../images/fox_a.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 120px;
+  height: 110px;
+
+  left: 0px;
+  bottom: 0px;
+}
+
+@keyframes armadillo-animation-before {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 600px;
+  }
+}
+
+@keyframes fox-animation-before {
+  from {
+    left: -300px;
+  }
+  to {
+    left: 400px;
+  }
+}
+
+@keyframes armadillo-animation-after {
+  from {
+    left: 600px;
+  }
+  to {
+    left: 1200px;
+  }
+}
+
+@keyframes fox-animation-after {
+  from {
+    left: 400px;
+  }
+  to {
+    left: 1080px;
+  }
+}
+
+@keyframes fox-animation-win {
+  from {
+    left: 400px;
+  }
+  to {
+    left: 800px;
+  }
+}
+
+@keyframes armadillo-animation-lose {
+  from {
+    left: 600px;
+  }
+  to {
+    left: 830px;
+  }
+}
+
+.object {
+  bottom: 0px;
+}
+
+.object-2 {
+  left: -300px;
+  bottom: 0px;
+}
+
+@media screen and (max-width: 1024px) {
+  .game-screen {
+    width: 600px;
+    height: 300px;
+  }
+
+  .armadillo {
+    width: 80px;
+    height: 53px;
+  }
+
+  .fox {
+    width: 80px;
+    height: 72px;
+  }
+
+  @keyframes armadillo-animation-before {
+    from {
+      left: 0px;
+    }
+    to {
+      left: calc(300px - 80px);
+    }
+  }
+
+  @keyframes fox-animation-before {
+    from {
+      left: -300px;
+    }
+    to {
+      left: 100px;
+    }
+  }
+
+  @keyframes armadillo-animation-after {
+    from {
+      left: calc(300px - 80px);
+    }
+    to {
+      left: 600px;
+    }
+  }
+
+  @keyframes fox-animation-after {
+    from {
+      left: 100px;
+    }
+    to {
+      left: 520px;
+    }
+  }
+
+  @keyframes fox-animation-win {
+    from {
+      left: 120px;
+    }
+    to {
+      left: 480px;
+    }
+  }
+
+  @keyframes armadillo-animation-lose {
+    from {
+      left: calc(300px - 80px);
+    }
+    to {
+      left: 500px;
+    }
+  }
+}
