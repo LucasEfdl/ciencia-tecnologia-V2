@@ -201,8 +201,8 @@ function makeFile() {
   let [questionMain01, questionMain02, questionMain01Time, questionMain02Time] =
     [
       localStorage.getItem("question-main-01"),
-      localStorage.getItem("question-main-01-time"),
       localStorage.getItem("question-main-02"),
+      localStorage.getItem("question-main-01-time"),
       localStorage.getItem("question-main-02-time"),
     ];
   let [questionFive, questionFiveTime] = [
@@ -234,9 +234,9 @@ function makeFile() {
 
   === Fase quatro ===
   Opção marcada na primeira questão: ${questionMain01};
-  Tempo gasto: ${questionMain01Time}
+  ${questionMain01Time}
   Opção marcada na segunda questão: ${questionMain02};
-  Tempo gasto: ${questionMain02Time};
+  ${questionMain02Time};
   
   === Fase cinco ===
   Resposta marcada: ${questionFive};
