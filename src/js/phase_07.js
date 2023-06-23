@@ -18,6 +18,9 @@ const questionModalElement = document.getElementById(`question${breakpoint}`);
 const gameOverModalElement = document.getElementById(
   `game-over-modal${breakpoint}`
 );
+const attemptsGoneModalElement = document.getElementById(
+  `attemptsGoneModal${breakpoint}`
+);
 const options = document.querySelectorAll('input[type="radio"][name="option"]');
 const showQuestionButton = document.querySelector(
   `[data-show-question${breakpoint}]`
@@ -34,12 +37,15 @@ const progressLose = document.querySelector("[data-progress-lose]");
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const questionModal = new bootstrap.Modal(questionModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
+const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 var completeChallengeModal = new bootstrap.Modal(completeChallengeModalElement);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
 let index = 2;
 let timer = null;
+let remainingAttempts = document.querySelector("[data-attempts]");
+let maxAttempts = 3;
 
 const postionMobile = [134, 264, 394];
 const postionDesktop = [270, 540, 810];
@@ -101,7 +107,6 @@ const time = () => {
       clearInterval(timer);
       clearInterval(countElapsedTime);
 
-      question.classList.replace("d-block", "d-none");
       timeOverModal.show();
       questionModal.hide();
       progressLose.style.width = "100%";
@@ -160,7 +165,8 @@ submitAnswerButton.addEventListener("click", () => {
     progressWin.style.width = "100%";
     velocity = `velocidade = ${answer} (certo)`;
   } else {
-    gameOverModal.show();
+    remainingAttempts.innerText = `${--maxAttempts}`;
+    maxAttempts == 0 ? attemptsGoneModal.show() : gameOverModal.show();
     questionModal.hide();
     showQuestionButton.disabled = false;
   }

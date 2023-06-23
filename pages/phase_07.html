@@ -30,6 +30,10 @@
       class="vh-100 d-flex flex-column justify-content-center align-items-center"
     >
       <header class="w-75 d-flex justify-content-around align-items-center p-1">
+        <p class="text-white m-0">
+          Número de tentativas: <span data-attempts>3</span>
+        </p>
+
         <div class="d-flex align-items-center">
           <i class="ph-fill ph-timer" style="color: white"></i>
           <p data-timer-display class="text-white m-0">3:00</p>
@@ -129,7 +133,9 @@
           <div class="modal-dialog modal-sm modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
-                <p>Com base na trajetória do Tatu, qual é a sua posição final?</p>
+                <p>
+                  Com base na trajetória do Tatu, qual é a sua posição final?
+                </p>
                 <button
                   type="button"
                   class="btn btn-close btn-sm"
@@ -285,6 +291,16 @@
               <div class="modal-body">
                 <p class="textWin">Infelizmente o tempo acabou!</p>
               </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#completeChallenge"
+                >
+                  Fechar
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -307,6 +323,16 @@
               </div>
               <div class="modal-body">
                 <p class="textWin">Infelizmente o tempo acabou!</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#completeChallenge"
+                >
+                  Fechar
+                </button>
               </div>
             </div>
           </div>
@@ -380,6 +406,82 @@
                 >
                   Fechar
                   <i class="bi bi-pause"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para mostrar que o número de tentaivas acabou (mobile) -->
+        <div
+          id="attemptsGoneModal-mobile"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <p id="modalLabel" class="h5 modal-title">
+                  Ops, o número de tentativas acabou!
+                </p>
+              </div>
+
+              <div class="modal-body">
+                <p class="textWin">
+                  Infelizmente você não poderá mais responder a essa pergunta.
+                </p>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#completeChallenge"
+                >
+                  Fechar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para mostrar que o número de tentaivas acabou (desktop) -->
+        <div
+          id="attemptsGoneModal-desktop"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <p id="modalLabel" class="h5 modal-title">
+                  Ops, o número de tentativas acabou!
+                </p>
+              </div>
+
+              <div class="modal-body">
+                <p class="textWin">
+                  Infelizmente você não poderá mais responder a essa pergunta.
+                </p>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#completeChallenge"
+                >
+                  Fechar
                 </button>
               </div>
             </div>
