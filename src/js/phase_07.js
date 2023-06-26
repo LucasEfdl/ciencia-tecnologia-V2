@@ -164,9 +164,16 @@ submitAnswerButton.addEventListener("click", () => {
     questionModal.hide();
     progressWin.style.width = "100%";
     velocity = `velocidade = ${answer} (certo)`;
+    clearInterval(timer);
   } else {
     remainingAttempts.innerText = `${--maxAttempts}`;
     maxAttempts == 0 ? attemptsGoneModal.show() : gameOverModal.show();
+    if (maxAttempts == 0) {
+      clearInterval(timer);
+      attemptsGoneModal.show();
+    } else {
+      gameOverModal.show();
+    }
     questionModal.hide();
     showQuestionButton.disabled = false;
   }

@@ -179,6 +179,7 @@ submitAnswerButton.addEventListener("click", () => {
   });
   if (answer == "radio-two" || answer == "radio-four") {
     nextPhaseModal.show();
+    clearInterval(time);
     questionModal.hide();
     progressWin.style.width = "100%";
     value = "A trajetória de cima representa o movimento retilíneo uniforme";
