@@ -148,6 +148,7 @@ submitAnswerButton.addEventListener("click", () => {
   if (answer == "radio-two" || answer == "radio-four") {
     nextPhaseModal.show();
     questionModal.hide();
+    clearInterval(timer)
     progressWin.style.width = "100%";
     graphic = "posiçãoXtempo (certo)";
   } else {

@@ -54,7 +54,7 @@ startGameButton.addEventListener("click", () => {
 function game() {
   armadillo.style.animation = "armadillo-animation-before 2s linear forwards";
   fox.style.animation = "fox-animation-before 2s linear forwards";
-  fox.children[0].classList.add("foxGif");
+  fox.children[0].classList.add("foxIsMoving");
 
   setTimeout(() => {
     showQuestionButton.disabled = false;
@@ -122,10 +122,13 @@ options.forEach((option) => {
 });
 
 resetButton.addEventListener("click", () => {
-  breakpoint >= 1200
-    ? (armadillo.style.left = "600px")
-    : (armadillo.style.left = "220px");
-  breakpoint >= 1200 ? (fox.style.left = "400px") : (fox.style.left = "100px");
+  if (gameScreen.offsetWidth >= 1200) {
+    armadillo.style.left = "600px";
+    fox.style.left = "400px";
+  } else {
+    armadillo.style.left = "220px";
+    fox.style.left = "100px";
+  }
 
   armadillo.style.animation = "none";
 
@@ -149,26 +152,32 @@ submitAnswerButton.addEventListener("click", () => {
   });
 
   if (answer == "10m/s") {
-    armadillo.style.animation =
-      "armadillo-animation-after 1.3s linear forwards";
-    fox.style.animation = "fox-animation-after 1.5s linear forwards";
+    animationWin();
+    fox.children[0].classList.add("foxIsMoving");
+
+    clearInterval(timer);
 
     setTimeout(() => {
       nextPhaseModal.show();
       questionModal.hide();
-      fox.children[0].classList.remove("foxGif");
+      fox.children[0].classList.remove("foxIsMoving");
 
       progressWin.style.width = "100%";
     }, 2000);
   } else {
-    armadillo.style.animation = "armadillo-animation-lose 1.3s linear forwards";
-    fox.style.animation = "fox-animation-win 1.5s linear forwards";
+    animationLose();
+    fox.children[0].classList.add("foxIsMoving");
 
     setTimeout(() => {
       remainingAttempts.innerText = `${--maxAttempts}`;
       questionModal.hide();
-      fox.children[0].classList.remove("foxGif");
-      maxAttempts == 0 ? attemptsGoneModal.show() : gameOverModal.show();
+      fox.children[0].classList.remove("foxIsMoving");
+      if (maxAttempts == 0) {
+        attemptsGoneModal.show();
+        clearInterval(timer);
+      } else {
+        gameOverModal.show();
+      }
       showQuestionButton.disabled = false;
     }, 2000);
   }
@@ -179,3 +188,13 @@ submitAnswerButton.addEventListener("click", () => {
     `tempo gasto: ${minutesSpent}:${secondsSpent}`
   );
 });
+
+function animationWin() {
+  armadillo.style.animation = "armadillo-animation-after 1.3s linear forwards";
+  fox.style.animation = "fox-animation-after 1.5s linear forwards";
+}
+
+function animationLose() {
+  armadillo.style.animation = "armadillo-animation-lose 1.3s linear forwards";
+  fox.style.animation = "fox-animation-win 1.5s linear forwards";
+}

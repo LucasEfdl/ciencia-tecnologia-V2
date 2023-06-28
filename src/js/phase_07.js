@@ -164,9 +164,16 @@ submitAnswerButton.addEventListener("click", () => {
     questionModal.hide();
     progressWin.style.width = "100%";
     velocity = `velocidade = ${answer} (certo)`;
+    clearInterval(timer);
   } else {
     remainingAttempts.innerText = `${--maxAttempts}`;
     maxAttempts == 0 ? attemptsGoneModal.show() : gameOverModal.show();
+    if (maxAttempts == 0) {
+      clearInterval(timer);
+      attemptsGoneModal.show();
+    } else {
+      gameOverModal.show();
+    }
     questionModal.hide();
     showQuestionButton.disabled = false;
   }
@@ -192,6 +199,7 @@ submitLogicButton.addEventListener("click", () => {
 
 function makeFile() {
   let name = localStorage.getItem("nome");
+  let nickname = localStorage.getItem("nickname");
   let [questionOne, questionOneTime] = [
     localStorage.getItem("question-01"),
     localStorage.getItem("question-01-time"),
@@ -225,6 +233,7 @@ function makeFile() {
   ];
   const text = `
   Nome do aluno: ${name}
+  Nickname: ${nickname}
 
   === Fase um ===
   Resposta marcada: ${questionOne};
