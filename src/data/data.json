@@ -1,6 +1,6 @@
 [
   {
-    "armadilloVelocity": 15,
+    "armadilloVelocity": 16,
     "armadilloPosition": 0,
 
     "foxVelocity": 20,
@@ -12,13 +12,13 @@
     "distBetweenFoxAndArmadillo": "200",
 
     "halfTime": 25,
-    "finalTime": 43,
+    "finalTime": 40,
     "crashTime": "45",
 
-    "options": ["10m/s", "15m/s", "20m/s", "30m/s"]
+    "options": ["10m/s", "16m/s", "20m/s", "30m/s"]
   },
   {
-    "armadilloVelocity": 13,
+    "armadilloVelocity": 14,
     "armadilloPosition": 0,
 
     "foxVelocity": 15,
@@ -33,7 +33,7 @@
     "finalTime": 37,
     "crashTime": "37",
 
-    "options": ["7m/s", "10m/s", "13m/s", "30m/s"]
+    "options": ["7m/s", "10m/s", "14m/s", "30m/s"]
   },
   {
     "armadilloVelocity": 9,
