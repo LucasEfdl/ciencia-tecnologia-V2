@@ -12,6 +12,7 @@ const endPositionText = document.querySelector(".end-position-text");
 const startPositionText = document.querySelector(".start-position-text");
 const halfTimeText = document.querySelector(".half-time-text");
 const foxVelocityText = document.querySelector(".fox-velocity-text");
+const crashTimeText = document.querySelector(".crash-time-text");
 const distBetweenFoxArmadillo = document.querySelector(
   ".dist-between-fox-armadillo"
 );
@@ -55,7 +56,7 @@ var attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 
 const velocityWeight = {
   fox: [2, 3, 5],
-  armadillo: [3, 5, 5],
+  armadillo: [2, 2.69, 5],
 };
 let progressWin = 0;
 let progressLose = 0;
@@ -70,11 +71,12 @@ let difference = 0;
 
 const optionChecked = [];
 
-startPositionText.innerText = data[phase].halfPosition;
+startPositionText.innerText = data[phase].positionUntilEnd;
 endPositionText.innerText = data[phase].finalPosition;
 foxVelocityText.innerText = data[phase].foxVelocity;
 halfTimeText.innerText = data[phase].halfTime;
 distBetweenFoxArmadillo.innerText = data[phase].distBetweenFoxAndArmadillo;
+crashTimeText.innerText = data[phase].crashTime;
 
 document.addEventListener("DOMContentLoaded", () => {
   startGameButton.addEventListener("click", () => {
@@ -287,10 +289,11 @@ function nextGame() {
   foxVelocity = data[phase].foxVelocity * velocityWeight.fox[phase];
   foxPosition = data[phase].foxPosition;
   endPositionText.innerText = data[phase].finalPosition;
-  startPositionText.innerText = data[phase].halfPosition;
+  startPositionText.innerText = data[phase].positionUntilEnd;
   distBetweenFoxArmadillo.innerText = data[phase].distBetweenFoxAndArmadillo;
-
+  crashTimeText.innerText = data[phase].crashTime;
   halfTimeText.innerText = data[phase].halfTime;
+  foxVelocityText.innerText = data[phase].foxVelocity;
 
   timerRef.innerText = "04:00";
   [milliseconds, seconds, minutes] = [0, 0, 4];
