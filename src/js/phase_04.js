@@ -10,7 +10,6 @@ const startGameButton = document.querySelector(
 const questionModalElement = document.getElementById(`question${breakpoint}`);
 const endPositionText = document.querySelector(".end-position-text");
 const startPositionText = document.querySelector(".start-position-text");
-const halfTimeText = document.querySelector(".half-time-text");
 const foxVelocityText = document.querySelector(".fox-velocity-text");
 const crashTimeText = document.querySelector(".crash-time-text");
 const distBetweenFoxArmadillo = document.querySelector(
@@ -74,7 +73,6 @@ const optionChecked = [];
 startPositionText.innerText = data[phase].positionUntilEnd;
 endPositionText.innerText = data[phase].finalPosition;
 foxVelocityText.innerText = data[phase].foxVelocity;
-halfTimeText.innerText = data[phase].halfTime;
 distBetweenFoxArmadillo.innerText = data[phase].distBetweenFoxAndArmadillo;
 crashTimeText.innerText = data[phase].crashTime;
 
@@ -292,7 +290,6 @@ function nextGame() {
   startPositionText.innerText = data[phase].positionUntilEnd;
   distBetweenFoxArmadillo.innerText = data[phase].distBetweenFoxAndArmadillo;
   crashTimeText.innerText = data[phase].crashTime;
-  halfTimeText.innerText = data[phase].halfTime;
   foxVelocityText.innerText = data[phase].foxVelocity;
 
   timerRef.innerText = "04:00";
