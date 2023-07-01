@@ -151,7 +151,7 @@ submitAnswerButton.addEventListener("click", () => {
     }
   });
 
-  if (answer == "10m/s") {
+  if (answer == "16m/s") {
     animationWin();
     fox.children[0].classList.add("foxIsMoving");
 

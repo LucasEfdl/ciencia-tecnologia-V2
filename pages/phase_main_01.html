@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fase principal - Cinemática</title>
+    <title>Fase IV -- I - Cinemática</title>
     <link rel="stylesheet" href="../src/css/phase_main.css" />
     <link rel="stylesheet" href="../src/css/bootstrap.css" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
+  
   <body class="bg-dark">
     <section id="initial-screen" class="d-block w-100 position-absolute">
       <div class="d-flex justify-content-center align-items-center vh-100">
@@ -105,71 +106,78 @@
         </div>
 
         <!-- Modal para mostrar a questão (mobile) -->
-        <div id="question-mobile" class="modal d-lg-none fade">
-          <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div id="question-mobile" class="modal fade">
+          <div
+            class="modal-dialog modal-lg modal-dialog-scrollable"
+            role="document"
+          >
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="fs-6">
-                  Um tatu está fugindo de uma raposa e, para se salvar, ele
-                  precisa chegar à sua toca. Sua tarefa é descobrir a velocidade
-                  <strong>mínima</strong> do tatu para que ele fuja do predador!
+                <h5 class="modal-title">
+                  A velocidade
+                  <strong>Nescessária</strong> do tatu para que ele fuja do
+                  predador é de, aproximadamente:
+                  <br />
                 </h5>
               </div>
 
               <div class="modal-body">
-                <p class="texte-center text-black fs-6">
-                  <strong>Dados</strong>: leve em consideração que, no instante
-                  de sua observação, o tatu encontra-se em repouso e à 430m do
-                  seu destino. Considere o movimento descrito por ele como sendo
-                  Retilíneo Uniforme e o tempo que ele leva para chegar 250m,
-                  como sendo 25s. A raposa encontra-se com velocidade constante
-                  igual a 20m/s e a distância atual entre ela e o tatu é de
-                  200m.
+                <div
+                  class="d-flex flex-row justify-content-center align-items-center gap-3"
+                >
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio1"
+                    />
+                    <label class="text-black" for="radio1">10m/s</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio2"
+                    />
+                    <label class="text-black" for="radio2">16m/s</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio3"
+                    />
+                    <label class="text-black" for="radio3">20m/s</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio4"
+                    />
+                    <label class="text-black" for="radio4">30m/s</label>
+                  </div>
+                </div>
+
+                <br />
+
+                <p class="texte-center text-black">
+                  <strong>Dados</strong>: A distância entre eles é de 200m. A
+                  distância entre o tatu e sua toca é de 180m. Considere a
+                  velocidade da raposa como sendo 20m/s e o tempo de encontro
+                  dela com o tatu é de 45s.
                 </p>
-
-                <div class="form-check">
-                  <input
-                    role="button"
-                    type="radio"
-                    name="velocity"
-                    class="form-check-input"
-                    id="radio1"
-                  />
-                  <label class="text-black" for="radio1">4m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input
-                    role="button"
-                    type="radio"
-                    name="velocity"
-                    class="form-check-input"
-                    id="radio2"
-                  />
-                  <label class="text-black" for="radio2">6m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input
-                    role="button"
-                    type="radio"
-                    name="velocity"
-                    class="form-check-input"
-                    id="radio3"
-                  />
-                  <label class="text-black" for="radio3">8m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input
-                    role="button"
-                    type="radio"
-                    name="velocity"
-                    class="form-check-input"
-                    id="radio4"
-                  />
-                  <label class="text-black" for="radio4">10m/s</label>
-                </div>
               </div>
 
               <div class="modal-footer">
@@ -198,70 +206,74 @@
 
         <!-- Modal para mostrar a questão (desktop) -->
         <div id="question-desktop" class="modal fade">
-          <div class="modal-dialog modal-lg modal-dialog-scrollable">
+          <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <p class="modal-title">
-                  Um tatu está fugindo de uma raposa e, para se salvar, ele
-                  precisa chegar à sua toca. Sua tarefa é descobrir a velocidade
-                  <strong>mínima</strong> do tatu para que ele fuja do predador!
-                </p>
+                <h5 class="modal-title">
+                  A velocidade
+                  <strong>Nescessária</strong> do tatu para que ele fuja do
+                  predador é de, aproximadamente:
+                  <br />
+                </h5>
               </div>
 
               <div class="modal-body">
+                <div
+                  class="d-flex flex-row justify-content-center align-items-center gap-3"
+                >
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio5"
+                    />
+                    <label class="text-black" for="radio5">10m/s</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio6"
+                    />
+                    <label class="text-black" for="radio6">16m/s</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio7"
+                    />
+                    <label class="text-black" for="radio7">20m/s</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input
+                      role="button"
+                      type="radio"
+                      name="velocity"
+                      class="form-check-input"
+                      id="radio8"
+                    />
+                    <label class="text-black" for="radio8">30m/s</label>
+                  </div>
+                </div>
+
+                <br />
+
                 <p class="texte-center text-black">
-                  <strong>Dados</strong>: leve em consideração que, no instante
-                  de sua observação, o tatu encontra-se em repouso e à 430m do
-                  seu destino. Considere o movimento descrito por ele como sendo
-                  Retilíneo Uniforme e o tempo que ele leva para chegar 250m,
-                  como sendo 25s. A raposa encontra-se com velocidade constante
-                  igual a 20m/s e a distância atual entre ela e o tatu é de
-                  200m.
+                  <strong>Dados</strong>: A distância entre eles é de 200m. A
+                  distância entre o tatu e sua toca é de 180m. Considere a
+                  velocidade da raposa como sendo 20m/s e o tempo de encontro
+                  dela com o tatu é de 45s.
                 </p>
-
-                <div class="form-check">
-                  <input
-                    role="button"
-                    type="radio"
-                    name="velocity"
-                    class="form-check-input"
-                    id="radio5"
-                  />
-                  <label class="text-black" for="radio5">4m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input
-                    role="button"
-                    type="radio"
-                    name="velocity"
-                    class="form-check-input"
-                    id="radio6"
-                  />
-                  <label class="text-black" for="radio6">6m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input
-                    role="button"
-                    type="radio"
-                    name="velocity"
-                    class="form-check-input"
-                    id="radio7"
-                  />
-                  <label class="text-black" for="radio7">8m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input
-                    role="button"
-                    type="radio"
-                    name="velocity"
-                    class="form-check-input"
-                    id="radio8"
-                  />
-                  <label class="text-black" for="radio8">10m/s</label>
-                </div>
               </div>
 
               <div class="modal-footer">

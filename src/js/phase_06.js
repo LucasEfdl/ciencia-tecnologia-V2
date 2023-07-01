@@ -7,6 +7,9 @@ const startGameButton = document.querySelector(
   `[data-start-game${breakpoint}]`
 );
 const armadillo = document.querySelector("[data-armadillo]");
+const armadilloPositionText = document.querySelector(
+  "[data-armadillo-position]"
+);
 const armadillos = document.querySelectorAll(".object");
 const timeText = document.querySelector("[data-time-text]");
 const timerRef = document.querySelector("[data-timer-display]");
@@ -119,12 +122,16 @@ armadillos.forEach((armadillo, index) => {
 });
 
 const newArmadillos = () => {
+  let position = 10;
   let elements = setInterval(() => {
     armadillos[index++].classList.replace("d-none", "d-block");
-    timeText.innerHTML = `t = ${index - 1}s <br/> v = 10m/s`;
+    timeText.innerHTML = `t = ${index - 1}s`;
+    armadilloPositionText.innerHTML = `s = ${position}m`;
+    position += 10;
 
     if (index > 4) {
       clearInterval(elements);
+      armadilloPositionText.innerHTML = `s = ${position}m`;
     }
   }, 1000);
 };
@@ -148,7 +155,7 @@ submitAnswerButton.addEventListener("click", () => {
   if (answer == "radio-two" || answer == "radio-four") {
     nextPhaseModal.show();
     questionModal.hide();
-    clearInterval(timer)
+    clearInterval(timer);
     progressWin.style.width = "100%";
     graphic = "posiçãoXtempo (certo)";
   } else {
