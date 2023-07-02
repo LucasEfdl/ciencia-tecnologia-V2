@@ -22,15 +22,15 @@
     "armadilloPosition": 0,
 
     "foxVelocity": 15,
-    "foxPosition": -400,
+    "foxPosition": -450,
 
     "positionUntilEnd": "205m",
     "finalPosition": "550m",
 
     "distBetweenFoxAndArmadillo": "46",
 
-    "halfTime": 20,
-    "finalTime": 37,
+    "halfTime": 25,
+    "finalTime": 40,
     "crashTime": "37",
 
     "options": ["7m/s", "10m/s", "14m/s", "30m/s"]
@@ -40,15 +40,15 @@
     "armadilloPosition": 0,
 
     "foxVelocity": 15,
-    "foxPosition": -400,
+    "foxPosition": -450,
 
     "positionUntilEnd": "80m",
     "finalPosition": "350m",
 
     "distBetweenFoxAndArmadillo": "80",
 
-    "halfTime": 20,
-    "finalTime": 30,
+    "halfTime": 25,
+    "finalTime": 40,
     "crashTime": "40",
 
     "options": ["5m/s", "3m/s", "15m/s", "13m/s"]
