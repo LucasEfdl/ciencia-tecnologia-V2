@@ -236,34 +236,37 @@ function makeFile() {
   Nickname: ${nickname}
 
   === Fase um ===
-  Resposta marcada: ${questionOne};
+  Resposta marcada: ${questionOne}
   ${questionOneTime}
 
   === Fase dois ===
-  Resposta marcada: ${questionTwo};
-  ${questionTwoTime};
+  Resposta marcada: ${questionTwo}
+  ${questionTwoTime}
 
   === Fase três ===
-  Resposta marcada: ${questionThree};
+  Resposta marcada: ${questionThree}
   ${questionThreeTime}
 
   === Fase quatro ===
-  Opção marcada na primeira questão: ${questionMain01};
+  Opção marcada na primeira questão: ${questionMain01}
   ${questionMain01Time}
-  Opção marcada na segunda questão: ${questionMain02};
-  ${questionMain02Time};
+  Opção marcada na segunda questão: ${questionMain02}
+  ${questionMain02Time}
   
   === Fase cinco ===
-  Resposta marcada: ${questionFive};
+  Resposta marcada: ${questionFive}
   ${questionFiveTime}
 
   === Fase seis ===
-  Resposta marcada: ${questionSix};
+  Resposta marcada: ${questionSix}
   ${questionSixTime}
 
   === Fase Sete ===
-  Resposta marcada: ${questionSeven};
+  Resposta marcada: ${questionSeven}
   ${questionSevenTime}
+
+  === Lógica utilizada nas questões ===
+  ${textOfLogic.innerText}
   `;
 
   const file = new Blob([text], { type: "text/plain" });
