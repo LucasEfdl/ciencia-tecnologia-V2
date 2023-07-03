@@ -24,33 +24,33 @@
     "foxVelocity": 15,
     "foxPosition": -450,
 
-    "positionUntilEnd": "205m",
+    "positionUntilEnd": "150m",
     "finalPosition": "550m",
 
-    "distBetweenFoxAndArmadillo": "46",
+    "distBetweenFoxAndArmadillo": "10",
 
     "halfTime": 25,
     "finalTime": 40,
-    "crashTime": "37",
+    "crashTime": "10",
 
     "options": ["7m/s", "10m/s", "14m/s", "30m/s"]
   },
   {
-    "armadilloVelocity": 13,
+    "armadilloVelocity": 5,
     "armadilloPosition": 0,
 
-    "foxVelocity": 15,
+    "foxVelocity": 9,
     "foxPosition": -450,
 
-    "positionUntilEnd": "80m",
+    "positionUntilEnd": "180m",
     "finalPosition": "350m",
 
     "distBetweenFoxAndArmadillo": "80",
 
     "halfTime": 25,
     "finalTime": 40,
-    "crashTime": "40",
+    "crashTime": "20",
 
-    "options": ["5m/s", "3m/s", "15m/s", "13m/s"]
+    "options": ["5m/s", "5m/s", "15m/s", "13m/s"]
   }
 ]

@@ -54,8 +54,8 @@ var attemptsGoneModalElement = document.getElementById(
 var attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 
 const velocityWeight = {
-  fox: [2.5, 2.6666, 2.6666],
-  armadillo: [4, 2.2857, 2.461],
+  fox: [2.5, 2.6666, 4.4444],
+  armadillo: [4, 2.2857, 6.8],
 };
 let progressWin = 0;
 let progressLose = 0;
