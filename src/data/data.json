@@ -1,21 +1,21 @@
 [
   {
-    "armadilloVelocity": 16,
+    "armadilloVelocity": 8,
     "armadilloPosition": 0,
 
-    "foxVelocity": 20,
+    "foxVelocity": 16,
     "foxPosition": -450,
 
-    "positionUntilEnd": "180m",
+    "positionUntilEnd": "100m",
     "finalPosition": "430m",
 
-    "distBetweenFoxAndArmadillo": "200",
+    "distBetweenFoxAndArmadillo": "100",
 
     "halfTime": 25,
     "finalTime": 40,
-    "crashTime": "45",
+    "crashTime": "12,5",
 
-    "options": ["10m/s", "16m/s", "20m/s", "30m/s"]
+    "options": ["10m/s", "8m/s", "20m/s", "13m/s"]
   },
   {
     "armadilloVelocity": 14,
