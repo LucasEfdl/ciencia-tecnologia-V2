@@ -1,39 +1,10 @@
-#initial-screen {
-  z-index: 100;
-}
-
-.game-screen {
-  width: 1200px;
-  height: 520px;
-
-  background-image: url(../images/bg-main.jpg);
-  background-size: cover;
-  background-position: bottom;
-
-  opacity: 0.5;
-}
-
-#armadillo {
-  background-image: url(../images/armadillog.gif);
-}
-
-.armadillo {
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  width: 120px;
-  height: 80px;
-
-  left: 0px;
-}
-
 .fox {
   background-image: url(../images/fox_a.png);
   background-repeat: no-repeat;
   background-size: cover;
 
   width: 120px;
-  height: 110px;
+  height: 115px;
 
   left: 0px;
   bottom: 0px;
@@ -107,19 +78,11 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .game-screen {
-    width: 600px;
-    height: 300px;
-  }
-
-  .armadillo {
-    width: 80px;
-    height: 53px;
-  }
-
   .fox {
     width: 80px;
-    height: 72px;
+    height: 76px;
+
+    font-size: 10px;
   }
 
   @keyframes armadillo-animation-before {
