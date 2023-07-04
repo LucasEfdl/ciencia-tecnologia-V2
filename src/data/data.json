@@ -2,7 +2,6 @@
   {
     "armadilloVelocity": 8,
     "foxVelocity": 16,
-    
 
     "positionUntilEnd": "100m",
     "distBetweenFoxAndArmadillo": "100m",
