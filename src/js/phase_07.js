@@ -266,7 +266,7 @@ function makeFile() {
   ${questionSevenTime}
 
   === Lógica utilizada nas questões ===
-  ${textOfLogic.innerText}
+  ${textOfLogic.value}
   `;
 
   const file = new Blob([text], { type: "text/plain" });

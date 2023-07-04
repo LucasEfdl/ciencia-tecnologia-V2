@@ -1,0 +1,36 @@
+@import url(global.css);
+
+#armadilloMRUV {
+  background-image: url(../images/armadillog.gif);
+}
+
+.is-bottom {
+  bottom: 25%;
+}
+
+.is-down {
+  bottom: 0px;
+}
+
+.armadilloMRUV {
+  background-image: url(../images/armadillo.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 120px;
+  height: 80px;
+
+  left: 0px;
+}
+
+@media screen and (max-width: 1024px) {
+  .armadilloMRUV {
+    width: 80px;
+    height: 55px;
+  }
+
+  .object p,
+  .object-2 p {
+    font-size: 10px;
+  }
+}
