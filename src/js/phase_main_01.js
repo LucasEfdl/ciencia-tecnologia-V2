@@ -46,6 +46,7 @@ let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
 let timer = null;
+let phase = 0;
 
 const distBetween = document.querySelector(".dist-between");
 const positionUtilEnd = document.querySelector(".position-until-end");
@@ -62,6 +63,11 @@ function game() {
   armadillo.style.animation = "armadillo-animation-before 2s linear forwards";
   fox.style.animation = "fox-animation-before 2s linear forwards";
   fox.children[0].classList.add("foxIsMoving");
+
+  distBetween.innerText = data[phase].distBetweenFoxAndArmadillo;
+  positionUtilEnd.innerText = data[phase].positionUntilEnd;
+  foxVelocity.innerText = data[phase].foxVelocity;
+  crashTime.innerText = data[phase].crashTime;
 
   setTimeout(() => {
     showQuestionButton.disabled = false;

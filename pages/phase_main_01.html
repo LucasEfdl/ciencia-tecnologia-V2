@@ -70,6 +70,66 @@
         <div class="fox"></div>
       </div>
 
+      <!-- Modal para mostrar a questão (desktop) -->
+      <div id="question-desktop" class="modal fade">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">
+                A velocidade
+                <strong>mínima nescessária</strong> do tatu para que ele fuja do
+                predador é de, aproximadamente:
+                <br />
+              </h5>
+            </div>
+
+            <div class="modal-body">
+              <div class="d-flex flex-row justify-content-center align-items-center gap-3">
+                <div class="form-check">
+                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio5" />
+                  <label class="text-black" for="radio5">10m/s</label>
+                </div>
+
+                <div class="form-check">
+                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio6" />
+                  <label class="text-black" for="radio6">16m/s</label>
+                </div>
+
+                <div class="form-check">
+                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio7" />
+                  <label class="text-black" for="radio7">20m/s</label>
+                </div>
+
+                <div class="form-check">
+                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio8" />
+                  <label class="text-black" for="radio8">30m/s</label>
+                </div>
+              </div>
+
+              <br />
+
+              <p class="texte-center text-black">
+                <strong>Dados</strong>: A distância entre eles é de <span class="dist-between"></span>.
+                A distância entre o tatu e sua toca é de <span class="position-until-end"></span>. Considere a
+                velocidade da raposa
+                como sendo <span class="fox-velocity"></span>m/s e o tempo de encontro dela com o tatu é de <span
+                  class="crash-time"></span>.
+              </p>
+            </div>
+
+            <div class="modal-footer">
+              <button data-submit-answer-desktop type="button" class="btn btn-success" data-bs-dismiss="modal" disabled>
+                Confirmar
+              </button>
+
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Fechar">
+                Fechar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Modal para mostrar a questão (mobile) -->
       <div id="question-mobile" class="modal fade">
         <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
@@ -110,10 +170,10 @@
 
               <p class="texte-center text-black">
                 <strong>Dados</strong>: A distância entre eles é de <span class="dist-between"></span>.
-                A distância entre o tatu e sua toca é de <span class="position-until"></span>. Considere a
+                A distância entre o tatu e sua toca é de <span class="position-until-end"></span>. Considere a
                 velocidade da raposa
                 como sendo <span class="fox-velocity"></span>m/s e o tempo de encontro dela com o tatu é de <span
-                  class="crash-time"></span>s.
+                  class="crash-time"></span>.
               </p>
             </div>
 
@@ -124,66 +184,6 @@
               </button>
 
               <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Fechar">
-                Fechar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal para mostrar a questão (desktop) -->
-      <div id="question-desktop" class="modal fade">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">
-                A velocidade
-                <strong>mínimanescessária</strong> do tatu para que ele fuja do
-                predador é de, aproximadamente:
-                <br />
-              </h5>
-            </div>
-
-            <div class="modal-body">
-              <div class="d-flex flex-row justify-content-center align-items-center gap-3">
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio5" />
-                  <label class="text-black" for="radio5">10m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio6" />
-                  <label class="text-black" for="radio6">16m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio7" />
-                  <label class="text-black" for="radio7">20m/s</label>
-                </div>
-
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio8" />
-                  <label class="text-black" for="radio8">30m/s</label>
-                </div>
-              </div>
-
-              <br />
-
-              <p class="texte-center text-black">
-                <strong>Dados</strong>: A distância entre eles é de <span class="dist-between-fox-armadillo"></span>m.
-                A distância entre o tatu e sua toca é de <span class="start-position-text"></span>. Considere a
-                velocidade da raposa
-                como sendo <span class="fox-velocity-text"></span>m/s e o tempo de encontro dela com o tatu é de <span
-                  class="crash-time-text"></span>s.
-              </p>
-            </div>
-
-            <div class="modal-footer">
-              <button data-submit-answer-desktop type="button" class="btn btn-success" data-bs-dismiss="modal" disabled>
-                Confirmar
-              </button>
-
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Fechar">
                 Fechar
               </button>
             </div>
@@ -203,8 +203,6 @@
               <p class="textWin">
                 Parabéns por completar o desafio! Siga para a próxima fase
               </p>
-
-              <a href="./phase_main_02.html" role="button" class="btn btn-primary btn-sm">Próxima fase</a>
             </div>
           </div>
         </div>
@@ -222,8 +220,6 @@
               <p class="textWin">
                 Parabéns por completar o desafio! Siga para a próxima fase
               </p>
-
-              <a href="./phase_main_02.html" role="button" class="btn btn-primary">Próxima fase</a>
             </div>
           </div>
         </div>
