@@ -27,6 +27,6 @@
     "distBetweenFoxAndArmadillo": "80",
     "crashTime": "20",
 
-    "options": ["5m/s", "5m/s", "15m/s", "13m/s"]
+    "options": ["5m/s", "20m/s", "15m/s", "13m/s"]
   }
 ]
