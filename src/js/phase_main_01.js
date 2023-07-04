@@ -154,20 +154,24 @@ resetButton.addEventListener("click", () => {
 });
 
 nextButton.addEventListener("click", () => {
-  nextPhaseModal.hide();
-  armadillo.style.animation = "none";
-  fox.style.animation = "none";
-  fox.children[0].classList.remove("foxIsMoving");
-  phase++;
+  if (phase === 3) {
+    attemptsGoneModal.show();
+  } else {
+    nextPhaseModal.hide();
+    armadillo.style.animation = "none";
+    fox.style.animation = "none";
+    fox.children[0].classList.remove("foxIsMoving");
+    phase++;
 
-  distBetween.innerText = data[phase].distBetweenFoxAndArmadillo;
-  positionUtilEnd.innerText = data[phase].positionUntilEnd;
-  foxVelocity.innerText = data[phase].foxVelocity;
-  crashTime.innerText = data[phase].crashTime;
+    distBetween.innerText = data[phase].distBetweenFoxAndArmadillo;
+    positionUtilEnd.innerText = data[phase].positionUntilEnd;
+    foxVelocity.innerText = data[phase].foxVelocity;
+    crashTime.innerText = data[phase].crashTime;
 
-  setTimeout(() => {
-    game();
-  }, 1500);
+    setTimeout(() => {
+      game();
+    }, 1500);
+  }
 });
 
 submitAnswerButton.addEventListener("click", () => {
