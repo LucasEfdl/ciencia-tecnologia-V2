@@ -1,3 +1,5 @@
+import data from "../data/data.json" assert { type: "json" };
+
 const initialScreen = document.getElementById("initial-screen");
 const gameScreen = document.querySelector("[data-game-screen]");
 let breakpoint = gameScreen.offsetWidth >= 1024 ? "-desktop" : "-mobile";
