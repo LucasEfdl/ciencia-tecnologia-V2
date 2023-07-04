@@ -33,7 +33,10 @@ const attemptsGoneModalElement = document.getElementById(
   `attemptsGoneModal${breakpoint}`
 );
 const resetButton = document.querySelector(`[data-reset${breakpoint}]`);
-const nextButton = document.querySelector(`[data-next-phase${breakpoint}]`);
+const nextPhaseButton = document.querySelector(
+  `[data-next-phase${breakpoint}]`
+);
+const nextPageButton = document.querySelector(`[data-next-page${breakpoint}]`);
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
@@ -66,6 +69,11 @@ function game() {
   armadillo.style.animation = "armadillo-animation-before 2s linear forwards";
   fox.style.animation = "fox-animation-before 2s linear forwards";
   fox.children[0].classList.add("foxIsMoving");
+
+  if (phase === 2) {
+    nextPhaseButton.classList.replace("d-block", "d-none");
+    nextPageButton.classList.replace("d-none", "d-block");
+  }
 
   distBetween.innerText = data[phase].distBetweenFoxAndArmadillo;
   positionUtilEnd.innerText = data[phase].positionUntilEnd;
@@ -153,25 +161,20 @@ resetButton.addEventListener("click", () => {
   questionModal.show();
 });
 
-nextButton.addEventListener("click", () => {
-  if (phase === 3) {
-    attemptsGoneModal.show();
-  } else {
-    nextPhaseModal.hide();
-    armadillo.style.animation = "none";
-    fox.style.animation = "none";
-    fox.children[0].classList.remove("foxIsMoving");
-    phase++;
+nextPhaseButton.addEventListener("click", () => {
+  armadillo.style.left = "0px";
+  fox.style.left = "-120px";
+  armadillo.style.animation = "none";
+  fox.style.animation = "none";
+  maxAttempts = 3;
+  remainingAttempts.innerText = `${maxAttempts}`;
+  nextPhaseModal.hide();
+  fox.children[0].classList.remove("foxIsMoving");
+  phase++;
 
-    distBetween.innerText = data[phase].distBetweenFoxAndArmadillo;
-    positionUtilEnd.innerText = data[phase].positionUntilEnd;
-    foxVelocity.innerText = data[phase].foxVelocity;
-    crashTime.innerText = data[phase].crashTime;
-
-    setTimeout(() => {
-      game();
-    }, 1500);
-  }
+  setTimeout(() => {
+    game();
+  }, 1500);
 });
 
 submitAnswerButton.addEventListener("click", () => {
