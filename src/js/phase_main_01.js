@@ -45,6 +45,11 @@ let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
 let timer = null;
 
+const distBetween = document.querySelector(".dist-between");
+const positionUtilEnd = document.querySelector(".position-until-end");
+const foxVelocity = document.querySelector(".fox-velocity");
+const crashTime = document.querySelector(".crash-time");
+
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
   gameScreen.style.opacity = "1";
