@@ -33,6 +33,7 @@ const attemptsGoneModalElement = document.getElementById(
   `attemptsGoneModal${breakpoint}`
 );
 const resetButton = document.querySelector(`[data-reset${breakpoint}]`);
+const nextButton = document.querySelector(`[data-next-phase${breakpoint}]`);
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
@@ -48,10 +49,12 @@ let [minutesSpent, secondsSpent] = [0, 0];
 let timer = null;
 let phase = 0;
 
-const distBetween = document.querySelector(".dist-between");
-const positionUtilEnd = document.querySelector(".position-until-end");
-const foxVelocity = document.querySelector(".fox-velocity");
-const crashTime = document.querySelector(".crash-time");
+const distBetween = document.querySelector(`.dist-between${breakpoint}`);
+const positionUtilEnd = document.querySelector(
+  `.position-until-end${breakpoint}`
+);
+const foxVelocity = document.querySelector(`.fox-velocity${breakpoint}`);
+const crashTime = document.querySelector(`.crash-time${breakpoint}`);
 
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
@@ -148,6 +151,23 @@ resetButton.addEventListener("click", () => {
   fox.style.animation = "none";
 
   questionModal.show();
+});
+
+nextButton.addEventListener("click", () => {
+  nextPhaseModal.hide();
+  armadillo.style.animation = "none";
+  fox.style.animation = "none";
+  fox.children[0].classList.remove("foxIsMoving");
+  phase++;
+
+  distBetween.innerText = data[phase].distBetweenFoxAndArmadillo;
+  positionUtilEnd.innerText = data[phase].positionUntilEnd;
+  foxVelocity.innerText = data[phase].foxVelocity;
+  crashTime.innerText = data[phase].crashTime;
+
+  setTimeout(() => {
+    game();
+  }, 1500);
 });
 
 submitAnswerButton.addEventListener("click", () => {
