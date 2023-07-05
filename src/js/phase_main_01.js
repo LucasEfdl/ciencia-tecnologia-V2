@@ -166,8 +166,13 @@ nextPhaseButton.addEventListener("click", () => {
   fox.style.left = "-120px";
   armadillo.style.animation = "none";
   fox.style.animation = "none";
+
+  timerRef.innerText = "03:00";
+  [milliseconds, seconds, minutes] = [0, 0, 3];
+
   maxAttempts = 3;
   remainingAttempts.innerText = `${maxAttempts}`;
+
   nextPhaseModal.hide();
   fox.children[0].classList.remove("foxIsMoving");
   phase++;
