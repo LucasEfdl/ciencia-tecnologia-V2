@@ -61,13 +61,14 @@ const nextPhaseModal = new bootstrap.Modal(nextPhasegeModalElement);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
+const spentTime = [];
 let timer = null;
+let t = 0; // variavel para salvar o tempo da resposta
 let currentChallenger = 0;
 
 const distBetween = document.querySelectorAll(".dist-between");
 const positionUtilEnd = document.querySelectorAll(".position-until-end");
 const foxVelocity = document.querySelector(`.fox-velocity${breakpoint}`);
-const crashTime = document.querySelector(`.crash-time${breakpoint}`);
 
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
@@ -185,6 +186,15 @@ nextChallengeButton.addEventListener("click", () => {
   nextChallengeModal.hide();
   fox.children[0].classList.remove("foxIsMoving");
 
+  t = `${minutesSpent}:${secondsSpent}`;
+  spentTime.push(t);
+
+  minutesSpent = 0;
+  secondsSpent = 0;
+  [milliseconds, seconds, minutes] = [0, 0, 3];
+  [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
+  timerRef.innerText = "03:00";
+
   setTimeout(() => {
     game();
   }, 1500);
@@ -212,6 +222,8 @@ updatePositionUntilEnd();
 updateDistBetween();
 
 submitAnswerButton.addEventListener("click", () => {
+  spentTime.push(t);
+
   showQuestionButton.disabled = true;
 
   options.forEach((option) => {
@@ -269,8 +281,16 @@ submitAnswerButton.addEventListener("click", () => {
   localStorage.setItem("question-main-01-b", answer[1]);
   localStorage.setItem("question-main-01-c", answer[2]);
   localStorage.setItem(
-    "question-main-01-time",
-    `tempo gasto: ${minutesSpent}:${secondsSpent}`
+    "question-main-01-a-time",
+    `tempo gasto: ${spentTime[0]}`
+  );
+  localStorage.setItem(
+    "question-main-01-b-time",
+    `tempo gasto: ${spentTime[1]}`
+  );
+  localStorage.setItem(
+    "question-main-01-c-time",
+    `tempo gasto: ${spentTime[2]}`
   );
 });
 
