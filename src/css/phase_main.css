@@ -14,6 +14,21 @@
   background-image: url(../images/foxg.gif);
 }
 
+#footer {
+  width: 1200px;
+  position: relative;
+  left: -50px;
+}
+
+@keyframes footer-animated {
+  from {
+    left: -50px;
+  }
+  to {
+    left: 0px;
+  }
+}
+
 @keyframes armadillo-animation-before {
   from {
     left: 0px;
@@ -83,6 +98,10 @@
     height: 76px;
 
     font-size: 10px;
+  }
+
+  #footer {
+    width: 600px;
   }
 
   @keyframes armadillo-animation-before {

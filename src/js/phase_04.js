@@ -43,6 +43,7 @@ const nextChallengeButton = document.querySelector(
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
+const footerElement = document.getElementById("footer");
 let maxAttempts = 3;
 
 let questionsQuantity = 100 / data.length;
@@ -92,6 +93,10 @@ function game() {
   setTimeout(() => {
     showQuestionButton.disabled = false;
     questionModal.show();
+
+    footerElement.classList.replace("d-none", "d-flex");
+    footerElement.style.animation = "footer-animated 0.5s linear forwards";
+
     time();
   }, 2000);
 }
@@ -133,8 +138,12 @@ const time = () => {
       clearInterval(countElapsedTime);
 
       questionModal.hide();
-      timeOverModal.show();
-      questionModal.hide();
+
+      if (currentChallenger === 2) {
+        nextPhaseModal.show();
+      } else {
+        nextChallengeModal.show()
+      }
 
       progress += questionsQuantity;
       progressLose.style.width = `${progress}%`;
@@ -191,9 +200,12 @@ nextChallengeButton.addEventListener("click", () => {
 
   minutesSpent = 0;
   secondsSpent = 0;
-  [milliseconds, seconds, minutes] = [0, 0, 3];
+  [milliseconds, seconds, minutes] = [0, 3, 0];
   [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
   timerRef.innerText = "03:00";
+
+  footerElement.classList.replace("d-flex", "d-none");
+  footerElement.style.animation = "none";
 
   setTimeout(() => {
     game();
