@@ -48,6 +48,8 @@ let maxAttempts = 3;
 let questionsQuantity = 100 / data.length;
 let progress = 0;
 
+let answer = [];
+
 const labels = document.querySelectorAll(".form-check label");
 const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
@@ -62,10 +64,8 @@ let [minutesSpent, secondsSpent] = [0, 0];
 let timer = null;
 let currentChallenger = 0;
 
-const distBetween = document.querySelector(`.dist-between${breakpoint}`);
-const positionUtilEnd = document.querySelector(
-  `.position-until-end${breakpoint}`
-);
+const distBetween = document.querySelectorAll(".dist-between");
+const positionUtilEnd = document.querySelectorAll(".position-until-end");
 const foxVelocity = document.querySelector(`.fox-velocity${breakpoint}`);
 const crashTime = document.querySelector(`.crash-time${breakpoint}`);
 
@@ -77,15 +77,16 @@ startGameButton.addEventListener("click", () => {
 
 function game() {
   updateOptions();
+  updatePositionUntilEnd();
+  updateDistBetween();
 
   armadillo.style.animation = "armadillo-animation-before 2s linear forwards";
   fox.style.animation = "fox-animation-before 2s linear forwards";
   fox.children[0].classList.add("foxIsMoving");
 
   distBetween.innerText = data[currentChallenger].distBetweenFoxAndArmadillo;
-  positionUtilEnd.innerText = data[currentChallenger].positionUntilEnd;
+
   foxVelocity.innerText = data[currentChallenger].foxVelocity;
-  crashTime.innerText = data[currentChallenger].crashTime;
 
   setTimeout(() => {
     showQuestionButton.disabled = false;
@@ -162,6 +163,8 @@ resetButton.addEventListener("click", () => {
     fox.style.left = "100px";
   }
 
+  answer.pop();
+
   armadillo.style.animation = "none";
 
   fox.style.animation = "none";
@@ -194,9 +197,21 @@ function updateOptions() {
   });
 }
 
-submitAnswerButton.addEventListener("click", () => {
-  let answer = [];
+function updatePositionUntilEnd() {
+  positionUtilEnd.forEach((item) => {
+    item.innerText = data[currentChallenger].positionUntilEnd;
+  });
+}
 
+function updateDistBetween() {
+  distBetween.forEach((item) => {
+    item.innerText = data[currentChallenger].distBetweenFoxAndArmadillo;
+  });
+}
+updatePositionUntilEnd();
+updateDistBetween();
+
+submitAnswerButton.addEventListener("click", () => {
   showQuestionButton.disabled = true;
 
   options.forEach((option) => {
@@ -208,7 +223,10 @@ submitAnswerButton.addEventListener("click", () => {
     }
   });
 
-  if (answer[0] == "8m/s" || answer[1] == "14m/s" || answer[2] == "5m/s") {
+  if (
+    answer[currentChallenger] ==
+    `${data[currentChallenger].armadilloVelocity}m/s`
+  ) {
     animationWin();
     fox.children[0].classList.add("foxIsMoving");
 
@@ -233,7 +251,12 @@ submitAnswerButton.addEventListener("click", () => {
       questionModal.hide();
       fox.children[0].classList.remove("foxIsMoving");
       if (maxAttempts == 0) {
-        attemptsGoneModal.show();
+        currentChallenger === 2
+          ? nextPhaseModal.show()
+          : nextChallengeModal.show();
+
+        progress += questionsQuantity;
+        progressLose.style.width = `${progress}%`;
         clearInterval(timer);
       } else {
         gameOverModal.show();
