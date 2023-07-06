@@ -212,13 +212,21 @@ function makeFile() {
     localStorage.getItem("question-03"),
     localStorage.getItem("question-03-time"),
   ];
-  let [questionMain01, questionMain02, questionMain01Time, questionMain02Time] =
-    [
-      localStorage.getItem("question-main-01"),
-      localStorage.getItem("question-main-02"),
-      localStorage.getItem("question-main-01-time"),
-      localStorage.getItem("question-main-02-time"),
-    ];
+  let [
+    questionMain01,
+    questionMain02,
+    questionMain03,
+    questionMain01Time,
+    questionMain02Time,
+    questionMain03Time,
+  ] = [
+    localStorage.getItem("question-main-01-a"),
+    localStorage.getItem("question-main-01-b"),
+    localStorage.getItem("question-main-01-c"),
+    localStorage.getItem("question-main-01-a-time"),
+    localStorage.getItem("question-main-01-b-time"),
+    localStorage.getItem("question-main-01-c-time"),
+  ];
   let [questionFive, questionFiveTime] = [
     localStorage.getItem("question-05"),
     localStorage.getItem("question-05-time"),
@@ -252,6 +260,8 @@ function makeFile() {
   ${questionMain01Time}
   Opção marcada na segunda questão: ${questionMain02}
   ${questionMain02Time}
+  Opção marcada na terceira questão: ${questionMain03}
+  ${questionMain03Time}
   
   === Fase cinco ===
   Resposta marcada: ${questionFive}
