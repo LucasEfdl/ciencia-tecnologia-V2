@@ -1,3 +1,12 @@
+#different-pos {
+  width: 129px;
+}
+
+#end-position {
+  margin-left: 65px;
+  width: 500px;
+}
+
 .fox {
   background-image: url(../images/fox_a.png);
   background-repeat: no-repeat;
@@ -156,5 +165,16 @@
     to {
       left: 500px;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #different-pos {
+    width: 38px;
+  }
+
+  #end-position {
+    margin-left: 65px;
+    width: 300px;
   }
 }
