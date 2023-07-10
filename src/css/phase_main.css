@@ -1,17 +1,26 @@
+#different-pos {
+  width: 129px;
+}
+
+#end-position {
+  margin-left: 65px;
+  width: 500px;
+}
+
 .fox {
-  background-image: url(../images/fox_a.png);
+  background-image: url(../images/fox-1.png);
   background-repeat: no-repeat;
   background-size: cover;
 
-  width: 120px;
-  height: 115px;
+  width: 114px;
+  height: 107px;
 
   left: 0px;
   bottom: 0px;
 }
 
 .foxIsMoving {
-  background-image: url(../images/foxg.gif);
+  background-image: url(../images/new-fox.gif);
 }
 
 #footer {
@@ -156,5 +165,16 @@
     to {
       left: 500px;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #different-pos {
+    width: 65px;
+  }
+
+  #end-position {
+    margin-left: 65px;
+    width: 300px;
   }
 }

@@ -6,7 +6,7 @@
   width: 1200px;
   height: 520px;
 
-  background-image: url(../images/bg-main.jpg);
+  background-image: url(../images/background.png);
   background-size: cover;
   background-position: bottom;
 
@@ -14,16 +14,16 @@
 }
 
 #armadillo {
-  background-image: url(../images/armadillog.gif);
+  background-image: url(../images/new-armadillo.gif);
 }
 
 .armadillo {
-  background-image: url(../images/armadillo.svg);
+  background-image: url(../images/armadillo-1.png);
   background-repeat: no-repeat;
   background-size: cover;
 
-  width: 120px;
-  height: 80px;
+  width: 112px;
+  height: 110px;
 
   left: 0px;
 }
@@ -48,8 +48,8 @@
   }
 
   .armadillo {
-    width: 80px;
-    height: 53px;
+    width: 75px;
+    height: 73px;
 
     font-size: 10px;
   }

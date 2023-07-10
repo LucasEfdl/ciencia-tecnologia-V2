@@ -142,7 +142,7 @@ const time = () => {
       if (currentChallenger === 2) {
         nextPhaseModal.show();
       } else {
-        nextChallengeModal.show()
+        nextChallengeModal.show();
       }
 
       progress += questionsQuantity;
@@ -165,6 +165,7 @@ options.forEach((option) => {
 });
 
 resetButton.addEventListener("click", () => {
+  time();
   if (gameScreen.offsetWidth >= 1200) {
     armadillo.style.left = "600px";
     fox.style.left = "400px";
@@ -174,6 +175,7 @@ resetButton.addEventListener("click", () => {
   }
 
   answer.pop();
+  spentTime.pop();
 
   armadillo.style.animation = "none";
 
@@ -195,12 +197,9 @@ nextChallengeButton.addEventListener("click", () => {
   nextChallengeModal.hide();
   fox.children[0].classList.remove("foxIsMoving");
 
-  t = `${minutesSpent}:${secondsSpent}`;
-  spentTime.push(t);
-
   minutesSpent = 0;
   secondsSpent = 0;
-  [milliseconds, seconds, minutes] = [0, 3, 0];
+  [milliseconds, seconds, minutes] = [0, 0, 3];
   [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
   timerRef.innerText = "03:00";
 
@@ -234,6 +233,8 @@ updatePositionUntilEnd();
 updateDistBetween();
 
 submitAnswerButton.addEventListener("click", () => {
+  clearInterval(timer);
+  t = `${minutesSpent}:${secondsSpent}`;
   spentTime.push(t);
 
   showQuestionButton.disabled = true;
@@ -253,8 +254,6 @@ submitAnswerButton.addEventListener("click", () => {
   ) {
     animationWin();
     fox.children[0].classList.add("foxIsMoving");
-
-    clearInterval(timer);
 
     setTimeout(() => {
       currentChallenger === 2
@@ -281,7 +280,6 @@ submitAnswerButton.addEventListener("click", () => {
 
         progress += questionsQuantity;
         progressLose.style.width = `${progress}%`;
-        clearInterval(timer);
       } else {
         gameOverModal.show();
       }
