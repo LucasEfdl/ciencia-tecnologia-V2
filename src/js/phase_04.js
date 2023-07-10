@@ -200,7 +200,7 @@ nextChallengeButton.addEventListener("click", () => {
 
   minutesSpent = 0;
   secondsSpent = 0;
-  [milliseconds, seconds, minutes] = [0, 3, 0];
+  [milliseconds, seconds, minutes] = [0, 0, 3];
   [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
   timerRef.innerText = "03:00";
 
