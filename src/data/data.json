@@ -25,7 +25,7 @@
 
     "positionUntilEnd": "180m",
     "distBetweenFoxAndArmadillo": "80",
-    "crashTime": "20",
+    "crashTime": "20s",
 
     "options": ["5m/s", "20m/s", "15m/s", "13m/s"]
   }

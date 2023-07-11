@@ -70,6 +70,7 @@ let currentChallenger = 0;
 const distBetween = document.querySelectorAll(".dist-between");
 const positionUtilEnd = document.querySelectorAll(".position-until-end");
 const foxVelocity = document.querySelector(`.fox-velocity${breakpoint}`);
+const crashTime = document.querySelector(`.crash-time${breakpoint}`);
 
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
@@ -89,6 +90,8 @@ function game() {
   distBetween.innerText = data[currentChallenger].distBetweenFoxAndArmadillo;
 
   foxVelocity.innerText = data[currentChallenger].foxVelocity;
+
+  crashTime.innerText = data[currentChallenger].crashTime;
 
   setTimeout(() => {
     showQuestionButton.disabled = false;
