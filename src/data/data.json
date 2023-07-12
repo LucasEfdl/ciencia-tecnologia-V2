@@ -4,8 +4,8 @@
     "foxVelocity": 16,
 
     "positionUntilEnd": "100m",
-    "distBetweenFoxAndArmadillo": "100m",
-    "crashTime": "12,5s",
+    "distBetweenFoxAndArmadillo": "50m",
+    "crashTime": "6,5s",
 
     "options": ["10m/s", "8m/s", "20m/s", "13m/s"]
   },
