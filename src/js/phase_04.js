@@ -40,6 +40,7 @@ const resetButton = document.querySelector(`[data-reset${breakpoint}]`);
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
 );
+const balloonFox = document.querySelector(".fox-balloon-desktop")
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
@@ -98,6 +99,7 @@ function game() {
     questionModal.show();
 
     footerElement.classList.replace("d-none", "d-flex");
+    balloonFox.classList.replace("d-none", "d-flex")
     footerElement.style.animation = "footer-animated 0.5s linear forwards";
 
     time();
