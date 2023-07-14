@@ -40,7 +40,8 @@ const resetButton = document.querySelector(`[data-reset${breakpoint}]`);
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
 );
-const balloonFox = document.querySelector(".fox-balloon-desktop")
+const balloonFox = document.querySelector(".fox-balloon-desktop");
+const balloonAmadillo = document.querySelector(".amadillo-balloon-desktop");
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
@@ -55,7 +56,6 @@ let answer = [];
 const labels = document.querySelectorAll(".form-check label");
 const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
-const questionModal = new bootstrap.Modal(questionModalElement);
 const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhasegeModalElement);
@@ -96,10 +96,10 @@ function game() {
 
   setTimeout(() => {
     showQuestionButton.disabled = false;
-    questionModal.show();
 
     footerElement.classList.replace("d-none", "d-flex");
-    balloonFox.classList.replace("d-none", "d-flex")
+    balloonFox.classList.replace("d-none", "d-flex");
+    balloonAmadillo.classList.replace("d-none", "d-flex");
     footerElement.style.animation = "footer-animated 0.5s linear forwards";
 
     time();

@@ -28,19 +28,47 @@
   position: relative;
   left: -50px;
 }
+.balloon-text {
+  display: flex;
+  flex-direction: row;
+}
 
-.fox-balloon-desktop{
-  width: 600px;
-  height: 149px;
-  margin-top: 200px;
+.fox-balloon-desktop {
+  width: 270px;
+  height: 110px;
+  margin-top: 230px;
+  margin-left: 170px;
+  margin-right: 150px;
 
-  background-image: url(../images/Design\ sem\ nome.png);
+  background-image: url(../images/horizontal-2.png);
   background-size: cover;
   background-position: bottom;
 
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.amadillo-balloon-desktop {
+  width: 350px;
+  height: 350px;
+  margin-top: 50px;
+  margin-left: 100px;
+
+  background-image: url(../images/vertical-2.png);
+  background-size: cover;
+  background-position: bottom;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+#text-ballon-amadillo {
+  padding-top: 40px;
+  padding-right: 20px;
+  padding-left: 40px;
 }
 
 @keyframes footer-animated {

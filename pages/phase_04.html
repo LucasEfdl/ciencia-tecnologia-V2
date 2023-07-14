@@ -61,38 +61,51 @@
         </button>
       </div>
       <!-- Pergunatas no balão -->
-      <div class="fox-balloon-desktop d-none">
-        <p>
-          Se eu manter uma velocidade constante de <span class="fox-velocity-desktop"></span>m/s, eu alcanço Tito em
-          <span class="crash-time-desktop"></span>.
-        </p>
-      </div>
-      <!-- <div class="amadillo-balloon-desktop">
-        <p>
-          Que velocidade minama eu devo manter para chegar a salvo em minha toca:
-        </p>
-        <div class="d-flex justify-content-center align-items-center gap-3">
-          <div class="form-check">
-            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio5" />
-            <label class="text-black" for="radio5"></label>
-          </div>
+      <div class="balloon-text">
+        <div class="fox-balloon-desktop d-none">
+          <p class="text-center">
+            Se eu manter uma velocidade constante de <span class="fox-velocity-desktop"></span>m/s, eu alcanço Tito em
+            <span class="crash-time-desktop"></span>.
+          </p>
+        </div>
+        <div class="amadillo-balloon-desktop d-none">
+          <div class="text-center">
+            <p id="text-ballon-amadillo">
+              Que velocidade minama eu devo manter para chegar a salvo em minha toca:
+            </p>
+            <div class="d-flex flex-column align-items-center gap-3">
+              <div class="form-check">
+                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio5" />
+                <label class="text-black" for="radio5"></label>
+              </div>
 
-          <div class="form-check">
-            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio6" />
-            <label class="text-black" for="radio6"></label>
-          </div>
+              <div class="form-check">
+                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio6" />
+                <label class="text-black" for="radio6"></label>
+              </div>
 
-          <div class="form-check">
-            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio7" />
-            <label class="text-black" for="radio7"></label>
-          </div>
+              <div class="form-check">
+                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio7" />
+                <label class="text-black" for="radio7"></label>
+              </div>
 
-          <div class="form-check">
-            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio8" />
-            <label class="text-black" for="radio8"></label>
+              <div class="form-check">
+                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio8" />
+                <label class="text-black" for="radio8"></label>
+              </div>
+            </div>
+            <div class="pt-3">
+              <button data-submit-answer-desktop type="button" class="btn btn-success" data-bs-dismiss="modal" disabled>
+                Confirmar
+              </button>
+
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Fechar">
+                Fechar
+              </button>
+            </div>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <!-- MRU -->
       <div data-armadillo class="object position-absolute">
@@ -103,7 +116,7 @@
         <div class="fox"></div>
       </div>
 
-      <!-- Modal para mostrar a questão (desktop) -->
+      <!-- Modal para mostrar a questão (desktop) 
       <div id="question-desktop" class="modal fade">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -165,7 +178,7 @@
         </div>
       </div>
 
-      <!-- Modal para mostrar a questão (mobile) -->
+      Modal para mostrar a questão (mobile) 
       <div id="question-mobile" class="modal fade">
         <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
           <div class="modal-content">
@@ -224,7 +237,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Modal para próximo desafio (mobile) -->
       <div id="next-challenge-modal-mobile" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -358,8 +371,8 @@
       </div>
 
       <!-- Modal para informar uma nova tentativa (mobile)-->
-      <div id="game-over-modal-mobile" class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-        aria-hidden="true">
+      <div id="game-over-modal-mobile" class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -379,8 +392,8 @@
       </div>
 
       <!-- Modal para informar uma nova tentativa (desktop) -->
-      <div id="game-over-modal-desktop" class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-        aria-hidden="true">
+      <div id="game-over-modal-desktop" class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
