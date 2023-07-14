@@ -28,7 +28,7 @@ const showQuestionButton = document.querySelector(
 const submitAnswerButton = document.querySelector(
   `[data-submit-answer${breakpoint}]`
 );
-const textOfLogic = document.querySelector('textarea[name="logic"]');
+const textOfLogic = document.querySelector('textarea[name="logica"]');
 const submitLogicButton = document.getElementById("data-submit-logic");
 var completeChallengeModalElement =
   document.getElementById("completeChallenge");
@@ -198,6 +198,16 @@ submitLogicButton.addEventListener("click", () => {
 });
 
 function makeFile() {
+  const nicknameInput = document.querySelector("[data-nickname]");
+  const firstQuestionInput = document.querySelector("[data-first-question]");
+  const secondQuestionInput = document.querySelector("[data-second-question]");
+  const thirdQuestionInput = document.querySelector("[data-third-question]");
+  const fourthQuestionInput = document.querySelector("[data-fourth-question]");
+  const fifthQuestionInput = document.querySelector("[data-fifth-question]");
+  const sixthQuestionInput = document.querySelector("[data-sixth-question]");
+  const seventhQuestionInput = document.querySelector(
+    "[data-seventh-question]"
+  );
   let name = localStorage.getItem("nome");
   let nickname = localStorage.getItem("nickname");
   let [questionOne, questionOneTime] = [
@@ -239,48 +249,13 @@ function makeFile() {
     localStorage.getItem("question-07"),
     localStorage.getItem("question-07-time"),
   ];
-  const text = `
-  Nome do aluno: ${name}
-  Nickname: ${nickname}
 
-  === Fase um ===
-  Resposta marcada: ${questionOne}
-  ${questionOneTime}
-
-  === Fase dois ===
-  Resposta marcada: ${questionTwo}
-  ${questionTwoTime}
-
-  === Fase três ===
-  Resposta marcada: ${questionThree}
-  ${questionThreeTime}
-
-  === Fase quatro ===
-  Opção marcada na primeira questão: ${questionMain01}
-  ${questionMain01Time}
-  Opção marcada na segunda questão: ${questionMain02}
-  ${questionMain02Time}
-  Opção marcada na terceira questão: ${questionMain03}
-  ${questionMain03Time}
-  
-  === Fase cinco ===
-  Resposta marcada: ${questionFive}
-  ${questionFiveTime}
-
-  === Fase seis ===
-  Resposta marcada: ${questionSix}
-  ${questionSixTime}
-
-  === Fase Sete ===
-  Resposta marcada: ${questionSeven}
-  ${questionSevenTime}
-
-  === Lógica utilizada nas questões ===
-  ${textOfLogic.value}
-  `;
-
-  const file = new Blob([text], { type: "text/plain" });
-  const url = URL.createObjectURL(file);
-  submitLogicButton.href = url;
-  submitLogicButton.download = `${name}.txt`;
+  nicknameInput.value = nickname;
+  firstQuestionInput.value = `${questionOne} == ${questionOneTime}`;
+  secondQuestionInput.value = `${questionTwo} == ${questionTwoTime}`;
+  thirdQuestionInput.value = `${questionThree} == ${questionThreeTime}`;
+  fourthQuestionInput.value = `A)${questionMain01} == ${questionMain01Time} - B)${questionMain02} == ${questionMain02Time} - C)${questionMain03} == ${questionMain03Time}`;
+  fifthQuestionInput.value = `${questionFive} == ${questionFiveTime}`;
+  sixthQuestionInput.value = `${questionSix} == ${questionSixTime}`;
+  seventhQuestionInput.value = `${questionSeven} == ${questionSevenTime}`;
 }
