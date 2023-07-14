@@ -29,6 +29,20 @@
   left: -50px;
 }
 
+.fox-balloon-desktop{
+  width: 600px;
+  height: 149px;
+  margin-top: 200px;
+
+  background-image: url(../images/Design\ sem\ nome.png);
+  background-size: cover;
+  background-position: bottom;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @keyframes footer-animated {
   from {
     left: -50px;

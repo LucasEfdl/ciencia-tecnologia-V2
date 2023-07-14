@@ -40,6 +40,7 @@ const resetButton = document.querySelector(`[data-reset${breakpoint}]`);
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
 );
+const balloonFox = document.querySelector(".fox-balloon-desktop")
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
@@ -70,6 +71,7 @@ let currentChallenger = 0;
 const distBetween = document.querySelectorAll(".dist-between");
 const positionUtilEnd = document.querySelectorAll(".position-until-end");
 const foxVelocity = document.querySelector(`.fox-velocity${breakpoint}`);
+const crashTime = document.querySelector(`.crash-time${breakpoint}`);
 
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
@@ -90,11 +92,14 @@ function game() {
 
   foxVelocity.innerText = data[currentChallenger].foxVelocity;
 
+  crashTime.innerText = data[currentChallenger].crashTime;
+
   setTimeout(() => {
     showQuestionButton.disabled = false;
     questionModal.show();
 
     footerElement.classList.replace("d-none", "d-flex");
+    balloonFox.classList.replace("d-none", "d-flex")
     footerElement.style.animation = "footer-animated 0.5s linear forwards";
 
     time();
