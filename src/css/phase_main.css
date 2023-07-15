@@ -36,9 +36,9 @@
 .fox-balloon-desktop {
   width: 270px;
   height: 110px;
-  margin-top: 230px;
-  margin-left: 170px;
-  margin-right: 150px;
+  position: relative;
+  left: 200px;
+  top: 250px;
 
   background-image: url(../images/horizontal-2.png);
   background-size: cover;
@@ -52,8 +52,9 @@
 .amadillo-balloon-desktop {
   width: 350px;
   height: 350px;
-  margin-top: 50px;
-  margin-left: 100px;
+  position: relative;
+  left: 410px;
+  top: 70px;
 
   background-image: url(../images/vertical-2.png);
   background-size: cover;
