@@ -10,7 +10,6 @@ const startGameButton = document.querySelector(
 const armadillo = document.querySelector(".object");
 const fox = document.querySelector(".object-2");
 const timerRef = document.querySelector("[data-timer-display]");
-const questionModalElement = document.getElementById(`question${breakpoint}`);
 const timeOverModalElement = document.getElementById(
   `timeOverModal${breakpoint}`
 );
@@ -41,6 +40,7 @@ const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
 );
 const balloonFox = document.querySelector(".fox-balloon-desktop");
+const balloonFoxNext = document.querySelector(".fox-balloon-next-desktop");
 const balloonAmadillo = document.querySelector(".amadillo-balloon-desktop");
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
@@ -56,7 +56,7 @@ let answer = [];
 const labels = document.querySelectorAll(".form-check label");
 const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
-const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
+//const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
 const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhasegeModalElement);
 
@@ -89,17 +89,15 @@ function game() {
   fox.children[0].classList.add("foxIsMoving");
 
   distBetween.innerText = data[currentChallenger].distBetweenFoxAndArmadillo;
-
   foxVelocity.innerText = data[currentChallenger].foxVelocity;
-
   crashTime.innerText = data[currentChallenger].crashTime;
 
   setTimeout(() => {
     showQuestionButton.disabled = false;
 
-    footerElement.classList.replace("d-none", "d-flex");
     balloonFox.classList.replace("d-none", "d-flex");
     balloonAmadillo.classList.replace("d-none", "d-flex");
+    footerElement.classList.replace("d-none", "d-flex");
     footerElement.style.animation = "footer-animated 0.5s linear forwards";
 
     time();
@@ -142,8 +140,6 @@ const time = () => {
       clearInterval(timer);
       clearInterval(countElapsedTime);
 
-      questionModal.hide();
-
       if (currentChallenger === 2) {
         nextPhaseModal.show();
       } else {
@@ -185,8 +181,6 @@ resetButton.addEventListener("click", () => {
   armadillo.style.animation = "none";
 
   fox.style.animation = "none";
-
-  questionModal.show();
 });
 
 nextChallengeButton.addEventListener("click", () => {
@@ -199,7 +193,7 @@ nextChallengeButton.addEventListener("click", () => {
   fox.style.animation = "none";
   maxAttempts = 3;
   remainingAttempts.innerText = `${maxAttempts}`;
-  nextChallengeModal.hide();
+  balloonFoxNext.classList.replace("d-flex", "d-none");
   fox.children[0].classList.remove("foxIsMoving");
 
   minutesSpent = 0;
@@ -243,6 +237,9 @@ submitAnswerButton.addEventListener("click", () => {
   spentTime.push(t);
 
   showQuestionButton.disabled = true;
+  balloonFox.classList.replace("d-flex", "d-none");
+  balloonAmadillo.classList.replace("d-flex", "d-none");
+  footerElement.classList.replace("d-flex", "d-none");
 
   options.forEach((option) => {
     if (option.checked) {
@@ -263,8 +260,7 @@ submitAnswerButton.addEventListener("click", () => {
     setTimeout(() => {
       currentChallenger === 2
         ? nextPhaseModal.show()
-        : nextChallengeModal.show();
-      questionModal.hide();
+        : balloonFoxNext.classList.replace("d-none", "d-flex");
       fox.children[0].classList.remove("foxIsMoving");
 
       progress += questionsQuantity;
@@ -276,7 +272,6 @@ submitAnswerButton.addEventListener("click", () => {
 
     setTimeout(() => {
       remainingAttempts.innerText = `${--maxAttempts}`;
-      questionModal.hide();
       fox.children[0].classList.remove("foxIsMoving");
       if (maxAttempts == 0) {
         currentChallenger === 2

@@ -34,7 +34,7 @@
 }
 
 .fox-balloon-desktop {
-  width: 270px;
+  width: 280px;
   height: 110px;
   position: relative;
   left: 200px;
@@ -49,14 +49,31 @@
   justify-content: center;
 }
 
-.amadillo-balloon-desktop {
-  width: 350px;
-  height: 350px;
+.fox-balloon-next-desktop {
+  width: 270px;
+  height: 110px;
   position: relative;
-  left: 410px;
-  top: 70px;
+  top: 240px;
+  left: 870px;
 
-  background-image: url(../images/vertical-2.png);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url(../images/horizontal-2.png);
+  background-size: cover;
+  background-position: bottom;
+}
+
+.amadillo-balloon-desktop {
+  width: 470px;
+  height: 220px;
+  position: relative;
+  left: 420px;
+  top: 190px;
+
+  background-image: url(../images/horizontal-4.png);
   background-size: cover;
   background-position: bottom;
 
