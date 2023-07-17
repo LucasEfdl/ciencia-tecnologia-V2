@@ -49,110 +49,41 @@
         </div>
       </div>
 
-      <div class="d-block p-3 text-end">
-        <button data-show-question-mobile type="button" class="btn btn-info btn-sm d-lg-none" data-bs-toggle="modal"
-          data-bs-target="#question-mobile">
-          Mostrar pergunta
-        </button>
-
-        <button data-show-question-desktop type="button" class="btn btn-info d-none d-lg-inline" data-bs-toggle="modal"
-          data-bs-target="#question-desktop">
-          Mostrar pergunta
-        </button>
-      </div>
       <!-- Pergunatas no balão -->
-      <div class="fox-balloon-desktop d-none">
-        <p>
-          Se eu manter uma velocidade constante de <span class="fox-velocity-desktop"></span>m/s, eu alcanço Tito em
-          <span class="crash-time-desktop"></span>.
-        </p>
-      </div>
-      <!-- <div class="amadillo-balloon-desktop">
-        <p>
-          Que velocidade minama eu devo manter para chegar a salvo em minha toca:
-        </p>
-        <div class="d-flex justify-content-center align-items-center gap-3">
-          <div class="form-check">
-            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio5" />
-            <label class="text-black" for="radio5"></label>
-          </div>
-
-          <div class="form-check">
-            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio6" />
-            <label class="text-black" for="radio6"></label>
-          </div>
-
-          <div class="form-check">
-            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio7" />
-            <label class="text-black" for="radio7"></label>
-          </div>
-
-          <div class="form-check">
-            <input role="button" type="radio" name="velocity" class="form-check-input" id="radio8" />
-            <label class="text-black" for="radio8"></label>
-          </div>
+      <div class="balloon-text">
+        <div class="fox-balloon-desktop d-none">
+          <p class="text-center">
+            Se eu manter uma velocidade constante de <span class="fox-velocity-desktop"></span>m/s, eu alcanço Tito em
+            <span class="crash-time-desktop"></span>.
+          </p>
         </div>
-      </div> -->
-
-      <!-- MRU -->
-      <div data-armadillo class="object position-absolute">
-        <div id="armadillo" class="armadillo"></div>
-      </div>
-
-      <div data-fox class="object-2 position-absolute">
-        <div class="fox"></div>
-      </div>
-
-      <!-- Modal para mostrar a questão (desktop) -->
-      <div id="question-desktop" class="modal fade">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">
-                A velocidade
-                <strong>mínima necessária</strong> do tatu para que ele fuja
-                do predador é de, aproximadamente:
-                <br />
-              </h5>
-            </div>
-
-            <div class="modal-body">
-              <div class="d-flex flex-row justify-content-center align-items-center gap-3">
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio5" />
-                  <label class="text-black" for="radio5"></label>
-                </div>
-
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio6" />
-                  <label class="text-black" for="radio6"></label>
-                </div>
-
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio7" />
-                  <label class="text-black" for="radio7"></label>
-                </div>
-
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio8" />
-                  <label class="text-black" for="radio8"></label>
-                </div>
+        <div class="amadillo-balloon-desktop d-none">
+          <div class="text-center">
+            <p id="text-ballon-amadillo">
+              Que velocidade minama eu devo manter para chegar a salvo em minha toca:
+            </p>
+            <div class="d-flex align-items-center justify-content-center gap-3">
+              <div class="form-check">
+                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio5" />
+                <label class="text-black" for="radio5"></label>
               </div>
 
-              <br />
+              <div class="form-check">
+                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio6" />
+                <label class="text-black" for="radio6"></label>
+              </div>
 
-              <p class="texte-center text-black">
-                <strong>Dados</strong>: A distância atual entre eles é de
-                <span class="dist-between"></span>. A distância entre o tatu e
-                sua toca é de <span class="position-until-end"></span>.
-                Considere a raposa com velocidade constante igual a
-                <span class="fox-velocity-desktop"></span>m/s e o tempo de
-                encontro dela com o tatu é de
-                <span class="crash-time-desktop"></span>.
-              </p>
+              <div class="form-check">
+                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio7" />
+                <label class="text-black" for="radio7"></label>
+              </div>
+
+              <div class="form-check">
+                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio8" />
+                <label class="text-black" for="radio8"></label>
+              </div>
             </div>
-
-            <div class="modal-footer">
+            <div class="pt-3">
               <button data-submit-answer-desktop type="button" class="btn btn-success" data-bs-dismiss="modal" disabled>
                 Confirmar
               </button>
@@ -163,67 +94,28 @@
             </div>
           </div>
         </div>
+        <div class="fox-balloon-next-desktop d-none">
+          <p>Tenho que ser mais rapido na proxima</p>
+          <button data-next-challenge-desktop class="btn btn-success d-block">
+            Proxímo desafio
+          </button>
+        </div>
+        <div class="fox-balloon-win-desktop d-none">
+          <p>Hoje o almoço esta garantido</p>
+          <button data-reset-desktop class="btn btn-danger" data-bs-dismiss="modal">
+            Fechar
+            <i class="bi bi-pause"></i>
+          </button>
+        </div>
       </div>
 
-      <!-- Modal para mostrar a questão (mobile) -->
-      <div id="question-mobile" class="modal fade">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">
-                A velocidade mínima
-                <strong>necessária</strong> do tatu para que ele fuja do
-                predador é de, aproximadamente:
-                <br />
-              </h5>
-            </div>
+      <!-- MRU -->
+      <div data-armadillo class="object position-absolute">
+        <div class="armadilloIsMoving"></div>
+      </div>
 
-            <div class="modal-body">
-              <div class="d-flex flex-row justify-content-center align-items-center gap-3">
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio1" />
-                  <label class="text-black" for="radio1"></label>
-                </div>
-
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio2" />
-                  <label class="text-black" for="radio2"></label>
-                </div>
-
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio3" />
-                  <label class="text-black" for="radio3"></label>
-                </div>
-
-                <div class="form-check">
-                  <input role="button" type="radio" name="velocity" class="form-check-input" id="radio4" />
-                  <label class="text-black" for="radio4"></label>
-                </div>
-              </div>
-              <br />
-              <p class="texte-center text-black">
-                <strong>Dados</strong>: A distância entre eles é de
-                <span class="dist-between"></span>. A distância entre o tatu e
-                sua toca é de <span class="position-until-end"></span>.
-                Considere a raposa com velocidade constante igual a
-                <span class="fox-velocity-mobile"></span>m/s e o tempo de
-                encontro dela com o tatu é de
-                <span class="crash-time-mobile"></span>.
-              </p>
-            </div>
-
-            <div class="modal-footer">
-              <button data-submit-answer-mobile type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal"
-                disabled>
-                Confirmar
-              </button>
-
-              <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Fechar">
-                Fechar
-              </button>
-            </div>
-          </div>
-        </div>
+      <div data-fox class="object-2 position-absolute">
+        <div class="fox"></div>
       </div>
 
       <!-- Modal para próximo desafio (mobile) -->
@@ -243,48 +135,6 @@
               </button>
               <a data-next-page-mobile href="./phase_05.html" class="btn btn-primary d-none" role="button">
                 Próximo desafio
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal para próximo desafio (desktop) -->
-      <div id="next-challenge-modal-desktop" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
-            </div>
-            <div class="modal-body">
-              <p class="textWin">Este desafio acabou! Siga para o próximo</p>
-            </div>
-            <div class="modal-footer">
-              <button data-next-challenge-desktop class="btn btn-success d-block">
-                Proxímo desafio
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal para a próxima fase (mobile) -->
-      <div id="next-phase-modal-mobile" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Fim da fase</h5>
-            </div>
-
-            <div class="modal-body">
-              <p>Esta fase acabou, siga para a próxima!</p>
-            </div>
-
-            <div class="modal-footer">
-              <a href="./phase_05.html" role="button" class="btn btn-primary btn-sm">
-                Próxima fase
               </a>
             </div>
           </div>
@@ -357,49 +207,6 @@
         </div>
       </div>
 
-      <!-- Modal para informar uma nova tentativa (mobile)-->
-      <div id="game-over-modal-mobile" class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Resposta errada</h5>
-            </div>
-            <div class="modal-body">
-              <p class="textWin">Não foi dessa vez! Tente Novamente.</p>
-            </div>
-            <div class="modal-footer">
-              <button data-reset-mobile class="btn btn-danger btn-sm" data-bs-dismiss="modal">
-                Fechar
-                <i class="bi bi-pause"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal para informar uma nova tentativa (desktop) -->
-      <div id="game-over-modal-desktop" class="modal fade" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel">Resposta errada</h5>
-            </div>
-
-            <div class="modal-body">
-              <p class="textWin">Não foi dessa vez! Tente Novamente.</p>
-            </div>
-
-            <div class="modal-footer">
-              <button data-reset-desktop class="btn btn-danger" data-bs-dismiss="modal">
-                Fechar
-                <i class="bi bi-pause"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Modal para mostrar que o número de tentaivas acabou (mobile) -->
       <div id="attemptsGoneModal-mobile" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
