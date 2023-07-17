@@ -26,9 +26,6 @@ const gameOverModalElement = document.getElementById(
 const options = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
-const showQuestionButton = document.querySelector(
-  `[data-show-question${breakpoint}]`
-);
 const submitAnswerButton = document.querySelector(
   `[data-submit-answer${breakpoint}]`
 );
@@ -93,8 +90,6 @@ function game() {
   crashTime.innerText = data[currentChallenger].crashTime;
 
   setTimeout(() => {
-    showQuestionButton.disabled = false;
-
     balloonFox.classList.replace("d-none", "d-flex");
     balloonAmadillo.classList.replace("d-none", "d-flex");
     footerElement.classList.replace("d-none", "d-flex");
@@ -236,7 +231,6 @@ submitAnswerButton.addEventListener("click", () => {
   t = `${minutesSpent}:${secondsSpent}`;
   spentTime.push(t);
 
-  showQuestionButton.disabled = true;
   balloonFox.classList.replace("d-flex", "d-none");
   balloonAmadillo.classList.replace("d-flex", "d-none");
   footerElement.classList.replace("d-flex", "d-none");
@@ -283,7 +277,6 @@ submitAnswerButton.addEventListener("click", () => {
       } else {
         gameOverModal.show();
       }
-      showQuestionButton.disabled = false;
     }, 2000);
   }
 
