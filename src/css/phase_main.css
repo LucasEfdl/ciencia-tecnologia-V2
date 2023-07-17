@@ -72,10 +72,10 @@
 }
 
 .fox-balloon-next-desktop {
-  width: 270px;
-  height: 110px;
+  width: 275px;
+  height: 150px;
   position: relative;
-  top: 240px;
+  top: 290px;
   left: 870px;
 
   display: flex;
@@ -83,7 +83,7 @@
   align-items: center;
   justify-content: center;
 
-  background-image: url(../images/horizontal-2.png);
+  background-image: url(../images/horizontal-medium-2.png);
   background-size: cover;
   background-position: bottom;
 }
