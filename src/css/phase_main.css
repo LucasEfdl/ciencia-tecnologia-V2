@@ -105,6 +105,23 @@
   justify-content: start;
 }
 
+.fox-balloon-win-desktop {
+  width: 275px;
+  height: 150px;
+  position: relative;
+  top: 290px;
+  left: 600px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url(../images/horizontal-medium-2.png);
+  background-size: cover;
+  background-position: bottom;
+}
+
 #text-ballon-amadillo {
   padding-top: 40px;
   padding-right: 20px;

@@ -20,9 +20,6 @@ const nextPhasegeModalElement = document.getElementById(
   `next-phase-modal${breakpoint}`
 );
 
-const gameOverModalElement = document.getElementById(
-  `game-over-modal${breakpoint}`
-);
 const options = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
@@ -32,13 +29,16 @@ const submitAnswerButton = document.querySelector(
 const attemptsGoneModalElement = document.getElementById(
   `attemptsGoneModal${breakpoint}`
 );
-const resetButton = document.querySelector(`[data-reset${breakpoint}]`);
+const resetButton = document.querySelector(`[data-reset${breakpoint}`);
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
 );
-const balloonFox = document.querySelector(".fox-balloon-desktop");
-const balloonFoxNext = document.querySelector(".fox-balloon-next-desktop");
-const balloonAmadillo = document.querySelector(".amadillo-balloon-desktop");
+const balloonFox = document.querySelector(`.fox-balloon${breakpoint}`);
+const balloonFoxNext = document.querySelector(`.fox-balloon-next${breakpoint}`);
+const balloonAmadillo = document.querySelector(
+  `.amadillo-balloon${breakpoint}`
+);
+const ballonnFoxWin = document.querySelector(`.fox-balloon-win${breakpoint}`);
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
@@ -54,10 +54,10 @@ const labels = document.querySelectorAll(".form-check label");
 const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 //const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
-const gameOverModal = new bootstrap.Modal(gameOverModalElement);
+//const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhasegeModalElement);
 
-let [milliseconds, seconds, minutes] = [0, 0, 3];
+let [milliseconds, seconds, minutes] = [0, 0, 1];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
 const spentTime = [];
@@ -173,7 +173,7 @@ resetButton.addEventListener("click", () => {
 
   answer.pop();
   spentTime.pop();
-
+  ballonnFoxWin.classList.replace("d-flex", "d-none");
   armadillo.style.animation = "none";
   fox.style.animation = "none";
   balloonAmadillo.classList.replace("d-none", "d-flex");
@@ -279,7 +279,7 @@ submitAnswerButton.addEventListener("click", () => {
         progress += questionsQuantity;
         progressLose.style.width = `${progress}%`;
       } else {
-        gameOverModal.show();
+        ballonnFoxWin.classList.replace("d-none", "d-flex");
       }
     }, 2000);
   }
