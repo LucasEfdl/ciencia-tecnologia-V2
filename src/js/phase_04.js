@@ -94,7 +94,8 @@ function game() {
     balloonAmadillo.classList.replace("d-none", "d-flex");
     footerElement.classList.replace("d-none", "d-flex");
     footerElement.style.animation = "footer-animated 0.5s linear forwards";
-
+    fox.children[0].classList.replace("foxIsMoving", "fox");
+    armadillo.children[0].classList.replace("armadilloIsMoving", "armadillo");
     time();
   }, 2000);
 }
@@ -235,6 +236,7 @@ submitAnswerButton.addEventListener("click", () => {
   balloonFox.classList.replace("d-flex", "d-none");
   balloonAmadillo.classList.replace("d-flex", "d-none");
   footerElement.classList.replace("d-flex", "d-none");
+  armadillo.children[0].classList.replace("armadillo", "armadilloIsMoving");
 
   options.forEach((option) => {
     if (option.checked) {
@@ -268,6 +270,7 @@ submitAnswerButton.addEventListener("click", () => {
     setTimeout(() => {
       remainingAttempts.innerText = `${--maxAttempts}`;
       fox.children[0].classList.remove("foxIsMoving");
+      armadillo.children[0].classList.replace("armadilloIsMoving", "armadillo");
       if (maxAttempts == 0) {
         currentChallenger === 2
           ? nextPhaseModal.show()

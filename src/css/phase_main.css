@@ -23,6 +23,28 @@
   background-image: url(../images/new-fox.gif);
 }
 
+.armadilloIsMoving {
+  background-image: url(../images/new-armadillo.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 112px;
+  height: 110px;
+
+  left: 0px;
+}
+
+.armadillo {
+  background-image: url(../images/armadillo-1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 112px;
+  height: 110px;
+
+  left: 0px;
+}
+
 #footer {
   width: 1200px;
   position: relative;
