@@ -164,7 +164,7 @@ resetButton.addEventListener("click", () => {
   time();
   if (gameScreen.offsetWidth >= 1200) {
     armadillo.style.left = "600px";
-    fox.style.left = "400px";
+    fox.style.left = "280px";
   } else {
     armadillo.style.left = "220px";
     fox.style.left = "100px";
@@ -174,8 +174,9 @@ resetButton.addEventListener("click", () => {
   spentTime.pop();
 
   armadillo.style.animation = "none";
-
   fox.style.animation = "none";
+  balloonAmadillo.classList.replace("d-none", "d-flex");
+  balloonFox.classList.replace("d-none", "d-flex");
 });
 
 nextChallengeButton.addEventListener("click", () => {
