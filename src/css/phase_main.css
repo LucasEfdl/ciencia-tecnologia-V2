@@ -112,7 +112,7 @@
     left: -300px;
   }
   to {
-    left: 400px;
+    left: 280px;
   }
 }
 
@@ -127,7 +127,7 @@
 
 @keyframes fox-animation-after {
   from {
-    left: 400px;
+    left: 280px;
   }
   to {
     left: 1080px;
@@ -136,7 +136,7 @@
 
 @keyframes fox-animation-win {
   from {
-    left: 400px;
+    left: 280px;
   }
   to {
     left: 800px;
