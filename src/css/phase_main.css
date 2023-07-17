@@ -1,5 +1,5 @@
 #different-pos {
-  width: 129px;
+  width: 285px;
 }
 
 #end-position {
@@ -34,11 +34,11 @@
 }
 
 .fox-balloon-desktop {
-  width: 280px;
-  height: 110px;
+  width: 300px;
+  height: 120px;
   position: relative;
-  left: 200px;
-  top: 250px;
+  left: 60px;
+  top: 300px;
 
   background-image: url(../images/horizontal-2.png);
   background-size: cover;
@@ -70,8 +70,8 @@
   width: 470px;
   height: 220px;
   position: relative;
-  left: 420px;
-  top: 190px;
+  left: 410px;
+  top: 260px;
 
   background-image: url(../images/horizontal-4.png);
   background-size: cover;
