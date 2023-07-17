@@ -2,6 +2,7 @@ import data from "../data/data.json" assert { type: "json" };
 
 const initialScreen = document.getElementById("initial-screen");
 const gameScreen = document.querySelector("[data-game-screen]");
+
 let breakpoint = gameScreen.offsetWidth >= 1024 ? "-desktop" : "-mobile";
 
 const startGameButton = document.querySelector(
@@ -16,10 +17,9 @@ const timeOverModalElement = document.getElementById(
 const nextChallengeModalElement = document.getElementById(
   `next-challenge-modal${breakpoint}`
 );
-const nextPhasegeModalElement = document.getElementById(
+const nextPhaseModalElement = document.getElementById(
   `next-phase-modal${breakpoint}`
 );
-
 const options = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
@@ -30,6 +30,9 @@ const attemptsGoneModalElement = document.getElementById(
   `attemptsGoneModal${breakpoint}`
 );
 const resetButton = document.querySelector(`[data-reset${breakpoint}`);
+const nextChallengeBtn = document.querySelector(
+  `[data-next-challenge]`
+);
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
 );
@@ -51,11 +54,11 @@ let progress = 0;
 let answer = [];
 
 const labels = document.querySelectorAll(".form-check label");
-const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
-const timeOverModal = new bootstrap.Modal(timeOverModalElement);
-//const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
-//const gameOverModal = new bootstrap.Modal(gameOverModalElement);
-const nextPhaseModal = new bootstrap.Modal(nextPhasegeModalElement);
+// const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
+// const timeOverModal = new bootstrap.Modal(timeOverModalElement);
+const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
+// const gameOverModal = new bootstrap.Modal(gameOverModalElement);
+const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 
 let [milliseconds, seconds, minutes] = [0, 0, 1];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
@@ -180,8 +183,12 @@ resetButton.addEventListener("click", () => {
   balloonFox.classList.replace("d-none", "d-flex");
 });
 
-nextChallengeButton.addEventListener("click", () => {
+nextChallengeButton.addEventListener("click", nextChallenge);
+nextChallengeBtn.addEventListener("click", nextChallenge)
+
+function nextChallenge() {
   currentChallenger++;
+  nextChallengeModal.hide()
   updateOptions();
 
   armadillo.style.left = "0px";
@@ -205,7 +212,7 @@ nextChallengeButton.addEventListener("click", () => {
   setTimeout(() => {
     game();
   }, 1500);
-});
+}
 
 function updateOptions() {
   labels.forEach((label, index) => {
