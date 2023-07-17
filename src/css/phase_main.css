@@ -1,5 +1,5 @@
 #different-pos {
-  width: 129px;
+  width: 285px;
 }
 
 #end-position {
@@ -23,24 +23,109 @@
   background-image: url(../images/new-fox.gif);
 }
 
+.armadilloIsMoving {
+  background-image: url(../images/new-armadillo.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 112px;
+  height: 110px;
+
+  left: 0px;
+}
+
+.armadillo {
+  background-image: url(../images/armadillo-1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 112px;
+  height: 110px;
+
+  left: 0px;
+}
+
 #footer {
   width: 1200px;
   position: relative;
   left: -50px;
 }
+.balloon-text {
+  display: flex;
+  flex-direction: row;
+}
 
-.fox-balloon-desktop{
-  width: 600px;
-  height: 149px;
-  margin-top: 200px;
+.fox-balloon-desktop {
+  width: 300px;
+  height: 120px;
+  position: relative;
+  left: 60px;
+  top: 300px;
 
-  background-image: url(../images/Design\ sem\ nome.png);
+  background-image: url(../images/horizontal-2.png);
   background-size: cover;
   background-position: bottom;
 
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fox-balloon-next-desktop {
+  width: 275px;
+  height: 150px;
+  position: relative;
+  top: 290px;
+  left: 870px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url(../images/horizontal-medium-2.png);
+  background-size: cover;
+  background-position: bottom;
+}
+
+.amadillo-balloon-desktop {
+  width: 470px;
+  height: 220px;
+  position: relative;
+  left: 410px;
+  top: 260px;
+
+  background-image: url(../images/horizontal-4.png);
+  background-size: cover;
+  background-position: bottom;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.fox-balloon-win-desktop {
+  width: 275px;
+  height: 150px;
+  position: relative;
+  top: 290px;
+  left: 600px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url(../images/horizontal-medium-2.png);
+  background-size: cover;
+  background-position: bottom;
+}
+
+#text-ballon-amadillo {
+  padding-top: 40px;
+  padding-right: 20px;
+  padding-left: 40px;
 }
 
 @keyframes footer-animated {
@@ -66,7 +151,7 @@
     left: -300px;
   }
   to {
-    left: 400px;
+    left: 280px;
   }
 }
 
@@ -81,7 +166,7 @@
 
 @keyframes fox-animation-after {
   from {
-    left: 400px;
+    left: 280px;
   }
   to {
     left: 1080px;
@@ -90,7 +175,7 @@
 
 @keyframes fox-animation-win {
   from {
-    left: 400px;
+    left: 280px;
   }
   to {
     left: 800px;

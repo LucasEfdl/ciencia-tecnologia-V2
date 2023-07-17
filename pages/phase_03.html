@@ -32,7 +32,7 @@
       <header class="w-75 d-flex justify-content-around align-items-center p-1">
         <div class="d-flex align-items-center">
           <i class="ph-fill ph-timer" style="color: white"></i>
-          <p data-timer-display class="text-white m-0">3:00</p>
+          <p data-timer-display class="text-white m-0">03:00</p>
         </div>
       </header>
 
@@ -399,6 +399,8 @@
         <div
           id="game-over-modal-mobile"
           class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
           tabindex="-1"
           role="dialog"
           aria-labelledby="modalLabel"
@@ -408,16 +410,10 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title">Resposta errada</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Fechar"
-                ></button>
               </div>
               <div class="modal-body">
                 <p class="textWin">
-                  Não foi dessa vez! Siga para o próximo desafio.
+                  Não foi dessa vez! Siga para a próxima fase.
                 </p>
               </div>
               <div class="modal-footer">
@@ -426,7 +422,7 @@
                   role="button"
                   class="btn btn-danger btn-sm"
                 >
-                  Próximo desafio
+                  Próxima fase
                   <i class="bi bi-pause"></i>
                 </a>
               </div>
@@ -438,6 +434,8 @@
         <div
           id="game-over-modal-desktop"
           class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
           tabindex="-1"
           role="dialog"
           aria-labelledby="modalLabel"
@@ -447,16 +445,10 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel">Resposta errada</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Fechar"
-                ></button>
               </div>
               <div class="modal-body">
                 <p class="textWin">
-                  Não foi dessa vez! Siga para o próximo desafio.
+                  Não foi dessa vez! Siga para a próxima fase.
                 </p>
               </div>
               <div class="modal-footer">
@@ -465,7 +457,7 @@
                   role="button"
                   class="btn btn-danger btn-sm"
                 >
-                  Próximo desafio
+                  Próxima fase
                   <i class="bi bi-pause"></i>
                 </a>
               </div>
