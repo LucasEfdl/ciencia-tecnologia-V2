@@ -30,9 +30,7 @@ const attemptsGoneModalElement = document.getElementById(
   `attemptsGoneModal${breakpoint}`
 );
 const resetButton = document.querySelector(`[data-reset${breakpoint}`);
-const nextChallengeBtn = document.querySelector(
-  `[data-next-challenge]`
-);
+const nextChallengeBtn = document.querySelector(`[data-next-challenge]`);
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
 );
@@ -60,7 +58,7 @@ const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
 // const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 
-let [milliseconds, seconds, minutes] = [0, 0, 1];
+let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
 const spentTime = [];
@@ -184,11 +182,11 @@ resetButton.addEventListener("click", () => {
 });
 
 nextChallengeButton.addEventListener("click", nextChallenge);
-nextChallengeBtn.addEventListener("click", nextChallenge)
+nextChallengeBtn.addEventListener("click", nextChallenge);
 
 function nextChallenge() {
   currentChallenger++;
-  nextChallengeModal.hide()
+  nextChallengeModal.hide();
   updateOptions();
 
   armadillo.style.left = "0px";
