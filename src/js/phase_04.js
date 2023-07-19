@@ -5,9 +5,7 @@ const gameScreen = document.querySelector("[data-game-screen]");
 
 let breakpoint = gameScreen.offsetWidth >= 1024 ? "-desktop" : "-mobile";
 
-const startGameButton = document.querySelector(
-  `[data-start-game${breakpoint}]`
-);
+const startGameButton = document.querySelector(`[data-start-game`);
 const armadillo = document.querySelector(".object");
 const fox = document.querySelector(".object-2");
 const timerRef = document.querySelector("[data-timer-display]");
@@ -23,9 +21,7 @@ const nextPhaseModalElement = document.getElementById(
 const options = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
-const submitAnswerButton = document.querySelector(
-  `[data-submit-answer${breakpoint}]`
-);
+const submitAnswerButton = document.querySelector(`[data-submit-answer`);
 const attemptsGoneModalElement = document.getElementById(
   `attemptsGoneModal${breakpoint}`
 );
@@ -34,12 +30,10 @@ const nextChallengeBtn = document.querySelector(`[data-next-challenge]`);
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
 );
-const balloonFox = document.querySelector(`.fox-balloon${breakpoint}`);
-const balloonFoxNext = document.querySelector(`.fox-balloon-next${breakpoint}`);
-const balloonAmadillo = document.querySelector(
-  `.amadillo-balloon${breakpoint}`
-);
-const ballonnFoxWin = document.querySelector(`.fox-balloon-win${breakpoint}`);
+const balloonFox = document.querySelector(`.fox-balloon`);
+const balloonFoxNext = document.querySelector(`.fox-balloon-next`);
+const balloonAmadillo = document.querySelector(`.amadillo-balloon`);
+const ballonnFoxWin = document.querySelector(`.fox-balloon-win`);
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
@@ -68,8 +62,8 @@ let currentChallenger = 0;
 
 const distBetween = document.querySelectorAll(".dist-between");
 const positionUtilEnd = document.querySelectorAll(".position-until-end");
-const foxVelocity = document.querySelector(`.fox-velocity${breakpoint}`);
-const crashTime = document.querySelector(`.crash-time${breakpoint}`);
+const foxVelocity = document.querySelector(`.fox-velocity`);
+const crashTime = document.querySelector(`.crash-time`);
 
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");

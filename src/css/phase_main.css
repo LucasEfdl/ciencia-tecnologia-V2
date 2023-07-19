@@ -55,7 +55,7 @@
   flex-direction: row;
 }
 
-.fox-balloon-desktop {
+.fox-balloon {
   width: 300px;
   height: 120px;
   position: relative;
@@ -71,7 +71,7 @@
   justify-content: center;
 }
 
-.fox-balloon-next-desktop {
+.fox-balloon-next {
   width: 275px;
   height: 150px;
   position: relative;
@@ -88,7 +88,7 @@
   background-position: bottom;
 }
 
-.amadillo-balloon-desktop {
+.amadillo-balloon {
   width: 470px;
   height: 220px;
   position: relative;
@@ -105,7 +105,7 @@
   justify-content: start;
 }
 
-.fox-balloon-win-desktop {
+.fox-balloon-win {
   width: 275px;
   height: 150px;
   position: relative;
@@ -208,8 +208,35 @@
     font-size: 10px;
   }
 
+  .armadillo,
+  .armadilloIsMoving {
+    width: 80px;
+    height: 76px;
+  }
+
+  .amadillo-balloon {
+    width: 338px;
+    height: 150px;
+    font-size: 13px;
+    top: 90px;
+    left: -7.5px;
+  }
+
+  #text-ballon-amadillo {
+    padding-top: 9px;
+  }
+
   #footer {
     width: 600px;
+  }
+
+  #different-pos {
+    width: 65px;
+  }
+
+  #end-position {
+    margin-left: 65px;
+    width: 300px;
   }
 
   @keyframes armadillo-animation-before {
@@ -264,16 +291,5 @@
     to {
       left: 500px;
     }
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  #different-pos {
-    width: 65px;
-  }
-
-  #end-position {
-    margin-left: 65px;
-    width: 300px;
   }
 }
