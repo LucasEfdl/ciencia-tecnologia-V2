@@ -5,15 +5,10 @@ const gameScreen = document.querySelector("[data-game-screen]");
 
 let breakpoint = gameScreen.offsetWidth >= 1024 ? "-desktop" : "-mobile";
 
-const startGameButton = document.querySelector(
-  `[data-start-game${breakpoint}]`
-);
+const startGameButton = document.querySelector(`[data-start-game`);
 const armadillo = document.querySelector(".object");
 const fox = document.querySelector(".object-2");
 const timerRef = document.querySelector("[data-timer-display]");
-const timeOverModalElement = document.getElementById(
-  `timeOverModal${breakpoint}`
-);
 const nextChallengeModalElement = document.getElementById(
   `next-challenge-modal${breakpoint}`
 );
@@ -23,25 +18,17 @@ const nextPhaseModalElement = document.getElementById(
 const options = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
-const submitAnswerButton = document.querySelector(
-  `[data-submit-answer${breakpoint}]`
-);
-const attemptsGoneModalElement = document.getElementById(
-  `attemptsGoneModal${breakpoint}`
-);
-const resetButton = document.querySelector(`[data-reset${breakpoint}`);
-const nextChallengeBtn = document.querySelector(
-  `[data-next-challenge]`
-);
+const submitAnswerButton = document.querySelector(`[data-submit-answer`);
+const resetButton = document.querySelector(`[data-reset]`);
+const nextChallengeBtn = document.querySelector(`[data-next-challenge]`);
+const buttonsMobile = document.querySelectorAll(".btn-mobile");
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
 );
-const balloonFox = document.querySelector(`.fox-balloon${breakpoint}`);
-const balloonFoxNext = document.querySelector(`.fox-balloon-next${breakpoint}`);
-const balloonAmadillo = document.querySelector(
-  `.amadillo-balloon${breakpoint}`
-);
-const ballonnFoxWin = document.querySelector(`.fox-balloon-win${breakpoint}`);
+const balloonFox = document.querySelector(`.fox-balloon`);
+const balloonFoxNext = document.querySelector(`.fox-balloon-next`);
+const balloonAmadillo = document.querySelector(`.amadillo-balloon`);
+const ballonnFoxWin = document.querySelector(`.fox-balloon-win`);
 const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
@@ -53,14 +40,20 @@ let progress = 0;
 
 let answer = [];
 
+if (breakpoint == "-mobile") {
+  console.log(buttonsMobile);
+  buttonsMobile.forEach((button) => {
+    button.classList.add("btn-sm");
+  });
+  /* submitAnswerButton.classList.add("btn-sm");
+  nextChallengeBtn.classList.add("btn-sm"); */
+}
+
 const labels = document.querySelectorAll(".form-check label");
-// const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
-// const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
-// const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 
-let [milliseconds, seconds, minutes] = [0, 0, 1];
+let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
 const spentTime = [];
@@ -70,8 +63,8 @@ let currentChallenger = 0;
 
 const distBetween = document.querySelectorAll(".dist-between");
 const positionUtilEnd = document.querySelectorAll(".position-until-end");
-const foxVelocity = document.querySelector(`.fox-velocity${breakpoint}`);
-const crashTime = document.querySelector(`.crash-time${breakpoint}`);
+const foxVelocity = document.querySelector(`.fox-velocity`);
+const crashTime = document.querySelector(`.crash-time`);
 
 startGameButton.addEventListener("click", () => {
   initialScreen.classList.replace("d-block", "d-none");
@@ -170,8 +163,8 @@ resetButton.addEventListener("click", () => {
     armadillo.style.left = "600px";
     fox.style.left = "280px";
   } else {
-    armadillo.style.left = "220px";
-    fox.style.left = "100px";
+    armadillo.style.left = "300px";
+    fox.style.left = "140px";
   }
 
   answer.pop();
@@ -181,14 +174,17 @@ resetButton.addEventListener("click", () => {
   fox.style.animation = "none";
   balloonAmadillo.classList.replace("d-none", "d-flex");
   balloonFox.classList.replace("d-none", "d-flex");
+  footerElement.classList.replace("d-none", "d-flex");
 });
 
 nextChallengeButton.addEventListener("click", nextChallenge);
-nextChallengeBtn.addEventListener("click", nextChallenge)
+nextChallengeBtn.addEventListener("click", nextChallenge);
 
 function nextChallenge() {
   currentChallenger++;
-  nextChallengeModal.hide()
+  nextChallengeModal.hide();
+  balloonFox.classList.replace("d-flex", "d-none");
+  balloonAmadillo.classList.replace("d-flex", "d-none");
   updateOptions();
 
   armadillo.style.left = "0px";
@@ -199,6 +195,7 @@ function nextChallenge() {
   remainingAttempts.innerText = `${maxAttempts}`;
   balloonFoxNext.classList.replace("d-flex", "d-none");
   fox.children[0].classList.remove("foxIsMoving");
+  armadillo.children[0].classList.replace("armadillo", "armadilloIsMoving");
 
   minutesSpent = 0;
   secondsSpent = 0;

@@ -7,6 +7,10 @@
   width: 500px;
 }
 
+.group-btn {
+  padding-top: 1rem;
+}
+
 .fox {
   background-image: url(../images/fox-1.png);
   background-repeat: no-repeat;
@@ -55,7 +59,7 @@
   flex-direction: row;
 }
 
-.fox-balloon-desktop {
+.fox-balloon {
   width: 300px;
   height: 120px;
   position: relative;
@@ -71,7 +75,7 @@
   justify-content: center;
 }
 
-.fox-balloon-next-desktop {
+.fox-balloon-next {
   width: 275px;
   height: 150px;
   position: relative;
@@ -88,7 +92,7 @@
   background-position: bottom;
 }
 
-.amadillo-balloon-desktop {
+.amadillo-balloon {
   width: 470px;
   height: 220px;
   position: relative;
@@ -105,7 +109,7 @@
   justify-content: start;
 }
 
-.fox-balloon-win-desktop {
+.fox-balloon-win {
   width: 275px;
   height: 150px;
   position: relative;
@@ -201,15 +205,75 @@
 }
 
 @media screen and (max-width: 1024px) {
+  header {
+    font-size: 13px;
+  }
+
+  .group-btn {
+    padding-top: 0px;
+  }
+
   .fox {
     width: 80px;
     height: 76px;
-
     font-size: 10px;
+  }
+
+  .armadillo,
+  .armadilloIsMoving {
+    width: 80px;
+    height: 76px;
+  }
+
+  .amadillo-balloon {
+    background-image: url(../images/horizontal-medium-1.png);
+    width: 283px;
+    height: 155px;
+    font-size: 13px;
+    top: 90px;
+    left: 90px;
+  }
+
+  .fox-balloon {
+    width: 220px;
+    height: 88px;
+    font-size: 13px;
+    top: 135px;
+    left: 4px;
+  }
+
+  .fox-balloon-win {
+    width: 227px;
+    height: 125px;
+
+    top: 91px;
+    left: 306px;
+  }
+
+  .fox-balloon-next {
+    width: 260px;
+    height: 144px;
+
+    top: 85px;
+    left: 301px;
+    font-size: 13px;
+  }
+
+  #text-ballon-amadillo {
+    padding: 0px 13px;
   }
 
   #footer {
     width: 600px;
+  }
+
+  #different-pos {
+    width: 120px;
+  }
+
+  #end-position {
+    margin-left: 65px;
+    width: 220px;
   }
 
   @keyframes armadillo-animation-before {
@@ -217,7 +281,7 @@
       left: 0px;
     }
     to {
-      left: calc(300px - 80px);
+      left: 300px;
     }
   }
 
@@ -226,13 +290,13 @@
       left: -300px;
     }
     to {
-      left: 100px;
+      left: 140px;
     }
   }
 
   @keyframes armadillo-animation-after {
     from {
-      left: calc(300px - 80px);
+      left: 300px;
     }
     to {
       left: 600px;
@@ -241,7 +305,7 @@
 
   @keyframes fox-animation-after {
     from {
-      left: 100px;
+      left: 140px;
     }
     to {
       left: 520px;
@@ -250,7 +314,7 @@
 
   @keyframes fox-animation-win {
     from {
-      left: 120px;
+      left: 140px;
     }
     to {
       left: 480px;
@@ -259,21 +323,10 @@
 
   @keyframes armadillo-animation-lose {
     from {
-      left: calc(300px - 80px);
+      left: 300px;
     }
     to {
       left: 500px;
     }
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  #different-pos {
-    width: 65px;
-  }
-
-  #end-position {
-    margin-left: 65px;
-    width: 300px;
   }
 }

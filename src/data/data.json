@@ -10,11 +10,11 @@
     "options": ["10m/s", "8m/s", "20m/s", "13m/s"]
   },
   {
-    "armadilloVelocity": 14,
-    "foxVelocity": 16,
+    "armadilloVelocity": 10,
+    "foxVelocity": 20,
 
-    "positionUntilEnd": "150m",
-    "distBetweenFoxAndArmadillo": "10m",
+    "positionUntilEnd": "60m",
+    "distBetweenFoxAndArmadillo": "30m",
     "crashTime": "10s",
 
     "options": ["7m/s", "10m/s", "14m/s", "30m/s"]
