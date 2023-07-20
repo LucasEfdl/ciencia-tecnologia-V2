@@ -9,9 +9,6 @@ const startGameButton = document.querySelector(`[data-start-game`);
 const armadillo = document.querySelector(".object");
 const fox = document.querySelector(".object-2");
 const timerRef = document.querySelector("[data-timer-display]");
-const timeOverModalElement = document.getElementById(
-  `timeOverModal${breakpoint}`
-);
 const nextChallengeModalElement = document.getElementById(
   `next-challenge-modal${breakpoint}`
 );
@@ -22,10 +19,7 @@ const options = document.querySelectorAll(
   'input[type="radio"][name="velocity"]'
 );
 const submitAnswerButton = document.querySelector(`[data-submit-answer`);
-const attemptsGoneModalElement = document.getElementById(
-  `attemptsGoneModal${breakpoint}`
-);
-const resetButton = document.querySelector(`[data-reset`);
+const resetButton = document.querySelector(`[data-reset]`);
 const nextChallengeBtn = document.querySelector(`[data-next-challenge]`);
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
@@ -51,10 +45,7 @@ if (breakpoint == "-mobile") {
 }
 
 const labels = document.querySelectorAll(".form-check label");
-// const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
-// const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
-// const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 
 let [milliseconds, seconds, minutes] = [0, 0, 3];
@@ -187,6 +178,8 @@ nextChallengeBtn.addEventListener("click", nextChallenge);
 function nextChallenge() {
   currentChallenger++;
   nextChallengeModal.hide();
+  balloonFox.classList.replace("d-flex", "d-none");
+  balloonAmadillo.classList.replace("d-flex", "d-none");
   updateOptions();
 
   armadillo.style.left = "0px";
