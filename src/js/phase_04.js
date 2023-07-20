@@ -21,6 +21,7 @@ const options = document.querySelectorAll(
 const submitAnswerButton = document.querySelector(`[data-submit-answer`);
 const resetButton = document.querySelector(`[data-reset]`);
 const nextChallengeBtn = document.querySelector(`[data-next-challenge]`);
+const buttonsMobile = document.querySelectorAll(".btn-mobile");
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
 );
@@ -40,11 +41,13 @@ let progress = 0;
 let answer = [];
 
 if (breakpoint == "-mobile") {
-  submitAnswerButton.classList.add("btn-sm");
-  nextChallengeBtn.classList.add("btn-sm");
+  console.log(buttonsMobile);
+  buttonsMobile.forEach((button) => {
+    button.classList.add("btn-sm");
+  });
+  /* submitAnswerButton.classList.add("btn-sm");
+  nextChallengeBtn.classList.add("btn-sm"); */
 }
-
-console.log(balloonAmadillo);
 
 const labels = document.querySelectorAll(".form-check label");
 const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);

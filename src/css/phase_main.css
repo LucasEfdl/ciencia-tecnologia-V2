@@ -205,6 +205,10 @@
 }
 
 @media screen and (max-width: 1024px) {
+  header {
+    font-size: 13px;
+  }
+
   .group-btn {
     padding-top: 0px;
   }
