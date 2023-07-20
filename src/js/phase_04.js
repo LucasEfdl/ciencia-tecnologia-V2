@@ -44,6 +44,8 @@ if (breakpoint == "-mobile") {
   nextChallengeBtn.classList.add("btn-sm");
 }
 
+console.log(balloonAmadillo);
+
 const labels = document.querySelectorAll(".form-check label");
 const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
@@ -190,6 +192,7 @@ function nextChallenge() {
   remainingAttempts.innerText = `${maxAttempts}`;
   balloonFoxNext.classList.replace("d-flex", "d-none");
   fox.children[0].classList.remove("foxIsMoving");
+  armadillo.children[0].classList.replace("armadillo", "armadilloIsMoving");
 
   minutesSpent = 0;
   secondsSpent = 0;
