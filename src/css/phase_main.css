@@ -7,6 +7,10 @@
   width: 500px;
 }
 
+.group-btn {
+  padding-top: 1rem;
+}
+
 .fox {
   background-image: url(../images/fox-1.png);
   background-repeat: no-repeat;
@@ -201,10 +205,13 @@
 }
 
 @media screen and (max-width: 1024px) {
+  .group-btn {
+    padding-top: 0px;
+  }
+
   .fox {
     width: 80px;
     height: 76px;
-
     font-size: 10px;
   }
 
@@ -215,15 +222,41 @@
   }
 
   .amadillo-balloon {
-    width: 338px;
-    height: 150px;
+    background-image: url(../images/horizontal-medium-1.png);
+    width: 283px;
+    height: 155px;
     font-size: 13px;
     top: 90px;
-    left: -7.5px;
+    left: 90px;
+  }
+
+  .fox-balloon {
+    width: 220px;
+    height: 88px;
+    font-size: 13px;
+    top: 135px;
+    left: 4px;
+  }
+
+  .fox-balloon-win {
+    width: 227px;
+    height: 125px;
+
+    top: 91px;
+    left: 306px;
+  }
+
+  .fox-balloon-next {
+    width: 260px;
+    height: 144px;
+
+    top: 85px;
+    left: 301px;
+    font-size: 13px;
   }
 
   #text-ballon-amadillo {
-    padding-top: 9px;
+    padding: 0px 13px;
   }
 
   #footer {
@@ -231,12 +264,12 @@
   }
 
   #different-pos {
-    width: 65px;
+    width: 120px;
   }
 
   #end-position {
     margin-left: 65px;
-    width: 300px;
+    width: 220px;
   }
 
   @keyframes armadillo-animation-before {
@@ -244,7 +277,7 @@
       left: 0px;
     }
     to {
-      left: calc(300px - 80px);
+      left: 300px;
     }
   }
 
@@ -253,13 +286,13 @@
       left: -300px;
     }
     to {
-      left: 100px;
+      left: 140px;
     }
   }
 
   @keyframes armadillo-animation-after {
     from {
-      left: calc(300px - 80px);
+      left: 300px;
     }
     to {
       left: 600px;
@@ -268,7 +301,7 @@
 
   @keyframes fox-animation-after {
     from {
-      left: 100px;
+      left: 140px;
     }
     to {
       left: 520px;
@@ -277,7 +310,7 @@
 
   @keyframes fox-animation-win {
     from {
-      left: 120px;
+      left: 140px;
     }
     to {
       left: 480px;
@@ -286,7 +319,7 @@
 
   @keyframes armadillo-animation-lose {
     from {
-      left: calc(300px - 80px);
+      left: 300px;
     }
     to {
       left: 500px;

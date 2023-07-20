@@ -25,7 +25,7 @@ const submitAnswerButton = document.querySelector(`[data-submit-answer`);
 const attemptsGoneModalElement = document.getElementById(
   `attemptsGoneModal${breakpoint}`
 );
-const resetButton = document.querySelector(`[data-reset${breakpoint}`);
+const resetButton = document.querySelector(`[data-reset`);
 const nextChallengeBtn = document.querySelector(`[data-next-challenge]`);
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
@@ -44,6 +44,11 @@ let questionsQuantity = 100 / data.length;
 let progress = 0;
 
 let answer = [];
+
+if (breakpoint == "-mobile") {
+  submitAnswerButton.classList.add("btn-sm");
+  nextChallengeBtn.classList.add("btn-sm");
+}
 
 const labels = document.querySelectorAll(".form-check label");
 // const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
@@ -162,8 +167,8 @@ resetButton.addEventListener("click", () => {
     armadillo.style.left = "600px";
     fox.style.left = "280px";
   } else {
-    armadillo.style.left = "220px";
-    fox.style.left = "100px";
+    armadillo.style.left = "300px";
+    fox.style.left = "140px";
   }
 
   answer.pop();
@@ -173,6 +178,7 @@ resetButton.addEventListener("click", () => {
   fox.style.animation = "none";
   balloonAmadillo.classList.replace("d-none", "d-flex");
   balloonFox.classList.replace("d-none", "d-flex");
+  footerElement.classList.replace("d-none", "d-flex");
 });
 
 nextChallengeButton.addEventListener("click", nextChallenge);
