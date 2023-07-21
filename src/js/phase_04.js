@@ -41,12 +41,9 @@ let progress = 0;
 let answer = [];
 
 if (breakpoint == "-mobile") {
-  console.log(buttonsMobile);
   buttonsMobile.forEach((button) => {
     button.classList.add("btn-sm");
   });
-  /* submitAnswerButton.classList.add("btn-sm");
-  nextChallengeBtn.classList.add("btn-sm"); */
 }
 
 const labels = document.querySelectorAll(".form-check label");
