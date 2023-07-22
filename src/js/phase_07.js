@@ -15,12 +15,6 @@ const timeOverModalElement = document.getElementById(
   `time-over-modal${breakpoint}`
 );
 const questionModalElement = document.getElementById(`question${breakpoint}`);
-const gameOverModalElement = document.getElementById(
-  `game-over-modal${breakpoint}`
-);
-const attemptsGoneModalElement = document.getElementById(
-  `attemptsGoneModal${breakpoint}`
-);
 const options = document.querySelectorAll('input[type="radio"][name="option"]');
 const showQuestionButton = document.querySelector(
   `[data-show-question${breakpoint}]`
@@ -36,16 +30,12 @@ const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const questionModal = new bootstrap.Modal(questionModalElement);
-const gameOverModal = new bootstrap.Modal(gameOverModalElement);
-const attemptsGoneModal = new bootstrap.Modal(attemptsGoneModalElement);
 var completeChallengeModal = new bootstrap.Modal(completeChallengeModalElement);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
 let index = 2;
 let timer = null;
-let remainingAttempts = document.querySelector("[data-attempts]");
-let maxAttempts = 3;
 
 const postionMobile = [134, 264, 394];
 const postionDesktop = [270, 540, 810];
@@ -166,16 +156,9 @@ submitAnswerButton.addEventListener("click", () => {
     velocity = `velocidade = ${answer} (certo)`;
     clearInterval(timer);
   } else {
-    remainingAttempts.innerText = `${--maxAttempts}`;
-    maxAttempts == 0 ? attemptsGoneModal.show() : gameOverModal.show();
-    if (maxAttempts == 0) {
-      clearInterval(timer);
-      attemptsGoneModal.show();
-    } else {
-      gameOverModal.show();
-    }
-    questionModal.hide();
-    showQuestionButton.disabled = false;
+    clearInterval(timer);
+    progressLose.style.width = "100%";
+    completeChallengeModal.show();
   }
 
   localStorage.setItem("question-07", velocity);
