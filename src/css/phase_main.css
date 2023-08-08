@@ -52,8 +52,10 @@
 #footer {
   width: 1200px;
   position: relative;
+  visibility: hidden;
   left: -50px;
 }
+
 .balloon-text {
   display: flex;
   flex-direction: row;

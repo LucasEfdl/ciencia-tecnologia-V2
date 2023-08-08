@@ -85,7 +85,7 @@ function game() {
   setTimeout(() => {
     balloonFox.classList.replace("d-none", "d-flex");
     balloonAmadillo.classList.replace("d-none", "d-flex");
-    footerElement.classList.replace("d-none", "d-flex");
+    footerElement.style.visibility = "visible"
     footerElement.style.animation = "footer-animated 0.5s linear forwards";
     fox.children[0].classList.replace("foxIsMoving", "fox");
     armadillo.children[0].classList.replace("armadilloIsMoving", "armadillo");
@@ -171,7 +171,7 @@ resetButton.addEventListener("click", () => {
   fox.style.animation = "none";
   balloonAmadillo.classList.replace("d-none", "d-flex");
   balloonFox.classList.replace("d-none", "d-flex");
-  footerElement.classList.replace("d-none", "d-flex");
+  footerElement.style.visibility = "visible"
 });
 
 nextChallengeButton.addEventListener("click", nextChallenge);
@@ -200,7 +200,7 @@ function nextChallenge() {
   [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
   timerRef.innerText = "03:00";
 
-  footerElement.classList.replace("d-flex", "d-none");
+  footerElement.style.visibility = "hidden"
   footerElement.style.animation = "none";
 
   setTimeout(() => {
@@ -226,6 +226,7 @@ function updateDistBetween() {
     item.innerText = data[currentChallenger].distBetweenFoxAndArmadillo;
   });
 }
+
 updatePositionUntilEnd();
 updateDistBetween();
 
@@ -236,7 +237,7 @@ submitAnswerButton.addEventListener("click", () => {
 
   balloonFox.classList.replace("d-flex", "d-none");
   balloonAmadillo.classList.replace("d-flex", "d-none");
-  footerElement.classList.replace("d-flex", "d-none");
+  footerElement.style.visibility = "hidden"
   armadillo.children[0].classList.replace("armadillo", "armadilloIsMoving");
 
   options.forEach((option) => {

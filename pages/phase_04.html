@@ -1,223 +1,334 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fase IV - Cinemática</title>
+    <link rel="stylesheet" href="../src/css/global.css" />
+    <link rel="stylesheet" href="../src/css/phase_main.css" />
+    <link rel="stylesheet" href="../src/css/bootstrap.css" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fase IV - Cinemática</title>
-  <link rel="stylesheet" href="../src/css/global.css" />
-  <link rel="stylesheet" href="../src/css/phase_main.css" />
-  <link rel="stylesheet" href="../src/css/bootstrap.css" />
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-</head>
-
-<body class="bg-dark">
-  <section id="initial-screen" class="d-block w-100 position-absolute">
-    <div class="d-flex justify-content-center align-items-center vh-100">
-      <button data-start-game class="btn-mobile btn btn-primary">
-        Começar jogo
-      </button>
-    </div>
-  </section>
-
-  <section class="vh-100 d-flex flex-column justify-content-center align-items-center">
-    <header class="w-75 d-flex justify-content-around align-items-center p-1">
-      <p class="text-white m-0">
-        Número de tentativas: <span data-attempts>3</span>
-      </p>
-
-      <div class="d-flex justify-content-center align-items-center">
-        <i class="ph-fill ph-timer" style="color: white"></i>
-        <p data-timer-display class="text-white m-0">03:00</p>
+  <body class="bg-dark">
+    <section id="initial-screen" class="d-block w-100 position-absolute">
+      <div class="d-flex justify-content-center align-items-center vh-100">
+        <button data-start-game class="btn-mobile btn btn-primary">
+          Começar jogo
+        </button>
       </div>
-    </header>
+    </section>
 
-    <main data-game-screen class="game-screen d-block position-relative overflow-hidden">
-      <div class="progress-stacked">
-        <div data-progress-win class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="0"
-          aria-valuemin="0" aria-valuemax="100">
-          <div class="progress-bar bg-success"></div>
+    <section
+      class="vh-100 d-flex flex-column justify-content-center align-items-center"
+    >
+      <header class="w-75 d-flex justify-content-around align-items-center p-1">
+        <p class="text-white m-0">
+          Número de tentativas: <span data-attempts>3</span>
+        </p>
+
+        <div class="d-flex justify-content-center align-items-center">
+          <i class="ph-fill ph-timer" style="color: white"></i>
+          <p data-timer-display class="text-white m-0">03:00</p>
+        </div>
+      </header>
+
+      <main
+        data-game-screen
+        class="game-screen d-block position-relative overflow-hidden"
+      >
+        <div class="progress-stacked">
+          <div
+            data-progress-win
+            class="progress"
+            role="progressbar"
+            aria-label="Segment one"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div class="progress-bar bg-success"></div>
+          </div>
+
+          <div
+            data-progress-lose
+            class="progress"
+            role="progressbar"
+            aria-label="Segment two"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div class="progress-bar bg-danger"></div>
+          </div>
         </div>
 
-        <div data-progress-lose class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="0"
-          aria-valuemin="0" aria-valuemax="100">
-          <div class="progress-bar bg-danger"></div>
-        </div>
-      </div>
-
-      <!-- Perguntas no balão -->
-      <div class="balloon-text">
-        <div class="fox-balloon d-none">
-          <p class="text-center">
-            Se eu manter uma velocidade constante de
-            <strong><span class="fox-velocity"></span>m/s</strong>
-            , eu alcanço Tito em <strong><span class="crash-time"></span></strong>.
-          </p>
-        </div>
-        <div class="amadillo-balloon d-none">
-          <div class="text-center">
-            <p id="text-ballon-amadillo">
-              Que <strong>velocidade mínima</strong> eu devo manter para chegar a salvo em
-              minha toca:
+        <!-- Perguntas no balão -->
+        <div class="balloon-text">
+          <div class="fox-balloon d-none">
+            <p class="text-center">
+              Se eu manter uma velocidade constante de
+              <strong><span class="fox-velocity"></span>m/s</strong>
+              , eu alcanço Tito em
+              <strong><span class="crash-time"></span></strong>.
             </p>
-            <div class="d-flex align-items-center justify-content-center gap-2">
-              <div class="form-check">
-                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio5" />
-                <label class="text-black" for="radio5"></label>
+          </div>
+          <div class="amadillo-balloon d-none">
+            <div class="text-center">
+              <p id="text-ballon-amadillo">
+                Que <strong>velocidade mínima</strong> eu devo manter para
+                chegar a salvo em minha toca:
+              </p>
+              <div
+                class="d-flex align-items-center justify-content-center gap-2"
+              >
+                <div class="form-check">
+                  <input
+                    role="button"
+                    type="radio"
+                    name="velocity"
+                    class="form-check-input"
+                    id="radio5"
+                  />
+                  <label class="text-black" for="radio5"></label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    role="button"
+                    type="radio"
+                    name="velocity"
+                    class="form-check-input"
+                    id="radio6"
+                  />
+                  <label class="text-black" for="radio6"></label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    role="button"
+                    type="radio"
+                    name="velocity"
+                    class="form-check-input"
+                    id="radio7"
+                  />
+                  <label class="text-black" for="radio7"></label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    role="button"
+                    type="radio"
+                    name="velocity"
+                    class="form-check-input"
+                    id="radio8"
+                  />
+                  <label class="text-black" for="radio8"></label>
+                </div>
+              </div>
+              <div class="group-btn">
+                <button
+                  data-submit-answer
+                  type="button"
+                  class="btn-mobile btn btn-success"
+                  data-bs-dismiss="modal"
+                  disabled
+                >
+                  Confirmar
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-mobile btn btn-danger"
+                  data-bs-dismiss="modal"
+                  aria-label="Fechar"
+                >
+                  Fechar
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="fox-balloon-next d-none">
+            <p>Tenho que ser mais rápido na próxima</p>
+            <button
+              data-next-challenge
+              class="btn-mobile btn btn-success d-block"
+            >
+              Proxímo desafio
+            </button>
+          </div>
+          <div class="fox-balloon-win d-none">
+            <p>Hoje o almoço está garantido</p>
+            <button
+              data-reset
+              class="btn-mobile btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Tentar Novamente
+              <i class="bi bi-pause"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- MRU -->
+        <div data-armadillo class="object position-absolute">
+          <div class="armadilloIsMoving"></div>
+        </div>
+
+        <div data-fox class="object-2 position-absolute">
+          <div class="fox"></div>
+        </div>
+
+        <!-- Modal para próximo desafio (mobile) -->
+        <div
+          id="next-challenge-modal-mobile"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-sm d-lg-none" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Fim do desafio</h5>
+              </div>
+              <div class="modal-body">
+                <p class="textWin">Este desafio acabou! Siga para o próximo</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  data-next-challenge-mobile
+                  class="btn-mobile btn btn-success d-block"
+                >
+                  Proxímo desafio
+                </button>
+                <a
+                  data-next-page-mobile
+                  href="./phase_05.html"
+                  class="btn-mobile btn btn-primary d-none"
+                  role="button"
+                >
+                  Próximo desafio
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para próximo desafio (desktop) -->
+        <div
+          id="next-challenge-modal-desktop"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="modalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
+              </div>
+              <div class="modal-body">
+                <p class="textWin">Este desafio acabou! Siga para o próximo</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  data-next-challenge-desktop
+                  class="btn-mobile btn btn-success d-block"
+                >
+                  Proxímo desafio
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para a próxima fase (mobile) -->
+        <div
+          id="next-phase-modal-mobile"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          role="dialog"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Fim da fase</h5>
               </div>
 
-              <div class="form-check">
-                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio6" />
-                <label class="text-black" for="radio6"></label>
+              <div class="modal-body">
+                <p>Esta fase acabou, siga para a próxima!</p>
               </div>
 
-              <div class="form-check">
-                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio7" />
-                <label class="text-black" for="radio7"></label>
+              <div class="modal-footer">
+                <a
+                  href="./phase_05.html"
+                  role="button"
+                  class="btn btn-primary btn-sm"
+                >
+                  Próxima fase
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para a próxima fase (desktop) -->
+        <div
+          id="next-phase-modal-desktop"
+          class="modal fade"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Fim da fase</h5>
               </div>
 
-              <div class="form-check">
-                <input role="button" type="radio" name="velocity" class="form-check-input" id="radio8" />
-                <label class="text-black" for="radio8"></label>
+              <div class="modal-body">
+                <p>Esta fase acabou, siga para a próxima!</p>
+              </div>
+
+              <div class="modal-footer">
+                <a href="./phase_05.html" role="button" class="btn btn-primary">
+                  Próxima fase
+                </a>
               </div>
             </div>
-            <div class="group-btn">
-              <button data-submit-answer type="button" class="btn-mobile btn btn-success" data-bs-dismiss="modal"
-                disabled>
-                Confirmar
-              </button>
-
-              <button type="button" class="btn-mobile btn btn-danger" data-bs-dismiss="modal" aria-label="Fechar">
-                Fechar
-              </button>
-            </div>
           </div>
         </div>
-        <div class="fox-balloon-next d-none">
-          <p>Tenho que ser mais rápido na próxima</p>
-          <button data-next-challenge class="btn-mobile btn btn-success d-block">
-            Proxímo desafio
-          </button>
-        </div>
-        <div class="fox-balloon-win d-none">
-          <p>Hoje o almoço esta garantido</p>
-          <button data-reset class="btn-mobile btn btn-danger" data-bs-dismiss="modal">
-            Tentar Novamente
-            <i class="bi bi-pause"></i>
-          </button>
-        </div>
+      </main>
+
+      <div
+        id="footer"
+        class="dist d-flex justify-content-end align-items-center text-white"
+      >
+        <span></span>
+
+        <span
+          id="different-pos"
+          class="d-inline-block border-top border-white border-5 text-center dist-between"
+        >
+        </span>
+
+        <span
+          id="end-position"
+          class="d-inline-block border-top border-white border-5 position-until-end text-center"
+        ></span>
       </div>
+    </section>
 
-      <!-- MRU -->
-      <div data-armadillo class="object position-absolute">
-        <div class="armadilloIsMoving"></div>
-      </div>
-
-      <div data-fox class="object-2 position-absolute">
-        <div class="fox"></div>
-      </div>
-
-      <!-- Modal para próximo desafio (mobile) -->
-      <div id="next-challenge-modal-mobile" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm d-lg-none" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel">Fim do desafio</h5>
-            </div>
-            <div class="modal-body">
-              <p class="textWin">Este desafio acabou! Siga para o próximo</p>
-            </div>
-            <div class="modal-footer">
-              <button data-next-challenge-mobile class="btn-mobile btn btn-success d-block">
-                Proxímo desafio
-              </button>
-              <a data-next-page-mobile href="./phase_05.html" class="btn-mobile btn btn-primary d-none" role="button">
-                Próximo desafio
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal para próximo desafio (desktop) -->
-      <div id="next-challenge-modal-desktop" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel">Fim da fase</h5>
-            </div>
-            <div class="modal-body">
-              <p class="textWin">Este desafio acabou! Siga para o próximo</p>
-            </div>
-            <div class="modal-footer">
-              <button data-next-challenge-desktop class="btn-mobile btn btn-success d-block">
-                Proxímo desafio
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal para a próxima fase (mobile) -->
-      <div id="next-phase-modal-mobile" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Fim da fase</h5>
-            </div>
-
-            <div class="modal-body">
-              <p>Esta fase acabou, siga para a próxima!</p>
-            </div>
-
-            <div class="modal-footer">
-              <a href="./phase_05.html" role="button" class="btn btn-primary btn-sm">
-                Próxima fase
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal para a próxima fase (desktop) -->
-      <div id="next-phase-modal-desktop" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Fim da fase</h5>
-            </div>
-
-            <div class="modal-body">
-              <p>Esta fase acabou, siga para a próxima!</p>
-            </div>
-
-            <div class="modal-footer">
-              <a href="./phase_05.html" role="button" class="btn btn-primary btn-sm">
-                Próxima fase
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <div id="footer" class="dist d-none justify-content-end align-items-center text-white">
-      <span></span>
-
-      <span id="different-pos" class="d-inline-block border-top border-white border-5 text-center dist-between">
-      </span>
-
-      <span id="end-position"
-        class="d-inline-block border-top border-white border-5 position-until-end text-center"></span>
-    </div>
-  </section>
-
-  <script type="module" src="../src/js/phase_04.js"></script>
-  <script src="../src/js/bootstrap.min.js"></script>
-</body>
-
+    <script type="module" src="../src/js/phase_04.js"></script>
+    <script src="../src/js/bootstrap.min.js"></script>
+  </body>
 </html>
