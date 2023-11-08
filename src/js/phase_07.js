@@ -233,7 +233,7 @@ function makeFile() {
     localStorage.getItem("question-07-time"),
   ];
 
-  nicknameInput.value = nickname;
+  nicknameInput.value = name;
   firstQuestionInput.value = `${questionOne} == ${questionOneTime}`;
   secondQuestionInput.value = `${questionTwo} == ${questionTwoTime}`;
   thirdQuestionInput.value = `${questionThree} == ${questionThreeTime}`;
