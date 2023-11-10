@@ -34,6 +34,7 @@ const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
 const footerElement = document.getElementById("footer");
 let maxAttempts = 3;
+const lastChallenge = data.length - 1;
 
 let questionsQuantity = 100 / data.length;
 let progress = 0;
@@ -257,7 +258,7 @@ submitAnswerButton.addEventListener("click", () => {
     fox.children[0].classList.add("foxIsMoving");
 
     setTimeout(() => {
-      currentChallenger === 2
+      currentChallenger === lastChallenge
         ? nextPhaseModal.show()
         : balloonFoxNext.classList.replace("d-none", "d-flex");
       fox.children[0].classList.remove("foxIsMoving");
@@ -274,7 +275,7 @@ submitAnswerButton.addEventListener("click", () => {
       fox.children[0].classList.remove("foxIsMoving");
       armadillo.children[0].classList.replace("armadilloIsMoving", "armadillo");
       if (maxAttempts == 0) {
-        currentChallenger === 2
+        currentChallenger === lastChallenge
           ? nextPhaseModal.show()
           : nextChallengeModal.show();
 
@@ -289,6 +290,10 @@ submitAnswerButton.addEventListener("click", () => {
   localStorage.setItem("question-main-01-a", answer[0]);
   localStorage.setItem("question-main-01-b", answer[1]);
   localStorage.setItem("question-main-01-c", answer[2]);
+  localStorage.setItem("question-main-01-d", answer[3]);
+  localStorage.setItem("question-main-01-e", answer[4]);
+  localStorage.setItem("question-main-01-f", answer[5]);
+  localStorage.setItem("question-main-01-g", answer[6]);
   localStorage.setItem(
     "question-main-01-a-time",
     `tempo gasto: ${spentTime[0]}`
@@ -300,6 +305,22 @@ submitAnswerButton.addEventListener("click", () => {
   localStorage.setItem(
     "question-main-01-c-time",
     `tempo gasto: ${spentTime[2]}`
+  );
+  localStorage.setItem(
+    "question-main-01-d-time",
+    `tempo gasto: ${spentTime[3]}`
+  );
+  localStorage.setItem(
+    "question-main-01-e-time",
+    `tempo gasto: ${spentTime[4]}`
+  );
+  localStorage.setItem(
+    "question-main-01-f-time",
+    `tempo gasto: ${spentTime[5]}`
+  );
+  localStorage.setItem(
+    "question-main-01-g-time",
+    `tempo gasto: ${spentTime[6]}`
   );
 });
 
