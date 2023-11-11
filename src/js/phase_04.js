@@ -51,7 +51,7 @@ const labels = document.querySelectorAll(".form-check label");
 const nextChallengeModal = new bootstrap.Modal(nextChallengeModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 
-let [milliseconds, seconds, minutes] = [0, 0, 3];
+let [milliseconds, seconds, minutes] = [0, 0, 10];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
 
@@ -197,9 +197,9 @@ function nextChallenge() {
 
   minutesSpent = 0;
   secondsSpent = 0;
-  [milliseconds, seconds, minutes] = [0, 0, 3];
+  [milliseconds, seconds, minutes] = [0, 0, 10];
   [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
-  timerRef.innerText = "03:00";
+  timerRef.innerText = "10:00";
 
   footerElement.style.visibility = "hidden"
   footerElement.style.animation = "none";
