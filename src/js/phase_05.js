@@ -21,10 +21,6 @@ const questionModalElement = document.getElementById(`question${breakpoint}`);
 const nextPhaseModalElement = document.getElementById(
   `next-phase-modal${breakpoint}`
 );
-const gameOverModalElement = document.getElementById(
-  `game-over-modal${breakpoint}`
-);
-const options = document.querySelectorAll('input[type="radio"][name="option"]');
 const showQuestionButton = document.querySelector(
   `[data-show-question${breakpoint}]`
 );
@@ -37,7 +33,10 @@ const progressLose = document.querySelector("[data-progress-lose]");
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const questionModal = new bootstrap.Modal(questionModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
-const gameOverModal = new bootstrap.Modal(gameOverModalElement);
+
+/* ******************** DATA TO FORM ************************* */
+
+const answerToQuestionFive = document.getElementById("answerToQuestionFive")
 
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
@@ -162,33 +161,25 @@ armadillosMRUV.forEach((armadillo, index) => {
   }
 });
 
-options.forEach((option) => {
-  option.addEventListener("click", () => {
+
+
+answerToQuestionFive.addEventListener("input", (e) => {
+  if (e.target.value != "") {
     submitAnswerButton.disabled = false;
-  });
-});
+  } else {
+    submitAnswerButton.disabled = true;
+  }
+})
 
 submitAnswerButton.addEventListener("click", () => {
   let value;
-  let answer = 0;
   showQuestionButton.disabled = true;
-  options.forEach((option) => {
-    if (option.checked) {
-      answer = option.id;
-    }
-  });
-  if (answer == "radio-two" || answer == "radio-four") {
-    nextPhaseModal.show();
-    clearInterval(time);
-    questionModal.hide();
-    progressWin.style.width = "100%";
-    value = "A trajetória de cima representa o movimento retilíneo uniforme";
-  } else {
-    gameOverModal.show();
-    questionModal.hide();
-    showQuestionButton.disabled = false;
-  }
-
+  nextPhaseModal.show();
+  clearInterval(time);
+  questionModal.hide();
+  progressWin.style.width = "100%";
+  
+  value = answerToQuestionFive.value
   localStorage.setItem("question-05", value);
   localStorage.setItem(
     "question-05-time",
