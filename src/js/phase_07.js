@@ -166,12 +166,13 @@ submitAnswerButton.addEventListener("click", () => {
     completeChallengeModal.show();
     questionModal.hide();
     progressWin.style.width = "100%";
-    velocity = `velocidade = ${answer} (certo)`;
+    velocity = `velocidade = ${answer} (Resposta Certa)`;
     clearInterval(timer);
   } else {
     clearInterval(timer);
-    progressLose.style.width = "100%";
+    progressWin.style.width = "100%";
     completeChallengeModal.show();
+    velocity = `velocidade = ${answer} (Resposta Errada)`;
   }
 
   localStorage.setItem("question-07", velocity);
