@@ -30,7 +30,6 @@ const balloonFoxNext = document.querySelector(`.fox-balloon-next`);
 const balloonAmadillo = document.querySelector(`.amadillo-balloon`);
 const ballonnFoxWin = document.querySelector(`.fox-balloon-win`);
 const progressWin = document.querySelector("[data-progress-win]");
-const progressLose = document.querySelector("[data-progress-lose]");
 let remainingAttempts = document.querySelector("[data-attempts]");
 const footerElement = document.getElementById("footer");
 let maxAttempts = 3;
@@ -39,7 +38,8 @@ const lastChallenge = data.length - 1;
 let questionsQuantity = 100 / data.length;
 let progress = 0;
 
-let answer = [];
+const answer = [];
+const spentTime = [];
 
 if (breakpoint == "-mobile") {
   buttonsMobile.forEach((button) => {
@@ -54,7 +54,7 @@ const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
 let [minutesSpent, secondsSpent] = [0, 0];
-const spentTime = [];
+
 let timer = null;
 let t = 0; // variavel para salvar o tempo da resposta
 let currentChallenger = 0;
@@ -130,14 +130,14 @@ const time = () => {
       clearInterval(timer);
       clearInterval(countElapsedTime);
 
-      if (currentChallenger === 2) {
+      if (currentChallenger === lastChallenge) {
         nextPhaseModal.show();
       } else {
         nextChallengeModal.show();
       }
 
       progress += questionsQuantity;
-      progressLose.style.width = `${progress}%`;
+      progressWin.style.width = `${progress}%`;
 
       localStorage.setItem(
         "question-main-01",
@@ -280,48 +280,22 @@ submitAnswerButton.addEventListener("click", () => {
           : nextChallengeModal.show();
 
         progress += questionsQuantity;
-        progressLose.style.width = `${progress}%`;
+        progressWin.style.width = `${progress}%`;
       } else {
         ballonnFoxWin.classList.replace("d-none", "d-flex");
       }
     }, 2000);
   }
 
-  localStorage.setItem("question-main-01-a", answer[0]);
-  localStorage.setItem("question-main-01-b", answer[1]);
-  localStorage.setItem("question-main-01-c", answer[2]);
-  localStorage.setItem("question-main-01-d", answer[3]);
-  localStorage.setItem("question-main-01-e", answer[4]);
-  localStorage.setItem("question-main-01-f", answer[5]);
-  localStorage.setItem("question-main-01-g", answer[6]);
-  localStorage.setItem(
-    "question-main-01-a-time",
-    `tempo gasto: ${spentTime[0]}`
-  );
-  localStorage.setItem(
-    "question-main-01-b-time",
-    `tempo gasto: ${spentTime[1]}`
-  );
-  localStorage.setItem(
-    "question-main-01-c-time",
-    `tempo gasto: ${spentTime[2]}`
-  );
-  localStorage.setItem(
-    "question-main-01-d-time",
-    `tempo gasto: ${spentTime[3]}`
-  );
-  localStorage.setItem(
-    "question-main-01-e-time",
-    `tempo gasto: ${spentTime[4]}`
-  );
-  localStorage.setItem(
-    "question-main-01-f-time",
-    `tempo gasto: ${spentTime[5]}`
-  );
-  localStorage.setItem(
-    "question-main-01-g-time",
-    `tempo gasto: ${spentTime[6]}`
-  );
+  localStorage.setItem("question-main-01-a", `Resposta: ${answer[0]}; Tempo gasto: ${spentTime[0]}`)
+  localStorage.setItem("question-main-01-b", `Resposta: ${answer[1]}; Tempo gasto: ${spentTime[1]}`)
+  localStorage.setItem("question-main-01-c", `Resposta: ${answer[2]}; Tempo gasto: ${spentTime[2]}`)
+  localStorage.setItem("question-main-01-d", `Resposta: ${answer[3]}; Tempo gasto: ${spentTime[3]}`)
+  localStorage.setItem("question-main-01-e", `Resposta: ${answer[4]}; Tempo gasto: ${spentTime[4]}`)
+  localStorage.setItem("question-main-01-f", `Resposta: ${answer[5]}; Tempo gasto: ${spentTime[5]}`)
+  localStorage.setItem("question-main-01-g", `Resposta: ${answer[6]}; Tempo gasto: ${spentTime[6]}`)
+  
+  
 });
 
 function animationWin() {

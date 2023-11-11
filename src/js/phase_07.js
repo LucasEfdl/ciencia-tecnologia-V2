@@ -30,6 +30,19 @@ const progressWin = document.querySelector("[data-progress-win]");
 const progressLose = document.querySelector("[data-progress-lose]");
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const questionModal = new bootstrap.Modal(questionModalElement);
+
+/* ********************** DATA OF FOMR  *************************** */
+const nicknameInput = document.querySelector("[data-nickname]");
+const firstQuestionInput = document.querySelector("[data-first-question]");
+const secondQuestionInput = document.querySelector("[data-second-question]");
+const thirdQuestionInput = document.querySelector("[data-third-question]");
+const fourthQuestionInput = document.querySelector("[data-fourth-question]");
+const fifthQuestionInput = document.querySelector("[data-fifth-question]");
+const sixthQuestionInput = document.querySelector("[data-sixth-question]");
+const seventhQuestionInput = document.querySelector("[data-seventh-question]");
+
+/* ********************************************************************** */
+
 var completeChallengeModal = new bootstrap.Modal(completeChallengeModalElement);
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
@@ -181,18 +194,8 @@ submitLogicButton.addEventListener("click", () => {
 });
 
 function makeFile() {
-  const nicknameInput = document.querySelector("[data-nickname]");
-  const firstQuestionInput = document.querySelector("[data-first-question]");
-  const secondQuestionInput = document.querySelector("[data-second-question]");
-  const thirdQuestionInput = document.querySelector("[data-third-question]");
-  const fourthQuestionInput = document.querySelector("[data-fourth-question]");
-  const fifthQuestionInput = document.querySelector("[data-fifth-question]");
-  const sixthQuestionInput = document.querySelector("[data-sixth-question]");
-  const seventhQuestionInput = document.querySelector(
-    "[data-seventh-question]"
-  );
+  
   let name = localStorage.getItem("nome");
-  let nickname = localStorage.getItem("nickname");
   let [questionOne, questionOneTime] = [
     localStorage.getItem("question-01"),
     localStorage.getItem("question-01-time"),
@@ -209,16 +212,18 @@ function makeFile() {
     questionMain01,
     questionMain02,
     questionMain03,
-    questionMain01Time,
-    questionMain02Time,
-    questionMain03Time,
+    questionMain04,
+    questionMain05,
+    questionMain06,
+    questionMain07,
   ] = [
     localStorage.getItem("question-main-01-a"),
     localStorage.getItem("question-main-01-b"),
     localStorage.getItem("question-main-01-c"),
-    localStorage.getItem("question-main-01-a-time"),
-    localStorage.getItem("question-main-01-b-time"),
-    localStorage.getItem("question-main-01-c-time"),
+    localStorage.getItem("question-main-01-d"),
+    localStorage.getItem("question-main-01-e"),
+    localStorage.getItem("question-main-01-f"),
+    localStorage.getItem("question-main-01-g"),
   ];
   let [questionFive, questionFiveTime] = [
     localStorage.getItem("question-05"),
@@ -237,7 +242,16 @@ function makeFile() {
   firstQuestionInput.value = `${questionOne} == ${questionOneTime}`;
   secondQuestionInput.value = `${questionTwo} == ${questionTwoTime}`;
   thirdQuestionInput.value = `${questionThree} == ${questionThreeTime}`;
-  fourthQuestionInput.value = `A)${questionMain01} == ${questionMain01Time} - B)${questionMain02} == ${questionMain02Time} - C)${questionMain03} == ${questionMain03Time}`;
+  fourthQuestionInput.value = 
+  `
+    A)${questionMain01};
+    B)${questionMain02};
+    C)${questionMain03};
+    D)${questionMain04};
+    E)${questionMain05};
+    F)${questionMain06};
+    G)${questionMain07};
+  `;
   fifthQuestionInput.value = `${questionFive} == ${questionFiveTime}`;
   sixthQuestionInput.value = `${questionSix} == ${questionSixTime}`;
   seventhQuestionInput.value = `${questionSeven} == ${questionSevenTime}`;
