@@ -21,9 +21,6 @@ const questionModalElement = document.getElementById(`question${breakpoint}`);
 const nextPhaseModalElement = document.getElementById(
   `next-phase-modal${breakpoint}`
 );
-const gameOverModalElement = document.getElementById(
-  `game-over-modal${breakpoint}`
-);
 const options = document.querySelectorAll('input[type="radio"][name="option"]');
 const showQuestionButton = document.querySelector(
   `[data-show-question${breakpoint}]`
@@ -37,7 +34,6 @@ const progressLose = document.querySelector("[data-progress-lose]");
 const timeOverModal = new bootstrap.Modal(timeOverModalElement);
 const questionModal = new bootstrap.Modal(questionModalElement);
 const nextPhaseModal = new bootstrap.Modal(nextPhaseModalElement);
-const gameOverModal = new bootstrap.Modal(gameOverModalElement);
 
 let [milliseconds, seconds, minutes] = [0, 0, 3];
 let [elapsedMinutes, elapsedSeconds, elapsedMilliseconds] = [0, 0, 0];
@@ -180,10 +176,11 @@ submitAnswerButton.addEventListener("click", () => {
     nextPhaseModal.show();
     questionModal.hide();
     progressWin.style.width = "100%";
-    value = "A trajetória representa o movimento retilíneo uniforme";
+    value = "A trajetória representa o movimento retilíneo uniforme (Resposta Certa)";
   } else {
-    gameOverModal.show();
+    nextPhaseModal.show();
     questionModal.hide();
+    value = "A trajetória representa o movimento retilíneo uniformemente Variado (Resposta Errada)"
     showQuestionButton.disabled = false;
   }
 
