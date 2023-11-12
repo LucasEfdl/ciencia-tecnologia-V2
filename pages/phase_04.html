@@ -245,7 +245,12 @@
               </div>
 
               <div class="modal-body">
-                <p>Esta fase acabou, siga para a próxima!</p>
+                <p>Esta fase acabou, mas antes de proseguir informe a lógica usada na resolução das questoes</p>
+                <textarea
+                      class="form-control mb-1"
+                      name="logica"
+                      rows="4"
+                ></textarea>
               </div>
 
               <div class="modal-footer">
@@ -276,13 +281,23 @@
               </div>
 
               <div class="modal-body">
-                <p>Esta fase acabou, siga para a próxima!</p>
+                <p>Esta fase acabou, mas antes de proseguir informe a lógica usada na resolução das questoes</p>
+                <textarea
+                  id="logicUsed"
+                  class="form-control mb-1"
+                  name="logica"
+                  rows="4"
+                ></textarea>
               </div>
 
               <div class="modal-footer">
-                <a href="./phase_05.html" role="button" class="btn btn-primary">
-                  Próxima fase
-                </a>
+                <button
+                  id="data-submit-logic"
+                  type="submit"
+                  class="btn btn-primary disabled"
+                >
+                  Enviar
+                </button>
               </div>
             </div>
           </div>

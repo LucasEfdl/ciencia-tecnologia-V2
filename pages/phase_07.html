@@ -336,8 +336,7 @@
               </div>
               <div class="modal-body">
                 <p class="text-black">
-                  Parabéns por completar os desafios! <br />Por favor, nos diga
-                  qual foi a sua lógica para a resolução das questões:
+                  Esperamos que tenham se divertido resolvendo esses pequenos desafios. Click em enviar e depois confirme. 
                 </p>
 
                 <form
@@ -383,7 +382,8 @@
                     />
 
                     <textarea
-                      class="form-control mb-1"
+                      data-logic-used
+                      class="form-control mb-1 d-none"
                       name="logica"
                       rows="4"
                     ></textarea>
@@ -391,7 +391,7 @@
                     <button
                       id="data-submit-logic"
                       type="submit"
-                      class="btn btn-primary disabled"
+                      class="btn btn-primary"
                     >
                       Enviar
                     </button>

@@ -21,6 +21,8 @@ const options = document.querySelectorAll(
 const submitAnswerButton = document.querySelector(`[data-submit-answer`);
 const resetButton = document.querySelector(`[data-reset]`);
 const nextChallengeBtn = document.querySelector(`[data-next-challenge]`);
+const btnSendDataAndFollow = document.getElementById("data-submit-logic")
+const logicUsedTextarea = document.getElementById("logicUsed")
 const buttonsMobile = document.querySelectorAll(".btn-mobile");
 const nextChallengeButton = document.querySelector(
   `[data-next-challenge${breakpoint}]`
@@ -230,6 +232,20 @@ function updateDistBetween() {
 
 updatePositionUntilEnd();
 updateDistBetween();
+
+logicUsedTextarea.addEventListener("input", (e) => {
+  if (e.target.value == "") {
+    btnSendDataAndFollow.classList.add("disabled");
+  } else {
+    btnSendDataAndFollow.classList.remove("disabled");
+  }
+});
+
+btnSendDataAndFollow.addEventListener("click", () => {
+  const logicUsedText = logicUsedTextarea.value
+  localStorage.setItem("Logica Utilizada", logicUsedText)
+  window.location.href = "./phase_05.html"
+})
 
 submitAnswerButton.addEventListener("click", () => {
   clearInterval(timer);

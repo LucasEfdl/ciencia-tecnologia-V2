@@ -40,6 +40,7 @@ const fourthQuestionInput = document.querySelector("[data-fourth-question]");
 const fifthQuestionInput = document.querySelector("[data-fifth-question]");
 const sixthQuestionInput = document.querySelector("[data-sixth-question]");
 const seventhQuestionInput = document.querySelector("[data-seventh-question]");
+const logicUser = document.querySelector("[data-logic-used]")
 
 /* ********************************************************************** */
 
@@ -238,6 +239,7 @@ function makeFile() {
     localStorage.getItem("question-07"),
     localStorage.getItem("question-07-time"),
   ];
+  let logicUsedtext = localStorage.getItem("Logica Utilizada")
 
   nicknameInput.value = name;
   firstQuestionInput.value = `${questionOne} == ${questionOneTime}`;
@@ -256,4 +258,5 @@ function makeFile() {
   fifthQuestionInput.value = `${questionFive} == ${questionFiveTime}`;
   sixthQuestionInput.value = `${questionSix} == ${questionSixTime}`;
   seventhQuestionInput.value = `${questionSeven} == ${questionSevenTime}`;
+  logicUser.value = `${logicUsedtext}`
 }
