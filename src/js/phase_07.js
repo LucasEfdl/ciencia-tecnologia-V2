@@ -257,3 +257,4 @@ function makeFile() {
   seventhQuestionInput.value = `${questionSeven} == ${questionSevenTime}`;
   logicUser.value = `${logicUsedtext}`
 }
+/* Teste */
