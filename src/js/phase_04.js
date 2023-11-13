@@ -309,7 +309,6 @@ submitAnswerButton.addEventListener("click", () => {
   localStorage.setItem("question-main-01-d", `Resposta: ${answer[3]}; Tempo gasto: ${spentTime[3]}`)
   localStorage.setItem("question-main-01-e", `Resposta: ${answer[4]}; Tempo gasto: ${spentTime[4]}`)
   localStorage.setItem("question-main-01-f", `Resposta: ${answer[5]}; Tempo gasto: ${spentTime[5]}`)
-  localStorage.setItem("question-main-01-g", `Resposta: ${answer[6]}; Tempo gasto: ${spentTime[6]}`)
   
   
 });

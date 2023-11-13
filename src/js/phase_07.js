@@ -217,7 +217,6 @@ function makeFile() {
     questionMain04,
     questionMain05,
     questionMain06,
-    questionMain07,
   ] = [
     localStorage.getItem("question-main-01-a"),
     localStorage.getItem("question-main-01-b"),
@@ -225,7 +224,6 @@ function makeFile() {
     localStorage.getItem("question-main-01-d"),
     localStorage.getItem("question-main-01-e"),
     localStorage.getItem("question-main-01-f"),
-    localStorage.getItem("question-main-01-g"),
   ];
   let [questionFive, questionFiveTime] = [
     localStorage.getItem("question-05"),
@@ -253,7 +251,6 @@ function makeFile() {
     D)${questionMain04};
     E)${questionMain05};
     F)${questionMain06};
-    G)${questionMain07};
   `;
   fifthQuestionInput.value = `${questionFive} == ${questionFiveTime}`;
   sixthQuestionInput.value = `${questionSix} == ${questionSixTime}`;
